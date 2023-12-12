@@ -1,0 +1,146 @@
+@extends('layouts.backend')
+
+@section('js')
+  <!-- Page JS Plugins -->
+  <script src="{{ asset('js/plugins/ckeditor5-classic/build/ckeditor.js') }}"></script>
+ <!-- Page JS Helpers (CKEditor 5 plugins) -->
+  <script type="module">One.helpersOnLoad(['js-ckeditor5']);</script>
+@endsection
+
+
+
+@section('content')
+  <!-- Hero -->
+  <div class="bg-body-light">
+    <div class="content content-full">
+      <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
+        <div class="flex-grow-1">
+          <h1 class="h3 fw-bold mb-1">
+            Adding new product
+          </h1>
+          <h2 class="fs-base lh-base fw-medium text-muted mb-0">
+            In category: {{$alias}}
+          </h2>
+        </div>
+        <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
+          <ol class="breadcrumb breadcrumb-alt">
+            <li class="breadcrumb-item">
+              <a class="link-fx" href="/admin/categories">Categories</a>
+            </li>
+            <li class="breadcrumb-item" aria-current="page">
+              Products
+            </li>
+            <li class="breadcrumb-item" aria-current="page">
+                Create new
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <!-- END Hero -->
+
+  <!-- Page Content -->
+  <div class="content">
+    <a href="/admin/categories/show/{{ $alias }}">
+        <button type="button" class="btn btn-alt-secondary me-1 mb-3">
+            <i class="fa-solid fa-caret-left me-1"></i> GoBack
+        </button>
+    </a>
+
+
+
+    <!-- Your Block -->
+    <div class="block block-rounded">
+        <div class="block-header block-header-default">
+          <h3 class="block-title">New product data</h3>
+        </div>
+        <div class="block-content block-content-full">
+          <form action="/admin/products/create/{{ $alias }}" method="POST" enctype="multipart/form-data" >
+            @csrf
+
+            <div class="row">
+              <div class="col-lg-4">
+                <p class="fs-sm text-muted">
+                  Enter main data for new product
+                </p>
+              </div>
+              <div class="col-lg-8 col-xl-5">
+
+                <div class="block block-rounded">
+
+                    <div class="form-floating mb-4">
+                        <input type="text" class="form-control @error('code') is-invalid @enderror" id="code-txt" name="code" placeholder="Enter Product code" value="{{(null!==old('code'))?old('code'):'product_'.time()}}">
+                        <label for="code-txt">Enter Product code @error('code')<span style="vertical-align: super;" class="badge bg-warning"><i class="fa fa-exclamation-circle"></i> {{$message}}</span>@enderror <span class="text-danger">*</span></label>
+                    </div>
+
+                    <ul class="nav nav-tabs nav-tabs-alt justify-content-end" role="tablist">
+                        @foreach (app('config')->get('shop')['languages']['list'] as $lang)
+                            <li class="nav-item" role="presentation">
+                                <button type="button" class="nav-link @if($loop->index == 0) active @endif" id="products-data-tab-{{$lang}}" data-bs-toggle="tab" data-bs-target="#products-data-content-{{$lang}}" role="tab" aria-controls="products-data-content-{{$lang}}" aria-selected="true">{{strtoupper($lang)}}</button>
+                            </li>
+                        @endforeach
+                    </ul>
+                    <div class="block-content tab-content">
+                        @foreach (app('config')->get('shop')['languages']['list'] as $lang)
+                            <div class="tab-pane @if($loop->index == 0) active @endif" id="products-data-content-{{$lang}}" role="tabpanel" aria-labelledby="products-data-tab-{{$lang}}" tabindex="0">
+                                <div class="form-floating mb-4">
+                                    <input type="text" class="form-control" id="title-txt-{{$lang}}" name="title[{{$lang}}]" placeholder="Enter product title" value="{{ old('title.'.$lang) }}">
+                                    <label for="title-txt-{{$lang}}">Title [{{$lang}}]</label>
+                                </div>
+                                <div class="form-floating mb-4">
+                                    <textarea class="form-control" id="descr-txt-{{$lang}}" name="description[{{$lang}}]" style="height: 200px" placeholder="Enter product description">{{ old('description.'.$lang) }}</textarea>
+                                    <label for="descr-txt-{{$lang}}">Product description [{{$lang}}]</label>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label" for="js-ckeditor5-classic-{{$lang}}">Product details [{{$lang}}]</label>
+                                    <textarea name="details[{{$lang}}]" id="js-ckeditor5-classic-{{$lang}}" class="js-ckeditor5-classic" cols="30" rows="10"></textarea>
+                                </div>
+
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <hr>
+
+
+                    <div class="form-check form-switch form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" id="active-checkbox" name="active" {{ old('active') == 1 ? 'checked' : '' }} >
+                        <label class="form-check-label" for="active-checkbox">Active</label>
+                    </div>
+
+                    <div class="mb-4 mt-4">
+                        <label class="form-label" for="product-photo-file">Product photo @error('photo')<span style="vertical-align: super;" class="badge bg-warning"><i class="fa fa-exclamation-circle"></i> {{$message}}</span>@enderror</label>
+                        <input class="form-control @error('photo') is-invalid @enderror" type="file" id="product-photo-file" name="photo">
+                    </div>
+
+
+                </div>
+
+
+
+
+                <div class="block-content tab-content">
+                    <button type="submit" class="btn  btn-primary me-1 mb-3">
+                        <i class="fa fa-fw fa-check me-1"></i> Create
+                    </button>
+                </div>
+
+
+
+
+
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    <!-- END Your Block -->
+
+
+
+
+  </div>
+  <!-- END Page Content -->
+@endsection
