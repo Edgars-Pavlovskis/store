@@ -17,6 +17,7 @@ class Categoryunique implements ValidationRule
     {
         if(Categories::whereAlias(convertToLatin($value))->count() > 0) {
             $fail('The :attribute should be unique.');
+
         }
     }
 }
