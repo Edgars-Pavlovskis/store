@@ -42,30 +42,31 @@
                 {{$current->title[App::currentLocale()]}}
                 <a href="{{ route('categories-edit', ['alias'=>$current->alias]) }}"><i class="fa-solid fa-pen-to-square ms-2"></i></a>
             @else
-                Categories
+                {{__('admin.categories.title')}}
             @endif
           </h1>
           <h2 class="fs-base lh-base fw-medium text-muted mb-0">
             @if (isset($current->id))
                 {{$current->description[App::currentLocale()]}}
             @else
-                Create new preoducts category
+                {{__('admin.categories.description')}}
             @endif
           </h2>
         </div>
         <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
           <ol class="breadcrumb breadcrumb-alt">
             <li class="breadcrumb-item">
-              <a class="link-fx" href="javascript:void(0)">Categories</a>
-            </li>
-            <li class="breadcrumb-item" aria-current="page">
-              View
+              <a class="link-fx" href="javascript:void(0)">{{__('admin.categories.title')}}</a>
             </li>
 
             @if (isset($current->id))
                 <li class="breadcrumb-item" aria-current="page">
                     {{$current->title[App::currentLocale()]}}
-              </li>
+                </li>
+            @else
+                <li class="breadcrumb-item" aria-current="page">
+                    {{__('admin.list')}}
+                </li>
             @endif
           </ol>
         </nav>
@@ -81,14 +82,14 @@
     @if (isset($current->id))
         <a href="/admin/categories/show/{{isset($current->parent_alias)?$current->parent_alias:''}}">
             <button type="button" class="btn btn-alt-secondary me-1 mb-3">
-                <i class="fa-solid fa-caret-left me-1"></i> Go Upper
+                <i class="fa-solid fa-caret-left me-1"></i> {{__('admin.goback')}}
             </button>
         </a>
     @endif
 
     <a href="/admin/categories/create/{{isset($current->alias)?$current->alias:''}}">
         <button type="button" class="btn btn-alt-success me-1 mb-3">
-            <i class="fa fa-fw fa-plus me-1"></i> Add Category
+            <i class="fa fa-fw fa-plus me-1"></i> {{__('admin.categories.add')}}
         </button>
     </a>
 
@@ -119,13 +120,13 @@
           <div class="block block-rounded">
             <div class="block-header block-header-default">
               <h3 class="block-title">
-                Dynamic Table <small>DataTables Responsive Mode</small>
+                {{__('admin.products.list')}} <small>{{__('admin.products.in-choosed-category')}}</small>
               </h3>
             </div>
             <div class="block-content block-content-full pt-2">
                 <a href="/admin/products/create/{{$current->alias}}">
-                    <button type="button" class="btn btn-alt-success me-1 mb-3">
-                        <i class="fa fa-fw fa-plus me-1"></i> Add Product
+                    <button type="button" class="btn btn-success me-1 mb-3">
+                        <i class="fa fa-fw fa-plus me-1"></i> {{__('admin.products.new')}}
                     </button>
                 </a>
               <!-- DataTables init on table by adding .js-dataTable-responsive class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->

@@ -16,7 +16,8 @@ class ProductsController extends Controller
     {
         if(!empty($alias)){
             return view('admin.products.create', [
-                'alias' => $alias
+                'alias' => $alias,
+                'categoryTitle' => Categories::where('alias', $alias)->select('title')->first()
             ]);
         }
     }
