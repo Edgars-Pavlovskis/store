@@ -19,6 +19,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
   </style>
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/store.css') }}">
 
   <!-- Modules -->
   @yield('css')
@@ -27,6 +28,9 @@
   <!-- Alternatively, you can also include a specific color theme after the main stylesheet to alter the default color theme of the template -->
   {{-- @vite(['resources/sass/main.scss', 'resources/sass/oneui/themes/amethyst.scss', 'resources/js/oneui/app.js']) --}}
   @yield('js')
+
+  @livewireStyles
+  @livewireScripts
 </head>
 
 <body>
@@ -198,17 +202,17 @@
                 <span class="nav-main-link-name">Dashboard</span>
               </a>
             </li>
-            <li class="nav-main-heading">Various</li>
+            <li class="nav-main-heading">store.lv</li>
             <li class="nav-main-item{{ request()->is('admin/*') ? ' open' : '' }}">
               <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                <i class="nav-main-link-icon si si-bulb"></i>
-                <span class="nav-main-link-name">Examples</span>
+                <i class="fa fa-shopping-basket me-2" aria-hidden="true"></i>
+                <span class="nav-main-link-name">{{__('admin.navi.catalog')}}</span>
               </a>
               <ul class="nav-main-submenu">
 
                 <li class="nav-main-item">
-                    <a class="nav-main-link{{ request()->is('admin/categories/show') ? ' active' : '' }}" href="/admin/categories/show">
-                      <span class="nav-main-link-name">Categories</span>
+                    <a class="nav-main-link{{ request()->is('admin/categories/*') ? ' active' : '' }}" href="/admin/categories/show">
+                      <span class="nav-main-link-name">{{__('admin.navi.categories-and-products')}}</span>
                     </a>
                   </li>
 

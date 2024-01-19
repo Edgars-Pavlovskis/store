@@ -2,12 +2,13 @@
 
 return [
     'languages' => [
-        'list' => ['lv', 'ru'],
+        'default' => 'lv',
+        'list' => ['lv', 'en'],
         'lv' => [
             'title' => 'Latviešu'
         ],
-        'ru' => [
-            'title' => 'Русский'
+        'en' => [
+            'title' => 'English'
         ]
     ],
 ];

@@ -70,16 +70,27 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('/admin/categories/show',[App\Http\Controllers\CategoriesController::class, 'index'])->name('categories-index-root');
-    Route::get('/admin/categories/show/{alias}',[App\Http\Controllers\CategoriesController::class, 'index'])->name('categories-index');
+    Route::get('/admin/categories/show/{alias?}',[App\Http\Controllers\CategoriesController::class, 'index'])->name('categories-index');
+
+    Route::get('/admin/categories/attributes/{alias?}',[App\Http\Controllers\CategoriesController::class, 'attributes'])->name('attributes');
+    Route::get('/admin/categories/attributes/manage/{alias}/{id?}',[App\Http\Controllers\CategoriesController::class, 'manageAttribute'])->name('attributes-manage');
+    Route::post('/admin/categories/attributes/store/{id?}',[App\Http\Controllers\CategoriesController::class, 'storeAttribute'])->name('attributes-store');
+
     Route::get('/admin/categories/create/',[App\Http\Controllers\CategoriesController::class, 'create'])->name('categories-create-root');
     Route::get('/admin/categories/create/{alias}',[App\Http\Controllers\CategoriesController::class, 'create'])->name('categories-create');
-    Route::post('/admin/categories/create/{alias}',[App\Http\Controllers\CategoriesController::class, 'store'])->name('categories-store');
+    Route::post('/admin/categories/create/{alias}/{parent?}',[App\Http\Controllers\CategoriesController::class, 'store'])->name('categories-store');
 
     Route::get('/admin/categories/edit/{alias}',[App\Http\Controllers\CategoriesController::class, 'edit'])->name('categories-edit');
     Route::post('/admin/categories/update/{alias}',[App\Http\Controllers\CategoriesController::class, 'update'])->name('categories-update');
+    Route::post('/admin/categories/update-sorting', [App\Http\Controllers\CategoriesController::class, 'updateSorting'])->name('categories-update-sorting');
+
 
     Route::get('/admin/products/create/{alias}',[App\Http\Controllers\ProductsController::class, 'create'])->name('products-create');
+    Route::get('/admin/products/edit/{alias}',[App\Http\Controllers\ProductsController::class, 'edit'])->name('products-edit');
+    Route::get('/admin/products/gallery/{alias}',[App\Http\Controllers\ProductsController::class, 'showGallery'])->name('products-gallery');
     Route::post('/admin/products/create/{alias}',[App\Http\Controllers\ProductsController::class, 'store'])->name('products-store');
+    Route::post('/admin/products/update/{alias}',[App\Http\Controllers\ProductsController::class, 'store'])->name('products-update');
+    Route::post('/upload-product-gallery', [App\Http\Controllers\ProductsController::class, 'productGalleryUpload'])->name('productGalleryUpload');
 
 
 });

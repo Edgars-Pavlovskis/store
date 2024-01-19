@@ -6,6 +6,9 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
+use App\Models\Categories;
+use App\Models\CategoriesTranslation;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -26,6 +29,9 @@ class DatabaseSeeder extends Seeder
             "superadmin" => 1,
             "password" => Hash::make("777")
         ]);
+
+
+
 
 
     }

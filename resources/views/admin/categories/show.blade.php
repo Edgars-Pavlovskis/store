@@ -1,11 +1,18 @@
 @extends('layouts.backend')
 
 
+
 @section('css')
   <!-- Page JS Plugins CSS -->
   <link rel="stylesheet" href="{{ asset('js/plugins/datatables-bs5/css/dataTables.bootstrap5.min.css') }}">
   <link rel="stylesheet" href="{{ asset('js/plugins/datatables-buttons-bs5/css/buttons.bootstrap5.min.css') }}">
   <link rel="stylesheet" href="{{ asset('js/plugins/datatables-responsive-bs5/css/responsive.bootstrap5.min.css') }}">
+
+  <style>
+    .blue-sortable-class a {
+        border: 1px solid rgba(13, 65, 102, 0.45);
+    }
+  </style>
 @endsection
 
 @section('js')
@@ -24,9 +31,32 @@
   <script src="{{ asset('js/plugins/datatables-buttons-pdfmake/vfs_fonts.js') }}"></script>
   <script src="{{ asset('js/plugins/datatables-buttons/buttons.print.min.js') }}"></script>
   <script src="{{ asset('js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
+  <script src="{{ asset('js/plugins/sorting/Sortable.min.js') }}"></script>
 
-
+  <script>
+    $( document ).ready(function() {
+        var el = document.getElementById('sortable-categories');
+        var sortable = Sortable.create(el,{
+            animation: 150,
+            ghostClass: 'blue-sortable-class',
+            easing: "cubic-bezier(1, 0, 0, 1)",
+            onUpdate: function (/**Event*/evt) {
+                var newOrder = Array.from(evt.from.children).map(function (item, index) {
+                    // Update the order attribute on the element
+                    item.setAttribute('data-order', index + 1);
+                    return {
+                        id: item.getAttribute('catID'), // Assuming you have a data-id attribute
+                        order: index + 1,
+                    };
+                });
+                $.ajax({ url: '{{ route("categories-update-sorting") }}', type: 'POST', data: { "_token": "{{ csrf_token() }}", order: newOrder } });
+            },
+        });
+    });
+  </script>
   <!-- Page JS  Code -->
+
+
 @vite(['resources/js/pages/datatables.js'])
 
 @endsection
@@ -39,15 +69,16 @@
         <div class="flex-grow-1">
           <h1 class="h3 fw-bold mb-1">
             @if (isset($current->id))
-                {{$current->title[App::currentLocale()]}}
-                <a href="{{ route('categories-edit', ['alias'=>$current->alias]) }}"><i class="fa-solid fa-pen-to-square ms-2"></i></a>
+                {{$current->title}}
+                <a href="{{ route('categories-edit', ['alias'=>$current->alias]) }}"><i class="fa-solid fa-pen-to-square fa-xs ms-2"></i></a>
+                <a href="javascript:void()" onclick="Livewire.dispatch('confirmDeleteExternal', { itemId: '{{$current->id}}', itemName: '{{$current->title}}', model: 'Categories', parent: '{{$current->parent_alias}}' })" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal"><i class="fa fa-trash fa-xs ms-2"></i></a>
             @else
                 {{__('admin.categories.title')}}
             @endif
           </h1>
           <h2 class="fs-base lh-base fw-medium text-muted mb-0">
             @if (isset($current->id))
-                {{$current->description[App::currentLocale()]}}
+                {{$current->description}}
             @else
                 {{__('admin.categories.description')}}
             @endif
@@ -56,12 +87,12 @@
         <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
           <ol class="breadcrumb breadcrumb-alt">
             <li class="breadcrumb-item">
-              <a class="link-fx" href="javascript:void(0)">{{__('admin.categories.title')}}</a>
+              <a class="link-fx" href="/admin/categories/show/">{{__('admin.categories.title')}}</a>
             </li>
 
             @if (isset($current->id))
                 <li class="breadcrumb-item" aria-current="page">
-                    {{$current->title[App::currentLocale()]}}
+                    {{$current->title}}
                 </li>
             @else
                 <li class="breadcrumb-item" aria-current="page">
@@ -93,14 +124,20 @@
         </button>
     </a>
 
-    <div class="row">
+    <a href="/admin/categories/attributes/{{isset($current->alias)?$current->alias:''}}">
+        <button type="button" class="btn btn-alt-info me-1 mb-3">
+            <i class="fa-solid fa-sliders me-1"></i> {{__('admin.attributes.show')}}
+        </button>
+    </a>
+
+    <div id="sortable-categories" class="row">
         @foreach ($categories as $category)
-            <div class="col-md-6 col-xl-3">
+            <div class="col-md-6 col-xl-3" catID="{{$category->id}}">
                 <a class="block block-rounded block-link-shadow" href="/admin/categories/show/{{isset($category->alias)?$category->alias:''}}">
                 <div class="block-content block-content-full d-flex flex-row-reverse align-items-center justify-content-between">
                     <img class="img-avatar img-avatar48" src="/storage/categories/{{$category->image}}" alt="">
                     <div class="me-3">
-                        <p class="fw-semibold mb-0">{{$category->title[App::currentLocale()]}}</p>
+                        <p class="fw-semibold mb-0">{{$category->title}}</p>
                         <p class="fs-sm fw-medium text-muted mb-0">
                             {{$category->alias}}
                         </p>
@@ -126,77 +163,57 @@
             <div class="block-content block-content-full pt-2">
                 <a href="/admin/products/create/{{$current->alias}}">
                     <button type="button" class="btn btn-success me-1 mb-3">
-                        <i class="fa fa-fw fa-plus me-1"></i> {{__('admin.products.new')}}
+                        <i class="fa fa-fw fa-plus me-1"></i> {{__('admin.products.add')}}
                     </button>
                 </a>
+
+
               <!-- DataTables init on table by adding .js-dataTable-responsive class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
               <table class="table table-bordered table-striped table-vcenter js-dataTable-responsive">
                 <thead>
                   <tr>
-                    <th class="text-center"></th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th style="width: 15%;">Access</th>
-                    <th style="width: 15%;">Registered</th>
+                    <th class="text-center" style="width: 80px;"><i class="fas fa-image"></i></th>
+                    <th>{{__('admin.products.input-title')}}</th>
+                    <th>{{__('admin.products.input-price')}}</th>
+                    <th style="width: 15%;">{{__('admin.products.input-stock')}}</th>
+                    <th style="width: 15%;">{{__('admin.updated-at')}}</th>
+                    <th style="width: 5%;">{{__('admin.actions')}}</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td class="text-center fs-sm">1</td>
-                    <td class="fw-semibold fs-sm">Betty Kelley</td>
-                    <td class="fs-sm">customer1@example.com</td>
-                    <td>
-                      <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">Trial</span>
-                    </td>
-                    <td>
-                      <span class="text-muted fs-sm">8 days ago</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="text-center fs-sm">2</td>
-                    <td class="fw-semibold fs-sm">Danielle Jones</td>
-                    <td class="fs-sm">customer2@example.com</td>
-                    <td>
-                      <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">VIP</span>
-                    </td>
-                    <td>
-                      <span class="text-muted fs-sm">6 days ago</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="text-center fs-sm">3</td>
-                    <td class="fw-semibold fs-sm">Andrea Gardner</td>
-                    <td class="fs-sm">customer3@example.com</td>
-                    <td>
-                      <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">VIP</span>
-                    </td>
-                    <td>
-                      <span class="text-muted fs-sm">4 days ago</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="text-center fs-sm">4</td>
-                    <td class="fw-semibold fs-sm">Jose Parker</td>
-                    <td class="fs-sm">customer4@example.com</td>
-                    <td>
-                      <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Business</span>
-                    </td>
-                    <td>
-                      <span class="text-muted fs-sm">5 days ago</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="text-center fs-sm">5</td>
-                    <td class="fw-semibold fs-sm">Jose Parker</td>
-                    <td class="fs-sm">customer5@example.com</td>
-                    <td>
-                      <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-success-light text-success">VIP</span>
-                    </td>
-                    <td>
-                      <span class="text-muted fs-sm">6 days ago</span>
-                    </td>
-                  </tr>
+                    @foreach ($products as $product)
+                        <tr>
+                            <td class="text-center fs-sm"><img class="img-avatar img-avatar48" src="/storage/products/{{$product->image}}" onerror="this.src='/assets/img/default-product.png';" alt=""></td>
+                            <td class="fw-semibold fs-sm"><a href="{{ route('products-edit', ['alias'=>$product->code]) }}">{{$product->title}}</a></td>
+                            <td class="fs-sm">{{$product->price}}</td>
+                            <td>
+                            <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">{{$product->stock}}</span>
+                            </td>
+                            <td>
+                            <span class="text-muted fs-sm">{{$product->created_at}}</span>
+                            </td>
 
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <a class="me-1" href="{{ route('products-edit', ['alias'=>$product->code]) }}">
+                                        <button type="button" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled" >
+                                            <i class="fa fa-fw fa-pencil-alt"></i>
+                                        </button>
+                                    </a>
+                                    <a class="me-1" href="{{ route('products-gallery', ['alias'=>$product->code]) }}">
+                                        <button type="button" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled" >
+                                            <i class="fa-regular fa-images"></i>
+                                        </button>
+                                    </a>
+                                    <a href="javascript:void(0);">
+                                        <button type="button" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled" onclick="Livewire.dispatch('confirmDeleteExternal', { itemId: '{{$product->id}}', itemName: '{{$product->title}}', model: 'Products', parent: '{{$product->parent}}' })" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">
+                                            <i class="fa fa-fw fa-times"></i>
+                                        </button>
+                                    </a>
+                                  </div>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
               </table>
             </div>
@@ -219,4 +236,5 @@
 
   </div>
   <!-- END Page Content -->
+  @livewire('delete-confirmation')
 @endsection

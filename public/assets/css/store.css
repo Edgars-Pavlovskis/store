@@ -1,0 +1,35 @@
+.preview-holder {
+    height:200px !important;
+    position:relative;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.preview-holder a {
+    position:absolute;
+    top: 5px;
+    right:5px;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    opacity:0.25;
+    transition: all 0.4s;
+    line-height: 36px;
+}
+.preview-holder a:hover {
+    opacity:0.8;
+    transition: all 0.4s;
+}
+
+.preview-holder a i {
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+
+.img-avatar {
+    object-fit: cover !important;
+}

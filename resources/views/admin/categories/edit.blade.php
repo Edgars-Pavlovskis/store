@@ -33,7 +33,7 @@
 
   <!-- Page Content -->
   <div class="content">
-    <a href="/admin/categories/show/{{$category->alias}}">
+    <a href="{{ URL::previous() }}">
         <button type="button" class="btn btn-alt-secondary me-1 mb-3">
             <i class="fa-solid fa-caret-left me-1"></i> {{__('admin.goback')}}
         </button>
@@ -47,7 +47,7 @@
           <h3 class="block-title">{{__('admin.categories.data')}}</h3>
         </div>
         <div class="block-content block-content-full">
-          <form action="{{ route('categories-update', ['alias'=>$category->alias]) }}" method="POST" enctype="multipart/form-data" >
+          <form action="{{ route('categories-store', ['alias'=>$category->alias]) }}" method="POST" enctype="multipart/form-data" >
             @csrf
 
             <div class="row">
@@ -62,28 +62,28 @@
                 <div class="block block-rounded">
 
                     <div class="form-floating mb-4">
-                        <input type="text" class="form-control @error('alias') is-invalid @enderror" id="alias-txt" name="alias" placeholder="{{__('admin.categories.input-url-alias')}}" value="{{$category->alias}}">
+                        <input type="text" class="form-control @error('alias') is-invalid @enderror" id="alias-txt" name="alias" placeholder="{{__('admin.categories.input-url-alias')}}" value="{{old('alias', $category->alias)}}">
                         <label for="alias-txt">{{__('admin.categories.input-url-alias')}} @error('alias')<span style="vertical-align: super;" class="badge bg-warning"><i class="fa fa-exclamation-circle"></i> {{$message}}</span>@enderror</label>
 
                     </div>
 
 
                     <ul class="nav nav-tabs nav-tabs-alt justify-content-end" role="tablist">
-                        @foreach (app('config')->get('shop')['languages']['list'] as $lang)
+                        @foreach (getLocales() as $lang)
                             <li class="nav-item" role="presentation">
                                 <button type="button" class="nav-link @if($loop->index == 0) active @endif" id="categories-title-tab-{{$lang}}" data-bs-toggle="tab" data-bs-target="#categories-title-content-{{$lang}}" role="tab" aria-controls="categories-title-content-{{$lang}}" aria-selected="true">{{strtoupper($lang)}}</button>
                             </li>
                         @endforeach
                     </ul>
                     <div class="block-content tab-content">
-                        @foreach (app('config')->get('shop')['languages']['list'] as $lang)
+                        @foreach (getLocales() as $lang)
                             <div class="tab-pane @if($loop->index == 0) active @endif" id="categories-title-content-{{$lang}}" role="tabpanel" aria-labelledby="categories-title-tab-{{$lang}}" tabindex="0">
                                 <div class="form-floating mb-4">
-                                    <input type="text" class="form-control" id="title-txt-{{$lang}}" name="title[{{$lang}}]" placeholder="Enter a username" value="{{$category->title[$lang]}}">
+                                    <input type="text" class="form-control" id="title-txt-{{$lang}}" name="title[{{$lang}}]" placeholder="Enter a username" value="{{old('title.'.$lang, $category->title[$lang])}}">
                                     <label for="title-txt-{{$lang}}">{{__('admin.categories.input-title')}} [{{$lang}}]</label>
                                 </div>
                                 <div class="form-floating mb-4">
-                                    <textarea class="form-control" id="descr-txt-{{$lang}}" name="description[{{$lang}}]" style="height: 200px" placeholder="Category description here..">{{$category->description[$lang]}}</textarea>
+                                    <textarea class="form-control" id="descr-txt-{{$lang}}" name="description[{{$lang}}]" style="height: 200px" placeholder="Category description here..">{{old('title.'.$lang, $category->description[$lang])}}</textarea>
                                     <label for="descr-txt-{{$lang}}">{{__('admin.categories.input-description')}} [{{$lang}}]</label>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                     </div>
 
                     <div class="form-check form-switch form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="" id="featured-checkbox" name="featured" checked="">
+                        <input class="form-check-input" type="checkbox" value="" id="featured-checkbox" name="featured" {{ (old('featured', $category->featured) == null || old('featured', $category->featured) == 1) ? 'checked' : '' }}>
                         <label class="form-check-label" for="featured-checkbox">{{__('admin.categories.switch-featured')}}</label>
                     </div>
 

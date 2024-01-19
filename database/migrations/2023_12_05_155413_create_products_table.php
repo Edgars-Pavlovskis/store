@@ -13,17 +13,20 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->json('title')->nullable();
-            $table->json('descr')->nullable();
-            $table->json('details')->nullable();
-            $table->string('photo')->nullable();
+            $table->string('title')->nullable()->index();
+            $table->text('description')->nullable();
+            $table->text('details')->nullable();
+            $table->string('image')->nullable();
+            $table->string('gallery')->nullable();
             $table->json('images')->nullable();
-            $table->string('code')->unique();
+            $table->string('code')->unique()->index();
             $table->float('price', 6, 2)->index();
             $table->string('parent')->index();
-            $table->boolean('active')->default(true)->index();
-
+            $table->integer('stock')->unsigned();
+            $table->boolean('active')->default(true);
             $table->timestamps();
+
+            $table->foreign('parent')->references('alias')->on('categories')->onDelete('cascade');
         });
     }
 

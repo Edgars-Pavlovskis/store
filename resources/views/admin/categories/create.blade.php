@@ -35,7 +35,7 @@
 
   <!-- Page Content -->
   <div class="content">
-    <a href="/admin/categories/show/{{ $category_parent_alias }}">
+    <a href="{{ URL::previous() }}">
         <button type="button" class="btn btn-alt-secondary me-1 mb-3">
             <i class="fa-solid fa-caret-left me-1"></i> {{__('admin.goback')}}
         </button>
@@ -49,7 +49,7 @@
           <h3 class="block-title">{{__('admin.categories.data')}}</h3>
         </div>
         <div class="block-content block-content-full">
-          <form action="/admin/categories/create/{{ $category_parent_alias }}" method="POST" enctype="multipart/form-data" >
+          <form action="{{ route('categories-store', ['alias'=>$category_parent_alias, 'parent'=>$category_parent_alias]) }}" method="POST" enctype="multipart/form-data" >
             @csrf
 
             <div class="row">
@@ -70,14 +70,14 @@
 
 
                     <ul class="nav nav-tabs nav-tabs-alt justify-content-end" role="tablist">
-                        @foreach (app('config')->get('shop')['languages']['list'] as $lang)
+                        @foreach (getLocales() as $lang)
                             <li class="nav-item" role="presentation">
                                 <button type="button" class="nav-link @if($loop->index == 0) active @endif" id="categories-title-tab-{{$lang}}" data-bs-toggle="tab" data-bs-target="#categories-title-content-{{$lang}}" role="tab" aria-controls="categories-title-content-{{$lang}}" aria-selected="true">{{strtoupper($lang)}}</button>
                             </li>
                         @endforeach
                     </ul>
                     <div class="block-content tab-content">
-                        @foreach (app('config')->get('shop')['languages']['list'] as $lang)
+                        @foreach (getLocales() as $lang)
                             <div class="tab-pane @if($loop->index == 0) active @endif" id="categories-title-content-{{$lang}}" role="tabpanel" aria-labelledby="categories-title-tab-{{$lang}}" tabindex="0">
                                 <div class="form-floating mb-4">
                                     <input type="text" class="form-control" id="title-txt-{{$lang}}" name="title[{{$lang}}]" placeholder="{{__('admin.categories.input-title')}}" value="{{ old('title.'.$lang) }}">
@@ -108,7 +108,7 @@
 
 
 
-                <div class="block-content tab-content">
+                <div class="block-content tab-content" style="text-align:center;">
                     <button type="submit" class="btn  btn-primary me-1 mb-3">
                         <i class="fa fa-fw fa-check me-1"></i> {{__('admin.create')}}
                     </button>

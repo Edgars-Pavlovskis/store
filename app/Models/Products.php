@@ -1,22 +1,17 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 
 class Products extends Model
 {
     use HasFactory;
-
+    protected $guarded = [];
     protected $casts = [
-        'title' => 'array',
-        'descr' => 'array',
-        'details' => 'array',
         'images' => 'array'
     ];
-
-    protected $fillable = ['attributes'];
 
     public function scopeSearch($query, $term)
     {
@@ -26,4 +21,43 @@ class Products extends Model
                   ->orWhere('products.code', 'like', $term);
         });
     }
+
+
+
+
+    public function translations()
+    {
+        return $this->hasMany(ProductsTranslation::class);
+    }
+
+    public function getTitleAttribute()
+    {
+        return $this->translations()->where('locale', app()->getLocale())->value('title') ?? $this->attributes['title'];
+    }
+    public function getOriginalTitleAttribute()
+    {
+        return $this->attributes['title'];
+    }
+
+
+    public function getDescriptionAttribute()
+    {
+        return $this->translations()->where('locale', app()->getLocale())->value('description') ?? $this->attributes['description'];
+    }
+    public function getOriginalDescriptionAttribute()
+    {
+        return $this->attributes['description'];
+    }
+
+
+
+    public function getDetailsAttribute()
+    {
+        return $this->translations()->where('locale', app()->getLocale())->value('details') ?? $this->attributes['details'];
+    }
+    public function getOriginalDetailsAttribute()
+    {
+        return $this->attributes['details'];
+    }
+
 }
