@@ -88,8 +88,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/products/create/{alias}',[App\Http\Controllers\ProductsController::class, 'create'])->name('products-create');
     Route::get('/admin/products/edit/{alias}',[App\Http\Controllers\ProductsController::class, 'edit'])->name('products-edit');
     Route::get('/admin/products/gallery/{alias}',[App\Http\Controllers\ProductsController::class, 'showGallery'])->name('products-gallery');
+    Route::get('/admin/products/attributes/{alias}',[App\Http\Controllers\ProductsController::class, 'showAttributes'])->name('products-attributes');
+    Route::get('/admin/products/variations/{alias}',[App\Http\Controllers\ProductsController::class, 'showVariations'])->name('products-variations');
     Route::post('/admin/products/create/{alias}',[App\Http\Controllers\ProductsController::class, 'store'])->name('products-store');
     Route::post('/admin/products/update/{alias}',[App\Http\Controllers\ProductsController::class, 'store'])->name('products-update');
+    Route::post('/admin/products/attributes/{alias}',[App\Http\Controllers\ProductsController::class, 'updateAttributes'])->name('attributes-update');
     Route::post('/upload-product-gallery', [App\Http\Controllers\ProductsController::class, 'productGalleryUpload'])->name('productGalleryUpload');
 
 

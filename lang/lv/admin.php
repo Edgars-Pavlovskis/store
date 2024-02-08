@@ -5,11 +5,14 @@ return [
     'create' => 'Izveidot',
     'save' => 'Saglabāt',
     'list' => 'Saraksts',
+    'delete' => 'Dzēst',
     'goback' => 'Iet atpakaļ',
     'editing' => 'Rediģēšana',
     'created-at' => 'Pievienots',
     'updated-at' => 'Modificēts',
     'actions' => 'Darbības',
+    'value' => 'Vērtība',
+
 
     'navi' => [
         'catalog' => 'Preču katalogs',
@@ -24,6 +27,16 @@ return [
         'delete' => 'Dzēst',
 
     ],
+
+
+    'tooltips' => [
+        'edit' => 'Rediģēt',
+        'attributes' => 'Atribūti',
+        'variations' => 'Variācijas',
+        'gallery' => 'Attēlu galerija',
+        'delete' => 'Dzēst',
+    ],
+
 
     'categories' => [
         'title' => 'Preču katalogs',
@@ -49,6 +62,7 @@ return [
         'new' => 'Jauna prece',
         'add' => 'Pievienot preci',
         'data' => 'Preces dati',
+        'product-title' => 'Preces nosaukums',
         'input-maindata' => 'Aizpildiet preces pamatdatus',
         'creating' => 'Jaunas preces pievienošana',
         'editing' => 'Preces rediģēšana',
@@ -65,6 +79,16 @@ return [
             'info' => 'Nometiet drag`n`drop laukā jaunus fotoattēlus vai noklikšķiniet uz tā, lai galerijai pievienotu jaunus fotoattēlus',
             'droptoupload' => 'Nometiet failus šeit, lai augšupielādētu',
             'empty' => 'Galerijai nav pievienots neviens fotoattēls. Lai pievienotu, izmantojiet fotoattēlu pievienošanas paneli, kas atrodas augstāk.',
+        ],
+        'variations' => [
+            'title' => 'Preces variācijas',
+            'info' => 'Preces variāciju pārvaldība',
+        ],
+        'attributes' => [
+            'title' => 'Preces atribūti',
+            'info' => 'Preces atribūtu pārvaldība',
+            'info-descr' => '(Atribūtu saraksts konfigurējas kategorijas atribūtu iestatījumos)',
+            'not-assigned' => 'Nav piešķirts',
         ]
     ],
 
@@ -88,7 +112,6 @@ return [
         'input-name' => 'Atribūta nosaukums',
         'input-values' => 'Atribūta vērtības',
         'add-value' => 'Pievienot vērtību',
-
     ],
 
 

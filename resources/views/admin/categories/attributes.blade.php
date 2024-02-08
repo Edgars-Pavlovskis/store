@@ -119,12 +119,12 @@
                     <td class="text-center">
                         <div class="btn-group">
                             <a class="me-1" href="{{ route('attributes-manage', ['alias'=>$attribute->group ?? 'root', 'id'=>$attribute->id]) }}">
-                                <button type="button" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled" >
+                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{__('admin.tooltips.edit')}}">
                                     <i class="fa fa-fw fa-pencil-alt"></i>
                                 </button>
                             </a>
                             <a href="javascript:void(0);">
-                                <button type="button" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled" onclick="Livewire.dispatch('confirmDeleteExternal', { itemId: '{{$attribute->id}}', itemName: '{{$attribute->name}}', model: 'Attributes', parent: '{{$attribute->group}}' })" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">
+                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{__('admin.tooltips.delete')}}" onclick="Livewire.dispatch('confirmDeleteExternal', { itemId: '{{$attribute->id}}', itemName: '{{$attribute->name}}', model: 'Attributes', parent: '{{$attribute->group}}' })" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">
                                     <i class="fa fa-fw fa-times"></i>
                                 </button>
                             </a>

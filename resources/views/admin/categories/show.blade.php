@@ -33,6 +33,9 @@
   <script src="{{ asset('js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
   <script src="{{ asset('js/plugins/sorting/Sortable.min.js') }}"></script>
 
+   <!-- Page JS Helpers (Tooltip) -->
+   <script type="module">One.helpersOnLoad(['bs-tooltip']);</script>
+
   <script>
     $( document ).ready(function() {
         var el = document.getElementById('sortable-categories');
@@ -174,10 +177,10 @@
                   <tr>
                     <th class="text-center" style="width: 80px;"><i class="fas fa-image"></i></th>
                     <th>{{__('admin.products.input-title')}}</th>
-                    <th>{{__('admin.products.input-price')}}</th>
-                    <th style="width: 15%;">{{__('admin.products.input-stock')}}</th>
-                    <th style="width: 15%;">{{__('admin.updated-at')}}</th>
-                    <th style="width: 5%;">{{__('admin.actions')}}</th>
+                    <th class="text-center">{{__('admin.products.input-price')}}</th>
+                    <th class="text-center">{{__('admin.products.input-stock')}}</th>
+                    <th class="text-center">{{__('admin.updated-at')}}</th>
+                    <th class="text-center">{{__('admin.actions')}}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -185,28 +188,38 @@
                         <tr>
                             <td class="text-center fs-sm"><img class="img-avatar img-avatar48" src="/storage/products/{{$product->image}}" onerror="this.src='/assets/img/default-product.png';" alt=""></td>
                             <td class="fw-semibold fs-sm"><a href="{{ route('products-edit', ['alias'=>$product->code]) }}">{{$product->title}}</a></td>
-                            <td class="fs-sm">{{$product->price}}</td>
-                            <td>
+                            <td class="fs-sm text-center">{{$product->price}}</td>
+                            <td class="text-center">
                             <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">{{$product->stock}}</span>
                             </td>
-                            <td>
+                            <td class="text-center">
                             <span class="text-muted fs-sm">{{$product->created_at}}</span>
                             </td>
 
                             <td class="text-center">
                                 <div class="btn-group">
                                     <a class="me-1" href="{{ route('products-edit', ['alias'=>$product->code]) }}">
-                                        <button type="button" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled" >
+                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{__('admin.tooltips.edit')}}">
                                             <i class="fa fa-fw fa-pencil-alt"></i>
                                         </button>
                                     </a>
+                                    <a class="me-1" href="{{ route('products-attributes', ['alias'=>$product->code]) }}">
+                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{__('admin.tooltips.attributes')}}">
+                                            <i class="fa-regular fa-rectangle-list"></i>
+                                        </button>
+                                    </a>
+                                    <a class="me-1" href="{{ route('products-variations', ['alias'=>$product->code]) }}">
+                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{__('admin.tooltips.variations')}}">
+                                            <i class="fa-solid fa-shuffle"></i>
+                                        </button>
+                                    </a>
                                     <a class="me-1" href="{{ route('products-gallery', ['alias'=>$product->code]) }}">
-                                        <button type="button" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled" >
+                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{__('admin.tooltips.gallery')}}">
                                             <i class="fa-regular fa-images"></i>
                                         </button>
                                     </a>
                                     <a href="javascript:void(0);">
-                                        <button type="button" class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled" onclick="Livewire.dispatch('confirmDeleteExternal', { itemId: '{{$product->id}}', itemName: '{{$product->title}}', model: 'Products', parent: '{{$product->parent}}' })" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">
+                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{__('admin.tooltips.delete')}}" onclick="Livewire.dispatch('confirmDeleteExternal', { itemId: '{{$product->id}}', itemName: '{{$product->title}}', model: 'Products', parent: '{{$product->parent}}' })" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">
                                             <i class="fa fa-fw fa-times"></i>
                                         </button>
                                     </a>

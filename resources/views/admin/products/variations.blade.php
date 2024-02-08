@@ -1,20 +1,5 @@
 @extends('layouts.backend')
 
-@section('css')
-  <link rel="stylesheet" href="{{ asset('js/plugins/dropzone/min/basic.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('js/plugins/dropzone/min/dropzone.min.css') }}">
-@endsection
-
-@section('js')
-  <!-- jQuery (required for DataTables plugin) -->
-  <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
-
-  <!-- Page JS Plugins -->
-  <script src="{{ asset('js/plugins/dropzone/dropzone-amd-module.js') }}"></script>
-
-
-@endsection
-
 
 
 @section('content')
@@ -24,7 +9,7 @@
       <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
         <div class="flex-grow-1">
           <h1 class="h3 fw-bold mb-1">
-            {{__('admin.products.gallery.title')}}
+            {{__('admin.products.variations.title')}}
           </h1>
           <h2 class="fs-base lh-base fw-medium text-muted mb-0">
             {{__('admin.products.product-title')}}: <b>{{$product->title}}</b>
@@ -39,7 +24,7 @@
                 {{$product->title}}
             </li>
             <li class="breadcrumb-item" aria-current="page">
-                {{__('admin.products.gallery.title')}}
+                {{__('admin.products.variations.title')}}
             </li>
           </ol>
         </nav>
@@ -61,7 +46,7 @@
     <!-- Your Block -->
     <div class="block block-rounded">
         <div class="block-header block-header-default">
-          <h3 class="block-title">{{__('admin.products.gallery.info')}}</h3>
+          <h3 class="block-title">{{__('admin.products.variations.info')}}</h3>
         </div>
         <div class="block-content block-content-full">
             <div class="row">
@@ -70,7 +55,7 @@
 
                 <div class="block block-rounded">
 
-                    @livewire('product-image-gallery', ['id' => $product->id])
+                    variations content goes gere
 
                 </div>
 

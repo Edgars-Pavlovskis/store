@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categories;
+use App\Models\Attributes;
 use App\Models\Products;
 use App\Models\ProductsTranslation;
+use App\Models\ProductsAttribute;
+use App\Models\ProductsVariation;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use App\Rules\Productunique;
@@ -48,6 +51,46 @@ $products = Product::select('products.id', 'products.name', 'translations.name A
                 'alias' => $alias,
                 'product' => Products::where('code', $alias)->select('id', 'title')->first(),
             ]);
+        }
+    }
+
+
+    public function showAttributes($alias='')
+    {
+        if(!empty($alias)){
+            $product = Products::where('code', $alias)->select('id', 'title', 'parent')->first();
+            if(isset($product->id)) {
+                $attributes = Attributes::where('group', $product->parent)->get();
+                $productsAttributes = ProductsAttribute::where('products_id', $product->id)->get();
+                $pa = array();
+                foreach($productsAttributes as $attribute) {
+                    $pa[$attribute->attributes_id] = $attribute->value;
+                }
+
+                return view('admin.products.attributes', [
+                    'alias' => $alias,
+                    'product' => $product,
+                    'attributes' => $attributes,
+                    'products_attributes' => $pa
+                ]);
+            }
+        }
+    }
+
+
+    public function showVariations($alias='')
+    {
+        if(!empty($alias)){
+            $product = Products::where('code', $alias)->select('id', 'title', 'parent')->first();
+            if(isset($product->id)) {
+                $productsVariations = ProductsVariation::where('products_id', $product->id)->get();
+                dd($productsVariations);
+                return view('admin.products.variations', [
+                    'alias' => $alias,
+                    'product' => Products::where('code', $alias)->select('id', 'title')->first(),
+                    'products_variations' => $pproductsVariationsa
+                ]);
+            }
         }
     }
 
@@ -176,5 +219,31 @@ $products = Product::select('products.id', 'products.name', 'translations.name A
 
     }
 
+
+
+
+    public function updateAttributes(Request $req, $alias)
+    {
+        $productID = Products::where('code', $alias)->value('id');
+        $productParent = Products::where('code', $alias)->value('parent');
+        $input = $req->all();
+
+        foreach($input['attributes'] as $key => $value) {
+            if($value) {
+                ProductsAttribute::updateOrCreate(
+                    ['products_id' => $productID, 'attributes_id' => $key],
+                    [
+                        'products_id' => $productID,
+                        'attributes_id' => $key,
+                        'value' => $value,
+                    ]
+                );
+            } else {
+                ProductsAttribute::where('products_id',$productID)->where('attributes_id',$key)->delete();
+            }
+        }
+
+        return redirect('/admin/categories/show/'.$productParent);
+    }
 
 }

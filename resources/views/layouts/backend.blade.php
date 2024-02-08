@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-  <title>OneUI - Bootstrap 5 Admin Template &amp; UI Framework</title>
+  <title>Internetveikala vadības sistēma</title>
 
   <meta name="description" content="OneUI - Bootstrap 5 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
   <meta name="author" content="pixelcave">
@@ -132,12 +132,11 @@
       <!-- Side Header -->
       <div class="content-header">
         <!-- Logo -->
-        <a class="font-semibold text-dual" href="/">
-          <span class="smini-visible">
-            <i class="fa fa-circle-notch text-primary"></i>
-          </span>
-          <span class="smini-hide fs-5 tracking-wider">One<span class="fw-normal">UI</span></span>
+
+        <a href="/dashboard" style="display: contents;">
+          <img width="50%" class="img-fluid" src="/assets/img/alba.png" alt="">
         </a>
+
         <!-- END Logo -->
 
         <!-- Extra -->
@@ -202,7 +201,7 @@
                 <span class="nav-main-link-name">Dashboard</span>
               </a>
             </li>
-            <li class="nav-main-heading">store.lv</li>
+            <li class="nav-main-heading">birojamunskolai.lv</li>
             <li class="nav-main-item{{ request()->is('admin/*') ? ' open' : '' }}">
               <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
                 <i class="fa fa-shopping-basket me-2" aria-hidden="true"></i>
@@ -215,7 +214,7 @@
                       <span class="nav-main-link-name">{{__('admin.navi.categories-and-products')}}</span>
                     </a>
                   </li>
-
+                  <!--
                 <li class="nav-main-item">
                   <a class="nav-main-link{{ request()->is('admin/datatables') ? ' active' : '' }}" href="/admin/datatables">
                     <span class="nav-main-link-name">DataTables</span>
@@ -236,13 +235,14 @@
                     <span class="nav-main-link-name">Blank</span>
                   </a>
                 </li>
+              -->
               </ul>
             </li>
-            <li class="nav-main-heading">More</li>
+            <li class="nav-main-heading">Saites</li>
             <li class="nav-main-item open">
               <a class="nav-main-link" href="/">
                 <i class="nav-main-link-icon si si-globe"></i>
-                <span class="nav-main-link-name">Landing</span>
+                <span class="nav-main-link-name">Publiskā lapa</span>
               </a>
             </li>
           </ul>
@@ -485,10 +485,10 @@
       <div class="content py-3">
         <div class="row fs-sm">
           <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-end">
-            Crafted with <i class="fa fa-heart text-danger"></i> by <a class="fw-semibold" href="https://1.envato.market/ydb" target="_blank">pixelcave</a>
+            Izstrādātājs <a class="fw-semibold" href="/" target="_blank">[nosaukums, saite]</a>
           </div>
           <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-start">
-            <a class="fw-semibold" href="https://1.envato.market/AVD6j" target="_blank">OneUI</a> &copy; <span data-toggle="year-copy"></span>
+            <a class="fw-semibold" href="/" target="_blank">birojamunskolai.lv</a> &copy; <span data-toggle="year-copy"></span>
           </div>
         </div>
       </div>
