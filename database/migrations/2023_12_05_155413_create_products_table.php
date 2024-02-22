@@ -23,6 +23,7 @@ return new class extends Migration
             $table->float('price', 6, 2)->index();
             $table->string('parent')->index();
             $table->integer('stock')->unsigned();
+            $table->json('variations')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();
 

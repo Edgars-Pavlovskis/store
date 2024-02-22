@@ -93,6 +93,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/products/create/{alias}',[App\Http\Controllers\ProductsController::class, 'store'])->name('products-store');
     Route::post('/admin/products/update/{alias}',[App\Http\Controllers\ProductsController::class, 'store'])->name('products-update');
     Route::post('/admin/products/attributes/{alias}',[App\Http\Controllers\ProductsController::class, 'updateAttributes'])->name('attributes-update');
+    Route::post('/admin/products/variations/{productID}',[App\Http\Controllers\ProductsController::class, 'updateVariationsAttributes'])->name('variations-attributes-update');
     Route::post('/upload-product-gallery', [App\Http\Controllers\ProductsController::class, 'productGalleryUpload'])->name('productGalleryUpload');
 
 

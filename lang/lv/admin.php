@@ -6,12 +6,14 @@ return [
     'save' => 'Saglabāt',
     'list' => 'Saraksts',
     'delete' => 'Dzēst',
+    'delete-confirm' => 'Apstiprināt dzēšanu',
     'goback' => 'Iet atpakaļ',
     'editing' => 'Rediģēšana',
     'created-at' => 'Pievienots',
     'updated-at' => 'Modificēts',
     'actions' => 'Darbības',
     'value' => 'Vērtība',
+    'select-value' => 'Atlasiet vērtību',
 
 
     'navi' => [
@@ -83,6 +85,10 @@ return [
         'variations' => [
             'title' => 'Preces variācijas',
             'info' => 'Preces variāciju pārvaldība',
+            'attributes' => 'Preces variāciju atribūti',
+            'name' => 'Variācijas nosaukums (nav obligāts)',
+            'saved' => 'Variāciju dati saglabāti',
+            'deleted' => 'Variācija dzēsta',
         ],
         'attributes' => [
             'title' => 'Preces atribūti',

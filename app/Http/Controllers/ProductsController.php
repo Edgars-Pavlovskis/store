@@ -81,17 +81,40 @@ $products = Product::select('products.id', 'products.name', 'translations.name A
     public function showVariations($alias='')
     {
         if(!empty($alias)){
-            $product = Products::where('code', $alias)->select('id', 'title', 'parent')->first();
+            $product = Products::where('code', $alias)->select('id', 'title', 'code', 'parent', 'variations')->first();
             if(isset($product->id)) {
                 $productsVariations = ProductsVariation::where('products_id', $product->id)->get();
-                dd($productsVariations);
+                $attributes = Attributes::where('group', $product->parent)->get();
+                //dd($productsVariations);
                 return view('admin.products.variations', [
                     'alias' => $alias,
-                    'product' => Products::where('code', $alias)->select('id', 'title')->first(),
-                    'products_variations' => $pproductsVariationsa
+                    'product' => $product,
+                    'attributes' => $attributes,
+                    'products_variations' => $productsVariations
                 ]);
             }
         }
+    }
+
+    public function updateVariationsAttributes(Request $req, $productID)
+    {
+        $product = Products::whereId($productID)->select('id', 'code', 'variations')->first();
+        $variationsAttributesIDs = $req['attributes'] ?? [];
+        $product->variations = $variationsAttributesIDs;
+        $product->save();
+
+        //also need to go through this product active variations and remove variations array values that were removed from active list.
+        $variationsData = ProductsVariation::where('products_id', $productID)->select('id', 'variations')->get();
+        foreach($variationsData as $varkey => $variationData) {
+            $variations = $variationData->variations;
+            foreach($variations as $key => $value) {
+                if(!in_array($key, $variationsAttributesIDs)) {
+                    unset($variations[$key]);
+                }
+            }
+            ProductsVariation::where('id', $variationData->id)->update(['variations'=>$variations]);
+        }
+        return redirect('/admin/products/variations/'.$product->code);
     }
 
 

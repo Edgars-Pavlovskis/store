@@ -10,7 +10,8 @@ class Products extends Model
     use HasFactory;
     protected $guarded = [];
     protected $casts = [
-        'images' => 'array'
+        'images' => 'array',
+        'variations' => 'array'
     ];
 
     public function scopeSearch($query, $term)

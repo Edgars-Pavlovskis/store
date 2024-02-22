@@ -2,6 +2,25 @@
 
 
 
+@section('js')
+
+
+<script>
+
+</script>
+
+    <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
+
+      <!-- Page JS Plugins -->
+    <script src="{{ asset('js/plugins/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/notifiers/index.js') }}"></script>
+
+    <!-- Page JS Helpers (CKEditor 5 plugins) -->
+    <script type="module">One.helpersOnLoad(['jq-notify']);</script>
+
+@endsection
+
+
 @section('content')
   <!-- Hero -->
   <div class="bg-body-light">
@@ -35,7 +54,7 @@
 
   <!-- Page Content -->
   <div class="content">
-    <a href="{{ URL::previous() }}">
+    <a href="/admin/categories/show/{{$product->parent}}">
         <button type="button" class="btn btn-alt-secondary me-1 mb-3">
             <i class="fa-solid fa-caret-left me-1"></i> {{__('admin.goback')}}
         </button>
@@ -43,31 +62,46 @@
 
 
 
+
     <!-- Your Block -->
     <div class="block block-rounded">
         <div class="block-header block-header-default">
-          <h3 class="block-title">{{__('admin.products.variations.info')}}</h3>
+          <h3 class="block-title">{{__('admin.products.variations.attributes')}}</h3>
         </div>
-        <div class="block-content block-content-full">
-            <div class="row">
-              <div class="col-12">
+        <form action="{{ route('variations-attributes-update', ['productID'=>$product->id]) }}" method="POST" enctype="multipart/form-data" >
+            @csrf
+            <div class="block-content block-content-full py-1 pt-2">
+                <button type="submit"  class="btn btn-sm rounded-1 btn-info mb-3 px-3">
+                    <i class="fa-regular fa-floppy-disk me-2"></i>{{__('admin.save')}}
+                </button>
+
+                <div class="row push">
+                    <div class="">
+                        <div class="space-x-2">
+
+                                @foreach ($attributes as $attribute)
+                                    <div class="form-check form-switch form-check-inline">
+                                        <input class="form-check-input" type="checkbox" value="{{$attribute->id}}" id="varatr-{{$attribute->id}}" name="attributes[]" @if(in_array($attribute->id, $product->variations ?? [])) checked="" @endif>
+                                        <label class="form-check-label" for="varatr-{{$attribute->id}}"><small class="text-gray">@if($attribute->type == "list")<i class="fa-solid fa-list-check"></i>@else <i class="fa-regular fa-keyboard"></i> @endif </small> {{$attribute->name}}<br></label>
+                                    </div>
+                                @endforeach
 
 
-                <div class="block block-rounded">
 
-                    variations content goes gere
 
+                        </div>
+                    </div>
                 </div>
-
-              </div>
             </div>
-          </form>
-
-
-
-        </div>
+        </form>
       </div>
     <!-- END Your Block -->
+
+
+
+    @livewire('variations-constructor', ['productID' => $product->id])
+
+
 
 
 
