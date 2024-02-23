@@ -20,7 +20,7 @@ class VariationsConstructor extends Component
         $this->variations = ProductsVariation::where('products_id', $this->productID)->select('id', 'name', 'variations', 'price', 'stock')->get()->toArray();
         $this->variationAttributesIDs = Products::where('id', $this->productID)->value('variations');
         $attributesData = [];
-        foreach($this->variationAttributesIDs as $attribute_id) {
+        foreach($this->variationAttributesIDs ?? [] as $attribute_id) {
             $attributesData[$attribute_id] = Attributes::where('id', $attribute_id)->select('id', 'name', 'type', 'options')->first();
         }
         $this->attributesData = $attributesData;
