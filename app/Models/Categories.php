@@ -37,4 +37,13 @@ class Categories extends Model
         return $this->attributes['description'];
     }
 
+    public function children()
+    {
+        return $this->hasMany(Categories::class, 'parent_alias', 'alias');
+    }
+    public function parent()
+    {
+        return $this->hasOne(Categories::class, 'alias', 'parent_alias');
+    }
+
 }

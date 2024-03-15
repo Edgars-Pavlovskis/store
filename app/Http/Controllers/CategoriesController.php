@@ -147,10 +147,11 @@ class CategoriesController extends Controller
     { //btw: $parent is true when creating new category. false on editing existing.
         $req->validate([
             'alias' => $parent ? ['required', 'max:255', new Categoryunique] : ['required', 'max:255'],
-            'image' => 'mimes:jpg,jpeg,webp|max:400',
+            'image' => 'mimes:png,jpg,jpeg,webp|max:400',
         ]);
 
         $input = $req->all();
+
         if(!$req->featured) $input['featured']= 0;
         if($req->image) {
             $fileName = time().'_'.$req->image->getClientOriginalName();

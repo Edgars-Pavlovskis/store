@@ -91,7 +91,7 @@
                     </div>
 
                     <div class="form-check form-switch form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="" id="featured-checkbox" name="featured" {{ (old('featured', $category->featured) == null || old('featured', $category->featured) == 1) ? 'checked' : '' }}>
+                        <input class="form-check-input" type="checkbox" value="1" id="featured-checkbox" name="featured" {{ (old('featured', $category->featured) == 1) ? 'checked' : '' }}>
                         <label class="form-check-label" for="featured-checkbox">{{__('admin.categories.switch-featured')}}</label>
                     </div>
 

@@ -22,8 +22,10 @@ Route::get('/', function () {
 });
 */
 
-Route::view('/', 'landing');
+//Route::view('/', 'landing');
+Route::get('/',[App\Http\Controllers\FrontendController::class, 'index'])->name('frontend-index-root');
 
+Route::get('/catalog/{alias}',[App\Http\Controllers\FrontendController::class, 'catalog'])->name('frontend-catalog-show');
 
 Auth::routes(['verify' => true]);
 
