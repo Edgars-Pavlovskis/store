@@ -1,88 +1,63 @@
 
-<div class="axil-shop-area axil-section-gap bg-color-white" data-sal="zoom-out" data-sal-delay="300" data-sal-duration="300">
+<div class="axil-shop-area axil-section-gap bg-color-white" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-3">
+            <div wire:ignore class="col-lg-3">
                 <div class="axil-shop-sidebar">
                     <div class="d-lg-none">
                         <button class="sidebar-close filter-close-btn"><i class="fas fa-times"></i></button>
                     </div>
-                    <div class="toggle-list product-categories active">
-                        <h6 class="title">CATEGORIES</h6>
-                        <div class="shop-submenu">
-                            <div class="checkbox-wrapper-29 ms-3">
-                                <label class="checkbox"><input id="eddycheck" type="checkbox" class="checkbox__input"  /><span class="checkbox__label"></span>Intel i3 12300F</label>
-                                <label class="checkbox"><input id="eddycheck1" type="checkbox" class="checkbox__input"  /><span class="checkbox__label"></span>Intel i5 13500KF</label>
-                                <label class="checkbox"><input id="eddycheck2" type="checkbox" class="checkbox__input"  /><span class="checkbox__label"></span>Intel i7 14700K</label>
-                            </div>
 
-                        </div>
-                    </div>
-                    <div class="toggle-list product-categories product-gender active">
-                        <h6 class="title">GENDER</h6>
-                        <div class="shop-submenu">
-                            <ul>
-                                <li class="chosen"><a href="#">Men (40)</a></li>
-                                <li><a href="#">Women (56)</a></li>
-                                <li><a href="#">Unisex (18)</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="toggle-list product-color active">
-                        <h6 class="title">COLORS</h6>
-                        <div class="shop-submenu">
-                            <ul>
-                                <li class="chosen"><a href="#" class="color-extra-01"></a></li>
-                                <li><a href="#" class="color-extra-02"></a></li>
-                                <li><a href="#" class="color-extra-03"></a></li>
-                                <li><a href="#" class="color-extra-04"></a></li>
-                                <li><a href="#" class="color-extra-05"></a></li>
-                                <li><a href="#" class="color-extra-06"></a></li>
-                                <li><a href="#" class="color-extra-07"></a></li>
-                                <li><a href="#" class="color-extra-08"></a></li>
-                                <li><a href="#" class="color-extra-09"></a></li>
-                                <li><a href="#" class="color-extra-10"></a></li>
-                                <li><a href="#" class="color-extra-11"></a></li>
-                            </ul>
-                        </div>
-                    </div>
+                    <form wire:submit.prevent="applyFilter(Object.fromEntries(new FormData($event.target)))">
+                        <div class="toggle-list product-price-range active">
+                            <h6 class="title">{{__('frontend.price')}}</h6>
+                            <div class="shop-submenu pt-3">
 
-                    <div class="toggle-list product-size active">
-                        <h6 class="title">SIZE</h6>
-                        <div class="shop-submenu">
-                            <ul>
-                                <li class="chosen"><a href="#">XS</a></li>
-                                <li><a href="#">S</a></li>
-                                <li><a href="#">M</a></li>
-                                <li><a href="#">L</a></li>
-                                <li><a href="#">XL</a></li>
-                                <li><a href="#">XXL</a></li>
-                                <li><a href="#">3XL</a></li>
-                                <li><a href="#">4XL</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="toggle-list product-price-range active">
-                        <h6 class="title">PRICE</h6>
-                        <div class="shop-submenu">
-                            <ul>
-                                <li class="chosen"><a href="#">30</a></li>
-                                <li><a href="#">5000</a></li>
-                            </ul>
-                            <form action="#" class="mt--25">
-                                <div id="slider-range"></div>
+                                <!--
+                                <ul>
+                                    <li class="chosen"><a href="#">30</a></li>
+                                    <li><a href="#">5000</a></li>
+                                </ul>
+                                -->
+
+                                <div id="slider-range-livewire"></div>
                                 <div class="flex-center mt--20">
-                                    <span class="input-range">Price: </span>
+                                    <span class="input-range pe-2">{{__('frontend.price')}}: </span>
                                     <input type="text" id="amount" class="amount-range" readonly>
                                 </div>
-                            </form>
+                                <input id="filter-price-min" type="hidden" name="filter-price-min" wire:model="filterMin">
+                                <input id="filter-price-max" type="hidden" name="filter-price-max" wire:model="filterMax">
+
+                            </div>
                         </div>
-                    </div>
-                    <button class="axil-btn btn-bg-primary">All Reset</button>
+
+
+                        @foreach ($category_attributes as $attribute)
+                            <div class="toggle-list product-categories active">
+                                <h6 class="title">{{$attribute->name}}</h6>
+                                <div class="shop-submenu">
+                                    <div class="checkbox-wrapper-29 ms-3">
+                                        @foreach ($attribute->options as $key=>$option)
+                                            <label class="checkbox"><input wire:model.defer="filter.{{$attribute->id}}.{{$key}}"  type="checkbox" class="checkbox__input"  /><span class="checkbox__label"></span>Intel i3 12300F</label>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+                        <button type="submit" class="axil-btn btn-bg-primary">Apply filter</button>
+                        <button class="mt-2 axil-btn btn-bg-outline">All Reset</button>
+                    </form>
                 </div>
                 <!-- End .axil-shop-sidebar -->
             </div>
-            <div class="col-lg-9">
+            <div id="products-loader-holder" class="col-lg-9">
+                <div id="products-loader-animator" wire:loading wire:target="applyFilter">
+                    <div class="spinner-grow" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="axil-shop-top mb--40">
@@ -107,7 +82,7 @@
 
 
 
-                <div class="row row--15">
+                <div  class="row row--15">
 
                     @foreach ($products as $product)
                         <div class="col-xl-4 col-sm-6">
@@ -135,15 +110,37 @@
                             </div>
                         </div>
                     @endforeach
-
-
-
                 </div>
-                <div class="text-center pt--20">
+                <div class="text-center pt--20 mt-5" wire:loading.remove>
                     <a href="#" class="axil-btn btn-bg-lighter btn-load-more">Load more</a>
                 </div>
             </div>
         </div>
     </div>
     <!-- End .container -->
+
+    @push('scripts')
+    <script>
+        $( document ).ready(function() {
+            $('#slider-range-livewire').slider({
+                range: true,
+                min: @this.filterMin,
+                max: @this.filterMax,
+                values: [0, @this.filterMax],
+                slide: function(event, ui) {
+                    $('#amount').val(ui.values[0]+'€' + ' - ' + ui.values[1] + '€');
+                    $('#filter-price-min').val(ui.values[0]);
+                    $('#filter-price-max').val(ui.values[1]);
+                }
+            });
+            let sliderMin = $('#slider-range-livewire').slider('values', 0);
+            let sliderMax = $('#slider-range-livewire').slider('values', 1);
+            $('#amount').val(sliderMin + '€' +' - ' + sliderMax + '€');
+            $('#filter-price-min').val(sliderMin);
+            $('#filter-price-max').val(sliderMax);
+        });
+    </script>
+    @endpush
+
+
 </div>
