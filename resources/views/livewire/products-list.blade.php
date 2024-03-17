@@ -103,7 +103,7 @@
                                     <div class="inner">
                                         <h5 class="title"><a href="single-product.html">{{$product->title}}</a></h5>
                                         <div class="product-price-variant">
-                                            <span class="price current-price">{{$product->price}}€</span>
+                                            <span class="price current-price">{{number_format($product->price, 2)}}€</span>
                                         </div>
                                     </div>
                                 </div>
