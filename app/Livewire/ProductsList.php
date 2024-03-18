@@ -25,7 +25,7 @@ class ProductsList extends Component
         $query = Products::whereParent($this->alias)->whereActive(1);
         if($this->filterMin > 0) $query->where('price', '>=', $this->filterMin);
         if($this->filterMax > 0) $query->where('price', '<=', $this->filterMax);
-        $this->products = $query->select('id','title','image','price','parent')->get();
+        $this->products = $query->select('id','title','image','price','code','parent')->get();
         $this->filterMax = $query->orderBy('price', 'desc')->value('price') ?? 0;
         $this->filterMax = is_numeric($this->filterMax) ? ceil($this->filterMax) : 0;
     }

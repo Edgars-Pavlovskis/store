@@ -88,7 +88,7 @@
                         <div class="col-xl-4 col-sm-6">
                             <div class="axil-product product-style-one mb--30">
                                 <div class="thumbnail">
-                                    <a href="single-product.html">
+                                    <a target="blank" href="{{ route('frontend-product-show', ['alias'=>$product->code]) }}">
                                         <img src="/storage/products/{{$product->image}}" alt="Product Image">
                                     </a>
                                     <div class="product-hover-action">
@@ -101,7 +101,7 @@
                                 </div>
                                 <div class="product-content">
                                     <div class="inner">
-                                        <h5 class="title"><a href="single-product.html">{{$product->title}}</a></h5>
+                                        <h5 class="title"><a target="blank" href="{{ route('frontend-product-show', ['alias'=>$product->code]) }}">{{$product->title}}</a></h5>
                                         <div class="product-price-variant">
                                             <span class="price current-price">{{number_format($product->price, 2)}}€</span>
                                         </div>

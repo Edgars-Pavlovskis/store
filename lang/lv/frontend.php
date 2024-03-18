@@ -9,5 +9,10 @@ return [
     'from' => 'no',
     'to' => 'līdz',
 
+    'product' => [
+        'details' => 'Preces apraksts',
+        'attributes' => 'Preces parametri',
+    ],
+
     'xxxaxaxax' => 'The :attribute field must match :other.'
 ];
