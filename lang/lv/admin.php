@@ -27,7 +27,6 @@ return [
         'confirm-delete-question' => 'Vai tiešām vēlaties dzēst',
         'cancel' => 'Atcelt',
         'delete' => 'Dzēst',
-
     ],
 
 
@@ -86,7 +85,8 @@ return [
             'title' => 'Preces variācijas',
             'info' => 'Preces variāciju pārvaldība',
             'attributes' => 'Preces variāciju atribūti',
-            'name' => 'Variācijas nosaukums (nav obligāts)',
+            'name' => 'Variācijas nosaukums',
+            'description' => 'Variācijas apraksts',
             'saved' => 'Variāciju dati saglabāti',
             'deleted' => 'Variācija dzēsta',
         ],

@@ -11,6 +11,12 @@ return [
             'title' => 'English'
         ]
     ],
+
+    'frontend' => [
+        'products' => [
+            'per-load' => 9
+        ]
+    ]
 ];
 
 

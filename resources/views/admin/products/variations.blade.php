@@ -5,9 +5,6 @@
 @section('js')
 
 
-<script>
-
-</script>
 
     <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
 

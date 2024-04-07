@@ -15,7 +15,7 @@
   </style>
 @endsection
 
-@section('js')
+@section('js_end')
   <!-- jQuery (required for DataTables plugin) -->
   <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
 
@@ -34,7 +34,10 @@
   <script src="{{ asset('js/plugins/sorting/Sortable.min.js') }}"></script>
 
    <!-- Page JS Helpers (Tooltip) -->
-   <script type="module">One.helpersOnLoad(['bs-tooltip']);</script>
+   <script type="module">
+    One.helpersOnLoad(['bs-tooltip']);
+  </script>
+
 
   <script>
     $( document ).ready(function() {
@@ -154,6 +157,7 @@
 
 
 
+
     @if (isset($current->id))
 
           <!-- Dynamic Table Responsive -->
@@ -169,6 +173,8 @@
                         <i class="fa fa-fw fa-plus me-1"></i> {{__('admin.products.add')}}
                     </button>
                 </a>
+
+
 
 
               <!-- DataTables init on table by adding .js-dataTable-responsive class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
@@ -219,11 +225,11 @@
                                         </button>
                                     </a>
                                     <a href="javascript:void(0);">
-                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{__('admin.tooltips.delete')}}" onclick="Livewire.dispatch('confirmDeleteExternal', { itemId: '{{$product->id}}', itemName: '{{$product->title}}', model: 'Products', parent: '{{$product->parent}}' })" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">
+                                        <button type="button" class="btn btn-sm btn-alt-secondary" title="{{__('admin.tooltips.delete')}}" onclick="Livewire.dispatch('confirmDeleteExternal', { itemId: '{{$product->id}}', itemName: '{{$product->title}}', model: 'Products', parent: '{{$product->parent}}' })" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">
                                             <i class="fa fa-fw fa-times"></i>
                                         </button>
                                     </a>
-                                  </div>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
@@ -234,11 +240,6 @@
           <!-- Dynamic Table Responsive -->
 
     @endif
-
-
-
-
-
 
 
 

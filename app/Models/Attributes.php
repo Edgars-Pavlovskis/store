@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Products;
 
 class Attributes extends Model
 {
@@ -14,6 +15,10 @@ class Attributes extends Model
         'options' => 'array'
     ];
 
+    public function products()
+    {
+        return $this->belongsToMany(Products::class, 'products_attributes')->withPivot('value');
+    }
 
     public function translations()
     {

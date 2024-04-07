@@ -14,5 +14,19 @@ return [
         'attributes' => 'Preces parametri',
     ],
 
+    'filter' => [
+        'apply' => 'Piemērot filtru',
+        'reset' => 'Notīrīt filtru',
+    ],
+
+    'variations' => [
+        'reset' => 'Notīrīt',
+    ],
+
+    'products-list' => [
+        'load-more' => 'Ielādēt vairāk',
+    ],
+
+
     'xxxaxaxax' => 'The :attribute field must match :other.'
 ];

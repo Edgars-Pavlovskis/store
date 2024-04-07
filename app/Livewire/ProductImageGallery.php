@@ -24,7 +24,7 @@ class ProductImageGallery extends Component
         foreach ($this->galleryImages as $key=>$path) {
             $path = str_replace(public_path(), '', $path);
             $this->galleryImages[$key] = str_replace("\\", '/', $path);
-          }
+        }
         return view('livewire.product-image-gallery');
     }
 }

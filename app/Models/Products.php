@@ -3,7 +3,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Attributes;
 
 class Products extends Model
 {
@@ -24,7 +24,10 @@ class Products extends Model
     }
 
 
-
+    public function attributes()
+    {
+        return $this->belongsToMany(Attributes::class, 'products_attributes')->withPivot('value');
+    }
 
     public function translations()
     {

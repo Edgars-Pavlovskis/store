@@ -210,7 +210,7 @@
               <ul class="nav-main-submenu">
 
                 <li class="nav-main-item">
-                    <a class="nav-main-link{{ request()->is('admin/categories/*') ? ' active' : '' }}" href="/admin/categories/show">
+                    <a class="nav-main-link{{ (request()->is('admin/categories/*') || request()->is('admin/products/*')) ? ' active' : '' }}" href="/admin/categories/show">
                       <span class="nav-main-link-name">{{__('admin.navi.categories-and-products')}}</span>
                     </a>
                   </li>
