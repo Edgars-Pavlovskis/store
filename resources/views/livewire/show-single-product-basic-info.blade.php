@@ -38,13 +38,20 @@
                     @if(isset($variationsFilter[$attribute['id']]))
                         <select class="mb-2" wire:model="selected.{{$attribute['id']}}" wire:change="variationSelect({{$attribute['id']}})">
                             <option value="">{{$attribute['name']}}</option>
-                            @foreach ($attribute['options'] as $key=>$option)
-                                @if (in_array($key, $variationsFilter[$attribute['id']]))
-                                    <option value="{{$key}}">{{$option}}</option>
-                                @endif
-                            @endforeach
+                            @if ($attribute['type']=="value")
+                                @foreach ($attributesAsValues[$attribute['id']] as $option)
+                                    @if (in_array($option, $variationsFilter[$attribute['id']]))
+                                        <option value="{{$option}}">{{$option}}</option>
+                                    @endif
+                                @endforeach
+                            @else
+                                @foreach ($attribute['options'] as $key=>$option)
+                                    @if (in_array($key, $variationsFilter[$attribute['id']]))
+                                        <option value="{{$key}}">{{$option}}</option>
+                                    @endif
+                                @endforeach
+                            @endif
                         </select>
-
                     @endif
                 @endforeach
 

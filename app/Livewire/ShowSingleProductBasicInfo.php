@@ -15,6 +15,7 @@ class ShowSingleProductBasicInfo extends Component
     public $allAttributes = [];
     public $variationsFilter = [];
     public $selected = [];
+    public $attributesAsValues = [];
 
     public $variationMatch;
     public $addItemCount = 1;
@@ -22,12 +23,26 @@ class ShowSingleProductBasicInfo extends Component
     public function mount()
     {
 
-        $allAttributes = Attributes::whereIn('id', $this->product->variations ?? [])->select('id','name','options')->get()->toArray();
+        $allAttributes = Attributes::whereIn('id', $this->product->variations ?? [])->select('id','name','type','options')->get()->toArray();
         foreach($allAttributes as $attribute)
         {
             $this->allAttributes[$attribute['id']] = $attribute;
+            if($attribute['type']=="value") {
+                $this->attributesAsValues[$attribute['id']] = [];
+            }
         }
         $this->variations = ProductsVariation::where('products_id', $this->product->id)->select('id','name','variations','price','stock')->get()->toArray();
+
+        foreach($this->variations as $variation)
+        {
+            foreach($variation['variations'] as $id => $value)
+            {
+                if(isset($this->attributesAsValues[$id])){
+                    $this->attributesAsValues[$id][] = $value;
+                }
+            }
+        }
+
         //dd($this->variations);
         $this->updateVariations();
     }
@@ -63,6 +78,7 @@ class ShowSingleProductBasicInfo extends Component
 
         $mandatoryIDs = array_values($this->selected);
 
+
         foreach($this->variations as $variation)
         {
             $interselected = array_intersect($mandatoryIDs, $variation['variations']);
@@ -84,9 +100,16 @@ class ShowSingleProductBasicInfo extends Component
                 }
             }
 
+            foreach($this->allAttributes as $key => $attribute)
+            {
+                if($attribute['type']=="value") {
+                    if(isset($attributesAsValues[$attribute['id']])) $this->allAttributes[$key]['options'] = array_unique($attributesAsValues[$attribute['id']]);
+                }
+            }
+
+
         }
 
-        //dd($this->variations);
     }
 
     public function resetVariations()
