@@ -102,8 +102,8 @@ class ShowSingleProductBasicInfo extends Component
                 foreach($variation['variations'] as $id => $value)
                 {
                     if(!isset($this->variationsFilter[$id])) $this->variationsFilter[$id] = [];
-                    if(count($mandatoryIDs) == 1 && count($interselected)==0 && array_key_first($this->selected) != $id) continue;
-                    if(count($mandatoryIDs) > 1 && count($mandatoryIDs) != count($interselected)) continue;
+                    //if(count($mandatoryIDs) == 1 && count($interselected)==0 && array_key_first($this->selected) != $id) continue;
+                    if(count($mandatoryIDs) > 0 && count($mandatoryIDs) != count($interselected)) continue;
                     if(!in_array($value, $this->variationsFilter[$id])) $this->variationsFilter[$id][] = $value;
                 }
             }
