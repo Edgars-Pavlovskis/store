@@ -26,43 +26,51 @@
             </ul>
             <p class="description">{{$product->description}}</p>
 
-            @if(isset($variationMatch['id']))
-
-            <small><i class="fa-solid fa-triangle-exclamation me-2"></i> {{$variationMatch['name']}}</small>
+            @if(false && isset($variationMatch['id']))
+                <small><i class="fa-solid fa-triangle-exclamation me-2"></i> {{$variationMatch['name']}}</small>
             @endif
-            <div class="product-variations-wrapper mb-5">
+            <div class="product-variations-wrapper ">
 
                 <!-- Start Product Variation  -->
 
                 @foreach ($allAttributes as $attribute)
                     @if(isset($variationsFilter[$attribute['id']]))
-                        <select class="mb-2" wire:model="selected.{{$attribute['id']}}" wire:change="variationSelect({{$attribute['id']}})">
-                            <option value="">{{$attribute['name']}}</option>
+                        @if(isset($selected[$attribute['id']]))
                             @if ($attribute['type']=="value")
-                                @foreach ($attributesAsValues[$attribute['id']] as $option)
-                                    @if (in_array($option, $variationsFilter[$attribute['id']]))
-                                        <option value="{{$option}}">{{$option}}</option>
-                                    @endif
-                                @endforeach
+                                <span>{{$attribute['name']}}: <b>{{$selected[$attribute['id']]}}</b></span><a wire:click="resetVariation({{$attribute['id']}})" href="javascript:void(0)"><i class="fa-regular fa-circle-xmark ms-2"></i></a><br>
                             @else
-                                @foreach ($attribute['options'] as $key=>$option)
-                                    @if (in_array($key, $variationsFilter[$attribute['id']]))
-                                        <option value="{{$key}}">{{$option}}</option>
-                                    @endif
-                                @endforeach
+                                <span>{{$attribute['name']}}: <b>{{$attribute['options'][$selected[$attribute['id']]]}}</b></span><a wire:click="resetVariation({{$attribute['id']}})" href="javascript:void(0)"><i class="fa-regular fa-circle-xmark ms-2"></i></a><br>
                             @endif
-                        </select>
+                        @else
+                            <select class="mb-2" wire:model="selected.{{$attribute['id']}}" wire:change="variationSelect({{$attribute['id']}})">
+                                <option value="">{{$attribute['name']}}</option>
+                                @if ($attribute['type']=="value")
+                                    @foreach ($attributesAsValues[$attribute['id']] as $option)
+                                        @if (in_array($option, $variationsFilter[$attribute['id']]))
+                                            <option value="{{$option}}">{{$option}}</option>
+                                        @endif
+                                    @endforeach
+                                @else
+                                    @foreach ($attribute['options'] as $key=>$option)
+                                        @if (in_array($key, $variationsFilter[$attribute['id']]))
+                                            <option value="{{$key}}">{{$option}}</option>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </select>
+                        @endif
                     @endif
                 @endforeach
 
-                @if (count($selected)>0)
-                    <a class="text-danger" href="javascript:void(0)" wire:click="resetVariations"><i class="fa-solid fa-arrows-rotate me-2"></i>{{__('frontend.variations.reset')}}</a>
-                @endif
+
                 <!-- End Product Variation  -->
             </div>
+            @if (count($selected)>0)
+                <a class="text-danger" href="javascript:void(0)" wire:click="resetVariations"><i class="fa-solid fa-arrows-rotate me-2"></i>{{__('frontend.variations.reset')}}</a>
+            @endif
 
             <!-- Start Product Action Wrapper  -->
-            <div class="product-action-wrapper d-flex-center">
+            <div class="product-action-wrapper d-flex-center mt-5">
                 <!-- Start Quentity Action  -->
 
                 <div  class="pro-qty"><span wire:click="addItemCountDec" class="dec qtybtn">-</span><input type="text" wire:model.blur="addItemCount"><span wire:click="addItemCountInc" class="inc qtybtn">+</span></div>

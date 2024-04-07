@@ -31,6 +31,13 @@ class ShowSingleProductBasicInfo extends Component
                 $this->attributesAsValues[$attribute['id']] = [];
             }
         }
+        foreach($this->allAttributes as $key => $attribute)
+        {
+            if($attribute['type']=="value") {
+                if(isset($attributesAsValues[$attribute['id']])) $this->allAttributes[$key]['options'] = array_unique($attributesAsValues[$attribute['id']]);
+            }
+        }
+
         $this->variations = ProductsVariation::where('products_id', $this->product->id)->select('id','name','variations','price','stock')->get()->toArray();
 
         foreach($this->variations as $variation)
@@ -85,7 +92,7 @@ class ShowSingleProductBasicInfo extends Component
             if(count($interselected) == count($variation['variations'])) $this->variationMatch = $variation;
 
 
-            if(count($mandatoryIDs)>1) { //if this attribute is already selected by user in frontend
+            if(count($mandatoryIDs)>1) {
                 //if(count($interselected) < count($mandatoryIDs)) continue;
                 if(count($interselected)==0) continue;
             }
@@ -96,17 +103,10 @@ class ShowSingleProductBasicInfo extends Component
                 {
                     if(!isset($this->variationsFilter[$id])) $this->variationsFilter[$id] = [];
                     if(count($mandatoryIDs) == 1 && count($interselected)==0 && array_key_first($this->selected) != $id) continue;
+                    if(count($mandatoryIDs) > 1 && count($mandatoryIDs) != count($interselected)) continue;
                     if(!in_array($value, $this->variationsFilter[$id])) $this->variationsFilter[$id][] = $value;
                 }
             }
-
-            foreach($this->allAttributes as $key => $attribute)
-            {
-                if($attribute['type']=="value") {
-                    if(isset($attributesAsValues[$attribute['id']])) $this->allAttributes[$key]['options'] = array_unique($attributesAsValues[$attribute['id']]);
-                }
-            }
-
 
         }
 
@@ -115,6 +115,12 @@ class ShowSingleProductBasicInfo extends Component
     public function resetVariations()
     {
         $this->selected = [];
+        $this->updateVariations();
+    }
+
+    public function resetVariation($id)
+    {
+        unset($this->selected[$id]);
         $this->updateVariations();
     }
 
