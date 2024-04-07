@@ -194,7 +194,7 @@
                         <tr>
                             <td class="text-center fs-sm"><img class="img-avatar img-avatar48" src="/storage/products/{{$product->image}}" onerror="this.src='/assets/img/default-product.png';" alt=""></td>
                             <td class="fw-semibold fs-sm"><a href="{{ route('products-edit', ['alias'=>$product->code]) }}">{{$product->title}}</a></td>
-                            <td class="fs-sm text-center">{{$product->price}}</td>
+                            <td class="fs-sm text-center">{{number_format($product->price, 2)}} €</td>
                             <td class="text-center">
                             <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">{{$product->stock}}</span>
                             </td>
