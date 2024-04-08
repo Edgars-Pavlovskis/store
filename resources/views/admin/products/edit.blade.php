@@ -86,6 +86,11 @@
                         <label for="code-txt">{{__('admin.products.input-code')}} @error('code')<span style="vertical-align: super;" class="badge bg-warning"><i class="fa fa-exclamation-circle"></i> {{$message}}</span>@enderror <span class="text-danger">*</span></label>
                     </div>
 
+                    <div class="form-floating mb-4">
+                        <input type="text" class="form-control" id="inner-code-txt" name="inner_code" placeholder="{{__('admin.products.input-inner-code')}}" value="{{old('inner_code', $product->inner_code)}}">
+                        <label for="inner-code-txt">{{__('admin.products.input-inner-code')}}</label>
+                    </div>
+
                     <ul class="nav nav-tabs nav-tabs-alt justify-content-end" role="tablist">
                         @foreach (getLocales() as $lang)
                             <li class="nav-item" role="presentation">

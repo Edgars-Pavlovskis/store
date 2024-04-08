@@ -24,6 +24,9 @@
                 <li><i class="fal fa-check"></i>Free delivery available</li>
                 <li><i class="fal fa-check"></i>Sales 30% Off Use Code: MOTIVE30</li>
             </ul>
+            @if (isset($product->inner_code) && strlen($product->inner_code)>0)
+                <p class="description"><small><b>{{__('admin.products.input-inner-code')}}:</b> {{$product->inner_code}}</small></p>
+            @endif
             <p class="description">{{$product->description}}</p>
 
             @if(false && isset($variationMatch['id']))

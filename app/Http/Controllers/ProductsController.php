@@ -189,6 +189,7 @@ $products = Product::select('products.id', 'products.name', 'translations.name A
         }
 
         $input['code'] = convertToLatin($input['code']);
+        $input['inner_code'] = trim($input['inner_code']);
 
         if($routeName == "products-update") {
             $currentCode = Products::where('code', $alias)->value('code');

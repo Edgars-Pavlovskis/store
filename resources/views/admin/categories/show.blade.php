@@ -184,8 +184,8 @@
                     <th class="text-center" style="width: 80px;"><i class="fas fa-image"></i></th>
                     <th>{{__('admin.products.input-title')}}</th>
                     <th class="text-center">{{__('admin.products.input-price')}}</th>
-                    <th class="text-center">{{__('admin.products.input-stock')}}</th>
-                    <th class="text-center">{{__('admin.updated-at')}}</th>
+                    <!-- <th class="text-center">{{__('admin.products.input-stock')}}</th> -->
+                    <th class="text-center">{{__('admin.products.input-inner-code')}}</th>
                     <th class="text-center">{{__('admin.actions')}}</th>
                   </tr>
                 </thead>
@@ -195,11 +195,13 @@
                             <td class="text-center fs-sm"><img class="img-avatar img-avatar48" src="/storage/products/{{$product->image}}" onerror="this.src='/assets/img/default-product.png';" alt=""></td>
                             <td class="fw-semibold fs-sm"><a href="{{ route('products-edit', ['alias'=>$product->code]) }}">{{$product->title}}</a></td>
                             <td class="fs-sm text-center">{{number_format($product->price, 2)}} €</td>
+                            <!--
                             <td class="text-center">
                             <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-warning-light text-warning">{{$product->stock}}</span>
                             </td>
+                            -->
                             <td class="text-center">
-                            <span class="text-muted fs-sm">{{$product->created_at}}</span>
+                            <span class="text-muted fs-sm">{{$product->inner_code}}</span>
                             </td>
 
                             <td class="text-center">
