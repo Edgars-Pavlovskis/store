@@ -11,6 +11,8 @@ return [
     'Email Address' => 'E-pasta adrese',
     'Password' => 'Parole',
     'Reset Password' => 'Atiestatīt paroli',
+    'Show all' => 'Rādīt visas',
+    'Show innactive' => 'Rādīt neaktīvās',
     'add' => 'Pievienot',
     'create' => 'Izveidot',
     'save' => 'Saglabāt',

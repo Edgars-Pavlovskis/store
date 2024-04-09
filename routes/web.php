@@ -77,7 +77,7 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('/admin/categories/show',[App\Http\Controllers\CategoriesController::class, 'index'])->name('categories-index-root');
-    Route::get('/admin/categories/show/{alias?}',[App\Http\Controllers\CategoriesController::class, 'index'])->name('categories-index');
+    Route::get('/admin/categories/show/{alias?}/{showinnactive?}',[App\Http\Controllers\CategoriesController::class, 'index'])->name('categories-index');
 
     Route::get('/admin/categories/attributes/{alias?}',[App\Http\Controllers\CategoriesController::class, 'attributes'])->name('attributes');
     Route::get('/admin/categories/attributes/manage/{alias}/{id?}',[App\Http\Controllers\CategoriesController::class, 'manageAttribute'])->name('attributes-manage');

@@ -168,11 +168,26 @@
               </h3>
             </div>
             <div class="block-content block-content-full pt-2">
-                <a href="/admin/products/create/{{$current->alias}}">
-                    <button type="button" class="btn btn-success me-1 mb-3">
+                <a href="{{ route('products-create', ['alias'=>$current->alias]) }}">
+                    <button type="button" class="btn btn-sm btn-success me-1 mb-3">
                         <i class="fa fa-fw fa-plus me-1"></i> {{__('admin.products.add')}}
                     </button>
                 </a>
+
+                @if ($showinnactive)
+                    <a href="{{ route('categories-index', ['alias'=>$current->alias, 'showinnactive'=>'']) }}">
+                        <button type="button" class="btn btn-sm btn-secondary me-1 mb-3">
+                            <i class="fa-solid fa-eye me-1"></i> {{__('admin.Show all')}}
+                        </button>
+                    </a>
+                @else
+                    <a href="{{ route('categories-index', ['alias'=>$current->alias, 'showinnactive'=>'show-innactive']) }}">
+                        <button type="button" class="btn btn-sm btn-secondary me-1 mb-3">
+                            <i class="fa-solid fa-eye-slash me-1"></i> {{__('admin.Show innactive')}}
+                        </button>
+                    </a>
+                @endif
+
 
 
 
@@ -193,7 +208,7 @@
                     @foreach ($products as $product)
                         <tr>
                             <td class="text-center fs-sm"><img class="img-avatar img-avatar48" src="/storage/products/{{$product->image}}" onerror="this.src='/assets/img/default-product.png';" alt=""></td>
-                            <td class="fw-semibold fs-sm"><a href="{{ route('products-edit', ['alias'=>$product->code]) }}">{{$product->title}}</a></td>
+                            <td class="fw-semibold fs-sm"><a @if(!$product->active) class="text-danger" @endif href="{{ route('products-edit', ['alias'=>$product->code]) }}">{{$product->title}}</a></td>
                             <td class="fs-sm text-center">{{number_format($product->price, 2)}} €</td>
                             <!--
                             <td class="text-center">

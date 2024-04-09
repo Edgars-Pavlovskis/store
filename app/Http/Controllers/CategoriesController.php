@@ -18,16 +18,19 @@ use Illuminate\Support\Facades\URL;
 class CategoriesController extends Controller
 {
 
-    public function index($alias='root')
+    public function index($alias='root', $showinnactive = '')
     {
         if($alias == "root") $alias = null;
         //dd(getLocalesWithoutDefault());
         //dd(defaultLocaleActive());
         $current = Categories::whereAlias($alias)->first();
+        $productsQuery = Products::where('parent', $alias);
+        if($showinnactive == "show-innactive") $productsQuery->where('active', 0);
         return view('admin.categories.show',[
             'categories' => Categories::where('parent_alias', $alias)->orderBy('priority')->get(),
-            'products' => Products::where('parent', $alias)->get(),
-            'current' => $current
+            'products' => $productsQuery->get(),
+            'current' => $current,
+            'showinnactive' => $showinnactive
         ]);
 
     }

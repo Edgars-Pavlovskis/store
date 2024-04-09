@@ -132,7 +132,7 @@
                     </div>
 
                     <div class="form-check form-switch form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="1" id="active-checkbox" name="active" {{ (old('active', $product->active) == null || old('active', $product->active) == 1) ? 'checked' : '' }} >
+                        <input class="form-check-input" type="checkbox" value="1" id="active-checkbox" name="active" {{ $product->active == 0 ? '' : 'checked' }} >
                         <label class="form-check-label" for="active-checkbox">{{__('admin.products.switch-active')}}?</label>
                     </div>
 
