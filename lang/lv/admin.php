@@ -9,6 +9,7 @@ return [
     'Forgot Your Password?' => 'Aizmirstāt paroli?',
     'Send Password Reset Link' => 'Sūtīt paroles atjaunošanas saiti',
     'Email Address' => 'E-pasta adrese',
+    'Password' => 'Parole',
     'Reset Password' => 'Atiestatīt paroli',
     'add' => 'Pievienot',
     'create' => 'Izveidot',

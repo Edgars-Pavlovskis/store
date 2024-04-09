@@ -47,7 +47,7 @@
                             @csrf
                           <div class="py-3">
                             <div class="mb-4">
-                              <input type="email" class="form-control @error('email') is-invalid @enderror form-control-alt form-control-lg" id="email" name="email" placeholder="{{ __('Email Address') }}" required autocomplete="email" autofocus>
+                              <input type="email" class="form-control @error('email') is-invalid @enderror form-control-alt form-control-lg" id="email" name="email" placeholder="{{ __('admin.Email Address') }}" required autocomplete="email" autofocus>
                               @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -55,7 +55,7 @@
                                 @enderror
                             </div>
                             <div class="mb-4">
-                              <input type="password" class="form-control @error('password') is-invalid @enderror form-control-alt form-control-lg" id="password" name="password" placeholder="{{ __('Password') }}" required autocomplete="current-password">
+                              <input type="password" class="form-control @error('password') is-invalid @enderror form-control-alt form-control-lg" id="password" name="password" placeholder="{{ __('admin.Password') }}" required autocomplete="current-password">
                               @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
