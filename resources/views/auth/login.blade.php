@@ -11,10 +11,10 @@
                   <!-- Sign In Block -->
                   <div class="block block-rounded mb-0">
                     <div class="block-header block-header-default">
-                      <h3 class="block-title">Sign In</h3>
+                      <h3 class="block-title">{{__('admin.dashboard')}}</h3>
                       <div class="block-options">
                         @if (Route::has('password.request'))
-                            <a class="btn-block-option fs-sm" href="{{ route('password.request') }}">{{ __('Forgot Your Password?') }}</a>
+                            <a class="btn-block-option fs-sm" href="{{ route('password.request') }}">{{ __('admin.Forgot Your Password?') }}</a>
                         @endif
 
                         @if (Route::has('register'))
@@ -27,16 +27,18 @@
                     </div>
                     <div class="block-content">
                       <div class="p-sm-3 px-lg-4 px-xxl-5 py-lg-5">
-                        <h1 class="h2 mb-1">OneUI</h1>
+                        <img src="{{asset('assets/img/alba-red.png')}}" alt="" class="img-fluid">
                         <p class="fw-medium text-muted">
-                          Welcome, please login.
+                            {{__('admin.welcome-sign-in')}}
                         </p>
 
+                        <!--
                         <a href="{{route('auth.google')}}">
                             <button type="button" class="btn btn-outline-danger  me-1 mb-3">
-                                <i class="fa-brands fa-google me-1"></i> {{__('Sign in using Google')}}
+                                <i class="fa-brands fa-google me-1"></i> {{__('admin.Sign in using Google')}}
                             </button>
                         </a>
+                    -->
 
                         <!-- Sign In Form -->
                         <!-- jQuery Validation (.js-validation-signin class is initialized in js/pages/op_auth_signin.min.js which was auto compiled from _js/pages/op_auth_signin.js) -->
@@ -63,14 +65,14 @@
                             <div class="mb-4">
                               <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                                <label class="form-check-label" for="remember">{{ __('Remember Me') }}</label>
+                                <label class="form-check-label" for="remember">{{ __('admin.Remember me') }}</label>
                               </div>
                             </div>
                           </div>
                           <div class="row mb-4">
                             <div class="col-md-6 col-xl-5">
                               <button type="submit" class="btn w-100 btn-alt-primary">
-                                <i class="fa fa-fw fa-sign-in-alt me-1 opacity-50"></i> {{ __('Login') }}
+                                <i class="fa fa-fw fa-sign-in-alt me-1 opacity-50"></i> {{ __('admin.Login') }}
                               </button>
                             </div>
                           </div>
@@ -83,7 +85,7 @@
                 </div>
               </div>
               <div class="fs-sm text-muted text-center">
-                <strong>OneUI 5.7</strong> &copy; <span data-toggle="year-copy"></span>
+                <strong>birojamunskolai.lv</strong> &copy; <span data-toggle="year-copy"></span>
               </div>
             </div>
           </div>

@@ -6,6 +6,8 @@ use Livewire\Component;
 use App\Models\Categories;
 use App\Models\Products;
 use App\Models\Attributes;
+use App\Models\ProductsVariation;
+use Illuminate\Support\Facades\DB;
 
 class DeleteConfirmation extends Component
 {
@@ -27,6 +29,22 @@ class DeleteConfirmation extends Component
                     if(file_exists($path)){ unlink($path); }
                 }
                 break;
+
+            case "Attributes":
+
+                DB::table('products')
+                ->where('parent', $this->parent)
+                ->update([
+                    'variations' => DB::raw("JSON_REMOVE(variations, JSON_UNQUOTE(JSON_SEARCH(variations, 'one', '".$this->itemId."')))")
+                ]);
+
+                DB::table('products_variations')
+                ->whereRaw("JSON_CONTAINS_PATH(variations, 'one', '$.\"$this->itemId\"')")
+                ->update([
+                    'variations' => DB::raw("JSON_REMOVE(variations, '$.\"$this->itemId\"')")
+                ]);
+                break;
+
         }
 
         $modelInstance = app("App\\Models\\$this->model");

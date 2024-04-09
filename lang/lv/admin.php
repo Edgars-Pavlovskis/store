@@ -1,6 +1,15 @@
 <?php
 
 return [
+    'welcome-sign-in' => 'Laipni lūdzam, lūdzu, piesakieties.',
+    'dashboard' => 'Vadības panelis',
+    'Sign in using Google' => 'Autorizēties izmantojot Google',
+    'Remember me' => 'Atcerēties mani',
+    'Login' => 'Autorizēties',
+    'Forgot Your Password?' => 'Aizmirstāt paroli?',
+    'Send Password Reset Link' => 'Sūtīt paroles atjaunošanas saiti',
+    'Email Address' => 'E-pasta adrese',
+    'Reset Password' => 'Atiestatīt paroli',
     'add' => 'Pievienot',
     'create' => 'Izveidot',
     'save' => 'Saglabāt',

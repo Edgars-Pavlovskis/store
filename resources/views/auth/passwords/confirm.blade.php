@@ -28,7 +28,7 @@
 
 
 
-
+                <img src="{{asset('assets/img/alba-red.png')}}" alt="" class="img-fluid">
                 <form class="d-inline" method="POST" action="{{ route('password.confirm') }}">
                   @csrf
 

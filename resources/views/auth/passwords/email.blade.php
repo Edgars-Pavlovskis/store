@@ -13,9 +13,9 @@
           <div class="block block-rounded mb-0">
 
             <div class="block-header block-header-default">
-                <h3 class="block-title">{{ __('Reset Password') }}</h3>
+                <h3 class="block-title">{{ __('admin.Reset Password') }}</h3>
                 <div class="block-options">
-                  <a class="btn-block-option" href="{{route('login')}}" data-bs-toggle="tooltip" data-bs-placement="left" title="Sign In">
+                  <a class="btn-block-option" href="{{route('login')}}" data-bs-toggle="tooltip" data-bs-placement="left" title="{{__('admin.Login')}}">
                     <i class="fa fa-sign-in-alt"></i>
                   </a>
                 </div>
@@ -41,12 +41,12 @@
 
 
 
-
+                <img src="{{asset('assets/img/alba-red.png')}}" alt="" class="img-fluid">
                 <form class="d-inline" method="POST" action="{{ route('password.email') }}">
                   @csrf
                     <div class="py-3">
                         <div class="mb-4">
-                        <input type="email" class="form-control @error('email') is-invalid @enderror form-control-alt form-control-lg" id="email" name="email" placeholder="{{ __('Email Address') }}" value="{{ old('email') }}"  required autocomplete="email" autofocus>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror form-control-alt form-control-lg" id="email" name="email" placeholder="{{ __('admin.Email Address') }}" value="{{ old('email') }}"  required autocomplete="email" autofocus>
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                   <button type="submit" class="btn w-100 btn-alt-primary">
-                    <i class="fa-solid fa-share me-1 opacity-50"></i> {{ __('Send Password Reset Link') }}
+                    <i class="fa-solid fa-share me-1 opacity-50"></i> {{ __('admin.Send Password Reset Link') }}
                   </button>
                 </form>
 
@@ -69,7 +69,7 @@
         </div>
       </div>
       <div class="fs-sm text-muted text-center">
-        <strong>OneUI 5.7</strong> &copy; <span data-toggle="year-copy"></span>
+        <strong>birojamunskolai.lv</strong> &copy; <span data-toggle="year-copy"></span>
       </div>
     </div>
   </div>
