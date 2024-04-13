@@ -26,7 +26,12 @@ return [
     'actions' => 'Darbības',
     'value' => 'Vērtība',
     'select-value' => 'Atlasiet vērtību',
-
+    'Product ID' => 'Produkta ID',
+    'Link gallery' => 'Piesaistīt galeriju',
+    'Linked product not found' => 'Piesaistītais produkts nav atrasts',
+    'Product ID not found' => 'Produkts ar šādu ID nav atrasts',
+    'Gallery linked to product' => 'Galerija piesaistīta pie produkta: :title!',
+    'Gallery unlinked' => 'Galerijas saite ir dzēsta',
 
     'navi' => [
         'catalog' => 'Preču katalogs',
@@ -48,6 +53,7 @@ return [
         'variations' => 'Variācijas',
         'gallery' => 'Attēlu galerija',
         'delete' => 'Dzēst',
+        'copy' => 'Kopēt',
     ],
 
 

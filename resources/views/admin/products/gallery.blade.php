@@ -12,8 +12,10 @@
   <!-- Page JS Plugins -->
   <script src="{{ asset('js/plugins/dropzone/dropzone-amd-module.js') }}"></script>
 
-
 @endsection
+
+
+
 
 
 

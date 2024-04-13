@@ -86,13 +86,14 @@
                                     <a target="_blank" href="{{ route('frontend-product-show', ['alias'=>$product->code]) }}">
                                         <img src="/storage/products/{{$product->image}}" alt="Product Image">
                                     </a>
+
+                                    <!--
                                     <div class="product-hover-action">
                                         <ul class="cart-action">
-
                                             <li class="select-option"><a href="javascript:void(0)">{{__('frontend.add-to-cart')}}</a></li>
-
                                         </ul>
                                     </div>
+                                    -->
                                 </div>
                                 <div class="product-content">
                                     <div class="inner">

@@ -7721,6 +7721,14 @@ Header Styles
   max-height: 90vh;
   overflow: auto;
 }
+.header-search-modal .header-search-wrap.shopping-cart-add-notify-modal {
+    width: 500px !important;
+    height: 200px !important;
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+
 @media only screen and (max-width: 991px) {
   .header-search-modal .header-search-wrap {
     width: 100%;
@@ -18411,5 +18419,7 @@ RTL Style
     height:100%;
     background-color: rgba(250,250,250,0.5);
 }
+
+
 
 

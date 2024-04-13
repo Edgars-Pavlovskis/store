@@ -29,9 +29,11 @@
     <link rel="stylesheet" href="{{ asset('assets/css/vendor/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/vendor/base.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/iziToast.min.css') }}">
 
     @livewireStyles
     @livewireScripts
+    <script src="{{ asset('assets/js/vendor/iziToast.min.js') }}"></script>
 </head>
 
 
@@ -204,7 +206,34 @@
     </div>
     <!-- Product Quick View Modal End -->
 
-    <!-- Header Search Modal End -->
+
+
+
+    <!-- shopping-cart-add-notify start -->
+    <div class="header-search-modal" id="shopping-cart-add-notify-modal">
+        <button class="card-close sidebar-close"><i class="fas fa-times"></i></button>
+        <div class="header-search-wrap shopping-cart-add-notify-modal p-3 pt-5">
+            <div class="card-header text-center">
+                <i class="fa-regular fa-2x fa-circle-check fa-beat-fade text-success"></i>
+                <h3>Produkts pievienots grozam</h3>
+            </div>
+            <div class="card-body">
+                <div class="group-btn text-center">
+                    <a href="javascript:void(0)" class="sidebar-close axil-btn p-2 px-4 me-3 btn-bg-lighter viewcart-btn"><i class="fa-solid fa-play me-2"></i>Turpināt ieprikties</a>
+                    <a href="javascript:void(0)" class="axil-btn p-2 px-4 ms-3 btn-bg-secondary checkout-btn"><i class="fa-solid fa-basket-shopping me-2"></i>Pirkumu grozs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- shopping-cart-add-notify End -->
+
+
+
+
+
+
+
+    <!-- Header Search Modal Start -->
     <div class="header-search-modal" id="header-search-modal">
         <button class="card-close sidebar-close"><i class="fas fa-times"></i></button>
         <div class="header-search-wrap">
@@ -286,102 +315,19 @@
 
 
 
+
+
+
+
+
     <div class="cart-dropdown" id="cart-dropdown">
-        <div class="cart-content-wrap">
-            <div class="cart-header">
-                <h2 class="header-title">Cart review</h2>
-                <button class="cart-close sidebar-close"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="cart-body">
-                <ul class="cart-item-list">
-                    <li class="cart-item">
-                        <div class="item-img">
-                            <a href="single-product.html"><img src="{{asset('assets/images/product/electric/product-01.png')}}" alt="Commodo Blown Lamp"></a>
-                            <button class="close-btn"><i class="fas fa-times"></i></button>
-                        </div>
-                        <div class="item-content">
-                            <div class="product-rating">
-                                <span class="icon">
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-							</span>
-                                <span class="rating-number">(64)</span>
-                            </div>
-                            <h3 class="item-title"><a href="single-product-3.html">Wireless PS Handler</a></h3>
-                            <div class="item-price"><span class="currency-symbol">$</span>155.00</div>
-                            <div class="pro-qty item-quantity">
-                                <input type="number" class="quantity-input" value="15">
-                            </div>
-                        </div>
-                    </li>
-                    <li class="cart-item">
-                        <div class="item-img">
-                            <a href="single-product-2.html"><img src="{{asset('assets/images/product/electric/product-02.png')}}" alt="Commodo Blown Lamp"></a>
-                            <button class="close-btn"><i class="fas fa-times"></i></button>
-                        </div>
-                        <div class="item-content">
-                            <div class="product-rating">
-                                <span class="icon">
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-							</span>
-                                <span class="rating-number">(4)</span>
-                            </div>
-                            <h3 class="item-title"><a href="single-product-2.html">Gradient Light Keyboard</a></h3>
-                            <div class="item-price"><span class="currency-symbol">$</span>255.00</div>
-                            <div class="pro-qty item-quantity">
-                                <input type="number" class="quantity-input" value="5">
-                            </div>
-                        </div>
-                    </li>
-                    <li class="cart-item">
-                        <div class="item-img">
-                            <a href="single-product-3.html"><img src="{{asset('assets/images/product/electric/product-03.png')}}" alt="Commodo Blown Lamp"></a>
-                            <button class="close-btn"><i class="fas fa-times"></i></button>
-                        </div>
-                        <div class="item-content">
-                            <div class="product-rating">
-                                <span class="icon">
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-							</span>
-                                <span class="rating-number">(6)</span>
-                            </div>
-                            <h3 class="item-title"><a href="single-product.html">HD CC Camera</a></h3>
-                            <div class="item-price"><span class="currency-symbol">$</span>200.00</div>
-                            <div class="pro-qty item-quantity">
-                                <input type="number" class="quantity-input" value="100">
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="cart-footer">
-                <h3 class="cart-subtotal">
-                    <span class="subtotal-title">Subtotal:</span>
-                    <span class="subtotal-amount">$610.00</span>
-                </h3>
-                <div class="group-btn">
-                    <a href="cart.html" class="axil-btn btn-bg-primary viewcart-btn">View Cart</a>
-                    <a href="checkout.html" class="axil-btn btn-bg-secondary checkout-btn">Checkout</a>
-                </div>
-            </div>
-        </div>
+        @livewire('show-shopping-cart-panel')
     </div>
+
 
 
     <!-- JS
 ============================================ -->
-
 
     <!-- Modernizer JS -->
     <script src="{{ asset('assets/js/vendor/modernizr.min.js') }}"></script>
@@ -409,6 +355,7 @@
     @stack('scripts')
 
 
+
     <div>
         <!-- wire:loading.delay -->
         <div wire:loading class="fullscreen-loader">
@@ -417,6 +364,7 @@
         </div>
     </div>
 
+    <x-livewire-notification::toast />
 </body>
 
 </html>

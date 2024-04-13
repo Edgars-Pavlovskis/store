@@ -30,14 +30,14 @@ class FrontendController extends Controller
 
     public function product($alias='')
     {
-        $productID = Products::whereCode($alias)->value('id');
-        $galleryImages = File::glob(public_path('storage/products-gallery/'.$productID).'/*');
+        $product = Products::whereCode($alias)->select('id','gallery')->first();
+        $galleryImages = File::glob(public_path('storage/products-gallery/'.((isset($product->gallery) && strlen($product->gallery)>0)?$product->gallery:$product->id).'/*'));
         foreach ($galleryImages as $key=>$path) {
             $path = str_replace(public_path(), '', $path);
             $galleryImages[$key] = str_replace("\\", '/', $path);
         }
 
-        $attributes = ProductsAttribute::where('products_id',$productID)->select('products_attributes.*', 'attributes.*')->join('attributes', 'products_attributes.attributes_id', '=', 'attributes.id')->get();
+        $attributes = ProductsAttribute::where('products_id',$product->id)->select('products_attributes.*', 'attributes.*')->join('attributes', 'products_attributes.attributes_id', '=', 'attributes.id')->get();
         foreach ($attributes as &$attribute) {
             $attribute->options = json_decode($attribute->options, true); // Decode from JSON and cast to array
         }
@@ -45,8 +45,8 @@ class FrontendController extends Controller
         return view('frontend.product',[
             'product' => Products::whereCode($alias)->first(),
             'galleryImages' => $galleryImages,
-            'minPrice' => ProductsVariation::where('products_id',$productID)->min('price') ?? 0,
-            'maxPrice' => ProductsVariation::where('products_id',$productID)->max('price') ?? 0,
+            'minPrice' => ProductsVariation::where('products_id',$product->id)->min('price') ?? 0,
+            'maxPrice' => ProductsVariation::where('products_id',$product->id)->max('price') ?? 0,
             'attributes' => $attributes,
         ]);
     }

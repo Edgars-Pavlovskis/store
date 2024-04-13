@@ -21,6 +21,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
   </style>
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/store.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/iziToast.min.css') }}">
 
   <!-- Modules -->
   @yield('css')
@@ -32,6 +33,8 @@
 
   @livewireStyles
   @livewireScripts
+  <script src="{{ asset('assets/js/vendor/iziToast.min.js') }}"></script>
+
 </head>
 
 <body>
@@ -497,6 +500,8 @@
     <!-- END Footer -->
   </div>
   <!-- END Page Container -->
+
+  <x-livewire-notification::toast />
 
   @yield('js_end')
 </body>

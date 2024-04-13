@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Products;
 use App\Models\Attributes;
 use App\Models\ProductsVariation;
+use Illuminate\Support\Str;
 
 class ShowSingleProductBasicInfo extends Component
 {
@@ -19,6 +20,7 @@ class ShowSingleProductBasicInfo extends Component
 
     public $variationMatch;
     public $addItemCount = 1;
+    public $selectedVariationID;
 
     public function mount()
     {
@@ -89,7 +91,10 @@ class ShowSingleProductBasicInfo extends Component
         foreach($this->variations as $variation)
         {
             $interselected = array_intersect($mandatoryIDs, $variation['variations']);
-            if(count($interselected) == count($variation['variations'])) $this->variationMatch = $variation;
+            if(count($interselected) == count($variation['variations'])){
+                $this->variationMatch = $variation;
+                $this->selectedVariationID = $variation['id'];
+            }
 
 
             if(count($mandatoryIDs)>1) {
@@ -123,6 +128,48 @@ class ShowSingleProductBasicInfo extends Component
         unset($this->selected[$id]);
         $this->updateVariations();
     }
+
+
+
+
+    public function addToCard()
+    {
+        $product = array(
+            'key' => Str::random(5) . '-' . time(),
+            'id' => $this->product['id'],
+            'title' => $this->product['title'],
+            'image' => $this->product['image'],
+            'code' => $this->product['code'],
+            'inner_code' => $this->product['inner_code'],
+            'price' => $this->product['price'],
+            'parent' => $this->product['parent'],
+            'stock' => $this->product['stock'],
+        );
+
+        $variation = [];
+        foreach($this->selected as $selectedID => $selectedValue)
+        {
+            if(isset($this->allAttributes[$selectedID])) {
+                $variation[] = array(
+                    'id' => $this->allAttributes[$selectedID]['id'],
+                    'name' => $this->allAttributes[$selectedID]['name'],
+                    'value' => $this->allAttributes[$selectedID]['type']=="list" ? $this->allAttributes[$selectedID]['options'][$selectedValue] ?? '' : $selectedValue,
+                );
+            }
+        }
+        $product['variation'] = $variation;
+        $product['addCount'] = $this->addItemCount;
+
+        $cartItems = session()->get('shopping_cart', []);
+        $cartItems[] = $product;
+        session()->put('shopping_cart', $cartItems);
+        $this->dispatch('updateShoppingCart');
+        $this->dispatch('showCartAddNotify');
+        //$this->alert('success',__('frontend.Product add to shopping cart', ['title' => $product['title']]));
+
+    }
+
+
 
     public function render()
     {

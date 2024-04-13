@@ -197,6 +197,7 @@
                 <thead>
                   <tr>
                     <th class="text-center" style="width: 80px;"><i class="fas fa-image"></i></th>
+                    <th class="text-center" style="width: 80px;">ID</th>
                     <th>{{__('admin.products.input-title')}}</th>
                     <th class="text-center">{{__('admin.products.input-price')}}</th>
                     <!-- <th class="text-center">{{__('admin.products.input-stock')}}</th> -->
@@ -208,6 +209,7 @@
                     @foreach ($products as $product)
                         <tr>
                             <td class="text-center fs-sm"><img class="img-avatar img-avatar48" src="/storage/products/{{$product->image}}" onerror="this.src='/assets/img/default-product.png';" alt=""></td>
+                            <td class="text-center fs-sm">{{$product->id}}</td>
                             <td class="fw-semibold fs-sm"><a @if(!$product->active) class="text-danger" @endif href="{{ route('products-edit', ['alias'=>$product->code]) }}">{{$product->title}}</a></td>
                             <td class="fs-sm text-center">{{number_format($product->price, 2)}} €</td>
                             <!--
@@ -239,6 +241,11 @@
                                     <a class="me-1" href="{{ route('products-gallery', ['alias'=>$product->code]) }}">
                                         <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{__('admin.tooltips.gallery')}}">
                                             <i class="fa-regular fa-images"></i>
+                                        </button>
+                                    </a>
+                                    <a class="me-1" href="{{ route('products-copy', ['alias'=>$product->code]) }}">
+                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{__('admin.tooltips.copy')}}">
+                                            <i class="fa-regular fa-copy"></i>
                                         </button>
                                     </a>
                                     <a href="javascript:void(0);">

@@ -92,6 +92,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/categories/update-sorting', [App\Http\Controllers\CategoriesController::class, 'updateSorting'])->name('categories-update-sorting');
 
 
+    Route::get('/admin/products/copy/{alias}',[App\Http\Controllers\ProductsController::class, 'copy'])->name('products-copy');
     Route::get('/admin/products/create/{alias}',[App\Http\Controllers\ProductsController::class, 'create'])->name('products-create');
     Route::get('/admin/products/edit/{alias}',[App\Http\Controllers\ProductsController::class, 'edit'])->name('products-edit');
     Route::get('/admin/products/gallery/{alias}',[App\Http\Controllers\ProductsController::class, 'showGallery'])->name('products-gallery');

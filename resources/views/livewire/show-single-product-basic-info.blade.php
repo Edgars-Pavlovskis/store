@@ -82,7 +82,7 @@
 
                 <!-- Start Product Action  -->
                 <ul class="product-action d-flex-center mb--0">
-                    <li class="add-to-cart"><a href="javascript:void(0)" class="axil-btn @if(isset($variationMatch['id'])) btn-bg-primary @else btn-bg-disabled @endif">{{__('frontend.add-to-cart')}}</a></li>
+                    <li class="add-to-cart"><a href="javascript:void(0)" wire:click="addToCard" class="axil-btn @if(isset($variationMatch['id'])) btn-bg-primary @else btn-bg-disabled @endif">{{__('frontend.add-to-cart')}}</a></li>
                 </ul>
                 <!-- End Product Action  -->
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e05b8025eacaa86f70d1ffce20bdb90d",
+    "content-hash": "14b3378ce47cc54bf14c9bc402acd2b6",
     "packages": [
         {
             "name": "brick/math",
@@ -5750,6 +5750,66 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/v2.2.7"
             },
             "time": "2023-12-08T13:03:43+00:00"
+        },
+        {
+            "name": "tonystore/livewire-notification",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tony98ms/livewire-notification.git",
+                "reference": "a9238e518d9931c57be782df5bf49b0d49fe2d66"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tony98ms/livewire-notification/zipball/a9238e518d9931c57be782df5bf49b0d49fe2d66",
+                "reference": "a9238e518d9931c57be782df5bf49b0d49fe2d66",
+                "shasum": ""
+            },
+            "require": {
+                "livewire/livewire": "^3.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^8.0",
+                "phpunit/phpunit": "^10.0"
+            },
+            "type": "package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Tonystore\\LivewireNotification\\LivewireNotificationProvider"
+                    ],
+                    "aliases": {
+                        "LivewireNotification": "Tonystore\\LivewireNotification\\LivewireNotificationFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tonystore\\LivewireNotification\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anthony Medina Sandoval",
+                    "email": "thony918@outlook.com"
+                }
+            ],
+            "description": "Laravel package to launch toast notifications.",
+            "keywords": [
+                "livewire-notification",
+                "livewire-toast",
+                "tonystore"
+            ],
+            "support": {
+                "issues": "https://github.com/tony98ms/livewire-notification/issues",
+                "source": "https://github.com/tony98ms/livewire-notification/tree/v1.1.1"
+            },
+            "time": "2024-02-14T04:26:57+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

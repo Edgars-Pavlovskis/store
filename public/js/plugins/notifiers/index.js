@@ -5,3 +5,6 @@ document.addEventListener('showSuccess', event => {
 document.addEventListener('showNotify', event => {
     One.helpers('jq-notify', {type: 'info', icon: 'fa fa-info-circle me-1', message: event.__livewire.params[0].message});
 })
+
+
+

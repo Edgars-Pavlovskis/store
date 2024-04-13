@@ -32,6 +32,19 @@ $products = Product::select('products.id', 'products.name', 'translations.name A
 
 */
 
+    public function copy($alias='')
+    {
+        if(!empty($alias)){
+            $parent = Products::where('code', $alias)->first();
+            if ($parent) {
+                $newProduct = $parent->replicate();
+                $newProduct->code = 'product-'.strtolower(Str::random(5)) . '-' . time();
+                $newProduct->gallery = $parent->id;
+                $newProduct->save();
+                return redirect('/admin/products/edit/'.$newProduct->code);
+            }
+        }
+    }
 
     public function create($alias='')
     {
@@ -194,7 +207,7 @@ $products = Product::select('products.id', 'products.name', 'translations.name A
         if($routeName == "products-update") {
             $currentCode = Products::where('code', $alias)->value('code');
             if($input['code'] != $currentCode) { //if alias was edited..
-
+                //dd($input['code'].'---'.$currentCode);
                 if(Products::whereCode($input['code'])->count() > 0) {
                     throw ValidationException::withMessages(['code' => __('Product code already exists')]);
                 } else {
