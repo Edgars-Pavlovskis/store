@@ -27,7 +27,6 @@ class FrontendController extends Controller
         ]);
     }
 
-
     public function product($alias='')
     {
         $product = Products::whereCode($alias)->select('id','gallery')->first();

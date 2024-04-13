@@ -87,7 +87,6 @@ class ShowSingleProductBasicInfo extends Component
 
         $mandatoryIDs = array_values($this->selected);
 
-
         foreach($this->variations as $variation)
         {
             $interselected = array_intersect($mandatoryIDs, $variation['variations']);
@@ -134,6 +133,8 @@ class ShowSingleProductBasicInfo extends Component
 
     public function addToCard()
     {
+        if(!$this->variationMatch && count($this->variations)>0) return;
+
         $product = array(
             'key' => Str::random(5) . '-' . time(),
             'id' => $this->product['id'],
