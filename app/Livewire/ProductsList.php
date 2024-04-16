@@ -26,15 +26,27 @@ class ProductsList extends Component
     {
         $this->products = collect([]);
         $this->perLoadCount = config('shop.frontend.products.per-load');
-        $this->category_attributes = Attributes::whereGroup($this->alias)->whereType('list')->select('id','name','group','options')->get()->toArray();
+        //$this->category_attributes = Attributes::whereGroup($this->alias)->whereType('list')->select('id','name','group','options')->get()->toArray();
+        $this->category_attributes = Attributes::whereGroup($this->alias)->select('id','name','type','group','options')->get()->toArray();
         $this->filterMax = Products::whereParent($this->alias)->whereActive(1)->orderBy('price', 'desc')->value('price') ?? 0;
         if(!$this->filterMax) $this->filterMax = 0;
         $this->filterMax = ceil($this->filterMax);
         $this->updateProducts();
 
         foreach ($this->category_attributes as &$attribute) {
-            asort($attribute['options'], SORT_STRING);
+            if($attribute['type'] == "value") {
+                $attribute['options'] = ProductsAttribute::where('attributes_id', $attribute['id'])->distinct()->pluck('value')->toArray();
+            }
+            $first = reset($attribute['options']);
+            asort($attribute['options'], (intval($first) > 0) ? SORT_NUMERIC : SORT_STRING);
+
         }
+        $hashMap = [];
+        foreach ($this->category_attributes as $item) {
+            $hashMap[$item['id']] = $item;
+        }
+        $this->category_attributes = $hashMap;
+        //dd($this->category_attributes);
     }
 
     public function addMoreProducts()
@@ -50,10 +62,21 @@ class ProductsList extends Component
 
         // Collect checked attribute IDs and values
         $checkedAttributes = [];
+
         foreach ($this->filter as $attributeId => $attributeValues) {
             foreach ($attributeValues as $attributeValue => $checked) {
                 if ($checked) {
-                    $checkedAttributes[$attributeId][] = $attributeValue;
+                    if(!array_is_list($attributeValues)){
+                        $checkedAttributes[$attributeId][] = $attributeValue;
+                    } else {
+
+                        if(isset($this->category_attributes[$attributeId])) {
+                            //dd($this->category_attributes[$attributeId]);
+                            if(isset($this->category_attributes[$attributeId]['options'][$attributeValue])) {
+                                $checkedAttributes[$attributeId][] = $this->category_attributes[$attributeId]['options'][$attributeValue];
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -33,7 +33,7 @@
                                 <div class="shop-submenu">
                                     <div class="checkbox-wrapper-29 ms-3">
                                         @foreach ($attribute['options'] as $key=>$option)
-                                            <label class="checkbox"><input wire:model.defer="filter.{{$attribute['id']}}.{{$key}}"  type="checkbox" class="checkbox__input"  /><span class="checkbox__label"></span>{{$option}}</label>
+                                            <label class="checkbox"><input @if($attribute['type']=="value") value="{{$option}}" @endif  wire:model.defer="filter.{{$attribute['id']}}.{{$key}}"  type="checkbox" class="checkbox__input"  /><span class="checkbox__label"></span>{{$option}}</label>
                                         @endforeach
                                     </div>
                                 </div>
