@@ -20,6 +20,16 @@ class FrontendController extends Controller
     }
 
 
+    public function cart()
+    {
+
+
+        return view('frontend.cart',[
+
+        ]);
+    }
+
+
     public function catalog($alias='')
     {
         return view('frontend.catalog',[

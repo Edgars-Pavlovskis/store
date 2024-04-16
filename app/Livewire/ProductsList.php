@@ -20,15 +20,21 @@ class ProductsList extends Component
     public $perLoadCount;
     public $isLoading = false;
 
+
+
     public function mount()
     {
         $this->products = collect([]);
         $this->perLoadCount = config('shop.frontend.products.per-load');
-        $this->category_attributes = Attributes::whereGroup($this->alias)->whereType('list')->select('id','name','group','options')->get();
+        $this->category_attributes = Attributes::whereGroup($this->alias)->whereType('list')->select('id','name','group','options')->get()->toArray();
         $this->filterMax = Products::whereParent($this->alias)->whereActive(1)->orderBy('price', 'desc')->value('price') ?? 0;
         if(!$this->filterMax) $this->filterMax = 0;
         $this->filterMax = ceil($this->filterMax);
         $this->updateProducts();
+
+        foreach ($this->category_attributes as &$attribute) {
+            asort($attribute['options'], SORT_STRING);
+        }
     }
 
     public function addMoreProducts()

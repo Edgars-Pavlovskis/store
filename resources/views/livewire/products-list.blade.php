@@ -29,11 +29,11 @@
 
                         @foreach ($category_attributes as $attribute)
                             <div class="toggle-list product-categories active">
-                                <h6 class="title">{{$attribute->name}}</h6>
+                                <h6 class="title">{{$attribute['name']}}</h6>
                                 <div class="shop-submenu">
                                     <div class="checkbox-wrapper-29 ms-3">
-                                        @foreach ($attribute->options as $key=>$option)
-                                            <label class="checkbox"><input wire:model.defer="filter.{{$attribute->id}}.{{$key}}"  type="checkbox" class="checkbox__input"  /><span class="checkbox__label"></span>{{$option}}</label>
+                                        @foreach ($attribute['options'] as $key=>$option)
+                                            <label class="checkbox"><input wire:model.defer="filter.{{$attribute['id']}}.{{$key}}"  type="checkbox" class="checkbox__input"  /><span class="checkbox__label"></span>{{$option}}</label>
                                         @endforeach
                                     </div>
                                 </div>

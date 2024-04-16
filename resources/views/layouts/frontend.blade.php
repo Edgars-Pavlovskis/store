@@ -220,7 +220,7 @@
             <div class="card-body">
                 <div class="group-btn text-center">
                     <a href="javascript:void(0)" class="sidebar-close axil-btn p-2 px-4 me-3 btn-bg-lighter viewcart-btn"><i class="fa-solid fa-play me-2"></i>Turpināt ieprikties</a>
-                    <a href="javascript:void(0)" class="axil-btn p-2 px-4 ms-3 btn-bg-secondary checkout-btn"><i class="fa-solid fa-basket-shopping me-2"></i>Pirkumu grozs</a>
+                    <a href="{{route('cart-show')}}" class="axil-btn p-2 px-4 ms-3 btn-bg-secondary checkout-btn"><i class="fa-solid fa-basket-shopping me-2"></i>Pirkumu grozs</a>
                 </div>
             </div>
         </div>

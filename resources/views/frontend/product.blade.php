@@ -99,7 +99,7 @@
                                                 <tr>
                                                     <th>{{$attribute->name}}</th>
                                                     @if ($attribute->type == "list")
-                                                        <td>{{$attribute->options[$attribute->value]}}</td>
+                                                        <td>@if(isset($attribute->options[$attribute->value])){{$attribute->options[$attribute->value]}} @else - @endif</td>
                                                     @else
                                                         <td>{{$attribute->value}}</td>
                                                     @endif

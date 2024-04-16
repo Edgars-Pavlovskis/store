@@ -18,7 +18,7 @@ class ShowShoppingCartPanel extends Component
     {
         $this->shoppingCart = session()->get('shopping_cart', []);
         $this->total = array_reduce($this->shoppingCart, function($carry, $product) {
-            return $carry + $product['price'];
+            return $carry + ($product['price'] * intval($product['addCount']));
         }, 0);
     }
 

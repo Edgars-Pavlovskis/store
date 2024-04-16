@@ -31,7 +31,7 @@
             </h3>
             <div class="group-btn">
                 <a href="javascript:void(0)" wire:click="cleanShoppingCart" class="axil-btn btn-bg-primary viewcart-btn"><i class="fa-solid fa-eraser me-2"></i>{{__('frontend.popover.Clear list')}}</a>
-                <a href="javascript:void(0)" class="axil-btn btn-bg-secondary checkout-btn"><i class="fa-solid fa-basket-shopping me-2"></i>{{__('frontend.Shopping cart')}}</a>
+                <a href="/cart" class="axil-btn btn-bg-secondary checkout-btn"><i class="fa-solid fa-basket-shopping me-2"></i>{{__('frontend.Shopping cart')}}</a>
             </div>
         </div>
     </div>
