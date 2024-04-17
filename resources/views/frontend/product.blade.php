@@ -16,14 +16,14 @@
                                     <div class="single-product-thumbnail-wrap zoom-gallery">
                                         <div class="single-product-thumbnail product-large-thumbnail-3 axil-product">
                                             <div class="thumbnail">
-                                                <a href="/storage/products/{{$product->image}}" class="popup-zoom">
-                                                    <img src="/storage/products/{{$product->image}}" alt="Product Images">
+                                                <a href="@if(isset($product->image))/storage/products/{{$product->image}}@else /assets/img/default-product.png @endif" class="popup-zoom">
+                                                    <img src="/storage/products/{{$product->image}}" onerror="this.src='/assets/img/default-product.png';" alt="Product Images">
                                                 </a>
                                             </div>
                                             @foreach ($galleryImages as $galleryImage)
                                                 <div class="thumbnail">
-                                                    <a href="{{$galleryImage}}" class="popup-zoom">
-                                                        <img src="{{$galleryImage}}" alt="Product Image">
+                                                    <a href="@if(isset($galleryImage) && strlen($galleryImage)>0){{$galleryImage}}@else /assets/img/default-product.png @endif" class="popup-zoom">
+                                                        <img src="{{$galleryImage}}" onerror="this.src='/assets/img/default-product.png';" alt="Product Image">
                                                     </a>
                                                 </div>
                                             @endforeach
@@ -41,11 +41,11 @@
                                 <div class="col-lg-2 order-lg-1">
                                     <div class="product-small-thumb-3 small-thumb-wrapper">
                                         <div class="small-thumb-img">
-                                            <img src="/storage/products/{{$product->image}}" alt="thumb image">
+                                            <img src="/storage/products/{{$product->image}}" onerror="this.src='/assets/img/default-product.png';" alt="thumb image">
                                         </div>
                                         @foreach ($galleryImages as $galleryImage)
                                             <div class="small-thumb-img">
-                                                <img src="{{$galleryImage}}" alt="thumb image">
+                                                <img src="{{$galleryImage}}" onerror="this.src='/assets/img/default-product.png';" alt="thumb image">
                                             </div>
                                         @endforeach
                                     </div>
