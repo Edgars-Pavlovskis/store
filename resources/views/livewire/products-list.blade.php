@@ -84,7 +84,7 @@
                             <div class="axil-product product-style-one mb--30">
                                 <div class="thumbnail">
                                     <a target="_blank" href="{{ route('frontend-product-show', ['alias'=>$product->code]) }}">
-                                        <img src="/storage/products/{{$product->image}}" alt="Product Image">
+                                        <img src="/storage/products/{{$product->image}}" onerror="this.src='/assets/img/default-product.png';" alt="Product Image">
                                     </a>
 
                                     <!--

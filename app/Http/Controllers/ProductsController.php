@@ -38,12 +38,9 @@ $products = Product::select('products.id', 'products.name', 'translations.name A
             $parent = Products::where('code', $alias)->first();
             if ($parent) {
                 $newProduct = $parent->replicate();
-                $newProduct->code = 'product-'.strtolower(Str::random(5)) . '-' . time();
-                if(isset($parent->gallery) && strlen($parent->gallery)>0) {
-                    $newProduct->gallery = $parent->gallery;
-                } else {
-                    $newProduct->gallery = $parent->id;
-                }
+                $newProduct->code = $parent->code . '-' . time();
+                $newProduct->image = null;
+                $newProduct->gallery = null;
                 $newProduct->save();
                 return redirect('/admin/products/edit/'.$newProduct->code);
             }
