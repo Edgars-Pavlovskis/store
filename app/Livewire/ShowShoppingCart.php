@@ -28,6 +28,7 @@ class ShowShoppingCart extends Component
     public function updateShoppingCart()
     {
         $this->shoppingCart = session()->get('shopping_cart', []);
+        //dd($this->shoppingCart);
         if(count($this->shoppingCart) == 0) return redirect()->route('frontend-index-root');
         $this->updateCount();
     }

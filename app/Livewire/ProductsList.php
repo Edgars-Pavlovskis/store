@@ -59,17 +59,15 @@ class ProductsList extends Component
 
         $products = Products::whereParent($this->alias)->whereActive(1);
 
-
         // Collect checked attribute IDs and values
         $checkedAttributes = [];
 
         foreach ($this->filter as $attributeId => $attributeValues) {
             foreach ($attributeValues as $attributeValue => $checked) {
                 if ($checked) {
-                    if(!array_is_list($attributeValues)){
+                    if(!is_int(array_key_first($attributeValues))){
                         $checkedAttributes[$attributeId][] = $attributeValue;
                     } else {
-
                         if(isset($this->category_attributes[$attributeId])) {
                             //dd($this->category_attributes[$attributeId]);
                             if(isset($this->category_attributes[$attributeId]['options'][$attributeValue])) {
@@ -98,12 +96,23 @@ class ProductsList extends Component
         $count = count($this->products);
         $newProducts = $products->select('id','title','image','price','code','parent')->limit($this->perLoadCount)->offset($count)->get();
         $this->products = $this->products->merge($newProducts);
+        //if(count($this->filter)>0) dd($this->filter);
         $this->isLoading = false;
         //if(count($this->products)==0) dd($products->toSql());
     }
 
     public function applyFilter($data)
     {
+
+        foreach($this->filter as $index => $filter)
+        {
+            foreach($filter as $key => $value)
+            {
+                if(!$value) unset($this->filter[$index][$key]);
+            }
+            if(empty($this->filter[$index])) unset($this->filter[$index]);
+        }
+
         $this->isLoading = true;
         $this->products = collect([]); // resetting previously loaded products, as we are applying new filter and query will be changed.
 

@@ -11697,7 +11697,7 @@ body.open .closeMask {
   border-bottom: 2px solid var(--color-lighter);
   vertical-align: middle;
   padding: 15px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   color: var(--color-body);
   min-width: 150px;
