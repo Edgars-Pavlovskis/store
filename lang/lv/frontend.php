@@ -35,6 +35,20 @@ return [
         'load-more' => 'Ielādēt vairāk',
     ],
 
+    'cart' => [
+        'clear' => 'Iztukšot pirkumu grozu',
+        'checkout' => 'Noformēt pasūtījumu',
+        'info' => 'Pasūtījuma informācija',
+        'enter-code' => 'Ievadiet kupona kodu',
+        'apply-code' => 'Izmantot',
+        'product' => 'Preces nosaukums',
+        'price' => 'Cena',
+        'count' => 'Skaits',
+        'total' => 'Summa',
+        'total-without-tax' => 'Summa (bez PVN)',
+        'total-tax' => 'PVN 21%',
+        'total-with-tax' => 'Summa apmaksai (ar PVN)',
+    ],
 
     'xxxaxaxax' => 'The :attribute field must match :other.'
 ];

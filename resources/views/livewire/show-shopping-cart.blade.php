@@ -3,18 +3,18 @@
         <div class="axil-product-cart-wrap">
             <div class="product-table-heading">
                 <h4 class="title">Your Cart</h4>
-                <a wire:click="cleanShoppingCart" href="javascript:void(0)" class="cart-clear">Clear Shoping Cart</a>
+                <a wire:click="cleanShoppingCart" href="javascript:void(0)" class="cart-clear"><i class="fa-solid fa-eraser me-2"></i>{{__('frontend.cart.clear')}}</a>
             </div>
             <div class="table-responsive">
                 <table class="table axil-product-table axil-cart-table mb--40">
                     <thead>
                         <tr>
                             <th scope="col" class="product-remove"></th>
-                            <th scope="col" class="product-thumbnail">Product</th>
-                            <th scope="col" class="product-title"></th>
-                            <th scope="col" class="product-price">Price</th>
-                            <th scope="col" class="product-quantity">Quantity</th>
-                            <th scope="col" class="product-subtotal">Subtotal</th>
+                            <th scope="col" class="product-thumbnail text-center"><i class="fa-regular fa-image"></i></th>
+                            <th scope="col" class="product-title">{{__('frontend.cart.product')}}</th>
+                            <th scope="col" class="product-price">{{__('frontend.cart.price')}}</th>
+                            <th scope="col" class="product-quantity">{{__('frontend.cart.count')}}</th>
+                            <th scope="col" class="product-subtotal">{{__('frontend.cart.total')}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,26 +45,24 @@
             </div>
             <div class="cart-update-btn-area">
                 <div class="input-group product-cupon">
-                    <input placeholder="Enter coupon code" type="text">
+                    <input placeholder="{{__('frontend.cart.enter-code')}}" type="text">
                     <div class="product-cupon-btn">
-                        <button type="submit" class="axil-btn btn-outline">Apply</button>
+                        <button type="submit" class="axil-btn btn-outline">{{__('frontend.cart.apply-code')}}</button>
                     </div>
-                </div>
-                <div class="update-btn">
-                    <a href="#" class="axil-btn btn-outline">Update Cart</a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xl-5 col-lg-7 offset-xl-7 offset-lg-5">
-                    <div class="axil-order-summery mt--80">
-                        <h5 class="title mb--20">Order Summary</h5>
+                    <div class="axil-order-summery mt--20">
+                        <h5 class="title mb--20">{{__('frontend.cart.info')}}</h5>
                         <div class="summery-table-wrap">
                             <table class="table summery-table mb--30">
                                 <tbody>
                                     <tr class="order-subtotal">
-                                        <td>Subtotal</td>
-                                        <td>{{number_format($total, 2)}} €</td>
+                                        <td>{{__('frontend.cart.total-without-tax')}}</td>
+                                        <td>{{number_format($total-($total*0.21), 2)}} €</td>
                                     </tr>
+                                    <!--
                                     <tr class="order-shipping">
                                         <td>Shipping</td>
                                         <td>
@@ -82,18 +80,20 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    -->
+
                                     <tr class="order-tax">
-                                        <td>State Tax</td>
-                                        <td>$8.00</td>
+                                        <td>{{__('frontend.cart.tax')}}</td>
+                                        <td>{{number_format($total*0.21, 2)}} €</td>
                                     </tr>
                                     <tr class="order-total">
-                                        <td>Total</td>
-                                        <td class="order-total-amount">$125.00</td>
+                                        <td>{{__('frontend.cart.total-with-tax')}}</td>
+                                        <td class="order-total-amount">{{number_format($total, 2)}} €</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <a href="checkout.html" class="axil-btn btn-bg-primary checkout-btn">Process to Checkout</a>
+                        <a href="checkout.html" class="axil-btn btn-bg-primary checkout-btn">{{__('frontend.cart.checkout')}}</a>
                     </div>
                 </div>
             </div>
