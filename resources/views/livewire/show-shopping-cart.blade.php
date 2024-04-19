@@ -2,7 +2,7 @@
     <div class="container">
         <div class="axil-product-cart-wrap">
             <div class="product-table-heading">
-                <h4 class="title">Your Cart</h4>
+                <h4 class="title">{{__('frontend.Shopping cart')}}</h4>
                 <a wire:click="cleanShoppingCart" href="javascript:void(0)" class="cart-clear"><i class="fa-solid fa-eraser me-2"></i>{{__('frontend.cart.clear')}}</a>
             </div>
             <div class="table-responsive">
