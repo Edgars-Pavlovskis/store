@@ -83,7 +83,7 @@
                                     -->
 
                                     <tr class="order-tax">
-                                        <td>{{__('frontend.cart.tax')}}</td>
+                                        <td>{{__('frontend.cart.total-tax')}}</td>
                                         <td>{{number_format($total*0.21, 2)}} €</td>
                                     </tr>
                                     <tr class="order-total">
