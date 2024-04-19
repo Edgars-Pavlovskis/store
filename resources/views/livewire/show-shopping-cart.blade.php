@@ -23,7 +23,7 @@
                                 <td class="product-remove"><a wire:click="removeItemFromCart('{{$cart['key']}}')" href="javascript:void(0)" class="remove-wishlist"><i class="fal fa-times"></i></a></td>
                                 <td class="product-thumbnail"><a href="javascript:void(0)"><img src="/storage/products/{{$cart['image']}}" onerror="this.src='/assets/img/default-product.png';"  alt="Product image"></a></td>
                                 <td class="product-title">
-                                    <a href="{{ route('frontend-product-show', ['alias'=>$cart['code']]) }}">{{$cart['title']}}</a>
+                                    <a target="blank" href="{{ route('frontend-product-show', ['alias'=>$cart['code']]) }}">{{$cart['title']}}</a>
                                     @if (count($cart['variation'])>0)
                                         <br>
                                         @foreach ($cart['variation'] as $variation)
