@@ -3,17 +3,37 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\Products;
+
 
 class ShowShoppingCartPanel extends Component
 {
-    protected $listeners = ['updateShoppingCart'];
+    protected $listeners = ['updateShoppingCart', 'addProductToCart'];
     public $shoppingCart;
     public $total;
 
     public function mount()
     {
+        //session()->put('shopping_cart', []);
         $this->updateShoppingCart();
     }
+
+
+
+    public function addProductToCart($data)
+    {
+        if(!isset($data['product']['id'])) return false;
+
+        $cartItems = session()->get('shopping_cart', []);
+        $cartItems[] = $data['product'];
+        session()->put('shopping_cart', $cartItems);
+        $this->dispatch('updateShoppingCart');
+        $this->dispatch('showCartAddNotify');
+
+    }
+
+
+
     public function updateShoppingCart()
     {
         $this->shoppingCart = session()->get('shopping_cart', []);

@@ -9,10 +9,13 @@ class ShowShoppingCart extends Component
     public $shoppingCart, $total;
     protected $listeners = ['updateShoppingCart'];
 
+
     public function mount()
     {
         $this->updateShoppingCart();
     }
+
+
 
     public function updatedShoppingCart($value, $index)
     {

@@ -28,7 +28,7 @@ class CategoriesController extends Controller
         if($showinnactive == "show-innactive") $productsQuery->where('active', 0);
         return view('admin.categories.show',[
             'categories' => Categories::where('parent_alias', $alias)->orderBy('priority')->get(),
-            'products' => $productsQuery->get(),
+            'products' => $productsQuery->orderBy('id', 'DESC')->get(),
             'current' => $current,
             'showinnactive' => $showinnactive
         ]);

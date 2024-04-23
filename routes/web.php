@@ -28,7 +28,7 @@ Route::get('/',[App\Http\Controllers\FrontendController::class, 'index'])->name(
 Route::get('/catalog/{alias}',[App\Http\Controllers\FrontendController::class, 'catalog'])->name('frontend-catalog-show');
 Route::get('/product/{alias}',[App\Http\Controllers\FrontendController::class, 'product'])->name('frontend-product-show');
 Route::get('/cart',[App\Http\Controllers\FrontendController::class, 'cart'])->name('cart-show');
-
+Route::view('/checkout', 'frontend.checkout')->name('checkout-show');;
 
 Auth::routes([
     'verify' => true,

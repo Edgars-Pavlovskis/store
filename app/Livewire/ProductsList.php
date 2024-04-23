@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 use App\Models\Products;
 use App\Models\Attributes;
 use App\Models\ProductsAttribute;
+use Illuminate\Support\Str;
 
 class ProductsList extends Component
 {
@@ -47,6 +48,29 @@ class ProductsList extends Component
         }
         $this->category_attributes = $hashMap;
         //dd($this->category_attributes);
+    }
+
+
+    public function fastAddProductToCart($product_id)
+    {
+        $product = Products::whereId($product_id)->first();
+        if($product->id) {
+            $data = array();
+            $data['product'] = array(
+                'key' => Str::random(5) . '-' . time(),
+                'id' => $product['id'],
+                'title' => $product['title'],
+                'image' => $product['image'],
+                'code' => $product['code'],
+                'inner_code' => $product['inner_code'],
+                'price' => $product['price'],
+                'parent' => $product['parent'],
+                'stock' => $product['stock'],
+                'variation' => [],
+                'addCount' => 1,
+            );
+            $this->dispatch('addProductToCart', data: $data);
+        }
     }
 
     public function addMoreProducts()
@@ -94,7 +118,7 @@ class ProductsList extends Component
         if($this->maxPriceUpdated) $products->where('price', '<=', $this->filterMax);
 
         $count = count($this->products);
-        $newProducts = $products->select('id','title','image','price','code','parent')->limit($this->perLoadCount)->offset($count)->get();
+        $newProducts = $products->select('id','title','image','price','code','parent','variations')->limit($this->perLoadCount)->offset($count)->get();
         $this->products = $this->products->merge($newProducts);
         //if(count($this->filter)>0) dd($this->filter);
         $this->isLoading = false;

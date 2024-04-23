@@ -78,22 +78,24 @@
 
 
                 <div  class="row row--15">
-
                     @foreach ($products as $product)
                         <div class="col-xl-4 col-sm-6">
                             <div class="axil-product product-style-one mb--30">
                                 <div class="thumbnail">
-                                    <a target="_blank" href="{{ route('frontend-product-show', ['alias'=>$product->code]) }}">
+                                    <a target="blank" href="{{ route('frontend-product-show', ['alias'=>$product->code]) }}">
                                         <img src="/storage/products/{{$product->image}}" onerror="this.src='/assets/img/default-product.png';" alt="Product Image">
                                     </a>
 
-                                    <!--
+
                                     <div class="product-hover-action">
                                         <ul class="cart-action">
-                                            <li class="select-option"><a href="javascript:void(0)">{{__('frontend.add-to-cart')}}</a></li>
+                                            @if(is_array($product->variations) && count($product->variations)>0)
+                                                <li class="select-option"><a target="blank" href="{{ route('frontend-product-show', ['alias'=>$product->code]) }}">{{__('frontend.select-variations')}}</a></li>
+                                            @else
+                                                <li class="select-option"><a href="javascript:void(0)" wire:click="fastAddProductToCart('{{$product->id}}')">{{__('frontend.add-to-cart')}}</a></li>
+                                            @endif
                                         </ul>
                                     </div>
-                                    -->
                                 </div>
                                 <div class="product-content">
                                     <div class="inner">

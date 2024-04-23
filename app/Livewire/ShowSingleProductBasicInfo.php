@@ -22,6 +22,9 @@ class ShowSingleProductBasicInfo extends Component
     public $addItemCount = 1;
     public $selectedVariationID;
 
+
+
+
     public function mount()
     {
 
@@ -129,8 +132,6 @@ class ShowSingleProductBasicInfo extends Component
     }
 
 
-
-
     public function addToCard()
     {
         if(!$this->variationMatch && count($this->variations)>0) return;
@@ -160,14 +161,7 @@ class ShowSingleProductBasicInfo extends Component
         }
         $product['variation'] = $variation;
         $product['addCount'] = $this->addItemCount;
-
-        $cartItems = session()->get('shopping_cart', []);
-        $cartItems[] = $product;
-        session()->put('shopping_cart', $cartItems);
-        $this->dispatch('updateShoppingCart');
-        $this->dispatch('showCartAddNotify');
-        //$this->alert('success',__('frontend.Product add to shopping cart', ['title' => $product['title']]));
-
+        $this->dispatch('addProductToCart',['product' => $product]);
     }
 
 

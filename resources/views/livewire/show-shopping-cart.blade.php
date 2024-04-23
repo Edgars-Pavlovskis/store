@@ -93,7 +93,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <a href="checkout.html" class="axil-btn btn-bg-primary checkout-btn">{{__('frontend.cart.checkout')}}</a>
+                        <a href="{{route('checkout-show')}}" class="axil-btn btn-bg-primary checkout-btn">{{__('frontend.cart.checkout')}}</a>
                     </div>
                 </div>
             </div>
