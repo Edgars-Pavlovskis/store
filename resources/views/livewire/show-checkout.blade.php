@@ -18,7 +18,7 @@
   margin: 0 1rem;
   cursor: pointer;
   user-select: none;
-  font-size: 1.16rem;
+  font-size: 1.35rem;
   justify-content: space-between;
   padding: 0.6rem 1rem 0.6rem 0.6rem;
 }
@@ -122,11 +122,11 @@
 }
 
 .customInputContainer .options ul li.selected {
-    background: rgb(245 44 17 / 50%);
+    background: rgb(255 158 66 / 50%);
 }
 
 .customInputContainer .options ul li.selected:hover {
-    background: rgb(245 44 17 / 50%);
+    background: rgb(255 158 66 / 50%);
 }
 
 .customInputContainer .options ul li:last-child {
@@ -134,7 +134,7 @@
 }
 
 .customInputContainer .options ul li:hover {
-  background: rgb(245 44 17 / 20%);
+  background: rgb(255 158 66 / 20%);
 }
     </style>
     <div class="container">
@@ -330,7 +330,7 @@
                                             </div>
                                             @foreach (config('shop.frontend.delivery-options') as $index => $delivery)
                                                 <div class="input-group">
-                                                    <input type="radio" id="delivery-{{$index}}" wire:model="checkout.deliveryAlias" wire:change="deliveryAliasChanged" value="{{$index}}"> <label for="delivery-{{$index}}">{{$delivery['title'][app()->getLocale()] ?? 'Piegādes veids (bez nosaukuma)'}}&nbsp;
+                                                    <input style="height:0px !important;" type="radio" id="delivery-{{$index}}" wire:model="checkout.deliveryAlias" wire:change="deliveryAliasChanged" value="{{$index}}"> <label for="delivery-{{$index}}">{{$delivery['title'][app()->getLocale()] ?? 'Piegādes veids (bez nosaukuma)'}}&nbsp;
                                                         @if (isset($delivery['price']))
                                                             @if (isset($delivery['freeontotal']) && is_numeric($delivery['freeontotal']) && $total >= $delivery['freeontotal'])
                                                                 (0.00 €)
@@ -444,6 +444,7 @@
 
             customInput.addEventListener('click', () => {
                 customInputContainer.classList.toggle('show')
+
             })
 
             let parcelLocationsLength = parcelLocations.length
