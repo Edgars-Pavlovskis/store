@@ -16,7 +16,12 @@
         </div>
     </div>
 
-
+    <script>
+        document.addEventListener('showConfirmDeleteExternalDialog', showConfirmDeleteExternalDialog);
+        function showConfirmDeleteExternalDialog(event) {
+            $('#deleteConfirmationModal').modal('show');
+        }
+   </script>
 </div>
 
 

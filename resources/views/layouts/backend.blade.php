@@ -206,6 +206,24 @@
               </a>
             </li>
             <li class="nav-main-heading">birojamunskolai.lv</li>
+
+
+            <li class="nav-main-item{{ request()->is('orders/*') ? ' open' : '' }}">
+                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                    <i class="fa-brands fa-shopify me-2" aria-hidden="true"></i>
+                  <span class="nav-main-link-name">{{__('orders.navi.main')}}</span>
+                </a>
+                <ul class="nav-main-submenu">
+
+                  <li class="nav-main-item">
+                      <a class="nav-main-link{{ (request()->is('orders/show')) ? ' active' : '' }}" href="/orders/show">
+                        <span class="nav-main-link-name">{{__('orders.navi.all')}}</span>
+                      </a>
+                  </li>
+
+                </ul>
+              </li>
+
             <li class="nav-main-item{{ request()->is('admin/*') ? ' open' : '' }}">
               <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
                 <i class="fa fa-shopping-basket me-2" aria-hidden="true"></i>
@@ -217,31 +235,15 @@
                     <a class="nav-main-link{{ (request()->is('admin/categories/*') || request()->is('admin/products/*')) ? ' active' : '' }}" href="/admin/categories/show">
                       <span class="nav-main-link-name">{{__('admin.navi.categories-and-products')}}</span>
                     </a>
-                  </li>
-                  <!--
-                <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('admin/datatables') ? ' active' : '' }}" href="/admin/datatables">
-                    <span class="nav-main-link-name">DataTables</span>
-                  </a>
                 </li>
-                <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('admin/slick') ? ' active' : '' }}" href="/admin/slick">
-                    <span class="nav-main-link-name">Slick Slider</span>
-                  </a>
-                </li>
-                <li class="nav-main-item">
-                    <a class="nav-main-link{{ request()->is('admin/test') ? ' active' : '' }}" href="/admin/test">
-                      <span class="nav-main-link-name">test</span>
-                    </a>
-                  </li>
-                <li class="nav-main-item">
-                  <a class="nav-main-link{{ request()->is('admin/blank') ? ' active' : '' }}" href="/admin/blank">
-                    <span class="nav-main-link-name">Blank</span>
-                  </a>
-                </li>
-              -->
+
               </ul>
             </li>
+
+
+
+
+
             <li class="nav-main-heading">Saites</li>
             <li class="nav-main-item open">
               <a class="nav-main-link" href="/">

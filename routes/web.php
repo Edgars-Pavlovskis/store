@@ -28,7 +28,11 @@ Route::get('/',[App\Http\Controllers\FrontendController::class, 'index'])->name(
 Route::get('/catalog/{alias}',[App\Http\Controllers\FrontendController::class, 'catalog'])->name('frontend-catalog-show');
 Route::get('/product/{alias}',[App\Http\Controllers\FrontendController::class, 'product'])->name('frontend-product-show');
 Route::get('/cart',[App\Http\Controllers\FrontendController::class, 'cart'])->name('cart-show');
-Route::view('/checkout', 'frontend.checkout')->name('checkout-show');;
+Route::view('/checkout', 'frontend.checkout')->name('checkout-show');
+Route::get('/checkout-complete',[App\Http\Controllers\CheckoutController::class, 'checkoutComplete'])->name('checkout-complete');
+
+
+Route::get('/dpdtest',[App\Http\Controllers\HomeController::class, 'dpdTest'])->name('dpd-test');
 
 Auth::routes([
     'verify' => true,
@@ -104,6 +108,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/products/variations/{productID}',[App\Http\Controllers\ProductsController::class, 'updateVariationsAttributes'])->name('variations-attributes-update');
     Route::post('/upload-product-gallery', [App\Http\Controllers\ProductsController::class, 'productGalleryUpload'])->name('productGalleryUpload');
 
+
+
+    Route::get('/orders/show',[App\Http\Controllers\OrdersController::class, 'index'])->name('orders-show');
 
 });
 

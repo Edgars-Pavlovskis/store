@@ -74,6 +74,7 @@ class DeleteConfirmation extends Component
         $this->itemName = $itemName;
         $this->model = $model;
         $this->parent = $parent;
+        $this->dispatch('showConfirmDeleteExternalDialog');
     }
 
 

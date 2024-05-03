@@ -77,7 +77,7 @@
             @if (isset($current->id))
                 {{$current->title}}
                 <a href="{{ route('categories-edit', ['alias'=>$current->alias]) }}"><i class="fa-solid fa-pen-to-square fa-xs ms-2"></i></a>
-                <a href="javascript:void()" onclick="Livewire.dispatch('confirmDeleteExternal', { itemId: '{{$current->id}}', itemName: '{{$current->title}}', model: 'Categories', parent: '{{$current->parent_alias}}' })" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal"><i class="fa fa-trash fa-xs ms-2"></i></a>
+                <a href="javascript:void()" onclick="Livewire.dispatch('confirmDeleteExternal', { itemId: '{{$current->id}}', itemName: '{{$current->title}}', model: 'Categories', parent: '{{$current->parent_alias}}' })"><i class="fa fa-trash fa-xs ms-2"></i></a>
             @else
                 {{__('admin.categories.title')}}
             @endif
@@ -249,7 +249,7 @@
                                         </button>
                                     </a>
                                     <a href="javascript:void(0);">
-                                        <button type="button" class="btn btn-sm btn-alt-secondary" title="{{__('admin.tooltips.delete')}}" onclick="Livewire.dispatch('confirmDeleteExternal', { itemId: '{{$product->id}}', itemName: '{{$product->title}}', model: 'Products', parent: '{{$product->parent}}' })" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">
+                                        <button type="button" class="btn btn-sm btn-alt-secondary" title="{{__('admin.tooltips.delete')}}" onclick="Livewire.dispatch('confirmDeleteExternal', { itemId: '{{$product->id}}', itemName: '{{$product->title}}', model: 'Products', parent: '{{$product->parent}}' })">
                                             <i class="fa fa-fw fa-times"></i>
                                         </button>
                                     </a>

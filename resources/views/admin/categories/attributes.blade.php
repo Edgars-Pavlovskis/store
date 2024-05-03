@@ -124,7 +124,7 @@
                                 </button>
                             </a>
                             <a href="javascript:void(0);">
-                                <button type="button" class="btn btn-sm btn-alt-secondary" title="{{__('admin.tooltips.delete')}}" onclick="Livewire.dispatch('confirmDeleteExternal', { itemId: '{{$attribute->id}}', itemName: '{{$attribute->name}}', model: 'Attributes', parent: '{{$attribute->group}}' })" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">
+                                <button type="button" class="btn btn-sm btn-alt-secondary" title="{{__('admin.tooltips.delete')}}" onclick="Livewire.dispatch('confirmDeleteExternal', { itemId: '{{$attribute->id}}', itemName: '{{$attribute->name}}', model: 'Attributes', parent: '{{$attribute->group}}' })">
                                     <i class="fa fa-fw fa-times"></i>
                                 </button>
                             </a>
