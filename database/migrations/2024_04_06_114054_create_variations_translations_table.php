@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('variations_translations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('products_variations_id')->index();
+            $table->unsignedBigInteger('record_id')->nullable()->index();
             $table->string('locale')->index();
             $table->string('name')->index();
             $table->text('description')->nullable();

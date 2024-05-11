@@ -216,7 +216,7 @@
                 <ul class="nav-main-submenu">
 
                   <li class="nav-main-item">
-                      <a class="nav-main-link{{ (request()->is('orders/show')) ? ' active' : '' }}" href="/orders/show">
+                      <a class="nav-main-link{{ ((request()->is('orders/show') || request()->is('orders/show/*'))) ? ' active' : '' }}" href="/orders/show">
                         <span class="nav-main-link-name">{{__('orders.navi.all')}}</span>
                       </a>
                   </li>

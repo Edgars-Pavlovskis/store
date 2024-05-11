@@ -111,6 +111,7 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('/orders/show',[App\Http\Controllers\OrdersController::class, 'index'])->name('orders-show');
+    Route::get('/orders/show/{key}',[App\Http\Controllers\OrdersController::class, 'showOrder'])->name('show-order');
 
 });
 

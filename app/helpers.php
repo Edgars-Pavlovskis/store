@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Str;
+use App\Models\Logs;
 
 if (!function_exists('convertToLatin')) {
     function convertToLatin($string)
@@ -38,6 +39,23 @@ if (!function_exists('getLocales')) {
     function getLocales()
     {
         return app('config')->get('shop')['languages']['list'];
+    }
+}
+
+
+if (!function_exists('createLog')) {
+    function createLog($modelID, $type, $name = '', $text = '', $params = [])
+    {
+        $log = new Logs();
+        // Fill the attributes of the model
+        $log->users_id = auth()->id(); // Assuming the user ID for the log
+        $log->name = $name; // Assuming the user ID for the log
+        $log->model_id = $modelID; // Assuming the related model ID for the log
+        $log->type = $type; // Assuming the type of log
+        $log->text = $text; // Assuming the text for the log
+        $log->params = $params; // Assuming additional parameters for the log
+        // Save the model to the database
+        $log->save();
     }
 }
 

@@ -8,11 +8,20 @@ use App\Models\Orders;
 class OrdersController extends Controller
 {
 
+    public $search = '';
 
     public function index(Request $request)
     {
+        $query = Orders::orderBy('id', 'DESC');
         $filter = $request->input('filter')??-1;
-        $orders = $filter>=0 ? Orders::whereStatus($filter)->orderBy('id', 'DESC')->get() : Orders::orderBy('id', 'DESC')->get();
+        if($filter >= 0) {
+            $query->whereStatus($filter);
+        }
+        $this->search = $request->input('search')??'';
+        if(strlen(trim($this->search)) > 0) {
+            $query->search(trim($this->search));
+        }
+        $orders = $query->paginate(config('shop.backend.orders-per-page'));
 
         $allOrders = Orders::select('status')->get();
         $ordersByStatus = [];
@@ -26,6 +35,16 @@ class OrdersController extends Controller
             'ordersByStatus' => $ordersByStatus,
             'filter' => $filter,
             'totalOrders' => count($allOrders),
+            'search' => $this->search,
+        ]);
+    }
+
+    public function showOrder($key)
+    {
+        $order = Orders::where('key', $key)->first();
+        //dd($order);
+        return view('orders.order',[
+            'order' => $order,
         ]);
     }
 

@@ -18,20 +18,42 @@ return [
             0 => [
                 'bg-class' => 'bg-gray-dark',
                 'text-class' => '',
+                'done-bg' => 'bg-success-light',
+                'active-bg' => 'bg-primary-lighter',
+                'active-icon' => 'fa-solid fa-star-of-life fa-spin text-primary',
+                'active-text' => 'text-primary',
             ],
             1 => [
                 'bg-class' => 'bg-info',
                 'text-class' => '',
+                'active-bg' => 'bg-warning-light',
+                'active-icon' => 'fa fa-sync fa-spin text-warning',
+                'active-text' => 'text-warning',
             ],
             2 => [
-                'bg-class' => 'bg-success',
+                'bg-class' => 'bg-info',
                 'text-class' => '',
+                'active-bg' => 'bg-success-light',
+                'active-icon' => 'fa fa-sync fa-check text-success',
+                'active-text' => 'text-success',
             ],
             3 => [
+                'bg-class' => 'bg-success',
+                'text-class' => '',
+                'active-bg' => 'bg-success-light',
+                'active-icon' => 'fa fa-sync fa-check text-success',
+                'active-text' => 'text-success',
+            ],
+            4 => [
                 'bg-class' => 'bg-danger',
                 'text-class' => '',
+                'done-bg' => 'bg-body',
+                'active-bg' => 'bg-danger-light',
+                'active-icon' => 'fa fa-times text-danger',
+                'active-text' => 'text-danger',
             ],
         ],
+        'orders-per-page' => 20,
     ],
 
     'frontend' => [

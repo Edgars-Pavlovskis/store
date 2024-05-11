@@ -106,10 +106,10 @@
         </div>
         <div class="block-content">
           <!-- Search Form -->
-          <form action="be_pages_ecom_orders.html" method="POST" onsubmit="return false;">
+          <form action="{{ url()->current() }}" method="GET" >
             <div class="mb-4">
               <div class="input-group">
-                <input type="text" class="form-control form-control-alt" id="one-ecom-orders-search" name="one-ecom-orders-search" placeholder="{{__('orders.search')}}..">
+                <input type="text" class="form-control form-control-alt" id="txt-orders-search" name="search" placeholder="{{__('orders.search')}}.." value="{{$search}}">
                 <span class="input-group-text bg-body border-0">
                   <i class="fa fa-search"></i>
                 </span>
@@ -123,13 +123,13 @@
             <table class="table table-borderless table-striped table-vcenter">
               <thead>
                 <tr>
-                  <th class="text-center" style="width: 100px;">ID</th>
-                  <th class="d-none d-sm-table-cell text-center">Submitted</th>
-                  <th>Status</th>
-                  <th class="d-none d-xl-table-cell">Customer</th>
+                  <th class="text-center" style="width: 100px;">#</th>
+                  <th class="d-none d-sm-table-cell text-center">{{__('orders.registred')}}</th>
+                  <th>{{__('orders.current-status')}}</th>
+                  <th class="d-none d-xl-table-cell">{{__('orders.customer')}}</th>
                   <th class="d-none d-xl-table-cell text-center">{{__('orders.table.products')}}</th>
                   <th class="d-none d-sm-table-cell text-end">{{__('orders.table.value')}}</th>
-                  <th class="text-center">Action</th>
+                  <th class="text-center"></th>
                 </tr>
               </thead>
               <tbody>
@@ -137,8 +137,8 @@
                 @foreach ($orders as $order)
                     <tr>
                     <td class="text-center fs-sm">
-                        <a class="fw-semibold" href="javascript:void(0)">
-                        <strong>ORD.{{$order->id}}</strong>
+                        <a class="fw-semibold" href="{{route('show-order',['key'=>$order->key])}}">
+                            <strong>{{date_format($order->created_at,"dmY")}}-{{$order->id}}</strong>
                         </a>
                     </td>
                     <td class="d-none d-sm-table-cell text-center fs-sm">{{date_format($order->created_at,"d/m/Y H:i")}}</td>
@@ -149,55 +149,46 @@
                         <strong>{{$order->name}} {{$order->surname}}</strong> [{{$order->email}}]
                     </td>
                     <td class="d-none d-xl-table-cell text-center fs-sm">
-                        <a class="fw-semibold" href="javascript:void(0)">{{count($order->cart)}}</a>
+                        {{count($order->cart)}}
                     </td>
                     <td class="d-none d-sm-table-cell text-end fs-sm">
                         <strong>{{number_format($order->total, 2)}} €</strong>
                     </td>
                     <td class="text-center">
-                        <a class="btn btn-sm btn-alt-secondary" href="javascript:void(0)" data-bs-toggle="tooltip" title="View">
-                        <i class="fa fa-fw fa-eye"></i>
+                        <a class="btn btn-sm btn-alt-secondary" href="{{route('show-order', ['key' => $order->key])}}" data-bs-toggle="tooltip" title="{{__('orders.show')}}">
+                            <i class="fa fa-fw fa-eye"></i>
                         </a>
-                        <a class="btn btn-sm btn-alt-secondary" href="javascript:void(0)" data-bs-toggle="tooltip" title="Delete">
-                        <i class="fa fa-fw fa-times"></i>
+                        <a class="btn btn-sm btn-alt-secondary" title="{{__('admin.tooltips.delete')}}" onclick="Livewire.dispatch('confirmDeleteExternal', { itemId: '{{$order->id}}', itemName: '{{__('orders.order.no')}} #{{date_format($order->created_at,'dmY')}}-{{$order->id}}', model: 'Orders', parent: '' })">
+                            <i class="fa fa-fw fa-times"></i>
                         </a>
                     </td>
                     </tr>
                 @endforeach
-
               </tbody>
             </table>
           </div>
           <!-- END All Orders Table -->
 
-          <!-- Pagination -->
-          <nav aria-label="Photos Search Navigation">
-            <ul class="pagination pagination-sm justify-content-end mt-2">
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)" tabindex="-1" aria-label="Previous">
-                  Prev
-                </a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="javascript:void(0)">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">2</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">3</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">4</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)" aria-label="Next">
-                  Next
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <!-- END Pagination -->
+
+            @if ($orders->lastPage() > 1)
+                <nav aria-label="Photos Search Navigation">
+                    <ul class="pagination pagination-sm justify-content-end mt-2">
+                        <li class="page-item {{ $orders->currentPage() == 1 ? 'disabled' : '' }}">
+                            <a class="page-link" href="{{ url()->current().'?'.http_build_query(array_merge(request()->all(),['page' => $orders->currentPage() - 1])) }}"><span aria-hidden="true"><i class="fa fa-angle-double-left"></i></span></a>
+                        </li>
+                        @for ($i = 1; $i <= $orders->lastPage(); $i++)
+                            <li class="page-item {{ $orders->currentPage() == $i ? 'active' : '' }}">
+                                <a class="page-link" href="{{ url()->current().'?'.http_build_query(array_merge(request()->all(),['page' => $i])) }}">{{ $i }}</a>
+                            </li>
+                        @endfor
+                        <li class="page-item {{ $orders->currentPage() == $orders->lastPage() ? 'disabled' : '' }}">
+                            <a class="page-link" href="{{ url()->current().'?'.http_build_query(array_merge(request()->all(),['page' => $orders->currentPage() + 1])) }}"><span aria-hidden="true"><i class="fa fa-angle-double-right"></i></span></a>
+                        </li>
+                    </ul>
+                </nav>
+            @endif
+
+
         </div>
       </div>
       <!-- END All Orders -->

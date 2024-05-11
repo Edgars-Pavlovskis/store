@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Orders;
+use Illuminate\Support\Str;
 
 class ShowCheckout extends Component
 {
@@ -112,6 +113,7 @@ class ShowCheckout extends Component
         $this->checkout['parcelAddress'] = $this->selectedParcelStation;
         $this->checkout['total'] = $this->total;
         $this->checkout['cart'] = $this->shoppingCart;
+        $this->checkout['key'] = Str::random(12).now()->timestamp;
         unset($this->checkout['rules']);
         //session()->put('checkout', $this->checkout);
 
@@ -119,6 +121,8 @@ class ShowCheckout extends Component
         session()->put('checkout-complete', $order->id);
         session()->put('shopping_cart', []);
         //session()->put('checkout', []);
+        createLog($order->id, 'order', __('orders.logs-text.system-user'), $text = __('orders.logs-text.order-created'), $params = []);
+
         return redirect()->route('checkout-complete');
 
         //dd($this->checkout);

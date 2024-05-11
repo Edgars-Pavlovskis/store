@@ -14,4 +14,16 @@ class Orders extends Model
         'cart' => 'array'
     ];
     use HasFactory;
+
+    public function scopeSearch($query, $term)
+    {
+        $term = "%$term%";
+        $query->where(function($query) use ($term) {
+            $query->whereRaw("CONCAT(name, ' ', surname) LIKE ?", ["$term"])
+                ->orWhere('email', 'like', "$term")
+                ->orWhereRaw("CONCAT(DATE_FORMAT(created_at, '%d%m%Y'), '-', id) LIKE ?", ["$term"]);
+        });
+    }
+
+
 }

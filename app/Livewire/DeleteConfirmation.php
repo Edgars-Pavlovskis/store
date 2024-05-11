@@ -63,6 +63,10 @@ class DeleteConfirmation extends Component
             case "Products":
                 return redirect()->route('categories-index', ['alias' => $this->parent]);
                 break;
+
+            case "Orders":
+                return redirect()->route('orders-show');
+                break;
         }
     }
 
