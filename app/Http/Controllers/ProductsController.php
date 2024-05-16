@@ -42,6 +42,14 @@ $products = Product::select('products.id', 'products.name', 'translations.name A
                 $newProduct->image = null;
                 $newProduct->gallery = null;
                 $newProduct->save();
+                $attributes = ProductsAttribute::where('products_id',$parent->id)->get();
+                foreach($attributes as $oldAttribute) {
+                    $copiedAttribute = new ProductsAttribute();
+                    $copiedAttribute->products_id = $newProduct->id;
+                    $copiedAttribute->attributes_id = $oldAttribute->attributes_id;
+                    $copiedAttribute->value = $oldAttribute->value;
+                    $copiedAttribute->save();
+                }
                 return redirect('/admin/products/edit/'.$newProduct->code);
             }
         }
