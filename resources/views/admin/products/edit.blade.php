@@ -15,6 +15,7 @@
     $( document ).ready(function() {
         setupFloatInputValidation('price-txt');
         setupIntegerInputValidation('stock-txt');
+        setupIntegerInputValidation('discount-txt');
     });
   </script>
 @endsection
@@ -131,10 +132,26 @@
                         <label for="stock-txt">{{__('admin.products.input-stock')}} @error('stock')<span style="vertical-align: super;" class="badge bg-warning"><i class="fa fa-exclamation-circle"></i> {{$message}}</span>@enderror <span class="text-danger">*</span></label>
                     </div>
 
+                    <div class="form-floating mb-4">
+                        <input type="text" class="form-control @error('discount') is-invalid @enderror" id="discount-txt" name="discount" placeholder="{{__('admin.products.input-discount')}}" value="{{old('discount', $product->discount)}}">
+                        <label for="discount-txt">{{__('admin.products.input-discount')}} @error('discount')<span style="vertical-align: super;" class="badge bg-warning"><i class="fa fa-exclamation-circle"></i> {{$message}}</span>@enderror</label>
+                    </div>
+
                     <div class="form-check form-switch form-check-inline">
                         <input class="form-check-input" type="checkbox" value="1" id="active-checkbox" name="active" {{ $product->active == 0 ? '' : 'checked' }} >
                         <label class="form-check-label" for="active-checkbox">{{__('admin.products.switch-active')}}?</label>
                     </div>
+
+                    <div class="form-check form-switch form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" id="new-checkbox" name="new" {{ $product->new == 0 ? '' : 'checked' }} >
+                        <label class="form-check-label" for="new-checkbox">{{__('admin.products.switch-new')}}?</label>
+                    </div>
+
+                    <div class="form-check form-switch form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" id="special-checkbox" name="special" {{ $product->special == 0 ? '' : 'checked' }} >
+                        <label class="form-check-label" for="special-checkbox">{{__('admin.products.switch-special')}}?</label>
+                    </div>
+
 
                     @livewire('manage-product-image', ['product' => $product])
 

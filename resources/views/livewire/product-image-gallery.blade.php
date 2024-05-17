@@ -39,8 +39,8 @@
                     Dropzone.options.myGalleryDropzone = {
                         maxFilesize: 10,
                         acceptedFiles: '.jpg',
-                        resizeWidth: 800,
-                        resizeHeight: 650,
+                        resizeWidth: 1300,
+                        resizeHeight: 1056,
                         resizeMethod: "contain",
                         queuecomplete: function() {
                             @this.call('$refresh');

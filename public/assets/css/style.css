@@ -8971,7 +8971,10 @@ body.open .closeMask {
   top: 24px;
   left: 24px;
   z-index: 2;
+  line-height: 10px;
 }
+
+
 .axil-product > .thumbnail .label-block .product-badget {
   background-color: var(--color-primary);
   line-height: 1;
@@ -8981,6 +8984,7 @@ body.open .closeMask {
   color: #FFFFFF;
   border-radius: 4px;
   box-shadow: 0 8px 16px 0 rgba(53, 119, 240, 0.3);
+
 }
 .axil-product > .thumbnail .label-block.label-right {
   left: auto;
@@ -10928,6 +10932,8 @@ body.open .closeMask {
   position: absolute;
   top: 30px;
   right: 30px;
+  line-height: 10px;
+  text-align: center;
 }
 .single-product-thumbnail-wrap .label-block .product-badget {
   background-color: var(--color-primary);

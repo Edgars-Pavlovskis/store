@@ -143,7 +143,8 @@ class ShowSingleProductBasicInfo extends Component
             'image' => $this->product['image'],
             'code' => $this->product['code'],
             'inner_code' => $this->product['inner_code'],
-            'price' => $this->product['price'],
+            'price' => $this->product['price']-($this->product['price'] * ($this->product['discount']/100)),
+            'discount' => $this->product['discount'],
             'parent' => $this->product['parent'],
             'stock' => $this->product['stock'],
         );

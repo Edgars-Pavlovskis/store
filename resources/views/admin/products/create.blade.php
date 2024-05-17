@@ -131,10 +131,27 @@
                         <label for="stock-txt">{{__('admin.products.input-stock')}} @error('stock')<span style="vertical-align: super;" class="badge bg-warning"><i class="fa fa-exclamation-circle"></i> {{$message}}</span>@enderror <span class="text-danger">*</span></label>
                     </div>
 
+                    <div class="form-floating mb-4">
+                        <input type="text" class="form-control @error('discount') is-invalid @enderror" id="discount-txt" name="discount" placeholder="{{__('admin.products.input-discount')}}" value="{{(null!==old('discount'))?old('discount'):'0'}}">
+                        <label for="discount-txt">{{__('admin.products.input-discount')}} @error('discount')<span style="vertical-align: super;" class="badge bg-warning"><i class="fa fa-exclamation-circle"></i> {{$message}}</span>@enderror</label>
+                    </div>
+
                     <div class="form-check form-switch form-check-inline">
                         <input class="form-check-input" type="checkbox" value="1" id="active-checkbox" name="active" {{ (old('active') === null || old('active') == 1) ? 'checked' : '' }} >
                         <label class="form-check-label" for="active-checkbox">{{__('admin.products.switch-active')}}?</label>
                     </div>
+
+                    <div class="form-check form-switch form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" id="new-checkbox" name="new" {{ (old('new') === null || old('new') == 1) ? 'checked' : '' }} >
+                        <label class="form-check-label" for="new-checkbox">{{__('admin.products.switch-new')}}?</label>
+                    </div>
+
+                    <div class="form-check form-switch form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" id="special-checkbox" name="special" {{ (old('special') == 1) ? 'checked' : '' }} >
+                        <label class="form-check-label" for="special-checkbox">{{__('admin.products.switch-special')}}?</label>
+                    </div>
+
+
 
                     <div class="mb-4 mt-4">
                         <label class="form-label" for="product-image-file">{{__('admin.products.fileinput-image')}} @error('image')<span style="vertical-align: super;" class="badge bg-warning"><i class="fa fa-exclamation-circle"></i> {{$message}}</span>@enderror</label>

@@ -24,15 +24,20 @@
                                 <td class="product-thumbnail"><a href="javascript:void(0)"><img src="/storage/products/{{$cart['image']}}" onerror="this.src='/assets/img/default-product.png';"  alt="Product image"></a></td>
                                 <td class="product-title">
                                     <a target="blank" href="{{ route('frontend-product-show', ['alias'=>$cart['code']]) }}">{{$cart['title']}}</a>
+                                    <br>
                                     @if (count($cart['variation'])>0)
-                                        <br>
                                         @foreach ($cart['variation'] as $variation)
                                             <small class="text-secondary"><b>{{$variation['name']}}</b>: {{$variation['value']}}</small>
                                         @endforeach
                                     @endif
+                                    @if (isset($cart['discount']) && $cart['discount']>0)
+                                        <small class="text-danger"><b>{{__('admin.products.status.discount')}}</b>: -{{$cart['discount']}}%</small>
+                                    @endif
 
                                 </td>
-                                <td class="product-price" data-title="Price">{{number_format($cart['price'], 2)}} €</td>
+                                <td class="product-price" data-title="Price">
+                                    {{number_format($cart['price'], 2)}} €
+                                </td>
                                 <td class="product-quantity" data-title="Qty">
                                     <div  class="pro-qty"><span wire:click="addItemCountDec({{$index}})" class="dec qtybtn">-</span><input type="text" wire:model.blur="shoppingCart.{{ $index }}.addCount"><span wire:click="addItemCountInc({{$index}})" class="inc qtybtn">+</span></div>
                                 </td>

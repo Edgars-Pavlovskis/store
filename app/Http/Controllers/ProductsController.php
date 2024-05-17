@@ -204,6 +204,8 @@ $products = Product::select('products.id', 'products.name', 'translations.name A
 
         $input = $req->all();
         if(!$req->active) $input['active']= 0;
+        if(!$req->new) $input['new']= 0;
+        if(!$req->special) $input['special']= 0;
         if($req->image) {
             $fileName = time().'_'.$req->image->getClientOriginalName();
             $filePath = $req->image->storeAs('products', $fileName, 'public');

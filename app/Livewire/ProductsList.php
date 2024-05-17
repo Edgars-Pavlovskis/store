@@ -63,7 +63,8 @@ class ProductsList extends Component
                 'image' => $product['image'],
                 'code' => $product['code'],
                 'inner_code' => $product['inner_code'],
-                'price' => $product['price'],
+                'price' => $product['price']-($product['price'] * ($product['discount']/100)),
+                'discount' => $product['discount'],
                 'parent' => $product['parent'],
                 'stock' => $product['stock'],
                 'variation' => [],
@@ -118,7 +119,7 @@ class ProductsList extends Component
         if($this->maxPriceUpdated) $products->where('price', '<=', $this->filterMax);
 
         $count = count($this->products);
-        $newProducts = $products->select('id','title','image','price','code','parent','variations')->limit($this->perLoadCount)->offset($count)->get();
+        $newProducts = $products->select('id','title','image','price','discount','new','special','code','parent','variations')->limit($this->perLoadCount)->offset($count)->get();
         $this->products = $this->products->merge($newProducts);
         //if(count($this->filter)>0) dd($this->filter);
         $this->isLoading = false;

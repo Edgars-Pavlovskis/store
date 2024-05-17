@@ -29,7 +29,15 @@
                                             @endforeach
                                         </div>
                                         <div class="label-block">
-                                            <div class="product-badget">20% OFF</div>
+                                            @if ($product->discount > 0)
+                                                <div class="product-badget">{{__('admin.products.status.discount')}} -{{$product->discount}}%</div><br>
+                                            @endif
+                                            @if ($product->new)
+                                                <div class="product-badget bg-primary">{{__('admin.products.status.new')}}</div><br>
+                                            @endif
+                                            @if ($product->special)
+                                                <div class="product-badget bg-success"><i class="fa-solid fa-thumbs-up"></i></div>
+                                            @endif
                                         </div>
                                         <div class="product-quick-view position-view">
                                             <a href="/storage/products/{{$product->image}}" class="popup-zoom">

@@ -2,10 +2,16 @@
     <div class="single-product-content">
         <div class="inner">
             <h2 class="product-title">{{$product->title}}</h2>
+
             @if (($minPrice > 0 && $maxPrice > 0) || $minPrice != $maxPrice)
                 <span class="price-amount">{{number_format($minPrice, 2)}} € - {{number_format($maxPrice, 2)}} €</span>
             @else
-                <span class="price-amount">{{number_format($product->price, 2)}} €</span>
+
+                <div class="price-amount price-offer-amount">
+                    <span class="price current-price">{{number_format($product->price - ($product->price * ($product->discount / 100)), 2)}} €</span>
+                    <span class="price old-price"><small>{{number_format($product->price, 2)}} €</small></span>
+                </div>
+
             @endif
             <div class="product-rating">
                 <div class="star-rating">

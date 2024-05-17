@@ -92,7 +92,15 @@ return [
         'input-fulltext' => 'Preces pilns apraksts',
         'input-price' => 'Preces cena',
         'input-stock' => 'Preces atlikums',
+        'input-discount' => 'Atlaide (%)',
         'switch-active' => 'Prece aktīva',
+        'switch-new' => 'Jaunums',
+        'switch-special' => 'Īpašais piedāvājums',
+        'status' => [
+            'new' => 'Jaunums',
+            'discount' => 'Atlaide',
+            'special' => 'Īpašais piedāvājums',
+        ],
         'fileinput-image' => 'Preces attēls',
         'gallery' => [
             'title' => 'Attēlu galerija',

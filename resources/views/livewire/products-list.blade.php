@@ -86,6 +86,17 @@
                                         <img src="/storage/products/{{$product->image}}" onerror="this.src='/assets/img/default-product.png';" alt="Product Image">
                                     </a>
 
+                                    <div class="label-block label-right">
+                                        @if ($product->discount > 0)
+                                            <div class="product-badget">{{__('admin.products.status.discount')}} -{{$product->discount}}%</div><br>
+                                        @endif
+                                        @if ($product->new)
+                                            <div class="product-badget bg-primary">{{__('admin.products.status.new')}}</div><br>
+                                        @endif
+                                        @if ($product->special)
+                                            <div class="product-badget bg-success"><i class="fa-solid fa-thumbs-up"></i></div>
+                                        @endif
+                                    </div>
 
                                     <div class="product-hover-action">
                                         <ul class="cart-action">
@@ -101,7 +112,8 @@
                                     <div class="inner">
                                         <h5 class="title"><a target="blank" href="{{ route('frontend-product-show', ['alias'=>$product->code]) }}">{{$product->title}}</a></h5>
                                         <div class="product-price-variant">
-                                            <span class="price current-price">{{number_format($product->price, 2)}} €</span>
+                                            <span class="price current-price">{{number_format($product->price - ($product->price * ($product->discount / 100)), 2)}} €</span>
+                                            <span class="price old-price">{{number_format($product->price, 2)}} €</span>
                                         </div>
                                     </div>
                                 </div>
