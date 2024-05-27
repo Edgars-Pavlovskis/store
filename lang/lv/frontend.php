@@ -12,6 +12,7 @@ return [
     'check-this-too' => 'Apskaties arī',
     'other-products-in-category' => 'Citas preces šajā kategorijā',
     'new-products' => 'Jaunumi',
+    'discounts-and-specials' => 'Akcijas un speciālie piedāvājumi',
 
     'price' => 'Cena',
     'from' => 'no',

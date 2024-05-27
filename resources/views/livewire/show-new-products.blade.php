@@ -4,7 +4,7 @@
     <div class="container">
         <div class="section-title-wrapper">
             <span class="title-highlighter highlighter-primary"><i class="far fa-shopping-basket"></i> {{__('frontend.check-this-too')}}</span>
-            <h2 class="title">{{__('frontend.new-products')}}</h2>
+            <h3 class="title">{{__('frontend.new-products')}}</h3>
         </div>
         <div class="new-arrivals-product-activation slick-layout-wrapper--30 axil-slick-arrow  arrow-top-slide">
 
