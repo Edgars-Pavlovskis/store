@@ -11,6 +11,7 @@ return [
     'Product add to shopping cart' => 'Produkts pievienots pirkumu grozam',
     'check-this-too' => 'Apskaties arī',
     'other-products-in-category' => 'Citas preces šajā kategorijā',
+    'new-products' => 'Jaunumi',
 
     'price' => 'Cena',
     'from' => 'no',

@@ -3,8 +3,8 @@
 <div wire:ignore class="axil-new-arrivals-product-area bg-color-white axil-section-gap pb--50">
     <div class="container">
         <div class="section-title-wrapper">
-            <span class="title-highlighter highlighter-primary"><i class="far fa-shopping-basket"></i> This Week’s</span>
-            <h2 class="title">New Arrivals</h2>
+            <span class="title-highlighter highlighter-primary"><i class="far fa-shopping-basket"></i> {{__('frontend.check-this-too')}}</span>
+            <h2 class="title">{{__('frontend.new-products')}}</h2>
         </div>
         <div class="new-arrivals-product-activation slick-layout-wrapper--30 axil-slick-arrow  arrow-top-slide">
 
