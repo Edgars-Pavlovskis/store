@@ -9,6 +9,8 @@ return [
     'Shopping list' => 'Pirkumu saraksts',
     'Shopping cart' => 'Pirkumu grozs',
     'Product add to shopping cart' => 'Produkts pievienots pirkumu grozam',
+    'check-this-too' => 'Apskaties arī',
+    'other-products-in-category' => 'Citas preces šajā kategorijā',
 
     'price' => 'Cena',
     'from' => 'no',
@@ -87,10 +89,22 @@ return [
             'delivery' => 'Lūdzu, izvēlieties vienu no piegādes iespējām',
             'rules' => 'Lūdzu, apstipriniet <b>interneta veikala lietošanas noteikumus</>, pirms pasūtījuma veikšanas',
             'email' => 'Lūdzu, norādiet korektu e-pasta adresi',
+            'emailunique' => 'E-pasta adrese jau ir reģistrēta jaunumu saņemšanai',
             'parcel-location' => 'Lūdzu, izvēlieties pakomātu',
         ],
         'complete' => 'Pasūtījums ir reģistrēts!',
         'complete-info' => 'Tagad gaidiet, līdz pasūtījums tiks apstrādāts un tad Jūs saņemsiet kaut kādu rēķinu, kuru, iespējams, būs arī jāapmaksā.',
+    ],
+
+    'footer' => [
+        'delivery-header' => 'Ātra un droša piegāde',
+        'delivery-text' => 'Bez raizēm',
+        'moneyback-header' => 'Kvalitatīvas preces',
+        'moneyback-text' => 'Labākie piegādātāji',
+        'return-header' => '14 dienās atgriezīsim naudu',
+        'return-text' => 'Neuzdodot jautājumus',
+        'support-header' => 'Uzticams atbalsts',
+        'support-text' => 'Droši zvaniet',
     ],
 
     'xxxaxaxax' => 'The :attribute field must match :other.'

@@ -3,7 +3,7 @@ function minMaxTimePlugin(config) {
     if (config === void 0) { config = {}; }
     var state = {
         formatDate: createDateFormatter({}),
-        tableDateFormat: config.tableDateFormat || "Y-m-d",
+        tableDateFormat: config.tableDateFormat || "d-m-Y",
         defaults: {
             minTime: undefined,
             maxTime: undefined,

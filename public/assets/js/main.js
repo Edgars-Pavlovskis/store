@@ -25,10 +25,10 @@
             axilInit.priceRangeSlider();
             axilInit.quantityRanger();
             axilInit.axilSlickActivation();
-            axilInit.countdownInit('.coming-countdown', '2023/10/01');
-            axilInit.campaignCountdown('.campaign-countdown', '2023/10/01');
-            axilInit.countdownInit('.poster-countdown', '2023/06/01');
-            axilInit.countdownInit('.sale-countdown', '2023/10/31');
+            axilInit.countdownInit('.coming-countdown', '2025/10/01');
+            axilInit.campaignCountdown('.campaign-countdown', '2025/10/01');
+            axilInit.countdownInit('.poster-countdown', '2025/06/01');
+            axilInit.countdownInit('.sale-countdown', '2025/10/31');
             axilInit.sideOffcanvasToggle('.cart-dropdown-btn', '#cart-dropdown');
             axilInit.sideOffcanvasToggle('.mobile-nav-toggler', '.header-main-nav');
             axilInit.sideOffcanvasToggle('.department-side-menu', '.department-nav-menu');
@@ -943,7 +943,7 @@
         countdownInit: function(countdownSelector, countdownTime) {
             var eventCounter = $(countdownSelector);
             if (eventCounter.length) {
-                eventCounter.countdown(countdownTime, function(e) {
+                eventCounter.countdown(eventCounter.attr('date_end')??"", function(e) {
                     $(this).html(
                         e.strftime(
                             "<div class='countdown-section'><div><div class='countdown-number'>%-D</div> <div class='countdown-unit'>Day</div> </div></div><div class='countdown-section'><div><div class='countdown-number'>%H</div> <div class='countdown-unit'>Hrs</div> </div></div><div class='countdown-section'><div><div class='countdown-number'>%M</div> <div class='countdown-unit'>Min</div> </div></div><div class='countdown-section'><div><div class='countdown-number'>%S</div> <div class='countdown-unit'>Sec</div> </div></div>"

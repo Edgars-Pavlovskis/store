@@ -13,27 +13,13 @@
                 </div>
 
             @endif
-            <div class="product-rating">
-                <div class="star-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="far fa-star"></i>
-                </div>
-                <div class="review-link">
-                    <a href="#">(<span>2</span> customer reviews)</a>
-                </div>
-            </div>
-            <ul class="product-meta">
-                <li><i class="fal fa-check"></i>In stock</li>
-                <li><i class="fal fa-check"></i>Free delivery available</li>
-                <li><i class="fal fa-check"></i>Sales 30% Off Use Code: MOTIVE30</li>
-            </ul>
+
+            <p class="description">{{$product->description}}</p>
+
             @if (isset($product->inner_code) && strlen($product->inner_code)>0)
                 <p class="description"><small><b>{{__('admin.products.input-inner-code')}}:</b> {{$product->inner_code}}</small></p>
             @endif
-            <p class="description">{{$product->description}}</p>
+
 
             @if(false && isset($variationMatch['id']))
                 <small><i class="fa-solid fa-triangle-exclamation me-2"></i> {{$variationMatch['name']}}</small>

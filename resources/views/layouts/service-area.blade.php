@@ -8,8 +8,8 @@
                             <img src="{{ asset('assets/images/icons/service1.png') }}" alt="Service">
                         </div>
                         <div class="content">
-                            <h6 class="title">Fast &amp; Secure Delivery</h6>
-                            <p>Tell about your service.</p>
+                            <h6 class="title">{{__('frontend.footer.delivery-header')}}</h6>
+                            <p>{{__('frontend.footer.delivery-text')}}</p>
                         </div>
                     </div>
                 </div>
@@ -19,8 +19,8 @@
                             <img src="{{ asset('assets/images/icons/service2.png') }}" alt="Service">
                         </div>
                         <div class="content">
-                            <h6 class="title">Money Back Guarantee</h6>
-                            <p>Within 10 days.</p>
+                            <h6 class="title">{{__('frontend.footer.moneyback-header')}}</h6>
+                            <p>{{__('frontend.footer.moneyback-text')}}</p>
                         </div>
                     </div>
                 </div>
@@ -30,8 +30,8 @@
                             <img src="{{ asset('assets/images/icons/service3.png') }}" alt="Service">
                         </div>
                         <div class="content">
-                            <h6 class="title">24 Hour Return Policy</h6>
-                            <p>No question ask.</p>
+                            <h6 class="title">{{__('frontend.footer.return-header')}}</h6>
+                            <p>{{__('frontend.footer.return-text')}}</p>
                         </div>
                     </div>
                 </div>
@@ -41,8 +41,8 @@
                             <img src="{{ asset('assets/images/icons/service4.png') }}" alt="Service">
                         </div>
                         <div class="content">
-                            <h6 class="title">Pro Quality Support</h6>
-                            <p>24/7 Live support.</p>
+                            <h6 class="title">{{__('frontend.footer.support-header')}}</h6>
+                            <p>{{__('frontend.footer.support-text')}}</p>
                         </div>
                     </div>
                 </div>

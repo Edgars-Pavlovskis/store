@@ -113,5 +113,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/orders/show',[App\Http\Controllers\OrdersController::class, 'index'])->name('orders-show');
     Route::get('/orders/show/{key}',[App\Http\Controllers\OrdersController::class, 'showOrder'])->name('show-order');
 
+    Route::get('/banners/show',[App\Http\Controllers\BannersController::class, 'index'])->name('banners-show');
+    Route::get('/banners/create',[App\Http\Controllers\BannersController::class, 'createType'])->name('banners-create-type');
+    Route::post('/banners/create',[App\Http\Controllers\BannersController::class, 'submitType'])->name('banners-submit-type');
+
+
+
 });
 

@@ -108,7 +108,182 @@ return [
                 'price' => 6,
             ],
         ]
+    ],
+
+    'banners' => [
+        'templates' => [
+
+
+            'top-slider' => [
+                'title' => [
+                    'lv' => 'Lielais slīdrādes baneris',
+                    'en' => 'Big slider banner',
+                ],
+                'description' => [
+                    'lv' => 'Tiek attēlots galvenās lapas augšā',
+                    'en' => 'Is shown in main page at a top',
+                ],
+                'color' => 'bg-primary',
+                'width' => 324,
+                'height' => 293,
+                'params' => [
+                    'icon-class' => [
+                        'type' => 'select',
+                        'special' => 'icons',
+                        'list' => ['fa-solid fa-fire', 'fa-solid fa-tag', 'fa-solid fa-triangle-exclamation'],
+                    ],
+                    'date-end' => [
+                        'type' => 'date',
+                    ],
+                    /*
+                    'icon-bg-class' => [
+                        'type' => 'select',
+                        'special' => 'colors',
+                        'list' => ['bg-success','bg-warning','bg-danger'],
+                    ],
+                    'icon-text-class' => [
+                        'type' => 'select',
+                        'special' => 'colors',
+                        'list' => ['text-success','text-warning','text-danger'],
+                    ],
+                    */
+                    'icon-text' => [
+                        'type' => 'i18n',
+                    ],
+                    'main-text' => [
+                        'type' => 'i18n',
+                    ],
+                    'url' => [
+                        'type' => 'string',
+                    ],
+                    'url-text' => [
+                        'type' => 'i18n',
+                    ],
+                    'image-main' => [
+                        'type' => 'image',
+                        'width' => '324',
+                        'height' => '293',
+                    ],
+                    'bg-main' => [
+                        'type' => 'image',
+                    ],
+                ]
+            ],
+
+
+
+
+            'top-product' => [
+                'title' => [
+                    'lv' => 'Preces baneris galvenē',
+                    'en' => 'Product banner in header',
+                ],
+                'description' => [
+                    'lv' => 'Tiek attēlots blakus slīdrādei',
+                    'en' => 'Is shown in main page nead slider',
+                ],
+                'color' => 'bg-success',
+                'width' => 125,
+                'height' => 200,
+                'params' => [
+                    'product-code' => [
+                        'type' => 'string',
+                    ],
+                    'date-end' => [
+                        'type' => 'date',
+                    ],
+                ]
+            ],
+
+
+            'counter' => [
+                'title' => [
+                    'lv' => 'Baneris ar laika atskaiti',
+                    'en' => 'Banner with time counter',
+                ],
+                'description' => [
+                    'lv' => 'Rādās pirmajā lapā',
+                    'en' => 'Is shown in main page',
+                ],
+                'color' => 'bg-warning',
+                'params' => [
+                    'icon-class' => [
+                        'type' => 'select',
+                        'special' => 'icons',
+                        'list' => ['fa-solid fa-fire', 'fa-solid fa-tag', 'fa-solid fa-triangle-exclamation'],
+                    ],
+                    'date-end' => [
+                        'type' => 'date',
+                    ],
+                    'icon-text' => [
+                        'type' => 'i18n',
+                    ],
+                    'main-text' => [
+                        'type' => 'i18n',
+                    ],
+                    'url' => [
+                        'type' => 'string',
+                    ],
+                    'url-text' => [
+                        'type' => 'i18n',
+                    ],
+                    'image-main' => [
+                        'type' => 'image',
+                        'width' => '452',
+                        'height' => '502',
+                    ],
+                    'bg-main' => [
+                        'type' => 'image',
+                    ],
+                ]
+            ],
+
+
+
+
+            'subscribe' => [
+                'title' => [
+                    'lv' => 'Baneris ar iespēju parakstīties uz jaunumiem',
+                    'en' => 'Banner with subscribe option',
+                ],
+                'description' => [
+                    'lv' => 'Rādās pirmajā lapā, apakšā',
+                    'en' => 'Is shown in main page',
+                ],
+                'color' => 'bg-secondary',
+                'params' => [
+                    'icon-class' => [
+                        'type' => 'select',
+                        'special' => 'icons',
+                        'list' => ['fa-solid fa-fire', 'fa-solid fa-tag', 'fa-solid fa-triangle-exclamation'],
+                    ],
+                    'date-end' => [
+                        'type' => 'date',
+                    ],
+                    'keyword' => [
+                        'type' => 'string',
+                    ],
+                    'icon-text' => [
+                        'type' => 'i18n',
+                    ],
+                    'main-text' => [
+                        'type' => 'i18n',
+                    ],
+                    'bg-main' => [
+                        'type' => 'image',
+                        'width' => '1230',
+                        'height' => '400',
+                    ],
+                ]
+            ],
+
+
+
+
+
+        ]
     ]
+
 ];
 
 

@@ -7,6 +7,7 @@ use App\Models\Categories;
 use App\Models\Products;
 use App\Models\Attributes;
 use App\Models\ProductsVariation;
+use App\Models\Banner;
 use Illuminate\Support\Facades\DB;
 
 class DeleteConfirmation extends Component
@@ -26,7 +27,7 @@ class DeleteConfirmation extends Component
                 $category = Categories::select('id', 'alias', 'parent_alias', 'image')->where('id', $this->itemId)->first();
                 if(isset($category->image)) {
                     $path = "storage/categories/".$category->image;
-                    if(file_exists($path)){ unlink($path); }
+                    if(is_file($path) && file_exists($path)){ unlink($path); }
                 }
                 break;
 
@@ -43,6 +44,21 @@ class DeleteConfirmation extends Component
                 ->update([
                     'variations' => DB::raw("JSON_REMOVE(variations, '$.\"$this->itemId\"')")
                 ]);
+                break;
+
+
+            case "Banner":
+                $banner = Banner::select('id', 'type', 'params')->where('id', $this->itemId)->first();
+                if(isset($banner->type)) {
+                    foreach (config('shop.banners.templates.'.$banner->type.'.params') as $name => $param) {
+                        if($param['type'] == "image") {
+                            if(isset($banner->params[$name])) {
+                                $path = "storage/images/".$banner->params[$name];
+                                if(is_file($path) && file_exists($path)){ unlink($path); }
+                            }
+                        }
+                    }
+                }
                 break;
 
         }
@@ -66,6 +82,10 @@ class DeleteConfirmation extends Component
 
             case "Orders":
                 return redirect()->route('orders-show');
+                break;
+
+            case "Banner":
+                return redirect()->route('banners-show');
                 break;
         }
     }

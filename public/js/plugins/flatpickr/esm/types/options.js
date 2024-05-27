@@ -26,7 +26,7 @@ export var defaults = {
     clickOpens: true,
     closeOnSelect: true,
     conjunction: ", ",
-    dateFormat: "Y-m-d",
+    dateFormat: "d-m-Y",
     defaultHour: 12,
     defaultMinute: 0,
     defaultSeconds: 0,

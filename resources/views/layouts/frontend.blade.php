@@ -32,7 +32,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/iziToast.min.css') }}">
 
     @livewireStyles
-    @livewireScripts
     <script src="{{ asset('assets/js/vendor/iziToast.min.js') }}"></script>
 </head>
 
@@ -365,6 +364,7 @@
     </div>
 
     <x-livewire-notification::toast />
+    @livewireScripts
 </body>
 
 </html>

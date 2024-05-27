@@ -113,7 +113,9 @@
                                         <h5 class="title"><a target="blank" href="{{ route('frontend-product-show', ['alias'=>$product->code]) }}">{{$product->title}}</a></h5>
                                         <div class="product-price-variant">
                                             <span class="price current-price">{{number_format($product->price - ($product->price * ($product->discount / 100)), 2)}} €</span>
-                                            <span class="price old-price">{{number_format($product->price, 2)}} €</span>
+                                            @if ($product->discount > 0)
+                                                <span class="price old-price"><small>{{number_format($product->price, 2)}} €</small></span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

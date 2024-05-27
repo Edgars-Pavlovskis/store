@@ -89,7 +89,7 @@
       clickOpens: true,
       closeOnSelect: true,
       conjunction: ", ",
-      dateFormat: "Y-m-d",
+      dateFormat: "d-m-Y",
       defaultHour: 12,
       defaultMinute: 0,
       defaultSeconds: 0,
@@ -271,7 +271,7 @@
       if (config === void 0) { config = {}; }
       var state = {
           formatDate: createDateFormatter({}),
-          tableDateFormat: config.tableDateFormat || "Y-m-d",
+          tableDateFormat: config.tableDateFormat || "d-m-Y",
           defaults: {
               minTime: undefined,
               maxTime: undefined,

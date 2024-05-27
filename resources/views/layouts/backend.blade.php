@@ -22,6 +22,7 @@
   </style>
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/store.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/iziToast.min.css') }}">
+  <link rel="stylesheet" type="text/css"  href="{{ asset('assets/css/filepond.css') }}" />
 
   <!-- Modules -->
   @yield('css')
@@ -239,6 +240,25 @@
 
               </ul>
             </li>
+
+
+
+            <li class="nav-main-item{{ request()->is('banners/*') ? ' open' : '' }}">
+                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                  <i class="fa-solid fa-panorama me-2" aria-hidden="true"></i>
+                  <span class="nav-main-link-name">{{__('admin.navi.banners')}}</span>
+                </a>
+                <ul class="nav-main-submenu">
+
+                  <li class="nav-main-item">
+                    <a class="nav-main-link{{ ((request()->is('banners/*'))) ? ' active' : '' }}" href="/banners/show">
+                        <span class="nav-main-link-name">{{__('admin.navi.banners-list')}}</span>
+                      </a>
+                  </li>
+
+                </ul>
+              </li>
+
 
 
 
@@ -506,6 +526,12 @@
   <x-livewire-notification::toast />
 
   @yield('js_end')
+
+
+  <script src="{{ asset('assets/js/filepond-plugin-file-validate-type.js') }}"></script>
+  <script src="{{ asset('assets/js/filepond-plugin-file-validate-size.js') }}"></script>
+  <script src="{{ asset('assets/js/filepond.js') }}"></script>
+
 </body>
 
 </html>

@@ -91,7 +91,7 @@
         <div class="copyright-area copyright-default separator-top">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-xl-4">
+                    <div class="col-xl-6 col-lg-12">
                         <div class="social-share">
                             <a href="#"><i class="fab fa-facebook-f"></i></a>
                             <a href="#"><i class="fab fa-instagram"></i></a>
@@ -100,13 +100,14 @@
                             <a href="#"><i class="fab fa-discord"></i></a>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-12">
-                        <div class="copyright-left d-flex flex-wrap justify-content-center">
+                    <div class="col-xl-6 col-lg-12">
+                        <div class="copyright-left d-flex flex-wrap justify-content-end">
                             <ul class="quick-link">
-                                <li>© 2023. All rights reserved by <a target="_blank" href="https://axilthemes.com/">Axilthemes</a>.</li>
+                                <li>© {{date('Y')}}. Developed with &#x2764;&#xfe0f; by <a target="_blank" href="https://raimita.lv/">raimita.lv</a>.</li>
                             </ul>
                         </div>
                     </div>
+                    <!--
                     <div class="col-xl-4 col-lg-12">
                         <div class="copyright-right d-flex flex-wrap justify-content-xl-end justify-content-center align-items-center">
                             <span class="card-text">Accept For</span>
@@ -117,6 +118,7 @@
                             </ul>
                         </div>
                     </div>
+                -->
                 </div>
             </div>
         </div>

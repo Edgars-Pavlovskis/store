@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'confirm' => 'Apstiprināt',
     'welcome-sign-in' => 'Laipni lūdzam, lūdzu, piesakieties.',
     'dashboard' => 'Vadības panelis',
     'Sign in using Google' => 'Autorizēties izmantojot Google',
@@ -36,7 +37,14 @@ return [
     'navi' => [
         'catalog' => 'Preču katalogs',
         'categories-and-products' => 'Preces un preču grupas',
+        'banners' => 'Baneri',
+        'banners-list' => 'Baneru pārvaldība',
+        'banner-type' => 'Banera veids',
+        'banner-type-text' => 'Izvēlieties vienu no banera veidiem',
+    ],
 
+    'banners' => [
+        'add' => 'Pievienot baneri',
     ],
 
     'dialogs' => [

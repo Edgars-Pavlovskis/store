@@ -67,7 +67,7 @@
         clickOpens: true,
         closeOnSelect: true,
         conjunction: ", ",
-        dateFormat: "Y-m-d",
+        dateFormat: "d-m-Y",
         defaultHour: 12,
         defaultMinute: 0,
         defaultSeconds: 0,
@@ -653,10 +653,10 @@
             setCalendarWidth();
             var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
             /* TODO: investigate this further
-        
+
               Currently, there is weird positioning behavior in safari causing pages
               to scroll up. https://github.com/chmln/flatpickr/issues/563
-        
+
               However, most browsers are not Safari and positioning is expensive when used
               in scale. https://github.com/chmln/flatpickr/issues/1096
             */
@@ -2453,17 +2453,17 @@
             self.mobileInput.placeholder = self.input.placeholder;
             self.mobileFormatStr =
                 inputType === "datetime-local"
-                    ? "Y-m-d\\TH:i:S"
+                    ? "d-m-Y\\TH:i:S"
                     : inputType === "date"
-                        ? "Y-m-d"
+                        ? "d-m-Y"
                         : "H:i:S";
             if (self.selectedDates.length > 0) {
                 self.mobileInput.defaultValue = self.mobileInput.value = self.formatDate(self.selectedDates[0], self.mobileFormatStr);
             }
             if (self.config.minDate)
-                self.mobileInput.min = self.formatDate(self.config.minDate, "Y-m-d");
+                self.mobileInput.min = self.formatDate(self.config.minDate, "d-m-Y");
             if (self.config.maxDate)
-                self.mobileInput.max = self.formatDate(self.config.maxDate, "Y-m-d");
+                self.mobileInput.max = self.formatDate(self.config.maxDate, "d-m-Y");
             if (self.input.getAttribute("step"))
                 self.mobileInput.step = String(self.input.getAttribute("step"));
             self.input.type = "hidden";
