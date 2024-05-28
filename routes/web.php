@@ -31,6 +31,10 @@ Route::get('/cart',[App\Http\Controllers\FrontendController::class, 'cart'])->na
 Route::view('/checkout', 'frontend.checkout')->name('checkout-show');
 Route::get('/checkout-complete',[App\Http\Controllers\CheckoutController::class, 'checkoutComplete'])->name('checkout-complete');
 
+Route::view('/par-mums', 'frontend.pages.about')->name('pages-about');
+Route::view('/privatuma-politika', 'frontend.pages.privacy')->name('pages-privacy');
+Route::view('/kontakti', 'frontend.pages.contacts')->name('pages-contacts');
+
 
 Route::get('/dpdtest',[App\Http\Controllers\HomeController::class, 'dpdTest'])->name('dpd-test');
 

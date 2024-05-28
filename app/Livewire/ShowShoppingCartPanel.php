@@ -28,8 +28,9 @@ class ShowShoppingCartPanel extends Component
         $cartItems[] = $data['product'];
         session()->put('shopping_cart', $cartItems);
         $this->dispatch('updateShoppingCart');
-        $this->dispatch('showCartAddNotify');
-
+        if(!isset($data['disable-notify'])) {
+            $this->dispatch('showCartAddNotify');
+        }
     }
 
 
