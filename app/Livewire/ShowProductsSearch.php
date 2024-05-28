@@ -15,13 +15,17 @@ class ShowProductsSearch extends Component
     public $perLoad = 5;
     public $showMoreButton = false;
 
+    public $isLoading = false;
+
     public function search()
     {
+        $this->isLoading = true;
         if(strlen(trim($this->query)) < 3) return false;
         $products = Products::select('id','title','image','price','discount','new','special','code','parent','variations')->search($this->query)->get();
         $this->found = count($products);
         $this->products = $products->take($this->perLoad);
         if($this->found > 0 && $this->found > $this->perLoad) $this->showMoreButton = true; else $this->showMoreButton = false;
+        $this->isLoading = false;
     }
 
     public function loadMore()

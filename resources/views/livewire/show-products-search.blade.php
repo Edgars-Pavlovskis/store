@@ -8,16 +8,19 @@
         </form>
     </div>
     <div class="card-body">
-        @if($found > 0)
+        @if(isset($found))
             <div class="search-result-header">
                 <h6 class="title">{{__('frontend.found-products')}}: {{$found}}</h6>
             </div>
         @endif
         <div class="psearch-results">
 
-            <div wire:loading wire:target="search" class="w-100 h-100" style="position:absolute; left:0; top:0;display: flex; justify-content: center; align-items: center; background-color:rgba(200,200,200,0.5); z-index:999; visibility: hidden;">
-                <i class="fas fa-spinner fa-spin"></i>
+            <div id="search-loader-holder" >
+                <div id="search-loader-animator" wire:loading wire:loading="$isLoading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
             </div>
+
 
 
             @foreach ($products as $product)

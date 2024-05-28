@@ -18410,7 +18410,7 @@ RTL Style
     text-transform: uppercase;
 }
 
-#products-loader-holder {
+#products-loader-holder, #search-loader-holder {
     position:relative;
     text-align: center;
 }
@@ -18418,13 +18418,23 @@ RTL Style
 {
     display:none;
     z-index: 1;
-    padding-top:100px;
     position: absolute;
     left:0; top:0;
     width:100%;
     height:100%;
     background-color: rgba(250,250,250,0.5);
 }
+
+#search-loader-animator {
+    display:none;
+    position:absolute;
+    left:0; top:0;
+    padding-top:50px;
+    width:100%;
+    height:100%;
+    z-index:999;
+}
+
 
 
 
