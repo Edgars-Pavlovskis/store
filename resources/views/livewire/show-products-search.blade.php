@@ -2,7 +2,7 @@
     <div class="card-header">
         <form wire:submit.prevent="search">
             <div class="input-group">
-                <input type="search" class="form-control" wire:model.defer="query" placeholder="{{__('frontend.search-write-something')}}">
+                <input id="products-search-input-txt" type="search" class="form-control" wire:model.defer="query" placeholder="{{__('frontend.search-write-something')}}">
                 <button type="submit" class="axil-btn btn-bg-primary"><i class="far fa-search"></i></button>
             </div>
         </form>

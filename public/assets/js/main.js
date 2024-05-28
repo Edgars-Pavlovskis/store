@@ -999,6 +999,10 @@
                     removeSideMenu();
                 });
 
+                if(selectbtn == ".axil-search") {
+                    setTimeout(function(){ $('#products-search-input-txt').focus(); }, 500);
+                };
+
             });
         },
 
