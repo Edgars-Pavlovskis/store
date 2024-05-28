@@ -12,7 +12,7 @@ class ShowProductsSearch extends Component
     public $query;
     public $found;
     public $products = [];
-    public $perLoad = 1;
+    public $perLoad = 5;
     public $showMoreButton = false;
 
     public function search()
@@ -26,7 +26,7 @@ class ShowProductsSearch extends Component
 
     public function loadMore()
     {
-        $this->perLoad = $this->perLoad + 1;
+        $this->perLoad = $this->perLoad + 5;
         $this->search();
     }
 
