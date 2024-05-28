@@ -9,7 +9,9 @@
 
                 <div class="price-amount price-offer-amount">
                     <span class="price current-price">{{number_format($product->price - ($product->price * ($product->discount / 100)), 2)}} €</span>
-                    <span class="price old-price"><small>{{number_format($product->price, 2)}} €</small></span>
+                    @if ($product->discount > 0)
+                        <span class="price old-price"><small>{{number_format($product->price, 2)}} €</small></span>
+                    @endif
                 </div>
 
             @endif
