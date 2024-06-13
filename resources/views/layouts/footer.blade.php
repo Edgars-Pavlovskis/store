@@ -93,11 +93,9 @@
                 <div class="row align-items-center">
                     <div class="col-xl-6 col-lg-12">
                         <div class="social-share">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-discord"></i></a>
+                            <a target="blank" href="https://www.facebook.com/AlbaRezekne"><i class="fab fa-facebook-f"></i></a>
+                            <a target="blank" href="https://www.instagram.com/albabirojapasaule?igsh=OTNvcXYyOG1qc3Bx"><i class="fab fa-instagram"></i></a>
+                            <a target="blank" href="https://www.tiktok.com/@alba_veikali?_t=8nA4lr9ToEj&_r=1"><i class="fa-brands fa-tiktok"></i></a>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-12">

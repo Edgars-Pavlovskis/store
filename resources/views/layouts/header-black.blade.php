@@ -9,13 +9,12 @@
                     <i class="fa-solid fa-envelope me-2"></i> <a class="text-white" href="mailto:info@birojamunskolai.lv">info@birojamunskolai.lv</a>
 
                     <div class="social-share ms-3">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <!--
-                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-discord"></i></a>
-                        -->
+
+                        <a target="blank" href="https://www.facebook.com/AlbaRezekne"><i class="fab fa-facebook-f"></i></a>
+                        <a target="blank" href="https://www.instagram.com/albabirojapasaule?igsh=OTNvcXYyOG1qc3Bx"><i class="fab fa-instagram"></i></a>
+                        <a target="blank" href="https://www.tiktok.com/@alba_veikali?_t=8nA4lr9ToEj&_r=1"><i class="fa-brands fa-tiktok"></i></a>
+
+
                     </div>
                 </div>
 
