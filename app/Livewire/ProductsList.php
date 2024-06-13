@@ -30,8 +30,7 @@ class ProductsList extends Component
     public function mount()
     {
         $this->products = collect([]);
-        //$this->perLoadCount = config('shop.frontend.products.per-load');
-        $this->perLoadCount = 2;
+        $this->perLoadCount = config('shop.frontend.products.per-load');
 
         if(isset($this->alias)) {
             //$this->category_attributes = Attributes::whereGroup($this->alias)->whereType('list')->select('id','name','group','options')->get()->toArray();
