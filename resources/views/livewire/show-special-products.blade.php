@@ -2,8 +2,8 @@
     <div class="container">
         <div class="product-area pb--50">
             <div class="section-title-wrapper">
-                <span class="title-highlighter highlighter-primary"> <i class="far fa-shopping-basket"></i> {{__('frontend.check-this-too')}}</span>
-                <h3 class="title">{{__('frontend.discounts-and-specials')}}</h3>
+                <span class="title-highlighter highlighter-primary {{$icon['text-color']??''}}"> <a class="{{$icon['text-color']??''}}" href="{{$url??''}}"><i class="{{$icon['bg-color']??''}} {{$icon['class']??''}}"></i> {{$icon['text']??''}}</a></span>
+                <!-- <h3 class="title">{{$title??''}}</h3> -->
             </div>
             <div class="new-arrivals-product-activation-2 slick-layout-wrapper--15 axil-slick-arrow arrow-top-slide product-slide-mobile">
 

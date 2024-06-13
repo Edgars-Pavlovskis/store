@@ -37,6 +37,18 @@ class FrontendController extends Controller
         ]);
     }
 
+
+    public function discounts()
+    {
+        return view('frontend.discounts');
+    }
+    public function news()
+    {
+        return view('frontend.news');
+    }
+
+
+
     public function product($alias='')
     {
         $product = Products::whereCode($alias)->select('id','gallery')->first();

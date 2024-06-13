@@ -18,36 +18,51 @@ class ProductsList extends Component
     public $filterMin=0, $filterMax=0;
     public $maxPriceUpdated = false;
 
+    public $discounts = false;
+    public $news = false;
+
     public $perLoadCount;
     public $isLoading = false;
 
+    public $showLoadMoreButton = false;
 
 
     public function mount()
     {
         $this->products = collect([]);
-        $this->perLoadCount = config('shop.frontend.products.per-load');
-        //$this->category_attributes = Attributes::whereGroup($this->alias)->whereType('list')->select('id','name','group','options')->get()->toArray();
-        $this->category_attributes = Attributes::whereGroup($this->alias)->select('id','name','type','group','options')->get()->toArray();
-        $this->filterMax = Products::whereParent($this->alias)->whereActive(1)->orderBy('price', 'desc')->value('price') ?? 0;
-        if(!$this->filterMax) $this->filterMax = 0;
-        $this->filterMax = ceil($this->filterMax);
-        $this->updateProducts();
+        //$this->perLoadCount = config('shop.frontend.products.per-load');
+        $this->perLoadCount = 2;
 
-        foreach ($this->category_attributes as &$attribute) {
-            if($attribute['type'] == "value") {
-                $attribute['options'] = ProductsAttribute::where('attributes_id', $attribute['id'])->distinct()->pluck('value')->toArray();
+        if(isset($this->alias)) {
+            //$this->category_attributes = Attributes::whereGroup($this->alias)->whereType('list')->select('id','name','group','options')->get()->toArray();
+            $this->category_attributes = Attributes::whereGroup($this->alias)->select('id','name','type','group','options')->get()->toArray();
+            $this->filterMax = Products::whereParent($this->alias)->whereActive(1)->orderBy('price', 'desc')->value('price') ?? 0;
+            if(!$this->filterMax) $this->filterMax = 0;
+            $this->filterMax = ceil($this->filterMax);
+            $this->updateProducts();
+
+            foreach ($this->category_attributes as &$attribute) {
+                if($attribute['type'] == "value") {
+                    $attribute['options'] = ProductsAttribute::where('attributes_id', $attribute['id'])->distinct()->pluck('value')->toArray();
+                }
+                $first = reset($attribute['options']);
+                asort($attribute['options'], (intval($first) > 0) ? SORT_NUMERIC : SORT_STRING);
+
             }
-            $first = reset($attribute['options']);
-            asort($attribute['options'], (intval($first) > 0) ? SORT_NUMERIC : SORT_STRING);
-
+            $hashMap = [];
+            foreach ($this->category_attributes as $item) {
+                $hashMap[$item['id']] = $item;
+            }
+            $this->category_attributes = $hashMap;
+            //dd($this->category_attributes);
+        } else {
+            if($this->discounts) {
+                $this->getDiscounts();
+            }
+            if($this->news) {
+                $this->getNews();
+            }
         }
-        $hashMap = [];
-        foreach ($this->category_attributes as $item) {
-            $hashMap[$item['id']] = $item;
-        }
-        $this->category_attributes = $hashMap;
-        //dd($this->category_attributes);
     }
 
 
@@ -118,13 +133,51 @@ class ProductsList extends Component
         if($this->filterMin > 0) $products->where('price', '>=', $this->filterMin);
         if($this->maxPriceUpdated) $products->where('price', '<=', $this->filterMax);
 
+        $total = $products->count();
+
         $count = count($this->products);
         $newProducts = $products->select('id','title','image','price','discount','new','special','code','parent','variations')->limit($this->perLoadCount)->offset($count)->get();
+
         $this->products = $this->products->merge($newProducts);
+        if($total > count($this->products)) { $this->showLoadMoreButton = true; } else { $this->showLoadMoreButton = false; }
         //if(count($this->filter)>0) dd($this->filter);
         $this->isLoading = false;
         //if(count($this->products)==0) dd($products->toSql());
     }
+
+
+
+    public function getDiscounts()
+    {
+        $this->isLoading = true;
+        $count = count($this->products);
+        $total = Products::where('discount', '>', 0)->whereActive(1)->count();
+        $newProducts = Products::select('id','title','image','price','discount','new','special','code','parent','variations')->where('discount', '>', 0)->whereActive(1)->limit($this->perLoadCount)->offset($count)->get();
+        $this->products = $this->products->merge($newProducts);
+        if($total > count($this->products)) { $this->showLoadMoreButton = true; } else { $this->showLoadMoreButton = false; }
+        $this->isLoading = false;
+    }
+    public function getNews()
+    {
+        $this->isLoading = true;
+        $count = count($this->products);
+        $total = Products::whereNew(1)->whereActive(1)->count();
+        $newProducts = Products::select('id','title','image','price','discount','new','special','code','parent','variations')->whereNew(1)->whereActive(1)->limit($this->perLoadCount)->offset($count)->get();
+        $this->products = $this->products->merge($newProducts);
+        if($total > count($this->products)) { $this->showLoadMoreButton = true; } else { $this->showLoadMoreButton = false; }
+        $this->isLoading = false;
+    }
+    public function getSpecials()
+    {
+        $this->isLoading = true;
+        $count = count($this->products);
+        $total = Products::whereSpecial(1)->whereActive(1)->count();
+        $newProducts = Products::select('id','title','image','price','discount','new','special','code','parent','variations')->whereSpecial(1)->whereActive(1)->limit($this->perLoadCount)->offset($count)->get();
+        $this->products = $this->products->merge($newProducts);
+        if($total > count($this->products)) { $this->showLoadMoreButton = true; } else { $this->showLoadMoreButton = false; }
+        $this->isLoading = false;
+    }
+
 
     public function applyFilter($data)
     {

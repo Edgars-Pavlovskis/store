@@ -9,6 +9,9 @@ use Illuminate\Support\Str;
 class ShowSpecialProducts extends Component
 {
     public $types = [];
+    public $icon = [];
+    public $title;
+    public $url;
     public $products = [];
 
     public function mount()

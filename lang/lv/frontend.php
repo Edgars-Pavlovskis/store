@@ -13,6 +13,8 @@ return [
     'other-products-in-category' => 'Citas preces šajā kategorijā',
     'new-products' => 'Jaunumi',
     'discounts-and-specials' => 'Akcijas un speciālie piedāvājumi',
+    'discounts' => 'Akcijas',
+    'specials' => 'Speciālie piedāvājumi',
     'search-placeholder' => 'Meklē preci?',
     'search-write-something' => 'Meklēt preces nosaukumā vai kodā...',
     'load-more' => 'Ielādēt vairāk..',
