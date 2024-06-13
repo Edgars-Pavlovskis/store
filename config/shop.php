@@ -59,7 +59,7 @@ return [
     'frontend' => [
         'products' => [
             'per-load' => 9,
-            '4col-per-load' => 8s
+            '4col-per-load' => 8
         ],
         'delivery-options' => [
             'delivery-rezekne' => [
