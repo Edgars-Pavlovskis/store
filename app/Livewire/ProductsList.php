@@ -91,7 +91,16 @@ class ProductsList extends Component
 
     public function addMoreProducts()
     {
-        $this->updateProducts();
+        if(isset($this->alias)) {
+            $this->updateProducts();
+        } else {
+            if($this->discounts) {
+                $this->getDiscounts();
+            }
+            if($this->news) {
+                $this->getNews();
+            }
+        }
     }
 
     public function updateProducts()
