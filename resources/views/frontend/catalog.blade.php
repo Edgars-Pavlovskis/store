@@ -41,7 +41,7 @@
                     <div class="col sal-animate my-2 mx-3" >
                         <a href="{{ route('frontend-catalog-show', ['alias'=>$subcategory->alias]) }}">
                         <div class="categrie-product h-100 py-3" data-sal="zoom-out" data-sal-delay="200" data-sal-duration="500">
-                            <img src="/storage/categories/{{$subcategory->image}}" alt="Category Image">
+                            <img src="/storage/categories/{{$subcategory->image}}" onerror="this.src='/assets/img/default-product.png';" alt="Category Image">
                             <div class="content">
                                 <h6 class="cat-title mb-0">{{$subcategory->title}}</h6>
                             </div>
