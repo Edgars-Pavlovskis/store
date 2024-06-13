@@ -30,9 +30,9 @@ class ProductsList extends Component
     public function mount()
     {
         $this->products = collect([]);
-        $this->perLoadCount = config('shop.frontend.products.per-load');
 
         if(isset($this->alias)) {
+            $this->perLoadCount = config('shop.frontend.products.per-load');
             //$this->category_attributes = Attributes::whereGroup($this->alias)->whereType('list')->select('id','name','group','options')->get()->toArray();
             $this->category_attributes = Attributes::whereGroup($this->alias)->select('id','name','type','group','options')->get()->toArray();
             $this->filterMax = Products::whereParent($this->alias)->whereActive(1)->orderBy('price', 'desc')->value('price') ?? 0;
@@ -55,6 +55,7 @@ class ProductsList extends Component
             $this->category_attributes = $hashMap;
             //dd($this->category_attributes);
         } else {
+            $this->perLoadCount = config('shop.frontend.products.4col-per-load');
             if($this->discounts) {
                 $this->getDiscounts();
             }
