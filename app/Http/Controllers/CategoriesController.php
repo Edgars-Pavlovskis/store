@@ -170,7 +170,16 @@ class CategoriesController extends Controller
                 if(Categories::whereAlias($input['alias'])->count() > 0) {
                     throw ValidationException::withMessages(['alias' => __('URL alias already exists')]);
                 } else {
+                    $parents = Categories::select('id','alias','parent_alias')->where('parent_alias', $alias)->get();
+                    foreach ($parents as $record) {
+                        $record->parent_alias = null;
+                    }
+                    $parents->each->save();
                     Categories::where('alias', $alias)->update(['alias' => $input['alias']]);
+                    foreach ($parents as $record) {
+                        $record->parent_alias = $input['alias'];
+                    }
+                    $parents->each->save();
                     //Products::whereParent($alias)->update(['parent' => $input['alias']]);
                 }
             }
