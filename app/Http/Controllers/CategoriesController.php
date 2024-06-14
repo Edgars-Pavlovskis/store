@@ -171,7 +171,7 @@ class CategoriesController extends Controller
                     throw ValidationException::withMessages(['alias' => __('URL alias already exists')]);
                 } else {
                     Categories::where('alias', $alias)->update(['alias' => $input['alias']]);
-                    Products::whereParent($alias)->update(['parent' => $input['alias']]);
+                    //Products::whereParent($alias)->update(['parent' => $input['alias']]);
                 }
             }
         }

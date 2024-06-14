@@ -21,7 +21,7 @@ return new class extends Migration
 
             $table->index('group');
             $table->index('type');
-            $table->foreign('group')->references('alias')->on('categories')->onDelete('cascade');
+            $table->foreign('group')->references('alias')->on('categories')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

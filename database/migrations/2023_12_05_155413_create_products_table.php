@@ -27,7 +27,7 @@ return new class extends Migration
             $table->boolean('active')->default(true);
             $table->timestamps();
 
-            $table->foreign('parent')->references('alias')->on('categories')->onDelete('cascade');
+            $table->foreign('parent')->references('alias')->on('categories')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
