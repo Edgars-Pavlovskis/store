@@ -61,7 +61,7 @@
                         </div>
                     </div>
 
-                    @if (isset($alias) && count($products)>0)
+                    @if (isset($alias) && count($products)>0 && false)
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="axil-shop-top mb--40">
