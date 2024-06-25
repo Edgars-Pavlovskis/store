@@ -127,7 +127,7 @@
             <div class="slider-offset-left">
                 <div class="row row--20">
                     <div class="col-lg-12">
-                        @livewire('show-banner',['type' => 'top-slider', 'limit' => 3])
+                        @livewire('show-banner',['type' => 'top-slider', 'limit' => 5])
                     </div>
 
                 </div>
