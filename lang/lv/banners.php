@@ -11,6 +11,7 @@ return [
     'icon-text' => 'Ikonas teksts',
     'main-text' => 'Galvenais teksts',
     'main-text-size-px' => 'Galvenā teksta izmērs (px)',
+    'main-text-mobile-size-px' => 'Galvenā teksta izmērs telefonos (px)',
     'url' => 'URL adrese',
     'url-text' => 'URL adreses teksts',
     'keyword' => 'Atslēgas vārds',

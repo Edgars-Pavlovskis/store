@@ -157,6 +157,9 @@ return [
                     'main-text-size-px' => [
                         'type' => 'string',
                     ],
+                    'main-text-mobile-size-px' => [
+                        'type' => 'string',
+                    ],
                     'url' => [
                         'type' => 'string',
                     ],
