@@ -129,3 +129,31 @@
 
 
 
+
+    @if ($type == "full-length")
+        @if(isset($banner->id))
+            <div class="axil-poster-countdown mb-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 p-0">
+                            @mobile
+                                <a href="{{$banner->params['url']??'javascript:void(0)'}}"><img class="img-fluid w-100" src="storage/images/{{$banner->params['image-mobile']??''}}" alt=""></a>
+                            @elsemobile
+                                <a href="{{$banner->params['url']??'javascript:void(0)'}}"><img class="img-fluid w-100" src="storage/images/{{$banner->params['image-main']??''}}" alt=""></a>
+                            @endmobile
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @else
+            <div class="axil-poster-countdown">
+                <div class="container">
+
+                </div>
+            </div>
+        @endif
+    @endif
+
+
+
+

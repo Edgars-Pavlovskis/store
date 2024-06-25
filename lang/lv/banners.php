@@ -15,6 +15,7 @@ return [
     'url-text' => 'URL adreses teksts',
     'keyword' => 'Atslēgas vārds',
     'image-main' => 'Banera attēls',
+    'image-mobile' => 'Banera attēls telefonos',
     'bg-main' => 'Banera fona attēls',
     'product-code' => 'Preces kods',
     'date-end' => 'Beigu datums',

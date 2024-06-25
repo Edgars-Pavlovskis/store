@@ -40,7 +40,9 @@
 
 
 
-
+    <!-- Full width banner  -->
+    @livewire('show-banner',['type' => 'full-length'])
+    <!-- End Full width banner  -->
 
 
 

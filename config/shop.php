@@ -244,42 +244,29 @@ return [
 
 
 
-
-            'subscribe' => [
+            'full-length' => [
                 'title' => [
-                    'lv' => 'Baneris ar iespēju parakstīties uz jaunumiem',
-                    'en' => 'Banner with subscribe option',
+                    'lv' => 'Pilna platuma baneris',
+                    'en' => 'Full width banner',
                 ],
                 'description' => [
-                    'lv' => 'Rādās pirmajā lapā, apakšā',
+                    'lv' => 'Tiek attēlots galvenās lapas saturā',
                     'en' => 'Is shown in main page',
                 ],
-                'color' => 'bg-secondary',
+                'color' => 'bg-dark',
                 'params' => [
-                    'icon-class' => [
-                        'type' => 'select',
-                        'special' => 'icons',
-                        'list' => ['fa-solid fa-fire', 'fa-solid fa-tag', 'fa-solid fa-triangle-exclamation'],
-                    ],
-                    'date-end' => [
-                        'type' => 'date',
-                    ],
-                    'keyword' => [
+                    'url' => [
                         'type' => 'string',
                     ],
-                    'icon-text' => [
-                        'type' => 'i18n',
-                    ],
-                    'main-text' => [
-                        'type' => 'i18n',
-                    ],
-                    'bg-main' => [
+                    'image-main' => [
                         'type' => 'image',
-                        'width' => '1230',
-                        'height' => '400',
+                    ],
+                    'image-mobile' => [
+                        'type' => 'image',
                     ],
                 ]
             ],
+
 
 
 
