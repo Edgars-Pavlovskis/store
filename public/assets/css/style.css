@@ -5174,7 +5174,8 @@ Slider Style
   background-color: #f7f7f7;
   border-radius: 6px;
   text-align: center;
-  padding: 45px 20px;
+  padding: 67px 20px;
+  /* padding: 45px 20px; */
   overflow: hidden;
 }
 @media only screen and (max-width: 991px) {
@@ -5191,7 +5192,8 @@ Slider Style
   content: "";
   height: 160px;
   width: 160px;
-  background-color: var(--color-white);
+  background-color: transparent;
+  /* background-color: var(--color-white); */
   border-radius: 50%;
   position: absolute;
   top: 20px;
