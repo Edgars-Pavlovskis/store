@@ -5151,6 +5151,7 @@ Slider Style
   position: absolute;
   top: -5px;
   left: -100px;
+  left: 0px !important;
   z-index: -1;
 }
 @media only screen and (max-width: 767px) {
