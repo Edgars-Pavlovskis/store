@@ -54,7 +54,7 @@
 
 
 
-        @livewire('products-list', ['alias'=>$category->alias])
+        @livewire('products-list', ['alias'=>$category->alias, 'hasSubCategories' => count($category->children)>0?true:false])
 
 
         <!-- Start Axil Newsletter Area  -->

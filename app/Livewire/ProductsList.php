@@ -26,6 +26,8 @@ class ProductsList extends Component
 
     public $showLoadMoreButton = false;
 
+    public $hasSubCategories;
+
 
     public function mount()
     {
