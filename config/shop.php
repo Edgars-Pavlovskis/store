@@ -162,8 +162,8 @@ return [
                     ],
                     'image-main' => [
                         'type' => 'image',
-                        'width' => '324',
-                        'height' => '293',
+                        'width' => '240',
+                        'height' => '292',
                     ],
                     'bg-main' => [
                         'type' => 'image',

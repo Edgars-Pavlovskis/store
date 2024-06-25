@@ -42,7 +42,7 @@
 
 
     @if ($type == "top-product")
-        @if(count($banners)>0)
+        @if(isset($banner->params))
             <div class="slider-product-box">
                 <div class="product-thumb">
                     <a href="{{route('frontend-product-show',['alias'=>$banner->params['code']??'not-found'])}}">

@@ -19,7 +19,7 @@ class ShowBanner extends Component
         if($this->type == "top-product") {
             $this->banner = Banner::where('type',$this->type)->inRandomOrder()->first();
             if($this->banner) {
-                $product = Products::select('id','title','code','price','discount','image')->where('inner_code', $this->banner->params['product-code']??'')->first();
+                $product = Products::select('id','title','code','price','discount','image')->where('inner_code', $this->banner->params['product-code']??'')->orWhere('code', $this->banner->params['product-code']??'')->first();
                 $this->banner->params = $product??[];
             }
         } else if($this->type == "counter") {
