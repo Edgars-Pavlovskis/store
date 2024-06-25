@@ -23,18 +23,18 @@
                 <div class="header-top-link">
 
                     <ul class="quick-link">
-                        <li><a href="#">Par mums</a></li>
+                        <li><a href="{{route('pages-about')}}">{{__('frontend.navi-about')}}</a></li>
                         <li>
-                            <a class="dropdown-toggle" href="#" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">Informācija&nbsp;</a>
+                            <a class="dropdown-toggle" href="#" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">{{__('frontend.navi-info')}}&nbsp;</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                <li><button class="dropdown-item" type="button">Privātuma politika</button></li>
-                                <li><button class="dropdown-item" type="button">Internetveikala lietošanas noteikumi</button></li>
-                                <li><button class="dropdown-item" type="button">Piegādes nosacījumi</button></li>
+                                <li><a href="{{route('pages-privacy')}}"><button class="dropdown-item" type="button">{{__('frontend.navi-privacy')}}</button></a></li>
+                                <li><a href="{{route('pages-rules')}}"><button class="dropdown-item" type="button">{{__('frontend.navi-rules')}}</button></a></li>
+                                <li><a href="{{route('pages-delivery')}}"><button class="dropdown-item" type="button">{{__('frontend.navi-delivery')}}</button></a></li>
                             </ul>
                         </li>
 
 
-                        <li><a href="#">Kontakti</a></li>
+                        <li><a href="{{route('pages-contacts')}}">{{__('frontend.navi-contacts')}}</a></li>
                     </ul>
                 </div>
             </div>

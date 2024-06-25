@@ -19,6 +19,17 @@ return [
     'search-write-something' => 'Meklēt preces nosaukumā vai kodā...',
     'load-more' => 'Ielādēt vairāk..',
     'found-products' => 'Atrastas preces',
+    'quicklinks' => 'Ātrās saites',
+
+
+
+    'navi-about' => 'Par mums',
+    'navi-info' => 'Informācija',
+    'navi-privacy' => 'Privātuma politika',
+    'navi-rules' => 'Internetveikala lietošanas noteikumi',
+    'navi-delivery' => 'Piegādes nosacījumi',
+    'navi-contacts' => 'Kontakti',
+
 
     'price' => 'Cena',
     'from' => 'no',
@@ -45,6 +56,7 @@ return [
 
     'products-list' => [
         'load-more' => 'Ielādēt vairāk',
+        'nothingfound' => 'Nekas netika atrasts',
     ],
 
     'cart' => [

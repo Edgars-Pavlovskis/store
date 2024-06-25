@@ -55,7 +55,8 @@
                 </div>
             </div>
         </div>
-        <!-- End Mainmenu Area -->
+
+        <!--
         <div class="header-top-campaign">
             <div class="container">
                 <div class="row justify-content-center">
@@ -76,5 +77,6 @@
                 </div>
             </div>
         </div>
+         -->
     </header>
 @endsection

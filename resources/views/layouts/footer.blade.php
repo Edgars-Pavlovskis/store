@@ -6,79 +6,48 @@
             <div class="container">
                 <div class="row">
                     <!-- Start Single Widget  -->
-                    <div class="col-lg-3 col-sm-6">
+                    <div class="col-lg-4 col-sm-6">
                         <div class="axil-footer-widget">
-                            <h5 class="widget-title">Support</h5>
-                            <!-- <div class="logo mb--30">
-                            <a href="index.html">
-                                <img class="light-logo" src="assets/images/logo/logo.png" alt="Logo Images">
-                            </a>
-                        </div> -->
+                            <h5 class="widget-title">{{__('frontend.navi-about')}}</h5>
+                            <div class="logo">
+                                <a href="/">
+                                    <img style="height:50px;" class="light-logo" src="assets/img/alba-red.png" alt="Logo Images">
+                                </a>
+                            </div>
                             <div class="inner">
-                                <p>685 Market Street, <br>
-                                Las Vegas, LA 95820, <br>
-                                United States.
-                                </p>
+                                <p>Piedāvājam plašu augstas kvalitātes preču klāstu jūsu darba vajadzībām - no pildspalvām un bloknotiem līdz printeriem un biroja mēbelēm. Ērta iepirkšanās, ātra piegāde un izcils klientu serviss. Iepērcieties pie mums un padariet savu darba vidi efektīvāku un patīkamāku!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Widget  -->
+
+                    <!-- Start Single Widget  -->
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="axil-footer-widget">
+                            <h5 class="widget-title">{{__('frontend.quicklinks')}}</h5>
+                            <div class="inner">
+                                <ul>
+                                    <li><a href="{{route('pages-about')}}">{{__('frontend.navi-about')}}</a></li>
+                                    <li><a href="{{route('pages-privacy')}}">{{__('frontend.navi-privacy')}}</a></li>
+                                    <li><a href="{{route('pages-rules')}}">{{__('frontend.navi-rules')}}</a></li>
+                                    <li><a href="{{route('pages-delivery')}}">{{__('frontend.navi-delivery')}}</a></li>
+                                    <li><a href="{{route('pages-contacts')}}">{{__('frontend.navi-contacts')}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Widget  -->
+                    <!-- Start Single Widget  -->
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="axil-footer-widget">
+                            <h5 class="widget-title">{{__('frontend.navi-contacts')}}</h5>
+                            <div class="inner">
                                 <ul class="support-list-item">
-                                    <li><a href="mailto:example@domain.com"><i class="fal fa-envelope-open"></i> example@domain.com</a></li>
-                                    <li><a href="tel:(+01)850-315-5862"><i class="fal fa-phone-alt"></i> (+01) 850-315-5862</a></li>
+                                    <li><a href="javascript:void(0)"><i class="fa-solid fa-globe"></i> Brāļu Skrindu iela 17, Rēzekne, LV-4601</a></li>
+                                    <li><a href="mailto:pakalpojumi@alba-ltd.lv"><i class="fal fa-envelope-open"></i> pakalpojumi@alba-ltd.lv</a></li>
+                                    <li><a href="tel:+37128372929"><i class="fal fa-phone-alt"></i> (+371) 28372929</a></li>
                                     <!-- <li><i class="fal fa-map-marker-alt"></i> 685 Market Street,  <br> Las Vegas, LA 95820, <br> United States.</li> -->
                                 </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Widget  -->
-                    <!-- Start Single Widget  -->
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="axil-footer-widget">
-                            <h5 class="widget-title">Account</h5>
-                            <div class="inner">
-                                <ul>
-                                    <li><a href="my-account.html">My Account</a></li>
-                                    <li><a href="sign-up.html">Login / Register</a></li>
-                                    <li><a href="cart.html">Cart</a></li>
-                                    <li><a href="wishlist.html">Wishlist</a></li>
-                                    <li><a href="shop.html">Shop</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Widget  -->
-                    <!-- Start Single Widget  -->
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="axil-footer-widget">
-                            <h5 class="widget-title">Quick Link</h5>
-                            <div class="inner">
-                                <ul>
-                                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                    <li><a href="terms-of-service.html">Terms Of Use</a></li>
-                                    <li><a href="#">FAQ</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Widget  -->
-                    <!-- Start Single Widget  -->
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="axil-footer-widget">
-                            <h5 class="widget-title">Download App</h5>
-                            <div class="inner">
-                                <span>Save $3 With App & New User only</span>
-                                <div class="download-btn-group">
-                                    <div class="qr-code">
-                                        <img src="{{asset('assets/images/others/qr.png')}}" alt="Axilthemes">
-                                    </div>
-                                    <div class="app-link">
-                                        <a href="#">
-                                            <img src="{{asset('assets/images/others/app-store.png')}}" alt="App Store">
-                                        </a>
-                                        <a href="#">
-                                            <img src="{{asset('assets/images/others/play-store.png')}}" alt="Play Store">
-                                        </a>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -101,7 +70,8 @@
                     <div class="col-xl-6 col-lg-12">
                         <div class="copyright-left d-flex flex-wrap justify-content-end">
                             <ul class="quick-link">
-                                <li>© {{date('Y')}}. Developed with &#x2764;&#xfe0f; by <a target="_blank" href="https://raimita.lv/">raimita.lv</a>.</li>
+                                <li>© {{date('Y')}}. Developed by <a target="_blank" href="https://raimita.lv/">raimita.lv</a>.</li>
+                                <!-- Developed with &#x2764;&#xfe0f; by -->
                             </ul>
                         </div>
                     </div>
