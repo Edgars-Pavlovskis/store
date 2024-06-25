@@ -8,7 +8,7 @@
                         <div class="single-slide slick-slide" @if(isset($banner->params['bg-main'])) style="background-size: contain; background-image:url('storage/images/{{$banner->params['bg-main']??''}}')" @endif>
                             <div class="main-slider-content">
                                 <span class="subtitle"><i class="{{$banner->params['icon-class']??''}}" me-2></i> {{$banner->params['icon-text'][App()->currentLocale()??config('shop.languages.default')]??''}}</span>
-                                <h1 class="title">{!!$banner->params['main-text'][App()->currentLocale()??config('shop.languages.default')]??''!!}</h1>
+                                <h1 class="title" style="font-size:{{$banner->params['main-text-size-px']??''}}px">{!!$banner->params['main-text'][App()->currentLocale()??config('shop.languages.default')]??''!!}</h1>
                                 <div class="shop-btn">
                                     <a href="{{$banner->params['url']}}" class="axil-btn">{{$banner->params['url-text'][App()->currentLocale()??config('shop.languages.default')]??''}} <i class="fal fa-long-arrow-right"></i></a>
                                 </div>

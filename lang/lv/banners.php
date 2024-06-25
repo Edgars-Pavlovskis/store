@@ -10,6 +10,7 @@ return [
     'icon-text-class' => 'Ikonas teksta krāsa',
     'icon-text' => 'Ikonas teksts',
     'main-text' => 'Galvenais teksts',
+    'main-text-size-px' => 'Galvenā teksta izmērs (px)',
     'url' => 'URL adrese',
     'url-text' => 'URL adreses teksts',
     'keyword' => 'Atslēgas vārds',

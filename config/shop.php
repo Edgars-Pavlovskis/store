@@ -154,6 +154,9 @@ return [
                     'main-text' => [
                         'type' => 'i18n',
                     ],
+                    'main-text-size-px' => [
+                        'type' => 'string',
+                    ],
                     'url' => [
                         'type' => 'string',
                     ],
