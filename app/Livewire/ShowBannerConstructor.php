@@ -32,24 +32,27 @@ class ShowBannerConstructor extends Component
         {
             $banner = Banner::whereId($this->id)->first();
             if($banner->id) {
+                $this->type = $banner->type;
                 $this->title = $banner->title;
                 $this->data = $banner->params;
             }
         }
 
         foreach(config('shop.banners.templates.'.$this->type.'.params') as $name => $param) {
+
             if($param['type'] == 'i18n') {
                 if(!isset($this->data[$name])) {
                     $this->data[$name] = [];
                     foreach(config('shop.languages.list') as $lang) {
                         $this->data[$name][$lang] = '';
                     }
-                    $this->hasI18n = true;
                 }
+                $this->hasI18n = true;
             } else {
                 if(!isset($this->data[$name])) $this->data[$name] = '';
             }
         }
+
     }
 
     public function removeImage($name)
