@@ -95,7 +95,7 @@
                     <span class="badge {{config('shop.banners.templates.'.$banner->type.'.color')}}">{{config('shop.banners.templates.'.$banner->type.'.title.'.App()->currentLocale()??config('shop.languages.default'))??$banner->type}}</span>
                 </td>
                 <td class="d-none d-xl-table-cell fs-sm">
-                    <strong>{{$banner->title}}</strong>
+                    <strong><a href="{{route('banners-edit',['id'=>$banner->id])}}">{{$banner->title}}</a></strong>
                 </td>
                 <td class="text-center">
                     <a class="btn btn-sm btn-alt-secondary" title="{{__('admin.tooltips.delete')}}" onclick="Livewire.dispatch('confirmDeleteExternal', { itemId: '{{$banner->id}}', itemName: '{{$banner->title}}', model: 'Banner', parent: '' })">

@@ -16,14 +16,27 @@ class ShowBannerConstructor extends Component
 
     public $type;
     public $title;
+    public $id;
 
     public $data = [];
 
     public $hasI18n;
 
+    public $filenamesForRemoval = [];
+
     public function mount()
     {
         $this->hasI18n = false;
+
+        if(isset($this->id) && $this->id > 0)
+        {
+            $banner = Banner::whereId($this->id)->first();
+            if($banner->id) {
+                $this->title = $banner->title;
+                $this->data = $banner->params;
+            }
+        }
+
         foreach(config('shop.banners.templates.'.$this->type.'.params') as $name => $param) {
             if($param['type'] == 'i18n') {
                 if(!isset($this->data[$name])) {
@@ -39,6 +52,11 @@ class ShowBannerConstructor extends Component
         }
     }
 
+    public function removeImage($name)
+    {
+        $this->filenamesForRemoval[] = $this->data[$name];
+        $this->data[$name] = '';
+    }
 
 
     public function saveBanner()
@@ -58,12 +76,24 @@ class ShowBannerConstructor extends Component
 
         }
 
-        $banner = Banner::create([
-            'type' => $this->type,
-            'title' => $this->title,
-            'date_end' => $request['date-end']??null,
-            'params' => $request,
-        ]);
+        if(isset($this->id) && is_numeric($this->id) && $this->id>0)
+        {
+            $banner = Banner::whereId($this->id)->first();
+            if($banner->id) {
+                $banner->title = $this->title;
+                $banner->date_end = $request['date-end']??null;
+                $banner->params = $request;
+                $banner->save();
+            }
+        } else {
+            $banner = Banner::create([
+                'type' => $this->type,
+                'title' => $this->title,
+                'date_end' => $request['date-end']??null,
+                'params' => $request,
+            ]);
+        }
+
 
         return redirect()->route('banners-show');
     }

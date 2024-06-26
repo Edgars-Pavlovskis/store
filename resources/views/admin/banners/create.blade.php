@@ -59,7 +59,7 @@
   <div class="content">
 
 
-    @livewire('show-banner-constructor', ['type' => $type])
+    @livewire('show-banner-constructor', ['type' => $type, 'id' => $id])
 
   </div>
   <!-- END Page Content -->

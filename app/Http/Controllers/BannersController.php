@@ -35,7 +35,18 @@ class BannersController extends Controller
         ]);
 
         return view('admin.banners.create',[
-            'type' => $request->type
+            'type' => $request->type,
+            'id' => 0,
+        ]);
+    }
+
+
+    public function editBanner($id)
+    {
+        $type = Banner::whereId($id)->value('type');
+        return view('admin.banners.create',[
+            'type' => $type,
+            'id' => $id,
         ]);
     }
 

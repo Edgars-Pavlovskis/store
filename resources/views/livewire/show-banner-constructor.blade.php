@@ -115,42 +115,68 @@
 
                     @foreach (config('shop.banners.templates.'.$type.'.params') as $name => $param)
                         @if ($param['type'] == 'image')
-                            <div class="block block-rounded">
-                                <label class="form-label">
-                                    {{__('banners.'.$name)}}
-                                    @if (isset($param['width']) && isset($param['height']))
-                                        <small class="text-secondary">({{$param['width']}}px x {{$param['height']}}px)</small>
-                                    @endif
-                                </label>
-                                <div class="mb-4"
-                                    x-data
-                                    x-init="
-                                        FilePond.registerPlugin(FilePondPluginFileValidateType);
-                                        FilePond.registerPlugin(FilePondPluginFileValidateSize);
 
-                                        const pond{{$loop->index}} = FilePond.create($refs['input{{$loop->index}}'], {
-                                            labelIdle: '<b>Pārvelciet</b> vai <b>atlasiet</b> ierīcē failu augšupielādei...',
-                                            maxFileSize: '20MB',
-                                            acceptedFileTypes: ['image/*'],
-                                            labelMaxFileSizeExceeded: 'Pievienotā faila izmērs ir pārāk liels.',
-                                            labelMaxFileSize: 'Maksimālais faila izmērs ir {filesize}',
-                                            server: {
-                                                process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
-                                                    @this.upload('data.{{$name}}', file, load, error, progress)
-                                                },
-                                                revert: (filename, load) => {
-                                                    @this.removeUpload('data.{{$name}}', load)
-                                                    @this.set('data.{{$name}}', null)
-                                                }
-                                            }
-                                        });
-
-                                    "
-                                    wire:ignore
-                                >
-                                    <input class="form-control" type="file" x-ref="input{{$loop->index}}">
+                            @if(isset($data[$name]) && strlen($data[$name])>0 && file_exists(public_path('/storage/images/'.$data[$name])))
+                                <div class="row push">
+                                    <div class="block block-rounded mt-3">
+                                        <label class="form-label">{{__('admin.products.fileinput-image')}}</label>
+                                        <div class="bg-image" style="background-image: url('/storage/images/{{$data[$name]}}'); background-position: center; background-size: contain; background-repeat: no-repeat;">
+                                            <div class="block-content block-content-full bg-black-10 ribbon ribbon-glass">
+                                                <div class="ribbon-box" style="background-color:transparent;">
+                                                    <button wire:click="removeImage('{{$name}}')" type="button" class="btn rounded-pill btn-alt-danger me-1 mb-3">
+                                                        <i class="fa fa-fw fa-times me-1"></i> {{__('admin.delete')}}
+                                                    </button>
+                                                </div>
+                                                <div class="text-center py-6"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            @else
+                                <div class="block block-rounded">
+                                    <label class="form-label">
+                                        {{__('banners.'.$name)}}
+                                        @if (isset($param['width']) && isset($param['height']))
+                                            <small class="text-secondary">({{$param['width']}}px x {{$param['height']}}px)</small>
+                                        @endif
+                                        @if(isset($data[$name]) && strlen($data[$name])>0) <small>has file</small> @else <small>no file</small> @endif
+                                    </label>
+                                    <div class="mb-4"
+                                        x-data
+                                        x-init="
+                                            FilePond.registerPlugin(FilePondPluginFileValidateType);
+                                            FilePond.registerPlugin(FilePondPluginFileValidateSize);
+
+                                            const pond{{$loop->index}} = FilePond.create($refs['input{{$loop->index}}'], {
+                                                labelIdle: '<b>Pārvelciet</b> vai <b>atlasiet</b> ierīcē failu augšupielādei...',
+                                                maxFileSize: '20MB',
+                                                acceptedFileTypes: ['image/*'],
+                                                labelMaxFileSizeExceeded: 'Pievienotā faila izmērs ir pārāk liels.',
+                                                labelMaxFileSize: 'Maksimālais faila izmērs ir {filesize}',
+
+                                                server: {
+                                                    process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
+                                                        @this.upload('data.{{$name}}', file, load, error, progress)
+                                                    },
+                                                    revert: (filename, load) => {
+                                                        @this.removeUpload('data.{{$name}}', load)
+                                                        @this.set('data.{{$name}}', null)
+                                                    },
+                                                },
+
+
+                                            });
+
+                                        "
+                                        wire:ignore
+                                    >
+                                        <input class="form-control" type="file" x-ref="input{{$loop->index}}">
+                                    </div>
+                                </div>
+                            @endif
+
+
+
                         @endif
                     @endforeach
 

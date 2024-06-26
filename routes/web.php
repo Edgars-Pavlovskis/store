@@ -124,6 +124,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/banners/show',[App\Http\Controllers\BannersController::class, 'index'])->name('banners-show');
     Route::get('/banners/create',[App\Http\Controllers\BannersController::class, 'createType'])->name('banners-create-type');
     Route::post('/banners/create',[App\Http\Controllers\BannersController::class, 'submitType'])->name('banners-submit-type');
+    Route::get('/banners/edit/{id}',[App\Http\Controllers\BannersController::class, 'editBanner'])->name('banners-edit');
 
 
 
