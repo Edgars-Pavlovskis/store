@@ -1,3 +1,32 @@
+<div>
+
+    @if ($type == "top-image-slider")
+        @if(count($banners)>0)
+            <div class="axil-main-slider-area main-slider-style-2 main-slider-style-8">
+                <div class="container">
+                    <div class="slider-offset-left">
+                        <div class="row row--20">
+                            <div class="col-lg-12">
+                                <div class="slider-box-wrap p-0 mb-2">
+                                    <div class="slider-activation-one axil-slick-dots">
+                                        @foreach ($banners as $banner)
+                                            @mobile
+                                            <a href="{{$banner->params['url']??'javascript:void(0)'}}"><img class="img-fluid w-100" src="storage/images/{{$banner->params['image-mobile']??''}}" alt=""></a>
+                                            @elsemobile
+                                            <a href="{{$banner->params['url']??'javascript:void(0)'}}"><img class="img-fluid w-100" src="storage/images/{{$banner->params['image-main']??''}}" alt=""></a>
+                                            @endmobile
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+    @endif
+
+
 
 
     @if ($type == "top-slider")
@@ -157,3 +186,4 @@
 
 
 
+</div>

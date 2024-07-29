@@ -36,6 +36,26 @@
                         <input type="text" class="form-control form-control-sm" id="input-string-title" wire:model.defer="title">
                     </div>
 
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <label class="form-label" for="input-date-end">{{__('banners.date-start')}}</label>
+                            <input type="text" class="js-flatpickr form-control form-control-sm flatpickr-input" id="input-date-end" value="{{$datestart}}" wire:model.defer="datestart" placeholder="{{__('banners.open-calendar')}}" data-date-format="d-m-Y" readonly="readonly">
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label" for="input-date-end">{{__('banners.date-end')}}</label>
+                            <input type="text" class="js-flatpickr form-control form-control-sm flatpickr-input" id="input-date-end" value="{{$dateend}}" wire:model.defer="dateend" placeholder="{{__('banners.open-calendar')}}" data-date-format="d-m-Y" readonly="readonly">
+                        </div>
+                    </div>
+
+
+
+                    <div class="row mb-4">
+                        <div class="form-check form-switch form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="1" id="active-checkbox" wire:model.defer="active" {{ $active == 0 ? '' : 'checked' }} >
+                            <label class="form-check-label" for="active-checkbox">{{__('banners.active')}}?</label>
+                        </div>
+                    </div>
+                    <hr>
 
                     @foreach (config('shop.banners.templates.'.$type.'.params') as $name => $param)
                         @if ($param['type'] == 'select')
@@ -139,7 +159,6 @@
                                         @if (isset($param['width']) && isset($param['height']))
                                             <small class="text-secondary">({{$param['width']}}px x {{$param['height']}}px)</small>
                                         @endif
-                                        @if(isset($data[$name]) && strlen($data[$name])>0) <small>has file</small> @else <small>no file</small> @endif
                                     </label>
                                     <div class="mb-4"
                                         x-data

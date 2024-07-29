@@ -19,11 +19,14 @@ return [
     'image-mobile' => 'Banera attēls telefonos',
     'bg-main' => 'Banera fona attēls',
     'product-code' => 'Preces kods',
+    'active' => 'Aktīvs',
+    'date-start' => 'Sākuma datums',
     'date-end' => 'Beigu datums',
     'enter-email' => 'Ievadi epastu',
     'subscribe-news' => 'Paraksties jaunumu saņemšanai',
     'subscribe' => 'Parakstīties',
     'thankyou' => 'Paldies',
     'you-subscibed' => 'Jūs esat parakstījies jaunumu saņemšanai',
+    'open-calendar' => 'Izvēlieties datumu..',
 
 ];

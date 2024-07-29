@@ -1,15 +1,20 @@
 @extends('layouts.backend')
 
-@section('js')
+@section('css')
+  <link rel="stylesheet" href="{{ asset('js/plugins/select2/css/select2.min.css') }}">
+@endsection
+
+@section('js_end')
   <!-- jQuery (required for DataTables plugin) -->
   <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
 
   <!-- Page JS Plugins -->
   <script src="{{ asset('js/plugins/ckeditor5-classic/build/ckeditor.js') }}"></script>
   <script src="{{ asset('js/plugins/inputs/patterns.js') }}"></script>
+  <script src="{{ asset('js/plugins/select2/js/select2.full.min.js') }}"></script>
 
  <!-- Page JS Helpers (CKEditor 5 plugins) -->
-  <script type="module">One.helpersOnLoad(['js-ckeditor5']);</script>
+  <script type="module">One.helpersOnLoad(['js-ckeditor5', 'jq-select2']);</script>
 
   <script>
     $( document ).ready(function() {
@@ -19,6 +24,7 @@
     });
   </script>
 @endsection
+
 
 
 
@@ -91,6 +97,18 @@
                         <input type="text" class="form-control" id="inner-code-txt" name="inner_code" placeholder="{{__('admin.products.input-inner-code')}}" value="{{old('inner_code', $product->inner_code)}}">
                         <label for="inner-code-txt">{{__('admin.products.input-inner-code')}}</label>
                     </div>
+
+                    <div class="form-floating mb-4">
+                        <select class="js-select2 form-select" name="transfer_category" style="width: 100%;" data-placeholder="{{__('admin.products.input-transfer-category')}}">
+                            <option></option>
+                                @foreach ($categories as $category)
+                                    <option @if($category->alias == $product->parent) selected @endif value="{{$category->alias}}">{{$category->title}} ({{$category->alias}}) </option>
+                                @endforeach
+                          </select>
+                    </div>
+
+
+
 
                     <ul class="nav nav-tabs nav-tabs-alt justify-content-end" role="tablist">
                         @foreach (getLocales() as $lang)

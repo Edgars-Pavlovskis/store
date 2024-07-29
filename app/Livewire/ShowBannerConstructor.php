@@ -2,13 +2,14 @@
 
 namespace App\Livewire;
 
+use DateTime;
 use Livewire\Component;
-
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use App\Models\Banner;
+
 
 class ShowBannerConstructor extends Component
 {
@@ -18,11 +19,17 @@ class ShowBannerConstructor extends Component
     public $title;
     public $id;
 
+    public $active;
+    public $datestart;
+    public $dateend;
+
     public $data = [];
+
 
     public $hasI18n;
 
     public $filenamesForRemoval = [];
+
 
     public function mount()
     {
@@ -34,6 +41,9 @@ class ShowBannerConstructor extends Component
             if($banner->id) {
                 $this->type = $banner->type;
                 $this->title = $banner->title;
+                $this->active = $banner->active;
+                $this->datestart = $banner->date_start;
+                $this->dateend = $banner->date_end;
                 $this->data = $banner->params;
             }
         }
@@ -84,7 +94,9 @@ class ShowBannerConstructor extends Component
             $banner = Banner::whereId($this->id)->first();
             if($banner->id) {
                 $banner->title = $this->title;
-                $banner->date_end = $request['date-end']??null;
+                $banner->date_start = $this->datestart ? DateTime::createFromFormat('d-m-Y', $this->datestart)->format('Y-m-d') : null;
+                $banner->date_end = $this->dateend ? DateTime::createFromFormat('d-m-Y', $this->dateend)->format('Y-m-d') : null;
+                $banner->active = $this->active??false;
                 $banner->params = $request;
                 $banner->save();
             }
@@ -92,10 +104,16 @@ class ShowBannerConstructor extends Component
             $banner = Banner::create([
                 'type' => $this->type,
                 'title' => $this->title,
-                'date_end' => $request['date-end']??null,
+                'date_start' => $this->datestart ? DateTime::createFromFormat('d-m-Y', $this->datestart)->format('Y-m-d') : null,
+                'date_end' => $this->dateend ? DateTime::createFromFormat('d-m-Y', $this->dateend)->format('Y-m-d') : null,
+                'active' => $this->active??false,
                 'params' => $request,
             ]);
         }
+
+
+
+
 
 
         return redirect()->route('banners-show');

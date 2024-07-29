@@ -182,7 +182,8 @@ $products = Product::select('products.id', 'products.name', 'translations.name A
 
         return view('admin.products.edit',[
             'product' => $product,
-            'path' =>(isset($product->gallery) && strlen($product->gallery) > 0) ? $product->gallery : Str::random(5) . '-' . time()
+            'path' =>(isset($product->gallery) && strlen($product->gallery) > 0) ? $product->gallery : Str::random(5) . '-' . time(),
+            'categories' => Categories::select('title','alias')->get()
         ]);
 
     }
@@ -201,6 +202,7 @@ $products = Product::select('products.id', 'products.name', 'translations.name A
             'price' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
             'stock' => ['required', 'integer'],
         ]);
+
 
         $input = $req->all();
         if(!$req->active) $input['active']= 0;
@@ -225,10 +227,15 @@ $products = Product::select('products.id', 'products.name', 'translations.name A
                     Products::where('code', $currentCode)->update(['code' => $input['code']]);
                 }
             }
+            $currentParent = Products::where('code', $alias)->value('parent');
+            if($input['transfer_category'] != $currentParent && !empty($input['transfer_category'])) { //if parent was edited..
+                Products::where('code', $currentCode)->update(['parent' => $input['transfer_category']]);
+            }
         } else {
             $input['parent'] = $alias;
         }
 
+        unset($input['transfer_category']);
         $titlesArray = $input['title'];
         $descriptionsArray = $input['description'];
         $detailsArray = $input['details'];

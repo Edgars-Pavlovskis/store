@@ -39,7 +39,7 @@ class Categories extends Model
 
     public function children()
     {
-        return $this->hasMany(Categories::class, 'parent_alias', 'alias');
+        return $this->hasMany(Categories::class, 'parent_alias', 'alias')->where('active',1)->orderBy('priority', 'asc');
     }
     public function parent()
     {

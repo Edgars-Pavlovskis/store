@@ -36,7 +36,7 @@ class ProductsList extends Component
         if(isset($this->alias)) {
             $this->perLoadCount = config('shop.frontend.products.per-load');
             //$this->category_attributes = Attributes::whereGroup($this->alias)->whereType('list')->select('id','name','group','options')->get()->toArray();
-            $this->category_attributes = Attributes::whereGroup($this->alias)->select('id','name','type','group','options')->get()->toArray();
+            $this->category_attributes = Attributes::whereGroup($this->alias)->where('active',1)->select('id','name','type','group','options')->orderBy('priority')->get()->toArray();
             $this->filterMax = Products::whereParent($this->alias)->whereActive(1)->orderBy('price', 'desc')->value('price') ?? 0;
             if(!$this->filterMax) $this->filterMax = 0;
             $this->filterMax = ceil($this->filterMax);

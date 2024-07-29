@@ -86,6 +86,9 @@ return [
     'products' => [
         'list' => 'Preču saraksts',
         'in-choosed-category' => 'izvēlētajā kategorijā',
+        'products-search' => 'Produktu meklēšana',
+        'search-term' => 'Meklējamā frāze',
+        'search-results' => 'meklēšanas rezultāti',
         'new' => 'Jauna prece',
         'add' => 'Pievienot preci',
         'data' => 'Preces dati',
@@ -104,6 +107,7 @@ return [
         'switch-active' => 'Prece aktīva',
         'switch-new' => 'Jaunums',
         'switch-special' => 'Īpašais piedāvājums',
+        'input-transfer-category' => 'Izvēlieties kategoriju, ja vēlaties pārnest produktu..',
         'status' => [
             'new' => 'Jaunums',
             'discount' => 'Atlaide',
@@ -153,6 +157,8 @@ return [
         'input-name' => 'Atribūta nosaukums',
         'input-values' => 'Atribūta vērtības',
         'add-value' => 'Pievienot vērtību',
+        'edit' => 'Rediģēt',
+        'delete' => 'Dzēst',
     ],
 
 

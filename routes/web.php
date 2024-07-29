@@ -90,6 +90,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/admin/categories/show',[App\Http\Controllers\CategoriesController::class, 'index'])->name('categories-index-root');
     Route::get('/admin/categories/show/{alias?}/{showinnactive?}',[App\Http\Controllers\CategoriesController::class, 'index'])->name('categories-index');
+    Route::get('/admin/categories/search',[App\Http\Controllers\CategoriesController::class, 'search'])->name('categories-search-product');
 
     Route::get('/admin/categories/attributes/{alias?}',[App\Http\Controllers\CategoriesController::class, 'attributes'])->name('attributes');
     Route::get('/admin/categories/attributes/manage/{alias}/{id?}',[App\Http\Controllers\CategoriesController::class, 'manageAttribute'])->name('attributes-manage');
@@ -102,6 +103,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/categories/edit/{alias}',[App\Http\Controllers\CategoriesController::class, 'edit'])->name('categories-edit');
     Route::post('/admin/categories/update/{alias}',[App\Http\Controllers\CategoriesController::class, 'update'])->name('categories-update');
     Route::post('/admin/categories/update-sorting', [App\Http\Controllers\CategoriesController::class, 'updateSorting'])->name('categories-update-sorting');
+    Route::post('/admin/attributes/update-sorting', [App\Http\Controllers\CategoriesController::class, 'updateAttributesSorting'])->name('attributes-update-sorting');
+
+
 
 
     Route::get('/admin/products/copy/{alias}',[App\Http\Controllers\ProductsController::class, 'copy'])->name('products-copy');

@@ -114,6 +114,35 @@ return [
     'banners' => [
         'templates' => [
 
+            'top-image-slider' => [
+                'title' => [
+                    'lv' => 'Lielais slīdrādes attēls',
+                    'en' => 'Big slider image',
+                ],
+                'description' => [
+                    'lv' => 'Tiek attēlots galvenās lapas augšā',
+                    'en' => 'Is shown in main page at a top',
+                ],
+                'color' => 'bg-primary',
+
+                'params' => [
+                    'url' => [
+                        'type' => 'string',
+                    ],
+                    'image-main' => [
+                        'width' => 1200,
+                        'height' => 500,
+                        'type' => 'image',
+                    ],
+                    'image-mobile' => [
+                        'type' => 'image',
+                        'width' => 568,
+                        'height' => 1200,
+                    ],
+                ]
+            ],
+
+
 
             'top-slider' => [
                 'title' => [
@@ -132,9 +161,6 @@ return [
                         'type' => 'select',
                         'special' => 'icons',
                         'list' => ['fa-solid fa-fire', 'fa-solid fa-tag', 'fa-solid fa-triangle-exclamation'],
-                    ],
-                    'date-end' => [
-                        'type' => 'date',
                     ],
                     /*
                     'icon-bg-class' => [
@@ -196,9 +222,6 @@ return [
                     'product-code' => [
                         'type' => 'string',
                     ],
-                    'date-end' => [
-                        'type' => 'date',
-                    ],
                 ]
             ],
 
@@ -218,9 +241,6 @@ return [
                         'type' => 'select',
                         'special' => 'icons',
                         'list' => ['fa-solid fa-fire', 'fa-solid fa-tag', 'fa-solid fa-triangle-exclamation'],
-                    ],
-                    'date-end' => [
-                        'type' => 'date',
                     ],
                     'icon-text' => [
                         'type' => 'i18n',

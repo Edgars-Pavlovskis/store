@@ -122,16 +122,5 @@
 
 
 @section('slider')
-    <div class="axil-main-slider-area main-slider-style-2 main-slider-style-8">
-        <div class="container">
-            <div class="slider-offset-left">
-                <div class="row row--20">
-                    <div class="col-lg-12">
-                        @livewire('show-banner',['type' => 'top-slider', 'limit' => 5])
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
+    @livewire('show-banner',['type' => 'top-image-slider', 'limit' => 5])
 @endsection

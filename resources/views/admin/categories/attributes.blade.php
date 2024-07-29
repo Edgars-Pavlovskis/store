@@ -3,36 +3,55 @@
 
 
 @section('css')
-  <!-- Page JS Plugins CSS -->
-  <link rel="stylesheet" href="{{ asset('js/plugins/datatables-bs5/css/dataTables.bootstrap5.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('js/plugins/datatables-buttons-bs5/css/buttons.bootstrap5.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('js/plugins/datatables-responsive-bs5/css/responsive.bootstrap5.min.css') }}">
 
+  <style>
+    .blue-sortable-class a {
+        border: 1px solid rgba(13, 65, 102, 0.45);
+    }
+  </style>
 @endsection
 
-@section('js')
+@section('js_end')
   <!-- jQuery (required for DataTables plugin) -->
   <script src="{{ asset('js/lib/jquery.min.js') }}"></script>
 
-  <!-- Page JS Plugins -->
-  <script src="{{ asset('js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-  <script src="{{ asset('js/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
-  <script src="{{ asset('js/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-  <script src="{{ asset('js/plugins/datatables-responsive-bs5/js/responsive.bootstrap5.min.js') }}"></script>
-  <script src="{{ asset('js/plugins/datatables-buttons/dataTables.buttons.min.js') }}"></script>
-  <script src="{{ asset('js/plugins/datatables-buttons-bs5/js/buttons.bootstrap5.min.js') }}"></script>
-  <script src="{{ asset('js/plugins/datatables-buttons-jszip/jszip.min.js') }}"></script>
-  <script src="{{ asset('js/plugins/datatables-buttons-pdfmake/pdfmake.min.js') }}"></script>
-  <script src="{{ asset('js/plugins/datatables-buttons-pdfmake/vfs_fonts.js') }}"></script>
-  <script src="{{ asset('js/plugins/datatables-buttons/buttons.print.min.js') }}"></script>
-  <script src="{{ asset('js/plugins/datatables-buttons/buttons.html5.min.js') }}"></script>
+  <script src="{{ asset('js/plugins/sorting/Sortable.min.js') }}"></script>
 
 
-@vite(['resources/js/pages/datatables.js'])
+
+
+  <script>
+    $( document ).ready(function() {
+        var el = document.getElementById('sortable-attributes');
+        var sortable = Sortable.create(el,{
+            animation: 150,
+            ghostClass: 'blue-sortable-class',
+            easing: "cubic-bezier(1, 0, 0, 1)",
+            onUpdate: function (/**Event*/evt) {
+                var newOrder = Array.from(evt.from.children).map(function (item, index) {
+                    // Update the order attribute on the element
+                    item.setAttribute('data-order', index + 1);
+                    return {
+                        id: item.getAttribute('attrID'), // Assuming you have a data-id attribute
+                        order: index + 1,
+                    };
+                });
+                $.ajax({ url: '{{ route("attributes-update-sorting") }}', type: 'POST', data: { "_token": "{{ csrf_token() }}", order: newOrder } });
+            },
+        });
+
+        document.querySelector('.inner-button').addEventListener('click', function(event) {
+            event.stopPropagation();
+            event.preventDefault();
+        });
+    });
+  </script>
+  <!-- Page JS  Code -->
 
 @endsection
 
 @section('content')
+
   <!-- Hero -->
   <div class="bg-body-light">
     <div class="content content-full">
@@ -78,6 +97,7 @@
 
   <!-- Page Content -->
   <div class="content">
+
     <a href="/admin/categories/show/{{isset($current->alias)?$current->alias:''}}">
         <button type="button" class="btn btn-alt-secondary me-1 mb-3">
             <i class="fa-solid fa-caret-left me-1"></i> {{__('admin.goback')}}
@@ -90,57 +110,43 @@
         </button>
     </a>
 
-    <!-- Dynamic Table Responsive -->
     <div class="block block-rounded">
-    <div class="block-header block-header-default">
-        <h3 class="block-title">
-        {{__('admin.attributes.list')}} <small>{{__('admin.attributes.in-choosed-category')}}</small>
-        </h3>
+        <div class="block-header block-header-default">
+            <h3 class="block-title">
+            {{__('admin.attributes.list')}} <small>{{__('admin.attributes.in-choosed-category')}}</small>
+            </h3>
+        </div>
     </div>
-    <div class="block-content block-content-full pt-2">
 
-        <!-- DataTables init on table by adding .js-dataTable-responsive class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-        <table class="table table-bordered table-striped table-vcenter js-dataTable-responsive">
-        <thead>
-            <tr>
-            <th>{{__('admin.attributes.name')}}</th>
-            <th>{{__('admin.attributes.type')}}</th>
-            <th style="width: 5%;">{{__('admin.actions')}}</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($attributes as $attribute)
-                <tr>
-                    <td class="fw-semibold fs-sm"><a href="{{ route('attributes-manage', ['alias'=>$attribute->group ?? 'root', 'id'=>$attribute->id]) }}">{{$attribute->name}}</a></td>
-                    <td>
-                    <span class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">{{__('admin.attributes.input-type-'.$attribute->type)}}</span>
-                    </td>
+    <div id="sortable-attributes" class="row">
+        @foreach ($attributes as $attribute)
+            <div class="col-md-6 col-xl-3" attrID="{{$attribute->id}}">
+                <div class="block block-rounded block-link-shadow" href="{{ route('attributes-manage', ['alias'=>$attribute->group ?? 'root', 'id'=>$attribute->id]) }}">
+                    <div class="block-content block-content-full d-flex flex-row-reverse align-items-center justify-content-between">
+                        <img class="img-avatar img-avatar48" src="/assets/images/icons/attribute.png" alt="">
+                        <div class="me-3">
+                            <p class="fw-semibold mb-0">
+                                {{$attribute->name}}
+                                <span class="fs-sm fw-medium text-muted mb-0">
+                                    ({{__('admin.attributes.input-type-'.$attribute->type)}})
+                                </span>
+                            </p>
+                            <p class="fs-sm fw-medium text-muted mb-0">
+                                <a href="{{ route('attributes-manage', ['alias'=>$attribute->group ?? 'root', 'id'=>$attribute->id]) }}" class="text-info"><i class="fa-solid fa-pen-to-square"></i> {{__('admin.attributes.edit')}}</a>
+                                &nbsp;|&nbsp;
+                                <a href="javascript:void(0);" onclick="Livewire.dispatch('confirmDeleteExternal', { itemId: '{{$attribute->id}}', itemName: '{{$attribute->name}}', model: 'Attributes', parent: '{{$attribute->group}}' })" class="text-danger"><i class="fa-solid fa-trash"></i> {{__('admin.attributes.delete')}}</a>
+                            </p>
 
-                    <td class="text-center">
-                        <div class="btn-group">
-                            <a class="me-1" href="{{ route('attributes-manage', ['alias'=>$attribute->group ?? 'root', 'id'=>$attribute->id]) }}">
-                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="{{__('admin.tooltips.edit')}}">
-                                    <i class="fa fa-fw fa-pencil-alt"></i>
-                                </button>
-                            </a>
-                            <a href="javascript:void(0);">
-                                <button type="button" class="btn btn-sm btn-alt-secondary" title="{{__('admin.tooltips.delete')}}" onclick="Livewire.dispatch('confirmDeleteExternal', { itemId: '{{$attribute->id}}', itemName: '{{$attribute->name}}', model: 'Attributes', parent: '{{$attribute->group}}' })">
-                                    <i class="fa fa-fw fa-times"></i>
-                                </button>
-                            </a>
-                            </div>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
-    </div>
-    <!-- Dynamic Table Responsive -->
 
 
   </div>
-
   <!-- END Page Content -->
   @livewire('delete-confirmation')
+
 @endsection

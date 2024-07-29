@@ -32,8 +32,26 @@ class CategoriesController extends Controller
             'current' => $current,
             'showinnactive' => $showinnactive
         ]);
+    }
+
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        if(strlen($search)>0) {
+            $products = Products::search($search)->get();
+        } else {
+            $products = [];
+        }
+
+        return view('admin.categories.search',[
+            'products' => $products,
+            'search' => $search
+        ]);
+
 
     }
+
 
 
     public function updateSorting(Request $request)
@@ -42,6 +60,17 @@ class CategoriesController extends Controller
         foreach ($newOrder as $item) {
             // Update the order attribute in the database
             Categories::where('id', $item['id'])->update(['priority' => $item['order']]);
+        }
+        return response()->json(['success' => true]);
+    }
+
+
+    public function updateAttributesSorting(Request $request)
+    {
+        $newOrder = $request->input('order');
+        foreach ($newOrder as $item) {
+            // Update the order attribute in the database
+            Attributes::where('id', $item['id'])->update(['priority' => $item['order']]);
         }
         return response()->json(['success' => true]);
     }
@@ -91,7 +120,7 @@ class CategoriesController extends Controller
         if($alias == "root") $alias = null;
         $current = Categories::whereAlias($alias)->first();
         return view('admin.categories.attributes',[
-            'attributes' => Attributes::where('group', $alias)->get(),
+            'attributes' => Attributes::where('group', $alias)->orderBy('priority')->get(),
             'current' => $current
         ]);
     }

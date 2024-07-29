@@ -41,28 +41,6 @@
   </script>
 
 
-  <script>
-    $( document ).ready(function() {
-        var el = document.getElementById('sortable-categories');
-        var sortable = Sortable.create(el,{
-            animation: 150,
-            ghostClass: 'blue-sortable-class',
-            easing: "cubic-bezier(1, 0, 0, 1)",
-            onUpdate: function (/**Event*/evt) {
-                var newOrder = Array.from(evt.from.children).map(function (item, index) {
-                    // Update the order attribute on the element
-                    item.setAttribute('data-order', index + 1);
-                    return {
-                        id: item.getAttribute('catID'), // Assuming you have a data-id attribute
-                        order: index + 1,
-                    };
-                });
-                $.ajax({ url: '{{ route("categories-update-sorting") }}', type: 'POST', data: { "_token": "{{ csrf_token() }}", order: newOrder } });
-            },
-        });
-    });
-  </script>
-  <!-- Page JS  Code -->
 
 
 @vite(['resources/js/pages/datatables.js'])
@@ -74,13 +52,14 @@
     <form class="d-none d-md-inline-block" action="{{route('categories-search-product')}}" method="GET">
 
         <div class="input-group input-group-sm">
-        <input type="text" class="form-control form-control-alt" placeholder="Search.." id="page-header-search-input2" name="search">
+        <input type="text" class="form-control form-control-alt" placeholder="Search.." value="{{$search}}" id="page-header-search-input2" name="search">
         <span class="input-group-text border-0">
             <i class="fa fa-fw fa-search"></i>
         </span>
         </div>
     </form>
 @endsection
+
 
 @section('content')
   <!-- Hero -->
@@ -89,37 +68,26 @@
       <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
         <div class="flex-grow-1">
           <h1 class="h3 fw-bold mb-1">
-            @if (isset($current->id))
-                {{$current->title}}
-                <a href="{{ route('categories-edit', ['alias'=>$current->alias]) }}"><i class="fa-solid fa-pen-to-square fa-xs ms-2"></i></a>
-                <a href="javascript:void()" onclick="Livewire.dispatch('confirmDeleteExternal', { itemId: '{{$current->id}}', itemName: '{{$current->title}}', model: 'Categories', parent: '{{$current->parent_alias}}' })"><i class="fa fa-trash fa-xs ms-2"></i></a>
-            @else
-                {{__('admin.categories.title')}}
-            @endif
+            {{__('admin.products.products-search')}}
           </h1>
           <h2 class="fs-base lh-base fw-medium text-muted mb-0">
-            @if (isset($current->id))
-                {{$current->description}}
-            @else
-                {{__('admin.categories.description')}}
-            @endif
+            {{__('admin.products.search-term')}}: "{{$search}}"
           </h2>
         </div>
         <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
           <ol class="breadcrumb breadcrumb-alt">
+
             <li class="breadcrumb-item">
-              <a class="link-fx" href="/admin/categories/show/">{{__('admin.categories.title')}}</a>
+                {{__('admin.products.list')}}
+            </li>
+            <li class="breadcrumb-item" aria-current="page">
+                {{__('admin.products.search-results')}}
             </li>
 
-            @if (isset($current->id))
-                <li class="breadcrumb-item" aria-current="page">
-                    {{$current->title}}
-                </li>
-            @else
-                <li class="breadcrumb-item" aria-current="page">
-                    {{__('admin.list')}}
-                </li>
-            @endif
+            <li class="breadcrumb-item" aria-current="page">
+                "{{$search}}"
+            </li>
+
           </ol>
         </nav>
       </div>
@@ -131,85 +99,17 @@
 
   <!-- Page Content -->
   <div class="content">
-    @if (isset($current->id))
-        <a href="/admin/categories/show/{{isset($current->parent_alias)?$current->parent_alias:''}}">
-            <button type="button" class="btn btn-alt-secondary me-1 mb-3">
-                <i class="fa-solid fa-caret-left me-1"></i> {{__('admin.goback')}}
-            </button>
-        </a>
-    @endif
-
-    <a href="/admin/categories/create/{{isset($current->alias)?$current->alias:''}}">
-        <button type="button" class="btn btn-alt-success me-1 mb-3">
-            <i class="fa fa-fw fa-plus me-1"></i> {{__('admin.categories.add')}}
-        </button>
-    </a>
-
-    <a href="/admin/categories/attributes/{{isset($current->alias)?$current->alias:''}}">
-        <button type="button" class="btn btn-alt-info me-1 mb-3">
-            <i class="fa-solid fa-sliders me-1"></i> {{__('admin.attributes.show')}}
-        </button>
-    </a>
 
 
-
-
-
-    <div id="sortable-categories" class="row">
-        @foreach ($categories as $category)
-            <div class="col-md-6 col-xl-3" catID="{{$category->id}}">
-                <a class="block block-rounded block-link-shadow" href="/admin/categories/show/{{isset($category->alias)?$category->alias:''}}">
-                <div class="block-content block-content-full d-flex flex-row-reverse align-items-center justify-content-between">
-                    <img class="img-avatar img-avatar48" src="/storage/categories/{{$category->image}}" alt="">
-                    <div class="me-3">
-                        <p class="fw-semibold mb-0">{{$category->title}}</p>
-                        <p class="fs-sm fw-medium text-muted mb-0">
-                            {{$category->alias}}
-                        </p>
-
-                    </div>
-                </div>
-                </a>
-            </div>
-        @endforeach
-    </div>
-
-
-
-
-    @if (isset($current->id))
 
           <!-- Dynamic Table Responsive -->
           <div class="block block-rounded">
             <div class="block-header block-header-default">
               <h3 class="block-title">
-                {{__('admin.products.list')}} <small>{{__('admin.products.in-choosed-category')}}</small>
+                {{__('admin.products.list')}} <small>{{__('admin.products.search-results')}}</small>
               </h3>
             </div>
             <div class="block-content block-content-full pt-2">
-                <a href="{{ route('products-create', ['alias'=>$current->alias]) }}">
-                    <button type="button" class="btn btn-sm btn-success me-1 mb-3">
-                        <i class="fa fa-fw fa-plus me-1"></i> {{__('admin.products.add')}}
-                    </button>
-                </a>
-
-                @if ($showinnactive)
-                    <a href="{{ route('categories-index', ['alias'=>$current->alias, 'showinnactive'=>'']) }}">
-                        <button type="button" class="btn btn-sm btn-secondary me-1 mb-3">
-                            <i class="fa-solid fa-eye me-1"></i> {{__('admin.Show all')}}
-                        </button>
-                    </a>
-                @else
-                    <a href="{{ route('categories-index', ['alias'=>$current->alias, 'showinnactive'=>'show-innactive']) }}">
-                        <button type="button" class="btn btn-sm btn-secondary me-1 mb-3">
-                            <i class="fa-solid fa-eye-slash me-1"></i> {{__('admin.Show innactive')}}
-                        </button>
-                    </a>
-                @endif
-
-
-
-
 
               <!-- DataTables init on table by adding .js-dataTable-responsive class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
               <table class="table table-bordered table-striped table-vcenter js-dataTable-responsive">
@@ -295,10 +195,6 @@
             </div>
           </div>
           <!-- Dynamic Table Responsive -->
-
-    @endif
-
-
 
 
 
