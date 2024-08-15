@@ -6,6 +6,10 @@ use App\Models\Products;
 use App\Models\ProductsAttribute;
 use App\Models\ProductsVariation;
 
+use App\Mail\ClientNewOrder;
+use App\Mail\AdminNewOrder;
+use Illuminate\Support\Facades\Mail;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -17,6 +21,14 @@ class FrontendController extends Controller
         return view('frontend.index',[
             'categories' => Categories::whereFeatured(1)->select('id','title','alias','image')->orderBy('priority')->get(),
         ]);
+    }
+
+
+
+    public function mailtest()
+    {
+        //Mail::to('Edgars.Pavlovskis@gmail.com')->queue(new AdminNewOrder('jF3uJrlG28LI1723630397'));
+        //Mail::to('Edgars.Pavlovskis@gmail.com')->queue(new ClientNewOrder('jF3uJrlG28LI1723630397'));
     }
 
 

@@ -7,7 +7,6 @@ use App\Models\Orders;
 
 class OrdersController extends Controller
 {
-
     public $search = '';
 
     public function index(Request $request)

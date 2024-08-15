@@ -87,6 +87,9 @@ class DeleteConfirmation extends Component
             case "Banner":
                 return redirect()->route('banners-show');
                 break;
+            case "User":
+                return redirect()->route('clients-show');
+                break;
         }
     }
 

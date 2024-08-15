@@ -5,6 +5,18 @@
 
 @section('content')
 
+<style>
+    .axil-privacy-policy p {
+        margin-bottom: 20px;
+    }
+    .axil-privacy-policy ul {
+        margin-bottom: 35px;
+    }
+    .axil-privacy-policy ul.nobm {
+        margin-bottom: 15px;
+    }
+</style>
+
   <!-- Start Breadcrumb Area  -->
   <div class="axil-breadcrumb-area">
     <div class="container">
@@ -22,7 +34,7 @@
             <div class="col-lg-6 col-md-4">
                 <div class="inner">
                     <div class="bradcrumb-thumb">
-                        <img src="assets/images/product/product-45.png" alt="Image">
+                        <img src="{{asset('assets/img/privacy.png')}}" alt="Image">
                     </div>
                 </div>
             </div>
@@ -37,44 +49,113 @@
         <div class="row">
             <div class="col-lg-10">
                 <div class="axil-privacy-policy">
-                    <span class="policy-published">This Privacy policy was published on February 26th, 2022.</span>
-                    <h4 class="title">GDPR compliance</h4>
-                    <p>Sed nec ex vitae justo molestie maximus. Sed ut neque sit amet libero rhoncus tempor. Fusce tempor quam libero, varius congue magna tempus vitae. Donec a justo nec elit sagittis sagittis eu a ante. Vivamus rutrum elit odio. Donec gravida id ligula ut faucibus. Aenean convallis ligula orci, ut congue nunc sodales ut. In ultrices elit malesuada velit ornare, eget dictum velit hendrerit. Praesent bibendum blandit lectus, eu congue neque mollis in. Pellentesque metus diam, hendrerit in purus fringilla, accumsan bibendum sapien. Nunc non facilisis sem.</p>
-                    <h4 class="title">About eTrade</h4>
-                    <p>In dapibus, nibh sit amet pulvinar convallis, massa nunc tincidunt nunc, a pretium risus nulla ut dui. Ut ut condimentum tellus, dapibus volutpat est. Integer ullamcorper iaculis blandit. Pellentesque id tempus urna. Quisque luctus cursus imperdiet. <a href="mailto:hello@etrade.store">hello@etrade.store</a></p>
-                    <h4 class="title">When we collect personal data about you</h4>
-                    <ul>
-                        <li>Email is a crucial channel in any marketing.</li>
-                        <li>Curious what to say? How to say it?</li>
-                        <li>Whether you’re kicking off a new campaign.</li>
-                        <li>Habitasse per feugiat aliquam luctus accumsan curae</li>
+                    <span class="policy-published">Pamatojoties uz Personas datu aizsardzības regulu Nr.2016/679.</span>
+                    <h4 class="title">Personas datu apstrāde</h4>
+                    <p>SIA “ALBA-LTD” vāc, apstrādā, glabā, kopīgo, dzēš un aizsargā klienta personas datus, pamatojoties uz Personas datu aizsardzības regulu Nr.2016/679 un citiem LR spēkā esošiem normatīviem aktiem.</p>
+                    <p>Saskaņā ar spēkā esošajiem normatīvajiem aktiem, kuri pārvalda fizisko personu datu apstrādes sistēmu, SIA “ALBA-LTD” ievēro šādus principus:
+                        <ul class="list">
+                            <li>SIA “ALBA-LTD” nodrošina likumīgu, godprātīgu personas datu apstrādi;</li>
+                            <li>Saņemto personas datu apstrāde tiek veikta noteiktiem mērķiem;</li>
+                            <li>Saņemtie personas dati ir adekvāti, atbilstīgie;</li>
+                            <li>Saņemtie personas dati ir precīzi;</li>
+                            <li>Saņemtie personas dati netiek saglabāti ilgāk nekā nepieciešams un tiek likvidēti sasniedzot noteikto mērķi;</li>
+                            <li>SIA “ALBA-LTD” apstrādā personas datus ievērojot fizisko personu tiesības;</li>
+                            <li>SIA “ALBA-LTD” nodrošina personas datus glabāšanu drošībā;</li>
+                            <li>SIA “ALBA-LTD” nesniedz saņemtos personas datus citiem uzņēmumiem ievērojot drošu, adekvātu aizsardzību, pamatojoties un ievērojot LR spēkā esošiem normatīviem aktiem un Personas datu aizsardzības regulu Nr.2016/679.</li>
+                        </ul>
+                    </p>
+
+
+                    <h4 class="title">Privātuma politika</h4>
+                    <p>Privātuma politika attiecas uz ikviena klienta personas datu apstrādi un klientam piedāvāto pakalpojumu. Privātuma politika sniedz informāciju par to, kā SIA “ALBA-LTD” vāc, apstrādā, glabā, kopīgo, dzēš un aizsargā klienta personas datus. SIA “ALBA-LTD” nodrošina likumīgu, godprātīgu klienta personas datu apstrādi.</p>
+
+                    <h4 class="title"></h4>
+                    <p>Personas datu kategorijas ir atkarīgas no klienta izmantotajiem pakalpojumiem un produktiem. SIA “ALBA-LTD” ir tiesīga apstrādāt šādas personas datu kategorijas:
+                        <ul class="list">
+                            <li>Dati, kurus klients pats paziņo SIA “ALBA-LTD”;</li>
+                            <li>Vārds, uzvārds, personas kods vai dzimšanas datums;</li>
+                            <li>Korespondences adrese, telefona numurs, e-pasta adrese;</li>
+                            <li>Bankas dati;</li>
+                            <li>Videonovērošanas ieraksti un attēli;</li>
+                            <li>Komunikācijas dati. Informācija no e-pasta adreses – vēstules, kas ir saistīti ar klienta komunikāciju ar kompāniju;</li>
+                            <li>Sīkdatnes – dati par SIA “ALBA-LTD” interneta vietnes apmeklēšanu.</li>
+                        </ul>
+                    </p>
+                    <p>Ja klients nevēlas atļaut izmantot sīkdatnes, klients var to izdarīt savas pārlūkprogrammas uzstādījumos, tomēr tādā gadījumā vietnes lietošana var būt ierobežota:
+                        <ul class="list">
+                            <li>Dati, laiks, interneta pārlūkošanas apjoms.</li>
+                        </ul>
+                    </p>
+
+                    <h4 class="title">Personas datu apstrādes pamats</h4>
+                    <ul class="list">
+                        <li>Klienta piekrišana. Klients, kā personas datu subjekts, pats dod piekrišanu (subjekta piekrišana) personas datu vākšanai un apstrādei noteiktiem mērķiem klienta piekrišana ir viņa brīva griba un patstāvīgs lēmums, kas var tikt sniegts/atsaukts jebkurā brīdī, tādējādi atļaujot SIA “ALBA-LTD” apstrādāt personas datus. Piekrišanas atsaukums neietekmē apstrādes likumību vai saņemto pakalpojumu kvalitāti, kas pamatojas uz piekrišanu pirms atsaukuma.</li>
+                        <li>SIA “ALBA-LTD” leģitīmas intereses, kuru pamatā ir kvalitatīvu pakalpojumu piedāvājums. SIA “ALBA-LTD” ir tiesības apstrādāt klienta personas datus tādā apjomā, kāds tam ir objektīvi nepieciešams un pietiekams, lai nodrošinātu savlaicīgu, kvalitatīvu, ērtu apkalpošanu. Kā arī SIA “ALBA-LTD” iekšējo procesu izveidošanai un atbalstam.</li>
+                        <li>SIA “ALBA-LTD” juridisko pienākumu izpilde. SIA “ALBA-LTD” ir tiesīga apstrādāt klienta personas datus, lai izpildītu normatīvo aktu prasības, lai sniegtu atbildes uz valsts un pašvaldības likumīgiem pieprasījumiem.</li>
+                        <li>Līguma noslēgšana un izpilde. Lai klientam sniegtu kvalitatīvus pakalpojumus un apkalpošanu, SIA “ALBA-LTD” apkopo un apstrādā noteiktus personas datus, kas tiek savākti pirms līguma noslēgšanas vai jau noslēgtā līguma laikā.</li>
+                        <li>Sabiedrības interešu īstenošana vai oficiālo pilnvaru izpildīšana. SIA “ALBA-LTD” ir tiesīga apstrādāt personas datus. Šādos gadījumos pamats personas datu apstrādei ir iekļauts un aprakstīts normatīvajos aktos.</li>
+                        <li>Apstrādājot Klienta personas datus, SIA “ALBA-LTD” var veikt profilēšanu, lai piešķirtu bonusus, lai sūtītu automatizētus individuālus piedāvājumus, kuri tiek piedāvāti tikai biznesa nolūkos un neradīs klientam tiesiskas sekas.</li>
                     </ul>
-                    <h4 class="title">Why we collect and use personal data</h4>
-                    <p>Sed nec ex vitae justo molestie maximus. Sed ut neque sit amet libero rhoncus tempor. Fusce tempor quam libero, varius congue magna tempus vitae. Donec a justo nec elit sagittis sagittis eu a ante. Vivamus rutrum elit odio. Donec gravida id ligula ut faucibus. Aenean convallis ligula orci, ut congue nunc sodales ut. In ultrices elit malesuada velit ornare, eget dictum velit hendrerit. Praesent bibendum blandit lectus, eu congue neque mollis in. Pellentesque metus diam, hendrerit in purus fringilla, accumsan bibendum sapien. Nunc non facilisis sem.</p>
-                    <ul>
-                        <li>Nulla facilisi. Sed pulvinar nec purus eu sollicitudin. Quisque ut tempus quam, in cursus eros. </li>
-                        <li>Fusce malesuada luctus velit eu tempor. Pellentesque habitant morbi tristique senectus et netus et.</li>
-                        <li>Pellentesque ornare nulla est, non blandit sapien lacinia nec. Nulla ac velit id est mattis faucibus.</li>
-                        <li>Aliquam lacus nisi, lobortis non diam eget, malesuada bibendum justo. Praesent fringilla sagittis ex, ac molestie ipsum ullamcorper a.</li>
-                        <li>Vestibulum nulla tortor, aliquam at porta in, hendrerit sed nibh.</li>
+
+
+                    <h4 class="title">Nolūki personas datus apstrādāšanai</h4>
+                    <ul class="list">
+                        <li>Līguma noslēgšanai un izpildei ar klientu.</li>
+                        <li>Lai novērtētu klienta spēju pildīt līgumsaistības.</li>
+                        <li>Efektīvas naudas plūsmas pārvaldīšanai, t.sk., klienta maksājumu un parādu administrēšanai.</li>
+                        <li>Tehniskā atbalsta nodrošināšanai saistībā ar sniegtajiem pakalpojumiem.</li>
+                        <li>Videonovērošanas drošības nolūkiem un SIA “ALBA-LTD” leģitīmas intereses aizsardzībai (īpašuma drošības nodrošināšanai).</li>
+                        <li>Nozares attīstības veicināšanai un jaunu pakalpojumu piedāvājumam.</li>
+                        <li>Statistisko datu apstrādei un tirgus analīzes veikšanai.</li>
                     </ul>
-                    <h4 class="title">Type of personal data collected</h4>
-                    <p>In ultrices elit malesuada velit ornare, eget dictum velit hendrerit. Praesent bibendum blandit lectus, eu congue neque mollis in. Pellentesque metus diam, hendrerit in purus fringilla, accumsan bibendum sapien. Nunc non facilisis sem.</p>
-                    <h4 class="title">Information we collect automatically</h4>
-                    <p>Etiam vel mi vel neque mattis iaculis. Proin vitae consequat augue, vel porta tellus. Nullam tincidunt ac lorem eu lacinia. Praesent ac diam id odio elementum efficitur. Suspendisse sit amet urna vitae neque tempor pellentesque. Aenean ut dapibus urna. Pellentesque neque nulla, interdum vitae rhoncus at, pretium id arcu. Etiam sodales lectus at convallis vestibulum. Quisque non neque augue. Nullam condimentum nulla felis, nec suscipit augue congue ac.</p>
-                    <h4 class="title">The use of cookies and web beacons</h4>
-                    <p class="mb--20">We may log information using "cookies." Cookies are small data files stored on your hard drive by a website. Cookies help us make our Site and your visit better.</p>
-                    <p class="mb--20">We may log information using digital images called web beacons on our Site or in our emails.</p>
-                    <p>This information is used to make our Site work more efficiently, as well as to provide business and marketing information to the owners of the Site, and to gather such personal data as browser type and operating system, referring page, path through site, domain of ISP, etc. for the purposes of understanding how visitors use our Site. Cookies and similar technologies help us tailor our Site to your personal needs, as well as to detect and prevent security threats and abuse. If used alone, cookies and web beacons do not personally identify you.</p>
-                    <h4 class="title">How long we keep your data</h4>
-                    <p class="mb--20">We store personal data for as long as we find it necessary to fulfill the purpose for which the personal data was collected, while also considering our need to answer your queries or resolve possible problems. This helps us to comply with legal requirements under applicable laws, to attend to any legal claims/complaints, and for safeguarding purposes.</p>
-                    <p>This means that we may retain your personal data for a reasonable period after your last interaction with us. When the personal data that we have collected is no longer required, we will delete it securely. We may process data for statistical purposes, but in such cases, data will be anonymized.</p>
-                    <h4 class="title">Your rights to your personal data</h4>
-                    <p>We store personal data for as long as we find it necessary to fulfill the purpose for which the personal data was collected, while also considering our need to answer your queries or resolve possible problems. This helps us to comply with legal requirements under applicable laws, to attend to any legal claims/complaints, and for safeguarding purposes.</p>
-                    <h4 class="title">Hotjar’s privacy policy</h4>
-                    <p>Pellentesque vestibulum venenatis iaculis. Aliquam viverra sodales ultrices. Quisque sed purus id massa consequat consectetur eu vel lorem. Maecenas lectus velit, cursus quis orci non, laoreet hendrerit mi. Nulla vitae ipsum fringilla, placerat metus eu, malesuada velit. Quisque viverra risus ex. Aenean commodo vestibulum efficitur. Nullam ligula orci, aliquet sed luctus vel, luctus vel dui. Sed pulvinar, ipsum at mattis imperdiet, diam augue tempor diam, sed porttitor odio elit ut ante. In posuere mi at mi pellentesque ornare sit amet gravida nisi. Praesent ac blandit odio. Curabitur iaculis ante elit, et imperdiet leo mollis at.</p>
-                    <h4 class="title">Changes to this Privacy Policy</h4>
-                    <p>Integer eu ornare lectus, ornare ullamcorper tellus. Morbi in urna a justo dignissim luctus. Nam sagittis ante ut lorem feugiat, sed consectetur ligula lacinia. Vestibulum quis mauris sed lectus pretium dictum sed vitae orci. Vestibulum facilisis facilisis mauris non maximus. Nam tristique ipsum egestas, suscipit orci sit amet, rutrum ante. Proin in felis pellentesque, ullamcorper enim vel, molestie ipsum.</p>
+
+                    <h4 class="title">Personas datu iegūšana</h4>
+                    <p>SIA “ALBA-LTD” iegūst klienta personas datus, kad klients:
+                        <ul class="list">
+                            <li>Pierakstās jaunumu saņemšanai no SIA “ALBA-LTD”;</li>
+                            <li>Iegādājas un izmanto produktus vai pakalpojumus no SIA “ALBA-LTD”;</li>
+                            <li>Piedalās konkursos, loterijās vai aptaujās;</li>
+                            <li>Apmeklē vai pārlūko SIA “ALBA-LTD” interneta vietnes;</li>
+                            <li>Tiek filmēts ar videonovērošanas iekārtam;</li>
+                        </ul>
+                    </p>
+                    <p>SIA “ALBA-LTD” un to pilnvarotās personas, pamatojoties uz Personas datu aizsardzības regulu Nr.2016/679 ir tiesīga apstrādāt klienta personas datus, kas ir saņemti no trešajām personām (piem., no līzinga kompānijas), ja klients tam ir piekritis.</p>
+                    <p>SIA “ALBA-LTD” un to pilnvarotās personas, pamatojoties uz Personas datu aizsardzības regulu Nr.2016/679 ir tiesīga apstrādāt klienta personas datus, kas ir saņemti no klienta.</p>
+
+
+                    <h4 class="title">Personas datu glabāšanas laikaposms</h4>
+                    <p>SIA “ALBA-LTD” ir tiesīga apstrādāt un glabāt personas datus, kamēr:
+                        <ul class="list">
+                            <li>Kamēr nav atsaukta klienta piekrišana personas datu apstrādei;</li>
+                            <li>Nepieciešams termiņš SIA “ALBA-LTD” leģitīmo interešu realizācijai un aizsardzībai;</li>
+                            <li>Personas datu glabāšanās termiņš ir noteikts normatīvajos aktos;</li>
+                            <li>Ir spēkā līgumsaistības starp klientu un SIA “ALBA-LTD”;</li>
+                            <li>Līdz personas datu izmantošanas mērķa sasniegšanai, kas noteikta  to saņemšanas brīdī.</li>
+                        </ul>
+                    </p>
+
+                    <h4 class="title">Personas datu koplietošana</h4>
+                    <p>SIA “ALBA-LTD” sniedz klienta personas datus tikai nepieciešamā un pietiekamā apjomā atbilstoši normatīvo aktu prasībām un ņemot vērā konkrētās situācijas objektīvus apstākļus.</p>
+                    <p>Nepieciešamības gadījumā SIA “ALBA-LTD” nodot klienta personas datus SIA “ALBA-LTD” pilnvarotām personām, pamatojoties uz Personas datu aizsardzības regulu Nr.2016/679 un/vai partneriem, aģentiem, pakalpojumu  piegādātājiem, kas iesaistīti klientam pasūtīto vai izmantoto produktu un pakalpojumu kvalitātes nodrošināšanai un uzlabošanai.</p>
+                    <p>SIA “ALBA-LTD” ir tiesīga nodot klienta personas datus tiesībsargājošām iestādēm, citām valsts un pašvaldības iestādēm, ja tas izriet no normatīvajiem aktiem vai attiecīgās iestādes informācijas pieprasījuma.</p>
+
+
+                    <h4 class="title">Personas datu aizsardzība</h4>
+                    <p>Lai aizsargātu klienta personas datus no nesankcionētas piekļuves, nejaušas nozaudēšanas, iznīcināšanas vai izpaušanas SIA “ALBA-LTD” pielieto mūsdienu tehnoloģijas, ievēro tehniskas un organizatoriskas prasības.</p>
+                    <p>SIA “ALBA-LTD” rūpīgi pārbauda visas pilnvarotās personas, partnerus, aģentus, pakalpojuma sniedzējus, kompānijas darbiniekus, kuri apstrādā klienta personas datus, ka arī izvērtē atbilstošu drošības pasākumu pielietošanu un personas datu glabāšanu atbilstoši normatīvo aktu prasībām.</p>
+                    <p>SIA “ALBA-LTD” neuzņemas atbildību par jebkādu nesankcionētu piekļuvi personas datiem un/vai personas datu zudumu, ja tas nav atkarīgs no SIA “ALBA-LTD” (piem., klienta vainas un/vai nolaidības dēļ).</p>
+
+
+                    <h4 class="title">Klienta tiesības</h4>
+                    <ul class="list">
+                        <li>Klientam ir tiesības jebkurā brīdī atteikties no komercpaziņojumu saņemšanas un iebilst pret savu personas datu profilēšanu.</li>
+                        <li>Piekrišanas atsaukums neietekmē personas datu apstrādes likumību un/vai saņemto pakalpojumu kvalitāti, kas pamatojas uz piekrišanu pirms atsaukuma.</li>
+                        <li>Klientam ir tiesības labot visus rīcībā esošos personas datus par sevi.</li>
+                        <li>Klientam ir tiesības pieprasīt dzēst vai ierobežot to personas datu apstrādi, kuru apstrāde vairs nav nepieciešama saskaņā ar nolūkiem, kādiem tie tika vākti un apstrādāti (tiesības “Tikt aizmirstam”), sniedzot iesniegumu.</li>
+                        <li>Klientam ir tiesības iegūt informāciju par tām fiziskām vai juridiskām personām, kuras ir saņēmušas informāciju par šo klientu.</li>
+                        <li>Klientam ir tiesības saņemt vai nodot savus personas datus tālāk citam datu pārzinim (“datu pārnesamība”). Šīs tiesības ietver tikai tos datus, ko klients ir sniedzis SIA “ALBA-LTD”, pamatojoties uz savu piekrišanu vai līgumu, un ja apstrādāšana tiek veikta automatizēti. Lai īstenotu iepriekš minētās tiesības nepieciešams iesniegt rakstveida iesniegumu.</li>
+                    </ul>
+
                 </div>
             </div>
         </div>

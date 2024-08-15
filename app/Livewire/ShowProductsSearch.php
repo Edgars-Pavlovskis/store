@@ -16,6 +16,12 @@ class ShowProductsSearch extends Component
     public $showMoreButton = false;
 
     public $isLoading = false;
+    public $clientDiscounts = [];
+
+    public function mount()
+    {
+        $this->clientDiscounts = session('user.discounts', []);
+    }
 
     public function search()
     {
@@ -38,6 +44,10 @@ class ShowProductsSearch extends Component
     {
         $product = Products::whereId($product_id)->first();
         if($product->id) {
+            $userdiscounts = session('user.discounts', []);
+            if(isset($userdiscounts[$product['parent']]) && is_numeric($userdiscounts[$product['parent']])) {
+                $product['discount'] = ($userdiscounts[$product['parent']] > $product['discount']) ? $userdiscounts[$product['parent']] : $product['discount'];
+            }
             $data = array();
             $data['product'] = array(
                 'key' => Str::random(5) . '-' . time(),
@@ -46,6 +56,7 @@ class ShowProductsSearch extends Component
                 'image' => $product['image'],
                 'code' => $product['code'],
                 'inner_code' => $product['inner_code'],
+                'fullprice' => $product['price'],
                 'price' => $product['price']-($product['price'] * ($product['discount']/100)),
                 'discount' => $product['discount'],
                 'parent' => $product['parent'],

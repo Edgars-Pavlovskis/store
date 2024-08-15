@@ -11,26 +11,27 @@
                   <!-- Sign Up Block -->
                   <div class="block block-rounded mb-0">
                     <div class="block-header block-header-default">
-                      <h3 class="block-title">Create Account</h3>
+                      <h3 class="block-title">Lietotāja profila reģistrācija</h3>
                       <div class="block-options">
-                        <a class="btn-block-option fs-sm" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#one-signup-terms">View Terms</a>
-                        <a class="btn-block-option" href="{{route('login')}}" data-bs-toggle="tooltip" data-bs-placement="left" title="Sign In">
+                        <a class="btn-block-option" href="{{route('login')}}" data-bs-toggle="tooltip" data-bs-placement="left" title="Jau ir konts? Autorizējies!">
                           <i class="fa fa-sign-in-alt"></i>
                         </a>
                       </div>
                     </div>
                     <div class="block-content">
                       <div class="p-sm-3 px-lg-4 px-xxl-5 py-lg-5">
-                        <h1 class="h2 mb-1">OneUI</h1>
+                        <img src="{{asset('assets/img/alba-red.png')}}" alt="" class="img-fluid">
                         <p class="fw-medium text-muted">
-                          Please fill the following details to create a new account.
+                            Lūdzu, aizpildiet ievadformu, lai izveidotu jaunu kontu.
                         </p>
 
+                        <!--
                         <a href="{{route('auth.google')}}">
                             <button type="button" class="btn btn-outline-danger  me-1 mb-3">
-                                <i class="fa-brands fa-google me-1"></i> {{__('Sign up using Google')}}
+                                <i class="fa-brands fa-google me-1"></i> {{__('Reģistrēties izmantojot Google kontu')}}
                             </button>
                         </a>
+                        -->
 
                         <!-- Sign Up Form -->
                         <!-- jQuery Validation (.js-validation-signup class is initialized in js/pages/op_auth_signup.min.js which was auto compiled from _js/pages/op_auth_signup.js) -->
@@ -39,7 +40,7 @@
                             @csrf
                           <div class="py-3">
                             <div class="mb-4">
-                              <input type="text" class="form-control @error('name') is-invalid @enderror form-control-lg form-control-alt" id="name" name="name" value="{{ old('name') }}" placeholder="{{ __('Username') }}" required autocomplete="name" autofocus>
+                              <input type="text" class="form-control @error('name') is-invalid @enderror form-control-lg form-control-alt" id="name" name="name" value="{{ old('name') }}" placeholder="{{ __('frontend.Username') }}" required autocomplete="name" autofocus>
                               @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -47,7 +48,7 @@
                                 @enderror
                             </div>
                             <div class="mb-4">
-                              <input type="email" class="form-control @error('email') is-invalid @enderror form-control-lg form-control-alt" id="email" name="email" value="{{ old('email') }}" placeholder="{{ __('Email') }}" required autocomplete="email">
+                              <input type="email" class="form-control @error('email') is-invalid @enderror form-control-lg form-control-alt" id="email" name="email" value="{{ old('email') }}" placeholder="{{ __('frontend.Email') }}" required autocomplete="email">
                               @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -55,7 +56,7 @@
                                 @enderror
                             </div>
                             <div class="mb-4">
-                              <input type="password" class="form-control @error('password') is-invalid @enderror form-control-lg form-control-alt" id="password" name="password" placeholder="{{ __('Password') }}" required autocomplete="new-password">
+                              <input type="password" class="form-control @error('password') is-invalid @enderror form-control-lg form-control-alt" id="password" name="password" placeholder="{{ __('frontend.Password') }}" required autocomplete="new-password">
                               @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -63,19 +64,18 @@
                                 @enderror
                             </div>
                             <div class="mb-4">
-                              <input type="password" class="form-control form-control-lg form-control-alt" id="password-confirm" name="password_confirmation" placeholder="{{ __('Confirm Password') }}" required autocomplete="new-password">
+                              <input type="password" class="form-control form-control-lg form-control-alt" id="password-confirm" name="password_confirmation" placeholder="{{ __('frontend.Confirm Password') }}" required autocomplete="new-password">
                             </div>
                             <div class="mb-4">
-                              <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="signup-terms" name="signup-terms">
-                                <label class="form-check-label" for="signup-terms">I agree to Terms &amp; Conditions</label>
-                              </div>
+                                <p class="fw-medium text-muted">
+                                    Reģistrējoties, Jūs apstiprināt, ka piekrītat <a class="link-warning" href="#">internetveikala lietošanas noteikumiem</a> un esat iepazinušies ar mūsu <a class="link-warning" href="#">privātumu politiku</a>.
+                                </p>
                             </div>
                           </div>
                           <div class="row mb-4">
                             <div class="col-md-6 col-xl-5">
                               <button type="submit" class="btn w-100 btn-alt-success">
-                                <i class="fa fa-fw fa-plus me-1 opacity-50"></i> {{ __('Register') }}
+                                <i class="fa fa-fw fa-plus me-1 opacity-50"></i> {{ __('Reģistrēties') }}
                               </button>
                             </div>
                           </div>

@@ -393,7 +393,6 @@
                             </div>
                         </div>
 
-
                         <button type="submit" class="axil-btn btn-bg-primary checkout-btn">{{__('frontend.checkout.make-order')}}</button>
                     </div>
                 </div>

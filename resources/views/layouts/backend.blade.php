@@ -257,10 +257,23 @@
                   </li>
 
                 </ul>
-              </li>
+            </li>
 
 
+            <li class="nav-main-item{{ request()->is('clients/*') ? ' open' : '' }}">
+                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                  <i class="fa-solid fa-user-group me-2" aria-hidden="true"></i>
+                  <span class="nav-main-link-name">{{__('admin.navi.clients')}}</span>
+                </a>
+                <ul class="nav-main-submenu">
+                  <li class="nav-main-item">
+                    <a class="nav-main-link{{ ((request()->is('clients/*'))) ? ' active' : '' }}" href="/clients/show">
+                        <span class="nav-main-link-name">{{__('admin.navi.clients-list')}}</span>
+                      </a>
+                  </li>
 
+                </ul>
+            </li>
 
 
 

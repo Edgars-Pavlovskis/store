@@ -6,6 +6,9 @@ use Livewire\Component;
 use App\Models\Orders;
 use Illuminate\Support\Str;
 
+use App\Mail\ClientNewOrder;
+use Illuminate\Support\Facades\Mail;
+
 class ShowCheckout extends Component
 {
     public $shoppingCart, $total;
@@ -58,6 +61,12 @@ class ShowCheckout extends Component
         if($this->checkout['deliveryAlias'] == "delivery-parcel") $this->parcelDeliverySelected = true; else $this->parcelDeliverySelected = false;
     }
 
+
+    public function testcheckout()
+    {
+        dd($this->checkout);
+    }
+
     public function submitCheckoutForm()
     {
         try {
@@ -99,7 +108,7 @@ class ShowCheckout extends Component
             throw $e;
         }
 
-        if (!$this->selectedParcelStation || empty($this->selectedParcelStation)) {
+        if ($this->parcelDeliverySelected && (!$this->selectedParcelStation || empty($this->selectedParcelStation))) {
             // If it's not set or empty, initialize Livewire validation error for the field "delivery"
             $this->addError('checkout.deliveryAlias', __('frontend.checkout.validation.parcel-location'));
             $this->alert('error', __('frontend.checkout.validation.parcel-location'));
@@ -122,6 +131,9 @@ class ShowCheckout extends Component
         session()->put('shopping_cart', []);
         //session()->put('checkout', []);
         createLog($order->id, 'order', __('orders.logs-text.system-user'), $text = __('orders.logs-text.order-created'), $params = []);
+
+        Mail::to('pakalpojumi@alba-ltd.lv')->queue(new AdminNewOrder($order->key));
+        Mail::to($this->checkout['email'])->queue(new ClientNewOrder($order->key));
 
         return redirect()->route('checkout-complete');
 

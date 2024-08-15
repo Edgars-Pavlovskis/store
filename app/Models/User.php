@@ -44,4 +44,16 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+
+    public function scopeSearch($query, $term)
+    {
+        $term = "%$term%";
+        $query->where(function($query) use ($term) {
+            $query->whereRaw("name LIKE ?", ["$term"])
+                ->orWhere('email', 'like', "$term");
+        });
+    }
+
 }

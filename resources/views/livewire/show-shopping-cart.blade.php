@@ -45,14 +45,21 @@
                             </tr>
                         @endforeach
 
+                        <tr>
+                            <td class="text-start" colspan=6>
+                                @foreach ($coupons??[] as $coupon => $data)
+                                    <span class="badge {{config('coupons.list.'.$coupon.'.badge-class', 'text-bg-secondary')}}">{{$coupon}}</span>
+                                @endforeach
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
             <div class="cart-update-btn-area">
                 <div class="input-group product-cupon">
-                    <input placeholder="{{__('frontend.cart.enter-code')}}" type="text">
+                    <input placeholder="{{__('frontend.cart.enter-code')}}" type="text" wire:model.blur="couponCode">
                     <div class="product-cupon-btn">
-                        <button type="submit" class="axil-btn btn-outline">{{__('frontend.cart.apply-code')}}</button>
+                        <button type="button" wire:click="applyCode" class="axil-btn btn-outline">{{__('frontend.cart.apply-code')}}</button>
                     </div>
                 </div>
             </div>

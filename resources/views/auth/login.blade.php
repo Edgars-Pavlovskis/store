@@ -11,14 +11,14 @@
                   <!-- Sign In Block -->
                   <div class="block block-rounded mb-0">
                     <div class="block-header block-header-default">
-                      <h3 class="block-title">{{__('admin.dashboard')}}</h3>
+                      <h3 class="block-title">{{__('admin.Authorization')}}</h3>
                       <div class="block-options">
                         @if (Route::has('password.request'))
                             <a class="btn-block-option fs-sm" href="{{ route('password.request') }}">{{ __('admin.Forgot Your Password?') }}</a>
                         @endif
 
                         @if (Route::has('register'))
-                            <a class="btn-block-option" href="{{ route('register') }}" data-bs-toggle="tooltip" data-bs-placement="left" title="New Account">
+                            <a class="btn-block-option" href="{{ route('register') }}" data-bs-toggle="tooltip" data-bs-placement="left" title="Izveidot kontu">
                                 <i class="fa fa-user-plus"></i>
                             </a>
                         @endif

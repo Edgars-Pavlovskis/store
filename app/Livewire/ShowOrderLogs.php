@@ -14,6 +14,7 @@ class ShowOrderLogs extends Component
     {
         $this->logs = Logs::where('type', 'order')->where('model_id',$this->id)->orderBy('id','DESC')->get();
     }
+
     public function render()
     {
         return view('livewire.show-order-logs');

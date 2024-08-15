@@ -207,7 +207,7 @@
                     </a>
                 @endif
 
-
+                @livewire('show-admin-apply-category-discount', ['alias' => $current->alias])
 
 
 

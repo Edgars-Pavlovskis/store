@@ -25,6 +25,7 @@ Route::get('/', function () {
 //Route::view('/', 'landing');
 Route::get('/',[App\Http\Controllers\FrontendController::class, 'index'])->name('frontend-index-root');
 
+
 Route::get('/catalog/{alias}',[App\Http\Controllers\FrontendController::class, 'catalog'])->name('frontend-catalog-show');
 Route::get('/discount-products',[App\Http\Controllers\FrontendController::class, 'discounts'])->name('frontend-discounts-show');
 Route::get('/new-products',[App\Http\Controllers\FrontendController::class, 'news'])->name('frontend-news-show');
@@ -41,10 +42,11 @@ Route::view('/kontakti', 'frontend.pages.contacts')->name('pages-contacts');
 
 
 Route::get('/dpdtest',[App\Http\Controllers\HomeController::class, 'dpdTest'])->name('dpd-test');
+Route::get('/mailtest',[App\Http\Controllers\FrontendController::class, 'mailtest'])->name('mail-test');
 
 Auth::routes([
     'verify' => true,
-    'register' => false
+    'register' => true
 ]);
 
 
@@ -77,7 +79,7 @@ Route::get('/google-callback', function () {
 
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::match(['get', 'post'], '/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
 
@@ -124,6 +126,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/orders/show',[App\Http\Controllers\OrdersController::class, 'index'])->name('orders-show');
     Route::get('/orders/show/{key}',[App\Http\Controllers\OrdersController::class, 'showOrder'])->name('show-order');
+
+
+    Route::get('/clients/show',[App\Http\Controllers\ClientsController::class, 'index'])->name('clients-show');
+    Route::get('/clients/show/{email}',[App\Http\Controllers\ClientsController::class, 'showClient'])->name('show-client');
+
 
     Route::get('/banners/show',[App\Http\Controllers\BannersController::class, 'index'])->name('banners-show');
     Route::get('/banners/create',[App\Http\Controllers\BannersController::class, 'createType'])->name('banners-create-type');

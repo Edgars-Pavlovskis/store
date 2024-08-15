@@ -10,14 +10,14 @@
                 @foreach ($shoppingCart as $key => $cart)
                     <li class="cart-item">
                         <div class="item-img">
-                            <a target="blank" href="{{ route('frontend-product-show', ['alias'=>$cart['code']]) }}"><img src="/storage/products/{{$cart['image']}}" alt="Product image"></a>
+                            <a target="blank" href="{{ route('frontend-product-show', ['alias'=>$cart['code']]) }}"><img src="/storage/products/{{$cart['image']}}" onerror="this.src='/assets/img/default-product.png';" alt="Product image"></a>
                             <button wire:click="removeItemFromCart('{{$cart['key']}}')" class="close-btn"><i class="fas fa-times"></i></button>
                         </div>
                         <div class="item-content">
                             <h3 class="item-title"><a target="blank" href="{{ route('frontend-product-show', ['alias'=>$cart['code']]) }}">{{$cart['title']}}</a></h3>
                             <div class="item-price">{{number_format($cart['price'], 2)}} <span class="currency-symbol">€</span></div>
                             <div class="pro-qty item-quantity">
-                                <input type="number" class="quantity-input" value="{{$cart['addCount']}}">
+                                <p><b>x {{$cart['addCount']}}</b></p>
                             </div>
                         </div>
                     </li>

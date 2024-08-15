@@ -21,13 +21,13 @@ class ShowSingleProductBasicInfo extends Component
     public $variationMatch;
     public $addItemCount = 1;
     public $selectedVariationID;
-
+    public $clientDiscounts = [];
 
 
 
     public function mount()
     {
-
+        $this->clientDiscounts = session('user.discounts', []);
         $allAttributes = Attributes::whereIn('id', $this->product->variations ?? [])->select('id','name','type','options')->get()->toArray();
         foreach($allAttributes as $attribute)
         {

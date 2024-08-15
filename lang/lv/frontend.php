@@ -21,6 +21,10 @@ return [
     'found-products' => 'Atrastas preces',
     'quicklinks' => 'Ātrās saites',
 
+    'Username' => 'Lietotājvārds (Vārds / Nosaukums)',
+    'Email' => 'E-pasta adrese',
+    'Password' => 'Parole',
+    'Confirm Password' => 'Paroles apstiprinājums',
 
 
     'navi-about' => 'Par mums',
@@ -112,6 +116,8 @@ return [
             'emailunique' => 'E-pasta adrese jau ir reģistrēta jaunumu saņemšanai',
             'parcel-location' => 'Lūdzu, izvēlieties pakomātu',
         ],
+        'coupon-ok' => 'Kupons ir aktivizēts!',
+        'coupon-not-valid' => 'Kupona kods nav derīgs!',
         'complete' => 'Pasūtījums ir reģistrēts!',
         'complete-info' => 'Tagad gaidiet, līdz pasūtījums tiks apstrādāts un tad Jūs saņemsiet kaut kādu rēķinu, kuru, iespējams, būs arī jāapmaksā.',
     ],

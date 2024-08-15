@@ -106,6 +106,48 @@
 
                             @livewire('show-shopping-cart-trigger')
 
+                            <li class="my-account">
+                                <a href="javascript:void(0)">
+                                    <i class="flaticon-person"></i>
+                                </a>
+                                <div class="my-account-dropdown">
+                                    @if(Auth::user())
+                                        <span class="title">Sveicināti, <b>{{ Auth::user()->name }}</b></span>
+                                        <ul>
+                                            @if(Auth::user()->hasVerifiedEmail())
+                                                <li>
+                                                    <a href="#">Mans profils</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Pasūtījumi</a>
+                                                </li>
+                                            @else
+                                                <p><small>Lūdzu, apstipriniet epasta adresi, kuru norādījāt reģistrējot lietotāja profilu..</small></p>
+                                                <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+                                                    @csrf
+                                                    <button type="submit" class="btn w-100 btn-alt-primary">
+                                                      <i class="fa-solid fa-share me-1 opacity-50"></i> {{ __('atkārtoti nosūtīt apstiprināšanas saiti') }}
+                                                    </button>
+                                                </form>
+                                            @endauth
+
+                                        </ul>
+                                        <div class="login-btn">
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+                                                <button type="submit" class="axil-btn btn-bg-primary">Iziet no profila</button>
+                                            </form>
+                                        </div>
+                                    @else
+                                        <div class="login-btn">
+                                            <a href="{{ route('login') }}" class="axil-btn btn-bg-primary">Autorizēties</a>
+                                        </div>
+                                        <div class="reg-footer text-center">Nav lietotāja profila? <a href="{{ route('register') }}" class="btn-link">Reģistrējies</a></div>
+                                    @endif
+
+                                </div>
+                            </li>
+
                             <li class="axil-mobile-toggle">
                                 <button class="menu-btn mobile-nav-toggler">
                                     <i class="flaticon-menu-2"></i>

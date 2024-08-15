@@ -3,12 +3,14 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Illuminate\Support\Carbon;
 
 class ShowShoppingCart extends Component
 {
     public $shoppingCart, $total;
     protected $listeners = ['updateShoppingCart'];
-
+    public $couponCode;
+    public $coupons = [];
 
     public function mount()
     {
@@ -31,8 +33,12 @@ class ShowShoppingCart extends Component
     public function updateShoppingCart()
     {
         $this->shoppingCart = session()->get('shopping_cart', []);
+        $this->coupons = session()->get('coupons', []);
         //dd($this->shoppingCart);
-        if(count($this->shoppingCart) == 0) return redirect()->route('frontend-index-root');
+        if(count($this->shoppingCart) == 0){
+            session()->put('coupons', []);
+            return redirect()->route('frontend-index-root');
+        }
         $this->updateCount();
     }
 
@@ -43,6 +49,47 @@ class ShowShoppingCart extends Component
         }, 0);
     }
 
+
+    public function applyCode()
+    {
+        if(strlen(trim($this->couponCode))==0) return false;
+        $currentDate = Carbon::now();
+        if ($currentDate->between(Carbon::parse(config('coupons.list.'.$this->couponCode.'.datestart', '0000-00-00')), Carbon::parse(config('coupons.list.'.$this->couponCode.'.dateend', '0000-00-00')))) {
+            $config = config('coupons.list.'.$this->couponCode, []);
+            $discount = $config['discount']['amount']??0;
+
+            if(!isset($config['title'])) {
+                $this->alert('error', __('frontend.checkout.coupon-not-valid'));
+                return false;
+            } else {
+                foreach($this->shoppingCart as &$cart) {
+                    $parent = $cart['parent'];
+                    if(isset($config['discount']['ignored'])) {
+                        if(!in_array($parent, $config['discount']['ignored'])) {
+                            if($cart['discount'] < $discount) {
+                                $cart['discount'] = $discount;
+                                $cart['price'] = $cart['fullprice'] - ($cart['fullprice'] * ($discount / 100));
+                            }
+                        }
+                    } else if(isset($config['discount']['categories'])) {
+                        if(in_array($parent, $config['discount']['categories'])) {
+                            if($cart['discount'] < $discount) {
+                                $cart['discount'] = $discount;
+                                $cart['price'] = $cart['fullprice'] - ($cart['fullprice'] * ($discount / 100));
+                            }
+                        }
+                    }
+                }
+                $this->alert('success', __('frontend.checkout.coupon-ok'));
+                if(!isset($this->coupons[$this->couponCode])) $this->coupons[$this->couponCode] = ['title'=>$config['title'][App()->currentLocale()]??''];
+                session()->put('coupons', $this->coupons);
+                session()->put('shopping_cart', $this->shoppingCart);
+            }
+        } else {
+            $this->alert('error', __('frontend.checkout.coupon-not-valid'));
+        }
+        $this->couponCode = '';
+    }
 
     public function removeItemFromCart($key)
     {
@@ -61,6 +108,7 @@ class ShowShoppingCart extends Component
     public function cleanShoppingCart()
     {
         session()->put('shopping_cart', []);
+        session()->put('coupons', []);
         $this->dispatch('updateShoppingCart');
     }
 

@@ -95,12 +95,15 @@
                 @endforeach
 
 
-
-
                 <tr>
-                    <td colspan="4" class="text-end"><strong>{{__('orders.order.total')}}:</strong></td>
-                    <td class="text-end">{{number_format($order->total, 2)}} €</td>
+                    <td colspan="4" class="text-end"><strong>{{__('orders.order.total-without-tax')}}:</strong></td>
+                    <td class="text-end">{{number_format($order->total - number_format($order->total*0.21,2), 2)}} €</td>
                 </tr>
+                <tr>
+                    <td colspan="4" class="text-end"><strong>{{__('orders.order.total-tax')}}:</strong></td>
+                    <td class="text-end">{{number_format($order->total*0.21, 2)}} €</td>
+                </tr>
+
                 @if ($order->deliveryPrice > 0)
                 <tr>
                     <td colspan="4" class="text-end"><strong>{{__('orders.order.delivery')}}:</strong></td>
@@ -109,7 +112,7 @@
                 @endif
 
                 <tr class="table-success">
-                    <td colspan="4" class="text-end text-uppercase"><strong>{{__('orders.order.total-due')}}:</strong></td>
+                    <td colspan="4" class="text-end text-uppercase"><strong>{{__('orders.order.total-with-tax')}}:</strong></td>
                     <td class="text-end"><strong>{{number_format($order->deliveryPrice + $order->total, 2)}} €</strong></td>
                 </tr>
                 </tbody>
@@ -156,8 +159,17 @@
                                 {{$order->delivery['country']??''}}, {{$order->delivery['zip']??''}}<br><br>
                                 <i class="fa fa-phone"></i> {{$order->delivery['phone']??''}}
                                 </address>
-                            @else
-                            -
+                                <br>
+                            @endif
+                            @if (!empty(config('shop.frontend.delivery-options.'.$order['deliveryAlias'],[])))
+                                <b>{{config('shop.frontend.delivery-options.'.$order['deliveryAlias'].'.title.'.App()->currentLocale())}}</b><br>
+                                @if (isset($order->parcelAddress) && strlen($order->parcelAddress)>0)
+                                    {{$order->parcelAddress}}
+                                @endif
+                            @endif
+                            @if (isset($order->comments) && strlen($order->comments)>0)
+                            <hr>
+                            {{$order->comments}}
                             @endif
                         </div>
                     </div>
