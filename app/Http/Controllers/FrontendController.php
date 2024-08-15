@@ -27,7 +27,7 @@ class FrontendController extends Controller
 
     public function mailtest()
     {
-        //Mail::to('Edgars.Pavlovskis@gmail.com')->queue(new AdminNewOrder('jF3uJrlG28LI1723630397'));
+        Mail::to('Edgars.Pavlovskis@gmail.com')->queue(new AdminNewOrder('HhfUzviHwEmk1714732460'));
         //Mail::to('Edgars.Pavlovskis@gmail.com')->queue(new ClientNewOrder('jF3uJrlG28LI1723630397'));
     }
 
