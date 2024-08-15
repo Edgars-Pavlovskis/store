@@ -41,7 +41,7 @@ class AdminNewOrder extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('pakalpojumi@alba-ltd.lv', 'Birojam un Skolai'),
+            from: new Address('smtp@birojamunskolai.lv', 'Birojam un Skolai'),
             subject: 'Jauns pasūtījums',
         );
     }
