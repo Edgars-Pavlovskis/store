@@ -39,6 +39,7 @@ Route::view('/privatuma-politika', 'frontend.pages.privacy')->name('pages-privac
 Route::view('/internetveikala-lietosanas-noteikumi', 'frontend.pages.rules')->name('pages-rules');
 Route::view('/piegade', 'frontend.pages.delivery')->name('pages-delivery');
 Route::view('/kontakti', 'frontend.pages.contacts')->name('pages-contacts');
+Route::view('/profils', 'frontend.pages.profile')->name('pages-profile');
 
 
 Route::get('/dpdtest',[App\Http\Controllers\HomeController::class, 'dpdTest'])->name('dpd-test');

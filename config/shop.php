@@ -17,6 +17,7 @@ return [
         'order-statuses' => [
             0 => [
                 'bg-class' => 'bg-gray-dark',
+                'bootstrap-bg' => 'bg-dark',
                 'text-class' => '',
                 'done-bg' => 'bg-success-light',
                 'active-bg' => 'bg-primary-lighter',
@@ -25,6 +26,7 @@ return [
             ],
             1 => [
                 'bg-class' => 'bg-info',
+                'bootstrap-bg' => 'bg-info',
                 'text-class' => '',
                 'active-bg' => 'bg-warning-light',
                 'active-icon' => 'fa fa-sync fa-spin text-warning',
@@ -32,6 +34,7 @@ return [
             ],
             2 => [
                 'bg-class' => 'bg-info',
+                'bootstrap-bg' => 'bg-info',
                 'text-class' => '',
                 'active-bg' => 'bg-success-light',
                 'active-icon' => 'fa fa-sync fa-check text-success',
@@ -39,6 +42,7 @@ return [
             ],
             3 => [
                 'bg-class' => 'bg-success',
+                'bootstrap-bg' => 'bg-success',
                 'text-class' => '',
                 'active-bg' => 'bg-success-light',
                 'active-icon' => 'fa fa-sync fa-check text-success',
@@ -46,6 +50,7 @@ return [
             ],
             4 => [
                 'bg-class' => 'bg-danger',
+                'bootstrap-bg' => 'bg-success',
                 'text-class' => '',
                 'done-bg' => 'bg-body',
                 'active-bg' => 'bg-danger-light',

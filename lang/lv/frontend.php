@@ -25,6 +25,8 @@ return [
     'Email' => 'E-pasta adrese',
     'Password' => 'Parole',
     'Confirm Password' => 'Paroles apstiprinājums',
+    'Update data' => 'Atjaunināt datus',
+    'Data saved' => 'Dati saglabāti',
 
 
     'navi-about' => 'Par mums',
@@ -131,6 +133,73 @@ return [
         'return-text' => 'Neuzdodot jautājumus',
         'support-header' => 'Uzticams atbalsts',
         'support-text' => 'Droši zvaniet',
+    ],
+
+
+    'contacts' => [
+        'contacts' => 'Kontakti',
+        'header' => 'Sazinieties ar Mums',
+        'text' => 'Mēs esam šeit, lai palīdzētu un atbildēsim uz Jūsu jautājumiem par mūsu produktiem un pakalpojumiem. Droši rakstiet mums!',
+        'name' => 'Vārds, uzvārds / nosaukums',
+        'phone' => 'Tālruņa numurs saziņai',
+        'email' => 'E-pasta adrese saziņai',
+        'message' => 'Ziņojuma teksts',
+        'send' => 'Nosūtīt ziņojumu',
+        'messagesent' => 'Jūsu ziņojums ir nosūtīts!',
+    ],
+
+    'user' => [
+        'greeting' => 'Sveicināti',
+        'profile' => 'Mans profils',
+        'confirm-email-address' => 'Lūdzu, apstipriniet epasta adresi, kuru norādījāt reģistrējot lietotāja profilu..',
+        'resend-email-confirmation' => 'Atkārtoti nosūtīt apstiprināšanas saiti',
+        'logout' => 'Iziet no profila',
+        'login' => 'Autorizēties',
+        'no-profile' => 'Nav lietotāja profila?',
+        'register' => 'Reģistrējies',
+    ],
+
+    'profile' => [
+        'profile' => 'Mans profils',
+        'since' => 'lietotājs kopš',
+        'dashboard-intro' => 'Konta informācijas panelī varat skatīt savus nesenos pasūtījumus, pārvaldīt piegādes un norēķinu adreses, kā arī rediģēt paroli un konta informāciju.',
+        'dashboard' => 'Konta informācija',
+        'address' => 'Manas adreses',
+        'account' => 'Mani profila dati',
+        'name' => 'Vārds Uzvārds / Nosaukums',
+        'password-change' => 'Paroles nomaiņa',
+        'current-password' => 'Ievadiet aktuālo paroli',
+        'new-password' => 'Ievadiet jauno paroli',
+        'confirm-password' => 'Apstipriniet jauno paroli',
+        'change-password' => 'Nomainīt paroli',
+        'password-changed' => 'Jūsu parole ir nomainīta!',
+
+
+        'jurinfo' => [
+            'title' => 'Juridiskas personas dati',
+            'name' => 'Nosaukums',
+            'regno' => 'Reģistrācijas numurs',
+            'bank' => 'Bankas nosaukums',
+            'account' => 'Bankas konts',
+        ],
+
+        'invoiceaddress' => [
+            'title' => 'Norēķinu adrese',
+        ],
+        'deliveryaddress' => [
+            'title' => 'Piegādes adrese',
+        ],
+
+        'orders' => [
+            'title' => 'Mani pasūtījumi',
+            'no' => 'Pasūtījuma nr.',
+            'date' => 'Datums',
+            'status' => 'Statuss',
+            'total' => 'Pasūtījuma summa',
+            'items' => 'preču skaits',
+        ],
+
+
     ],
 
     'xxxaxaxax' => 'The :attribute field must match :other.'

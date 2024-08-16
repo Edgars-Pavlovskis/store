@@ -51,21 +51,18 @@
                                 </a>
                                 <div class="my-account-dropdown">
                                     @if(Auth::user())
-                                        <span class="title">Sveicināti, <b>{{ Auth::user()->name }}</b></span>
+                                        <span class="title">{{__('frontend.user.greeting')}}, <b>{{ Auth::user()->name }}</b></span>
                                         <ul>
                                             @if(Auth::user()->hasVerifiedEmail())
                                                 <li>
-                                                    <a href="#">Mans profils</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Pasūtījumi</a>
+                                                    <a href="{{route('pages-profile')}}">{{__('frontend.user.profile')}}</a>
                                                 </li>
                                             @else
-                                                <p><small>Lūdzu, apstipriniet epasta adresi, kuru norādījāt reģistrējot lietotāja profilu..</small></p>
+                                                <p><small>{{__('frontend.user.confirm-email-address')}}</small></p>
                                                 <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                                                     @csrf
                                                     <button type="submit" class="btn w-100 btn-alt-primary">
-                                                      <i class="fa-solid fa-share me-1 opacity-50"></i> {{ __('atkārtoti nosūtīt apstiprināšanas saiti') }}
+                                                      <i class="fa-solid fa-share me-1 opacity-50"></i> {{__('frontend.user.resend-email-confirmation')}}
                                                     </button>
                                                 </form>
                                             @endauth
@@ -74,14 +71,14 @@
                                         <div class="login-btn">
                                             <form method="POST" action="{{ route('logout') }}">
                                                 @csrf
-                                                <button type="submit" class="axil-btn btn-bg-primary">Iziet no profila</button>
+                                                <button type="submit" class="axil-btn btn-bg-primary">{{__('frontend.user.logout')}}</button>
                                             </form>
                                         </div>
                                     @else
                                         <div class="login-btn">
-                                            <a href="{{ route('login') }}" class="axil-btn btn-bg-primary">Autorizēties</a>
+                                            <a href="{{ route('login') }}" class="axil-btn btn-bg-primary">{{__('frontend.user.login')}}</a>
                                         </div>
-                                        <div class="reg-footer text-center">Nav lietotāja profila? <a href="{{ route('register') }}" class="btn-link">Reģistrējies</a></div>
+                                        <div class="reg-footer text-center">{{__('frontend.user.no-profile')}} <a href="{{ route('register') }}" class="btn-link">{{__('frontend.user.register')}}</a></div>
                                     @endif
 
                                 </div>
