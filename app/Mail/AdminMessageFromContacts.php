@@ -31,7 +31,7 @@ class AdminMessageFromContacts extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('smtp@birojamunskolai.lv', 'Birojam un Skolai'),
+            from: new Address('info@birojamunskolai.lv', 'Birojam un Skolai'),
             subject: 'Jauns ziņojums no web lapas',
         );
     }

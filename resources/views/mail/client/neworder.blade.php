@@ -1207,7 +1207,7 @@
                                             <tr>
                                              <td valign="top" align="left">
                                               <div class="pc-font-alt" style="line-height: 143%; letter-spacing: -0.2px; font-family: 'Hanken Grotesk', Arial, Helvetica, sans-serif; font-size: 14px; font-weight: normal; font-variant-ligatures: normal; color: #27142d; text-align: left; text-align-last: left;">
-                                               <div><span>pakalpojumi@alba-ltd.lv</span>
+                                               <div><span>info@birojamunskolai.lv</span>
                                                </div>
                                               </div>
                                              </td>

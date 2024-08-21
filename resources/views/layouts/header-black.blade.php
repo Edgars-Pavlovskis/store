@@ -6,7 +6,7 @@
                 <div class="header-top-dropdown text-white">
                     <i class="fa-solid fa-phone me-2"></i> <a class="text-white" href="tel:+37128372929">+371&nbsp;<b>28372929</a></b>
                     &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                    <i class="fa-solid fa-envelope me-2"></i> <a class="text-white" href="mailto:pakalpojumi@alba-ltd.lv">pakalpojumi@alba-ltd.lv</a>
+                    <i class="fa-solid fa-envelope me-2"></i> <a class="text-white" href="mailto:info@birojamunskolai.lv">info@birojamunskolai.lv</a>
 
                     <div class="social-share ms-3">
 
@@ -23,7 +23,7 @@
                 <div class="header-top-link">
 
                     <ul class="quick-link">
-                        <li><a href="{{route('pages-about')}}">{{__('frontend.navi-about')}}</a></li>
+                        <!-- <li><a href="{{route('pages-about')}}">{{__('frontend.navi-about')}}</a></li> -->
                         <li>
                             <a class="dropdown-toggle" href="#" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">{{__('frontend.navi-info')}}&nbsp;</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">

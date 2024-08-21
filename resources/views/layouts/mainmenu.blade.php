@@ -5,7 +5,7 @@
 
     @mobile
 
-    <li><a href="{{route('pages-about')}}">{{__('frontend.navi-about')}}</a></li>
+    <!-- <li><a href="{{route('pages-about')}}">{{__('frontend.navi-about')}}</a></li> -->
 
     <li class="menu-item-has-children">
         <a href="#">{{__('frontend.navi-info')}}</a>

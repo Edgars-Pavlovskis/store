@@ -38,7 +38,7 @@ class ShowContactsForm extends Component
             'message' => __('validation.contacts.message'),
         ]);
 
-        Mail::to('pakalpojumi@alba-ltd.lv')->queue(new AdminMessageFromContacts($this->name, $this->phone, $this->email, $this->message));
+        Mail::to('info@birojamunskolai.lv')->queue(new AdminMessageFromContacts($this->name, $this->phone, $this->email, $this->message));
         Session::put('message_sent_timestamp', now());
         $this->name = '';
         $this->phone = '';

@@ -27,7 +27,7 @@
                             <h5 class="widget-title">{{__('frontend.quicklinks')}}</h5>
                             <div class="inner">
                                 <ul>
-                                    <li><a href="{{route('pages-about')}}">{{__('frontend.navi-about')}}</a></li>
+                                    <!-- <li><a href="{{route('pages-about')}}">{{__('frontend.navi-about')}}</a></li> -->
                                     <li><a href="{{route('pages-privacy')}}">{{__('frontend.navi-privacy')}}</a></li>
                                     <li><a href="{{route('pages-rules')}}">{{__('frontend.navi-rules')}}</a></li>
                                     <li><a href="{{route('pages-delivery')}}">{{__('frontend.navi-delivery')}}</a></li>
@@ -44,7 +44,7 @@
                             <div class="inner">
                                 <ul class="support-list-item">
                                     <li><a href="javascript:void(0)"><i class="fa-solid fa-globe"></i> Brāļu Skrindu iela 17, Rēzekne, LV-4601</a></li>
-                                    <li><a href="mailto:pakalpojumi@alba-ltd.lv"><i class="fal fa-envelope-open"></i> pakalpojumi@alba-ltd.lv</a></li>
+                                    <li><a href="mailto:info@birojamunskolai.lv"><i class="fal fa-envelope-open"></i> info@birojamunskolai.lv</a></li>
                                     <li><a href="tel:+37128372929"><i class="fal fa-phone-alt"></i> (+371) 28372929</a></li>
                                     <!-- <li><i class="fal fa-map-marker-alt"></i> 685 Market Street,  <br> Las Vegas, LA 95820, <br> United States.</li> -->
                                 </ul>

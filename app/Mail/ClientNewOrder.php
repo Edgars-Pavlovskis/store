@@ -40,7 +40,7 @@ class ClientNewOrder extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('pakalpojumi@alba-ltd.lv', 'Birojam un Skolai'),
+            from: new Address('info@birojamunskolai.lv', 'Birojam un Skolai'),
             subject: 'Pasūtījuma apstiprinājums',
         );
     }
