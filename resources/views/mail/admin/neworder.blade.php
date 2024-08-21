@@ -512,6 +512,10 @@
                             <p>{{$order->name}} {{$order->surname}}</p>
                             <p>{{$order->street}}, {{$order->city}}, {{$order->country}}, {{$order->zip}}</p>
                             <p>T. {{$order->phone}}, E-pasts: {{$order->email}}</p>
+                            @if (isset($order->company['name']))<p><b>Juridiskas personas nosaukums: {{$order->company['name']}}</b>@endif
+                            @if (isset($order->company['regno']))<p>Reģ.nr: {{$order->company['regno']}}<p>@endif
+                            @if (isset($order->company['bank']))<p>Banka: {{$order->company['bank']}}<p>@endif
+                            @if (isset($order->company['account']))<p>Bankas konts: {{$order->company['account']}}<p>@endif
                           </div>
                         </div>
 
