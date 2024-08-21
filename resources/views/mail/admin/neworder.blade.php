@@ -493,9 +493,9 @@
                                   mso-line-height-alt: 36px;
                                   margin: 0;
                                 ">
-                              <span style="font-size: 24px;  line-height: 2.2;">Pasūtījums ir reģistrēts!</span>
+                              <span style="font-size: 24px;  line-height: 2.2;">Jauns pasūtījums!</span>
                               <br>
-                              <span style="font-size: 16px">Paldies, ka izvēlējāties iepirkties mūsu internetveikalā!<br>Ar prieku paziņojam, ka Jūsu pasūtījums ir saņemts un mēs esam sākuši tā apstrādi.</span>
+                              <span style="font-size: 16px">Internetveikalā saņemts jauns pasūtījums.</span>
                             </p>
                           </div>
                         </div>
@@ -2049,36 +2049,7 @@
                               padding-bottom: 15px;
                               padding-left: 35px;
                             ">
-                          <div class="txtTinyMce-wrapper" style="
-                                line-height: 1.5;
-                                font-size: 12px;
-                                color: #44464a;
-                                font-family: Nunito, Arial, Helvetica Neue,
-                                  Helvetica, sans-serif;
-                                mso-line-height-alt: 18px;
-                              ">
-                            <p style="
-                                  font-size: 14px;
-                                  line-height: 1.5;
-                                  word-break: break-word;
-                                  text-align: center;
-                                  mso-line-height-alt: 21px;
-                                  margin: 0;
-                                ">
-                              <b>Pateicamies, ka izvēlējāties iepirkties pie mums!</b>
-                            </p>
-                            <p style="
-                                    font-size: 14px;
-                                    line-height: 1.5;
-                                    word-break: break-word;
-                                    text-align: center;
-                                    mso-line-height-alt: 21px;
-                                    margin: 0;
-                                ">
-                                Mēs novērtējam Jūsu uzticību un ceram, ka mūsu preces un pakalpojumi pilnībā apmierinās Jūsu vēlmes. Gaidīsim Jūs atkal mūsu internetveikalā!
-                            </p>
 
-                          </div>
                         </div>
 
                         <div align="center" class="button-container" style="
@@ -2120,7 +2091,7 @@
                                     line-height: 2;
                                     word-break: break-word;
                                     mso-line-height-alt: 32px;
-                                  ">www.birojamunskolai.lv</span></span></a>
+                                  ">Atvērt pasūtījumu</span></span></a>
 
                         </div>
 
