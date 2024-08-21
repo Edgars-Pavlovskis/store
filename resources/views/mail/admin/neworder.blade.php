@@ -249,7 +249,7 @@
                 <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
                  <tr>
                   <td class="pc-w620-spacing-0-0-28-0" align="center" valign="top" style="padding: 0px 0px 40px 0px;">
-                   <img src="http://store.test/assets/img/alba-long-fill.png" class="pc-w620-width-100 pc-w620-height-auto" width="150" height="35" alt="" style="display: block; outline: 0; line-height: 100%; -ms-interpolation-mode: bicubic; object-fit: contain; width:350px; height: auto; max-width: 100%; border: 0;" />
+                   <img src="{{config('app.url')}}assets/img/alba-long-fill.png" class="pc-w620-width-100 pc-w620-height-auto" width="150" height="35" alt="" style="display: block; outline: 0; line-height: 100%; -ms-interpolation-mode: bicubic; object-fit: contain; width:350px; height: auto; max-width: 100%; border: 0;" />
                   </td>
                  </tr>
                 </table>
@@ -1063,7 +1063,7 @@
                                 <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
                                     <tr>
                                      <td class="pc-w620-spacing-0-0-0-0" align="center" valign="top" style="padding: 0px 0px 0px 0px;">
-                                      <img src="http://store.test/assets/img/alba-long-fill.png" class="pc-w620-width-100 pc-w620-height-auto" width="150" height="35" alt="" style="display: block; outline: 0; line-height: 100%; -ms-interpolation-mode: bicubic; object-fit: contain; width:350px; height: auto; max-width: 100%; border: 0;" />
+                                      <img src="{{config('app.url')}}assets/img/alba-long-fill.png" class="pc-w620-width-100 pc-w620-height-auto" width="150" height="35" alt="" style="display: block; outline: 0; line-height: 100%; -ms-interpolation-mode: bicubic; object-fit: contain; width:350px; height: auto; max-width: 100%; border: 0;" />
                                      </td>
                                     </tr>
                                 </table>
