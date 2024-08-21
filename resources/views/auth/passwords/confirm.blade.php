@@ -64,7 +64,7 @@
         </div>
       </div>
       <div class="fs-sm text-muted text-center">
-        <strong>OneUI 5.7</strong> &copy; <span data-toggle="year-copy"></span>
+        <strong>ALBA - Birojam un Skolai</strong> &copy; <span data-toggle="year-copy"></span>
       </div>
     </div>
   </div>
