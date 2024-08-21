@@ -393,7 +393,12 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="axil-btn btn-bg-primary checkout-btn">{{__('frontend.checkout.make-order')}}</button>
+                        <button wire:loading.remove type="submit" class="axil-btn btn-bg-primary checkout-btn">{{__('frontend.checkout.make-order')}}</button>
+                        <div class="text-center mt-4 pt-4">
+                            <div wire:loading class="spinner-grow" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

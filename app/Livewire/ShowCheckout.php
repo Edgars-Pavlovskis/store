@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use App\Mail\AdminNewOrder;
 use App\Mail\ClientNewOrder;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Queue;
 
 class ShowCheckout extends Component
 {
@@ -117,6 +118,7 @@ class ShowCheckout extends Component
         }
 
 
+
         if(!isset($this->checkout['delivery'])) $this->checkout['delivery'] = [];
         if(!isset($this->checkout['company'])) $this->checkout['company'] = [];
 
@@ -133,8 +135,9 @@ class ShowCheckout extends Component
         //session()->put('checkout', []);
         createLog($order->id, 'order', __('orders.logs-text.system-user'), $text = __('orders.logs-text.order-created'), $params = []);
 
-        Mail::to('info@birojamunskolai.lv')->queue(new AdminNewOrder($order->key));
-        Mail::to($this->checkout['email'])->queue(new ClientNewOrder($order->key));
+
+       Mail::to('info@birojamunskolai.lv')->queue(new AdminNewOrder($order->key));
+       Mail::to($this->checkout['email'])->queue(new ClientNewOrder($order->key));
 
         return redirect()->route('checkout-complete');
 
