@@ -2058,7 +2058,7 @@
                               padding-bottom: 10px;
                               padding-left: 10px;
                             ">
-                          <a href="{{config('app.url')}}" style="
+                          <a href="{{config('app.url')}}/orders/show/{{$order->key}}" style="
                                 -webkit-text-size-adjust: none;
                                 text-decoration: none;
                                 display: inline-block;
