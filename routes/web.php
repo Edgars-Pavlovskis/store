@@ -45,6 +45,8 @@ Route::view('/profils', 'frontend.pages.profile')->name('pages-profile');
 Route::get('/dpdtest',[App\Http\Controllers\HomeController::class, 'dpdTest'])->name('dpd-test');
 Route::get('/mailtest',[App\Http\Controllers\FrontendController::class, 'mailtest'])->name('mail-test');
 
+Route::view('/mailtemp', 'frontend.pages.mailtemp');
+
 
 Auth::routes([
     'verify' => true,

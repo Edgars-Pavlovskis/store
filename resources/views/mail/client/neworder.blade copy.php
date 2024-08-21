@@ -5,6 +5,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>Snippetss - BBBootstrap</title>
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <style>
       ::-webkit-scrollbar {
@@ -57,8 +58,6 @@
         font-size: 12px;
         color: #818181
       }
-
-
     </style>
   </head>
   <body className='snippet-body'>
@@ -68,7 +67,7 @@
           <div class="card">
             <div class="text-left logo p-2 px-5"><img src="{{config('app.url')}}/assets/img/alba-red.png" height="50"></div>
             <div class="invoice p-5">
-              <h5>Jauns pasūtījums!</h5><span class="font-weight-bold d-block mt-4">Internetveikalā saņemts jauns pasūtījums</span>
+              <h5>Pasūtījums ir reģistrēts!</h5><span class="font-weight-bold d-block mt-4">Paldies, ka izvēlējāties iepirkties mūsu internetveikalā!</span><span>Ar prieku paziņojam, ka Jūsu pasūtījums ir saņemts un mēs esam sākuši tā apstrādi.</span>
               <div class="payment border-top mt-3 mb-3 border-bottom table-responsive">
                 <table class="table table-borderless">
                   <tbody>
@@ -200,8 +199,10 @@
                   </table>
                 </div>
               </div>
+              <p class="font-weight-bold mb-0">Pateicamies, ka izvēlējāties iepirkties pie mums!</p><span></span>
+              <p>Mēs novērtējam Jūsu uzticību un ceram, ka mūsu preces un pakalpojumi pilnībā apmierinās Jūsu vēlmes. Gaidīsim Jūs atkal mūsu internetveikalā!</p>
             </div>
-            <div class="d-flex justify-content-between footer p-3"><span><a href="{{config('app.url')}}/orders/show/{{$order->key}}">Atvērt pasūtījumu</a></span><span></span></div>
+            <div class="d-flex justify-content-between footer p-3"><span>Ja Jums rodas kādi jautājumi droši sazinieties ar mūsu <a href="{{config('app.url')}}/kontakti"> klientu apkalpošanas komandu</a></span><span><a href="mailto:info@birojamunskolai.lv">info@birojamunskolai.lv</a></span></div>
           </div>
         </div>
       </div>
