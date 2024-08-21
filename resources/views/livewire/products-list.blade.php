@@ -61,18 +61,16 @@
                         </div>
                     </div>
 
-                    @if (isset($alias) && count($products)>0 && false)
+                    @if (isset($alias) && count($products)>0)
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="axil-shop-top mb--40">
                                     <div class="category-select align-items-center justify-content-lg-end justify-content-between">
                                         <!-- Start Single Select  -->
-                                        <span class="filter-results">Showing z-y of {{count($products)}} results</span>
-                                        <select class="single-select">
-                                            <option>Short by Latest</option>
-                                            <option>Short by Oldest</option>
-                                            <option>Short by Name</option>
-                                            <option>Short by Price</option>
+                                        <select class="single-select" wire:model.live="sortMode">
+                                            <option value="none">{{__('frontend.sort-none')}}</option>
+                                            <option value="priceasc">{{__('frontend.sort-priceasc')}}</option>
+                                            <option value="pricedesc">{{__('frontend.sort-pricedesc')}}</option>
                                         </select>
                                         <!-- End Single Select  -->
                                     </div>

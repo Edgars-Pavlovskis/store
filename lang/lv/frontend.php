@@ -40,6 +40,9 @@ return [
     'price' => 'Cena',
     'from' => 'no',
     'to' => 'līdz',
+    'sort-none' => 'Bez šķirošanas',
+    'sort-priceasc' => 'Cena, sākot ar lētāko',
+    'sort-pricedesc' => 'Cena, sākot ar dārgāko',
 
     'popover' => [
         'Clear list' => 'Iztīrīt sarakstu',

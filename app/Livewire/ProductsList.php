@@ -30,6 +30,9 @@ class ProductsList extends Component
 
     public $clientDiscounts = [];
 
+    public $sortMode = 'none';
+
+
     public function mount()
     {
         $this->products = collect([]);
@@ -98,6 +101,12 @@ class ProductsList extends Component
         }
     }
 
+    public function updatedSortMode()
+    {
+        $this->products = collect();
+        $this->updateProducts();
+    }
+
     public function addMoreProducts()
     {
         if(isset($this->alias)) {
@@ -116,6 +125,7 @@ class ProductsList extends Component
     {
 
         $products = Products::whereParent($this->alias)->whereActive(1);
+
 
         // Collect checked attribute IDs and values
         $checkedAttributes = [];
@@ -152,11 +162,20 @@ class ProductsList extends Component
         if($this->maxPriceUpdated) $products->where('price', '<=', $this->filterMax);
 
         $total = $products->count();
-
         $count = count($this->products);
-        $newProducts = $products->select('id','title','image','price','discount','new','special','code','parent','variations')->limit($this->perLoadCount)->offset($count)->get();
+        $products->select('id','title','image','price','discount','new','special','code','parent','variations')->limit($this->perLoadCount)->offset($count);
+
+        if($this->sortMode == 'priceasc') {
+            $newProducts = $products->orderBy('price', 'asc')->get();
+
+        } else if($this->sortMode == 'pricedesc') {
+            $newProducts = $products->orderBy('price', 'desc')->get();
+        } else {
+            $newProducts = $products->get();
+        }
 
         $this->products = $this->products->merge($newProducts);
+
         if($total > count($this->products)) { $this->showLoadMoreButton = true; } else { $this->showLoadMoreButton = false; }
         //if(count($this->filter)>0) dd($this->filter);
         $this->isLoading = false;
