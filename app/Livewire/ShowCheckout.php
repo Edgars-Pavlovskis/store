@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Orders;
 use Illuminate\Support\Str;
 
+use App\Mail\AdminNewOrder;
 use App\Mail\ClientNewOrder;
 use Illuminate\Support\Facades\Mail;
 
