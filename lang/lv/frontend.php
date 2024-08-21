@@ -124,7 +124,7 @@ return [
         'coupon-ok' => 'Kupons ir aktivizēts!',
         'coupon-not-valid' => 'Kupona kods nav derīgs!',
         'complete' => 'Pasūtījums ir reģistrēts!',
-        'complete-info' => 'Tagad gaidiet, līdz pasūtījums tiks apstrādāts un tad Jūs saņemsiet kaut kādu rēķinu, kuru, iespējams, būs arī jāapmaksā.',
+        'complete-info' => 'Pateicamies, ka izvēlējāties iepirkties pie mums!',
     ],
 
     'footer' => [

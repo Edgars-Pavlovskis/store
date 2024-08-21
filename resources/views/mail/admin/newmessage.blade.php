@@ -507,7 +507,7 @@
                           <div style="font-size: 1px; line-height: 5px">&nbsp;</div>
                           <div style="line-height: 1.2;font-size: 14px;color: #44464a;font-family: Nunito, Arial, Helvetica Neue,Helvetica, sans-serif;mso-line-height-alt: 14px;">
                             <h3>Vārds</h3>
-                            <p>{$name}}</p>
+                            <p>{{$name}}</p>
                           </div>
                         </div>
 
@@ -518,7 +518,7 @@
                             <div style="font-size: 1px; line-height: 5px">&nbsp;</div>
                             <div style="line-height: 1.2;font-size: 14px;color: #44464a;font-family: Nunito, Arial, Helvetica Neue,Helvetica, sans-serif;mso-line-height-alt: 14px;">
                               <h3>Tālruņa numurs</h3>
-                              <p>{$phone}}</p>
+                              <p>{{$phone}}</p>
                             </div>
                           </div>
 
@@ -529,7 +529,7 @@
                             <div style="font-size: 1px; line-height: 5px">&nbsp;</div>
                             <div style="line-height: 1.2;font-size: 14px;color: #44464a;font-family: Nunito, Arial, Helvetica Neue,Helvetica, sans-serif;mso-line-height-alt: 14px;">
                               <h3>E-pasta adrese</h3>
-                              <p>{$email}}</p>
+                              <p>{{$email}}</p>
                             </div>
                           </div>
 
@@ -541,7 +541,7 @@
                             <div style="font-size: 1px; line-height: 5px">&nbsp;</div>
                             <div style="line-height: 1.2;font-size: 14px;color: #44464a;font-family: Nunito, Arial, Helvetica Neue,Helvetica, sans-serif;mso-line-height-alt: 14px;">
                               <h3>Ziņojums</h3>
-                              <p>{$msg}}</p>
+                              <p>{{$msg}}</p>
                             </div>
                           </div>
 
