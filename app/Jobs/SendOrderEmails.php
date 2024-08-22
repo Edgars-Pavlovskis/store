@@ -32,7 +32,7 @@ class SendOrderEmails implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::to('info@birojamunskolai.lv')->queue(new AdminNewOrder($this->order->key));
-        Mail::to($this->order->email)->queue(new ClientNewOrder($this->order->key));
+        Mail::to('info@birojamunskolai.lv')->send(new AdminNewOrder($this->order->key));
+        Mail::to($this->order->email)->send(new ClientNewOrder($this->order->key));
     }
 }
