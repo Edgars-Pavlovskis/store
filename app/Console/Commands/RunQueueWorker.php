@@ -11,7 +11,7 @@ class RunQueueWorker extends Command
      *
      * @var string
      */
-    protected $signature = 'queue:work-short';
+    protected $signature = 'app:run-queue-worker';
 
     /**
      * The console command description.
@@ -22,6 +22,8 @@ class RunQueueWorker extends Command
 
     /**
      * Execute the console command.
+     *
+     * @return int
      */
     public function handle()
     {
