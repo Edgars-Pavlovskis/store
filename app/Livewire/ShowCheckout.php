@@ -5,11 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Orders;
 use Illuminate\Support\Str;
-
-use App\Mail\AdminNewOrder;
-use App\Mail\ClientNewOrder;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Queue;
+use App\Jobs\SendOrderEmails;
 
 class ShowCheckout extends Component
 {
@@ -136,8 +132,8 @@ class ShowCheckout extends Component
         createLog($order->id, 'order', __('orders.logs-text.system-user'), $text = __('orders.logs-text.order-created'), $params = []);
 
 
-       Mail::to('info@birojamunskolai.lv')->queue(new AdminNewOrder($order->key));
-       Mail::to($this->checkout['email'])->queue(new ClientNewOrder($order->key));
+        // Dispatch the job to send email asynchronously
+        SendOrderEmails::dispatch($order);
 
         return redirect()->route('checkout-complete');
 
