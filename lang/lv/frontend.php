@@ -69,9 +69,10 @@ return [
     ],
 
     'cart' => [
-        'clear' => 'Iztukšot pirkumu grozu',
+        'clear' => 'Iztukšot grozu',
         'checkout' => 'Noformēt pasūtījumu',
         'info' => 'Pasūtījuma informācija',
+        'codes' => 'Kuponi',
         'enter-code' => 'Ievadiet kupona kodu',
         'apply-code' => 'Izmantot',
         'product' => 'Preces nosaukums',
@@ -81,7 +82,7 @@ return [
         'total-sum' => 'Kopā',
         'total-without-tax' => 'Summa (bez PVN)',
         'total-tax' => 'PVN 21%',
-        'total-with-tax' => 'Summa apmaksai (ar PVN)',
+        'total-with-tax' => 'Summa apmaksai',
         'total-pay' => 'Summa apmaksai',
     ],
 

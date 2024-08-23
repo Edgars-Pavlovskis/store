@@ -45,15 +45,17 @@
                             </tr>
                         @endforeach
 
-                        <tr>
-                            <td class="text-start" colspan=6>
-                                @foreach ($coupons??[] as $coupon => $data)
-                                    <span class="badge {{config('coupons.list.'.$coupon.'.badge-class', 'text-bg-secondary')}}">{{$coupon}}</span>
-                                @endforeach
-                            </td>
-                        </tr>
+
                     </tbody>
                 </table>
+
+                @if(count($coupons??[])>0)
+                    <div class="mb-4">
+                        @foreach ($coupons??[] as $coupon => $data)
+                            <span class="badge {{config('coupons.list.'.$coupon.'.badge-class', 'text-bg-secondary')}}">{{$coupon}}</span>
+                        @endforeach
+                    </div>
+                @endif
             </div>
             <div class="cart-update-btn-area">
                 <div class="input-group product-cupon">
