@@ -67,7 +67,7 @@
           <div class="card">
             <div class="text-left logo p-2 px-5"><img src="{{config('app.url')}}/assets/img/alba-red.png" height="50"></div>
             <div class="invoice p-5">
-              <h5>Pasūtījums ir reģistrēts!</h5><span class="font-weight-bold d-block mt-4">Paldies, ka izvēlējāties iepirkties mūsu internetveikalā!</span><span>Ar prieku paziņojam, ka Jūsu pasūtījums ir saņemts un mēs esam sākuši tā apstrādi.</span>
+              <h5>Pasūtījums ir reģistrēts!</h5><span class="font-weight-bold d-block mt-4">Paldies, ka izvēlējāties iepirkties mūsu internetveikalā!</span><span>Ar prieku paziņojam, ka Jūsu pasūtījums ir saņemts, un mēs esam sākuši tā apstrādi.</span>
               <div class="payment border-top mt-3 mb-3 border-bottom table-responsive">
                 <table class="table table-borderless">
                   <tbody>

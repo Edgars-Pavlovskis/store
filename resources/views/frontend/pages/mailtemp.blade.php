@@ -495,7 +495,7 @@
                                 ">
                               <span style="font-size: 24px;  line-height: 2.2;">Pasūtījums ir reģistrēts!</span>
                               <br>
-                              <span style="font-size: 16px">Paldies, ka izvēlējāties iepirkties mūsu internetveikalā!<br>Ar prieku paziņojam, ka Jūsu pasūtījums ir saņemts un mēs esam sākuši tā apstrādi.</span>
+                              <span style="font-size: 16px">Paldies, ka izvēlējāties iepirkties mūsu internetveikalā!<br>Ar prieku paziņojam, ka Jūsu pasūtījums ir saņemts, un mēs esam sākuši tā apstrādi.</span>
                             </p>
                           </div>
                         </div>

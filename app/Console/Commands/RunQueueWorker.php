@@ -12,7 +12,7 @@ class RunQueueWorker extends Command
      * @var string
      */
     protected $signature = 'app:run-queue-worker';
-
+    //php artisan app:run-queue-worker
     /**
      * The console command description.
      *

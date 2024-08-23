@@ -276,7 +276,7 @@
                     <tr>
                      <td valign="top" class="pc-w620-padding-0-0-0-0" align="center" style="padding: 0px 0px 0px 0px;">
                       <div class="pc-font-alt pc-w620-fontSize-15px pc-w620-lineHeight-140pc" style="line-height: 160%; letter-spacing: -0.6px; font-family: 'Hanken Grotesk', Arial, Helvetica, sans-serif; font-size: 18px; font-weight: normal; font-variant-ligatures: normal; color: #ffffffcc; text-align: center; text-align-last: center;">
-                       <div><span>Paldies, ka izvēlējāties iepirkties mūsu internetveikalā!<br>Ar prieku paziņojam, ka Jūsu pasūtījums ir saņemts un mēs esam sākuši tā apstrādi.</span>
+                       <div><span>Paldies, ka izvēlējāties iepirkties mūsu internetveikalā!<br>Ar prieku paziņojam, ka Jūsu pasūtījums ir saņemts, un mēs esam sākuši tā apstrādi.</span>
                        </div>
                       </div>
                      </td>
