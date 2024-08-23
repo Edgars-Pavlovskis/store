@@ -35,13 +35,13 @@
                                     @endif
 
                                 </td>
-                                <td class="product-price" data-title="Price">
+                                <td class="product-price" data-title="{{__('frontend.cart.price')}}">
                                     {{number_format($cart['price'], 2)}} €
                                 </td>
-                                <td class="product-quantity" data-title="Qty">
+                                <td class="product-quantity" data-title="{{__('frontend.cart.count')}}">
                                     <div  class="pro-qty"><span wire:click="addItemCountDec({{$index}})" class="dec qtybtn">-</span><input type="text" wire:model.blur="shoppingCart.{{ $index }}.addCount"><span wire:click="addItemCountInc({{$index}})" class="inc qtybtn">+</span></div>
                                 </td>
-                                <td class="product-subtotal" data-title="Subtotal">{{number_format($cart['price'] * intval($cart['addCount']), 2)}} €</td>
+                                <td class="product-subtotal" data-title="{{__('frontend.cart.total')}}">{{number_format($cart['price'] * intval($cart['addCount']), 2)}} €</td>
                             </tr>
                         @endforeach
 
