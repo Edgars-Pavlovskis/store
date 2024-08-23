@@ -136,6 +136,7 @@ class ShowSingleProductBasicInfo extends Component
     {
         if(!$this->variationMatch && count($this->variations)>0) return;
 
+
         $product = array(
             'key' => Str::random(5) . '-' . time(),
             'id' => $this->product['id'],
@@ -143,11 +144,13 @@ class ShowSingleProductBasicInfo extends Component
             'image' => $this->product['image'],
             'code' => $this->product['code'],
             'inner_code' => $this->product['inner_code'],
-            'price' => $this->product['price']-($this->product['price'] * ($this->product['discount']/100)),
-            'discount' => $this->product['discount'],
+            'fullprice' => $this->product['price'],
+            'price' => $this->product['price']-($this->product['price'] * ((isset($this->clientDiscounts[$this->product->parent])?$this->clientDiscounts[$this->product->parent]:$this->product['discount'])/100)),
+            'discount' => isset($this->clientDiscounts[$this->product->parent])?$this->clientDiscounts[$this->product->parent]:$this->product['discount'],
             'parent' => $this->product['parent'],
             'stock' => $this->product['stock'],
         );
+
 
         $variation = [];
         foreach($this->selected as $selectedID => $selectedValue)
