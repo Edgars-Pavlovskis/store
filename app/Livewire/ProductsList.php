@@ -189,7 +189,7 @@ class ProductsList extends Component
         $this->isLoading = true;
         $count = count($this->products);
         $total = Products::where('discount', '>', 0)->whereActive(1)->count();
-        $newProducts = Products::select('id','title','image','price','discount','new','special','code','parent','variations')->where('discount', '>', 0)->whereActive(1)->limit($this->perLoadCount)->offset($count)->get();
+        $newProducts = Products::select('id','title','image','price','discount','new','special','code','parent','variations')->where('discount', '>', 0)->whereActive(1)->orderBy('updated_at', 'DESC')->limit($this->perLoadCount)->offset($count)->get();
         $this->products = $this->products->merge($newProducts);
         if($total > count($this->products)) { $this->showLoadMoreButton = true; } else { $this->showLoadMoreButton = false; }
         $this->isLoading = false;
@@ -199,7 +199,7 @@ class ProductsList extends Component
         $this->isLoading = true;
         $count = count($this->products);
         $total = Products::whereNew(1)->whereActive(1)->count();
-        $newProducts = Products::select('id','title','image','price','discount','new','special','code','parent','variations')->whereNew(1)->whereActive(1)->limit($this->perLoadCount)->offset($count)->get();
+        $newProducts = Products::select('id','title','image','price','discount','new','special','code','parent','variations')->whereNew(1)->whereActive(1)->orderBy('updated_at', 'DESC')->limit($this->perLoadCount)->offset($count)->get();
         $this->products = $this->products->merge($newProducts);
         if($total > count($this->products)) { $this->showLoadMoreButton = true; } else { $this->showLoadMoreButton = false; }
         $this->isLoading = false;
@@ -209,7 +209,7 @@ class ProductsList extends Component
         $this->isLoading = true;
         $count = count($this->products);
         $total = Products::whereSpecial(1)->whereActive(1)->count();
-        $newProducts = Products::select('id','title','image','price','discount','new','special','code','parent','variations')->whereSpecial(1)->whereActive(1)->limit($this->perLoadCount)->offset($count)->get();
+        $newProducts = Products::select('id','title','image','price','discount','new','special','code','parent','variations')->whereSpecial(1)->whereActive(1)->orderBy('updated_at', 'DESC')->limit($this->perLoadCount)->offset($count)->get();
         $this->products = $this->products->merge($newProducts);
         if($total > count($this->products)) { $this->showLoadMoreButton = true; } else { $this->showLoadMoreButton = false; }
         $this->isLoading = false;

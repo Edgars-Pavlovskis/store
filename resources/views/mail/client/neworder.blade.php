@@ -1233,7 +1233,7 @@
                                   mso-line-height-alt: 17px;
                                   margin: 0;
                                 ">
-                              {{number_format($product['price'], 2)}} €
+                              {{number_format($product['price'] * intval($product['addCount']), 2)}} €
                             </p>
                           </div>
                         </div>

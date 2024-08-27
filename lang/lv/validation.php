@@ -25,5 +25,19 @@ return [
     ],
 
 
+
+    'custom' => [
+        'email' => [
+            'unique' => 'Šāda e-pasta adrese jau ir reģistrēta',
+        ],
+        'password' => [
+            'min' => 'Parolei ir jābūt minimāli 8 simboli garai',
+            'required' => 'Nav ievadīta parole',
+            'current_password' => 'Aktuālā parole ir nepareiza',
+            'confirmed' => 'Paroles nesakrīt',
+        ],
+    ],
+
+
     'xxxaxaxax' => 'The :attribute field must match :other.'
 ];
