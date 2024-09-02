@@ -3,6 +3,9 @@
 @include('layouts.header-without-catalog')
 @include('layouts.footer')
 
+@section('title', __('frontend.profile.profile'))
+@section('og_title', __('frontend.profile.profile'))
+
 @section('content')
 
   <!-- Start Breadcrumb Area  -->

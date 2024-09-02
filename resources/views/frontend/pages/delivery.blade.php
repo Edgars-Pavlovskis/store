@@ -3,6 +3,9 @@
 @include('layouts.header-without-catalog')
 @include('layouts.footer')
 
+@section('title', 'Piegādes nosacījumi')
+@section('og_title', 'Piegādes nosacījumi')
+
 @section('content')
 
   <!-- Start Breadcrumb Area  -->

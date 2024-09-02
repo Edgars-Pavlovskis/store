@@ -3,6 +3,9 @@
 @include('layouts.header-without-catalog')
 @include('layouts.footer')
 
+@section('title', 'Internetveikala lietošanas noteikumi')
+@section('og_title', 'Internetveikala lietošanas noteikumi')
+
 @section('content')
 
 <style>

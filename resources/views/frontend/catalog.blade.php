@@ -3,6 +3,12 @@
 @include('layouts.header-without-catalog')
 @include('layouts.footer')
 
+@section('title', $category->title)
+@section('meta_description', __('frontend.product-catalog'))
+@section('og_title', $category->title)
+@section('og_description', __('frontend.product-catalog'))
+@section('og_image', '/storage/categories/{{$category->image}}')
+
 @section('content')
         <!-- Start Breadcrumb Area  -->
         <div class="axil-breadcrumb-area">

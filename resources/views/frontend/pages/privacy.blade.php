@@ -3,6 +3,10 @@
 @include('layouts.header-without-catalog')
 @include('layouts.footer')
 
+
+@section('title', 'Privātuma politika')
+@section('og_title', 'Privātuma politika')
+
 @section('content')
 
 <style>

@@ -1,4 +1,12 @@
 <div class="col-lg-5 mb--40">
+    @section('title', $product->title)
+    @section('meta_description', $product->description)
+    @section('og_title', $product->title)
+    @section('og_description', $product->description)
+    @section('og_type', 'product')
+    @section('og_image', '/storage/products/{{$product->image}}')
+
+
     <div class="single-product-content">
         <div class="inner">
             <h2 class="product-title">{{$product->title}}</h2>

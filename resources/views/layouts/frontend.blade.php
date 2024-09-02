@@ -4,9 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>birojamunskolai.lv</title>
-    <meta name="robots" content="noindex, follow" />
-    <meta name="description" content="">
+    <title>@yield('title', 'birojamunskolai.lv')</title>
+    <meta name="description" content="@yield('meta_description', 'Internetveikals birojamunskolai.lv')">
+
+    <meta name="robots" content="index, follow" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/favico/favicon.ico') }}">
@@ -14,6 +16,24 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/favico/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/favico/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('assets/favico/site.webmanifest') }}">
+
+
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="@yield('og_title', 'birojamunskolai.lv')" />
+    <meta property="og:description" content="@yield('og_description', 'Internetveikals birojamunskolai.lv')" />
+    <meta property="og:type" content="@yield('og_type', 'website')" />
+    <meta property="og:url" content="@yield('og_url', url()->current())" />
+    <meta property="og:image" content="@yield('og_image', asset('assets/img/alba.png'))" />
+    <meta property="og:site_name" content="{{ config('app.name') }}" />
+    <meta property="og:locale" content="{{ app()->getLocale() }}" />
+
+    <!-- Optional: Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="@yield('og_title', 'birojamunskolai.lv')" />
+    <meta name="twitter:description" content="@yield('og_description', 'Internetveikals birojamunskolai.lv')" />
+    <meta name="twitter:image" content="@yield('og_image', asset('assets/img/alba.png'))" />
+
+
 
     <!-- CSS
     ============================================ -->
