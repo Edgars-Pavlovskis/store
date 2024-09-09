@@ -49,7 +49,17 @@
 
                                     @foreach($categories as $category)
                                         <li>
-                                            <a href="{{ route('frontend-catalog-show', ['alias'=>$category->alias]) }}" class="nav-link has-megamenu">
+                                            <a href="
+                                                @mobile
+                                                    @if($category->children->isNotEmpty())
+                                                        #
+                                                    @else
+                                                        {{ route('frontend-catalog-show', ['alias'=>$category->alias]) }}
+                                                    @endif
+                                                @elsemobile
+                                                    {{ route('frontend-catalog-show', ['alias'=>$category->alias]) }}
+                                                @endmobile
+                                            " class="nav-link @if($category->children->isNotEmpty()) has-megamenu @endif">
                                                 <span class="menu-icon"><img src="/storage/categories/{{$category->image}}" alt="category-image"></span>
                                                 <span class="menu-text">{{$category->title}}</span>
                                             </a>

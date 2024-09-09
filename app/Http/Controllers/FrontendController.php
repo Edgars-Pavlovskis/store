@@ -19,7 +19,7 @@ class FrontendController extends Controller
     public function index()
     {
         return view('frontend.index',[
-            'categories' => Categories::whereFeatured(1)->select('id','title','alias','image')->orderBy('priority')->get(),
+            'categories' => Categories::whereFeatured(1)->whereActive(1)->with('children')->select('id','title','alias','image')->orderBy('priority')->get(),
         ]);
     }
 

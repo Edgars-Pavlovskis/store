@@ -75,7 +75,7 @@
                                         <!-- End Single Select  -->
                                     </div>
                                     <div class="d-lg-none">
-                                        <button class="product-filter-mobile filter-toggle"><i class="fas fa-filter"></i> FILTER</button>
+                                        <button class="product-filter-mobile filter-toggle"><i class="fas fa-filter"></i> {{__('frontend.Products filter')}}</button>
                                     </div>
                                 </div>
                             </div>

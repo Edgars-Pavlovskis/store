@@ -8,6 +8,7 @@ return [
     'select-variations' => 'Izvēlēties',
     'Shopping list' => 'Pirkumu saraksts',
     'Shopping cart' => 'Pirkumu grozs',
+    'Products filter' => 'Preču filtrs',
     'Product add to shopping cart' => 'Produkts pievienots pirkumu grozam',
     'check-this-too' => 'Apskaties arī',
     'other-products-in-category' => 'Citas preces šajā kategorijā',
