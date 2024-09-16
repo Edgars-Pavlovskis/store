@@ -5,7 +5,7 @@
                 <span class="title-highlighter highlighter-primary {{$icon['text-color']??''}}"> <a class="{{$icon['text-color']??''}}" href="{{$url??''}}"><i class="{{$icon['bg-color']??''}} {{$icon['class']??''}}"></i> {{$icon['text']??''}}</a></span>
                 <!-- <h3 class="title">{{$title??''}}</h3> -->
             </div>
-            <div class="new-arrivals-product-activation-2 slick-layout-wrapper--15 axil-slick-arrow arrow-top-slide product-slide-mobile">
+            <div class="products-loader-holder new-arrivals-product-activation-2 slick-layout-wrapper--15 axil-slick-arrow arrow-top-slide product-slide-mobile">
 
                 @foreach ($products as $product)
                     <div class="slick-single-layout">

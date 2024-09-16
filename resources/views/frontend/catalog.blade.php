@@ -17,9 +17,7 @@
                     <div class="col-lg-6 col-md-8">
                         <div class="inner">
                             <ul class="axil-breadcrumb">
-                                <li class="axil-breadcrumb-item"><a href="/">{{__('frontend.home')}}</a></li>
-                                <li class="separator"></li>
-                                <li class="axil-breadcrumb-item">{{__('frontend.product-catalog')}}</li>
+                                <li class="axil-breadcrumb-item"><a href="/">{{__('frontend.product-catalog')}}</a></li>
                                 @if ($category->parent)
                                     <li class="separator"></li>
                                     <li class="axil-breadcrumb-item active" aria-current="page"><a href="/catalog/{{$category->parent->alias}}">{{$category->parent->title}}</a></li>

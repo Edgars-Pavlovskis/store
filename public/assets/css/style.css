@@ -18421,7 +18421,8 @@ RTL Style
     text-transform: uppercase;
 }
 
-#products-loader-holder, #search-loader-holder {
+
+.products-loader-holder, #products-loader-holder, #search-loader-holder {
     position:relative;
     text-align: center;
 }
