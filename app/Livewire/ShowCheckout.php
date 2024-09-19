@@ -29,6 +29,37 @@ class ShowCheckout extends Component
         $this->checkout['rules'] = null;
         session()->put('checkout', $this->checkout);
         */
+        if (auth()->check()) {
+            $user = auth()->user();
+            if(!isset($this->checkout['name'])){
+                $this->checkout['name'] = $user->profiledata['invoiceName'] ?? '';
+                $this->checkout['surname'] = $user->profiledata['invoiceSurname'] ?? '';
+                $this->checkout['street'] = $user->profiledata['invoiceStreet'] ?? '';
+                $this->checkout['city'] = $user->profiledata['invoiceCity'] ?? '';
+                $this->checkout['zip'] = $user->profiledata['invoiceZip'] ?? '';
+                $this->checkout['country'] = $user->profiledata['invoiceCountry'] ?? '';
+                $this->checkout['phone'] = $user->profiledata['invoicePhone'] ?? '';
+                $this->checkout['email'] = $user->profiledata['invoiceEmail'] ?? '';
+            }
+
+            if(!isset($this->checkout['company']['name'])){
+                $this->checkout['company']['name'] = $user->profiledata['companyname'] ?? '';
+                $this->checkout['company']['regno'] = $user->profiledata['companyregno'] ?? '';
+                $this->checkout['company']['bank'] = $user->profiledata['companybank'] ?? '';
+                $this->checkout['company']['account'] = $user->profiledata['companyaccount'] ?? '';
+            }
+
+            if(!isset($this->checkout['delivery']['name'])){
+                $this->checkout['delivery']['name']  = $user->profiledata['deliveryName'] ?? '';
+                $this->checkout['delivery']['surname'] = $user->profiledata['deliverySurname'] ?? '';
+                $this->checkout['delivery']['street'] = $user->profiledata['deliveryStreet'] ?? '';
+                $this->checkout['delivery']['city'] = $user->profiledata['deliveryCity'] ?? '';
+                $this->checkout['delivery']['zip'] = $user->profiledata['deliveryZip'] ?? '';
+                $this->checkout['delivery']['country'] = $user->profiledata['deliveryCountry'] ?? '';
+                $this->checkout['delivery']['phone'] = $user->profiledata['deliveryPhone'] ?? '';
+            }
+
+        }
     }
 
     public function updateShoppingCart()
@@ -84,7 +115,7 @@ class ShowCheckout extends Component
                     'checkout.delivery.city' => 'string|max:255',
                     'checkout.delivery.zip' => 'string|max:255',
                     'checkout.delivery.country' => 'string|max:255',
-                    'checkout.delivery.email' => 'string|max:255',
+                    'checkout.delivery.phone' => 'string|max:255',
                     'checkout.company.name' => 'string|max:255',
                     'checkout.company.regno' => 'string|max:255',
                     'checkout.company.bank' => 'string|max:255',
@@ -128,6 +159,8 @@ class ShowCheckout extends Component
         $order = Orders::create($this->checkout);
         session()->put('checkout-complete', $order->id);
         session()->put('shopping_cart', []);
+        if (auth()->check()) { auth()->user()->saveShoppingCart([]); }
+
         //session()->put('checkout', []);
         createLog($order->id, 'order', __('orders.logs-text.system-user'), $text = __('orders.logs-text.order-created'), $params = []);
 

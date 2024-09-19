@@ -28,6 +28,7 @@ class ShowShoppingCart extends Component
         }
         session()->put('shopping_cart', $this->shoppingCart);
         $this->dispatch('updateShoppingCart');
+        if (auth()->check()) { auth()->user()->saveShoppingCart($this->shoppingCart); }
     }
 
     public function updateShoppingCart()
@@ -84,6 +85,7 @@ class ShowShoppingCart extends Component
                 if(!isset($this->coupons[$this->couponCode])) $this->coupons[$this->couponCode] = ['title'=>$config['title'][App()->currentLocale()]??''];
                 session()->put('coupons', $this->coupons);
                 session()->put('shopping_cart', $this->shoppingCart);
+                if (auth()->check()) { auth()->user()->saveShoppingCart($this->shoppingCart); }
             }
         } else {
             $this->alert('error', __('frontend.checkout.coupon-not-valid'));
@@ -103,6 +105,7 @@ class ShowShoppingCart extends Component
         }
         session()->put('shopping_cart', $this->shoppingCart);
         $this->dispatch('updateShoppingCart');
+        if (auth()->check()) { auth()->user()->saveShoppingCart($this->shoppingCart); }
     }
 
     public function cleanShoppingCart()
@@ -110,6 +113,7 @@ class ShowShoppingCart extends Component
         session()->put('shopping_cart', []);
         session()->put('coupons', []);
         $this->dispatch('updateShoppingCart');
+        if (auth()->check()) { auth()->user()->saveShoppingCart([]); }
     }
 
     public function addItemCountDec($index)
@@ -118,6 +122,7 @@ class ShowShoppingCart extends Component
             if($this->shoppingCart[$index]['addCount'] > 1) $this->shoppingCart[$index]['addCount']--;
             session()->put('shopping_cart', $this->shoppingCart);
             $this->dispatch('updateShoppingCart');
+            if (auth()->check()) { auth()->user()->saveShoppingCart($this->shoppingCart); }
         }
     }
     public function addItemCountInc($index)
@@ -126,6 +131,7 @@ class ShowShoppingCart extends Component
             $this->shoppingCart[$index]['addCount']++;
             session()->put('shopping_cart', $this->shoppingCart);
             $this->dispatch('updateShoppingCart');
+            if (auth()->check()) { auth()->user()->saveShoppingCart($this->shoppingCart); }
         }
     }
 

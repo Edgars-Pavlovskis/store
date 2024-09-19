@@ -14,7 +14,6 @@ class ShowShoppingCartPanel extends Component
 
     public function mount()
     {
-        //session()->put('shopping_cart', []);
         $this->updateShoppingCart();
     }
 
@@ -31,6 +30,7 @@ class ShowShoppingCartPanel extends Component
         if(!isset($data['disable-notify'])) {
             $this->dispatch('showCartAddNotify');
         }
+        if (auth()->check()) { auth()->user()->saveShoppingCart($cartItems); }
     }
 
 
@@ -55,12 +55,14 @@ class ShowShoppingCartPanel extends Component
         }
         session()->put('shopping_cart', $this->shoppingCart);
         $this->dispatch('updateShoppingCart');
+        if (auth()->check()) { auth()->user()->saveShoppingCart($this->shoppingCart); }
     }
 
     public function cleanShoppingCart()
     {
         session()->put('shopping_cart', []);
         $this->dispatch('updateShoppingCart');
+        if (auth()->check()) { auth()->user()->saveShoppingCart([]); }
     }
 
     public function render()

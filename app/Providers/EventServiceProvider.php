@@ -19,7 +19,7 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
 
-        \Illuminate\Auth\Events\Authenticated::class => [
+        \Illuminate\Auth\Events\Login::class => [
             \App\Listeners\LoadClientDiscountsConfig::class,
         ],
     ];

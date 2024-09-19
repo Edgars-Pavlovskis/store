@@ -47,6 +47,34 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
+    public function shoppingCart()
+    {
+        return $this->hasOne(ShoppingCart::class);
+    }
+
+    public function saveShoppingCart(array $cartData)
+    {
+        $cart = $this->shoppingCart()->first();
+        if (empty($cartData)) {
+            if ($cart) {
+                $cart->delete();
+            }
+            return;
+        }
+
+        if ($cart) {
+            $cart->update(['cart_data' => $cartData]);
+        } else {
+            $this->shoppingCart()->create(['cart_data' => $cartData]);
+        }
+    }
+
+    public function getShoppingCart()
+    {
+        $cart = $this->shoppingCart()->first();
+        return $cart ? $cart->cart_data : [];
+    }
+
 
     public function scopeSearch($query, $term)
     {

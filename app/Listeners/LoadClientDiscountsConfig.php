@@ -22,12 +22,15 @@ class LoadClientDiscountsConfig
     public function handle(object $event): void
     {
         $user = $event->user;
-        $discountSettings = config('discounts.list.' . $user->discount, []);
 
+        $discountSettings = config('discounts.list.' . $user->discount, []);
         if(!empty($discountSettings) && isset($discountSettings['categories']) && !empty($discountSettings['categories'])) {
             Session::put('user.discounts', $discountSettings['categories']);
         } else {
             Session::put('user.discounts', []);
         }
+
+        session()->put('shopping_cart', $event->user->getShoppingCart());
+
     }
 }
