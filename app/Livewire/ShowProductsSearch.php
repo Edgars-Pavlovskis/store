@@ -27,7 +27,7 @@ class ShowProductsSearch extends Component
     {
         $this->isLoading = true;
         if(strlen(trim($this->query)) < 3) return false;
-        $products = Products::select('id','title','image','price','discount','new','special','code','parent','variations')->search($this->query)->get();
+        $products = Products::select('id','title','image','price','discount','new','special','code','parent','variations')->where('active',1)->search($this->query)->get();
         $this->found = count($products);
         $this->products = $products->take($this->perLoad);
         if($this->found > 0 && $this->found > $this->perLoad) $this->showMoreButton = true; else $this->showMoreButton = false;

@@ -56,6 +56,7 @@
         @livewire('show-client-discount', ['client' => $client])
         <!-- END statuses -->
 
+        @livewire('show-client-info', ['client' => $client])
 
         <!-- Log Messages -->
         @livewire('show-client-logs', ['id' => $client->id])
