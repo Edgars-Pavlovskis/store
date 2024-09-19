@@ -2,6 +2,7 @@
 <html class="no-js" lang="en">
 
 <head>
+    <link rel="canonical" href="{{env('APP_URL')}}">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEMZSJL50H"></script>
     <script>
