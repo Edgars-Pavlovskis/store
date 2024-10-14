@@ -44,6 +44,7 @@ Route::view('/kontakti', 'frontend.pages.contacts')->name('pages-contacts');
 Route::view('/profils', 'frontend.pages.profile')->name('pages-profile');
 
 
+Route::get('/venipaktest',[App\Http\Controllers\HomeController::class, 'venipakTest'])->name('venipak-test');
 Route::get('/dpdtest',[App\Http\Controllers\HomeController::class, 'dpdTest'])->name('dpd-test');
 Route::get('/mailtest',[App\Http\Controllers\FrontendController::class, 'mailtest'])->name('mail-test');
 

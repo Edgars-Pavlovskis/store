@@ -24,7 +24,6 @@ class HomeController extends Controller
     public function dpdtest()
     {
         $accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lcl9pZCI6ODM3NywiYWRtaW5faWQiOm51bGwsInNpZ25hdHVyZV9pZCI6IjI0ZGNlZDkyLWYzMzUtNGZlYS1iMGYxLTEyYzA0NzI4ZmVmNSIsInNpZ25hdHVyZV9uYW1lIjoiSW50ZXJuZXR2ZWlrYWxzIiwiaXNzIjoiYW1iZXItbHYiLCJleHAiOjEwMTcxNDM5NjE3M30.LC7FHSDDc5x7VfSyw-DPvy-CqHnUNvUbLvqyNzXRln4";
-
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $accessToken,
             'accept' => 'application/json',
@@ -59,6 +58,46 @@ class HomeController extends Controller
             $error = $response->json();
             dd($error);
         }
+    }
+
+
+    public function venipakTest()
+    {
+
+        // Fetch the remote JSON
+        $response = Http::get('https://go.venipak.lt/ws/get_pickup_points');
+        // Check if the response is successful
+        if ($response->successful()) {
+            $data = $response->json();
+            // Initialize the array for lockers data
+            $lockersData = [];
+            // Filter for country = "LV" and fill the lockersData array
+            foreach ($data as $item) {
+                if ($item['country'] === 'LV') {
+                    $lockersData[$item['id']] = $item['city'] . ', ' . $item['name'] . ' (' . $item['address'] . ')';
+                }
+            }
+
+            usort($lockersData, function ($a, $b) {
+                return strcmp($a, $b);
+            });
+            $jsonData = json_encode($lockersData, JSON_PRETTY_PRINT);
+            $filePath = storage_path('app/public/venipak/lockers.json');
+
+            if (!file_exists(dirname($filePath))) {
+                mkdir(dirname($filePath), 0777, true);
+            }
+
+            // Saglabājam JSON datus failā
+            file_put_contents($filePath, $jsonData);
+            http_response_code(200);
+        } else {
+            // Apstrādājiet kļūdas gadījumus
+            $error = $response->json();
+            dd($error);
+        }
+
+
     }
 
 

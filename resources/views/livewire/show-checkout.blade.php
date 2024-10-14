@@ -341,23 +341,43 @@
                                                     </label>
                                                 </div>
                                                 @if ($index == "delivery-parcel")
-                                                <div @if(!$parcelDeliverySelected) style="display:none;" @endif>
-                                                    <div wire:ignore class="customInputContainer">
-                                                        <div class="customInput">
-                                                            <div class="selectedData">Izvēlieties pakomātu</div>
-                                                            <i class="fa-solid fa-angle-right"></i>
-                                                        </div>
-                                                        <div class="options">
-                                                            <div class="searchInput">
-                                                                <i class="fa-solid fa-magnifying-glass"></i>
-                                                                <input type="text" id="searchInput" autocomplete="off" placeholder="{{__('frontend.search-city')}}">
+                                                    <div @if(!$parcelDeliverySelected) style="display:none;" @endif>
+                                                        <div wire:ignore class="customInputContainer">
+                                                            <div class="customInput">
+                                                                <div class="selectedData">Izvēlieties pakomātu</div>
+                                                                <i class="fa-solid fa-angle-right"></i>
                                                             </div>
-                                                            <ul>
-                                                            </ul>
+                                                            <div class="options">
+                                                                <div class="searchInput">
+                                                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                                                    <input type="text" id="searchInput" autocomplete="off" placeholder="{{__('frontend.search-city')}}">
+                                                                </div>
+                                                                <ul>
+                                                                </ul>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
                                                 @endif
+
+                                                @if ($index == "delivery-parcel-venipak")
+                                                    <div @if(!$parcelDeliveryVenipakSelected) style="display:none;" @endif>
+                                                        <div wire:ignore class="customInputContainer customInputContainerVenipak">
+                                                            <div class="customInput customInputVenipak">
+                                                                <div class="selectedDataVenipak">Izvēlieties pakomātu</div>
+                                                                <i class="fa-solid fa-angle-right"></i>
+                                                            </div>
+                                                            <div class="options options-venipak">
+                                                                <div class="searchInput searchInputVenipak">
+                                                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                                                    <input type="text" id="searchInputVenipak" autocomplete="off" placeholder="{{__('frontend.search-city')}}">
+                                                                </div>
+                                                                <ul>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+
 
                                             @endforeach
                                         </td>
@@ -408,17 +428,11 @@
         <div>
             <!-- Pass JSON data to JavaScript -->
             <div id="jsonParcelStationsData" style="display: none;">{{ $jsonParcelStationsData }}</div>
+            <div id="jsonVenipakParcelStationsData" style="display: none;">{{ $jsonVenipakParcelStationsData }}</div>
         </div>
     </div>
 
     <script>
-        window.addEventListener('click', (e) => {
-            if (document.querySelector('.searchInput').contains(e.target)) {
-                document.querySelector('.searchInput').classList.add('focus')
-            } else {
-                document.querySelector('.searchInput').classList.remove('focus')
-            }
-        })
         function updateData(data) {
                 let selectedCountry = data.innerText
                 selectedData.innerText = selectedCountry
@@ -432,19 +446,51 @@
                 console.log(selectedCountry);
         }
 
+        function updateDataVenipak(data) {
+                let selectedCountry = data.innerText
+                selectedDataVenipak.innerText = selectedCountry
+                @this.set('selectedParcelStation', selectedCountry, true)
+
+                for (const li of document.querySelectorAll("li.selected")) {
+                    li.classList.remove("selected");
+                }
+                data.classList.add('selected')
+                customInputContainerVenipak.classList.toggle('show')
+                console.log(selectedCountry);
+        }
+
         function normalizeString(string) {
             return string.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         }
 
+
+        window.addEventListener('click', (e) => {
+            if (document.querySelector('.searchInput').contains(e.target)) {
+                document.querySelector('.searchInput').classList.add('focus')
+            } else {
+                document.querySelector('.searchInput').classList.remove('focus')
+            }
+        })
+
+        window.addEventListener('click', (e) => {
+            if (document.querySelector('.searchInputVenipak').contains(e.target)) {
+                document.querySelector('.searchInputVenipak').classList.add('focus')
+            } else {
+                document.querySelector('.searchInputVenipak').classList.remove('focus')
+            }
+        })
+
+
+
+
         document.addEventListener("DOMContentLoaded", function(event) {
-            // --------------------- Created By InCoder ---------------------
             let customInput = document.querySelector('.customInput')
             selectedData = document.querySelector('.selectedData')
             searchInput = document.querySelector('.searchInput input')
             ul = document.querySelector('.options ul')
             customInputContainer = document.querySelector('.customInputContainer')
 
-            var parcelLocations = JSON.parse(document.getElementById('jsonParcelStationsData').textContent);
+            let parcelLocations = JSON.parse(document.getElementById('jsonParcelStationsData').textContent);
 
             customInput.addEventListener('click', () => {
                 customInputContainer.classList.toggle('show')
@@ -493,7 +539,72 @@
                 }).join('')
                 ul.innerHTML = searched_country ? searched_country : "<p class='m-0 mt-2'>Nekas nav atrasts...</p>"
             })
+
+
+
+
+
+
+            let customInputVenipak = document.querySelector('.customInputVenipak')
+            selectedDataVenipak = document.querySelector('.selectedDataVenipak')
+            searchInputVenipak = document.querySelector('.searchInputVenipak input')
+            ulVenipak = document.querySelector('.options-venipak ul')
+            customInputContainerVenipak = document.querySelector('.customInputContainerVenipak')
+
+            let parcelLocationsVenipak = JSON.parse(document.getElementById('jsonVenipakParcelStationsData').textContent);
+
+            customInputVenipak.addEventListener('click', () => {
+                customInputContainerVenipak.classList.toggle('show')
+            })
+
+            let parcelLocationsLengthVenipak = parcelLocationsVenipak.length
+
+            for (let i = 0; i < parcelLocationsLengthVenipak; i++) {
+                let location = parcelLocationsVenipak[i]
+                const li = document.createElement("li");
+                const locationName = document.createTextNode(location);
+                li.appendChild(locationName);
+                ulVenipak.appendChild(li);
+            }
+
+
+            ulVenipak.querySelectorAll('li').forEach(li => {
+                li.addEventListener('click', (e) => {
+                    let selectdItem = e.target.innerText
+                    selectedDataVenipak.innerText = selectdItem
+                    @this.set('selectedParcelStation', selectdItem, true)
+
+                    for (const li of document.querySelectorAll("li.selected")) {
+                        li.classList.remove("selected");
+                    }
+                    e.target.classList.add('selected')
+                    customInputContainerVenipak.classList.toggle('show')
+                })
+            });
+
+
+            searchInputVenipak.addEventListener('keyup', (e) => {
+                let searchedVal = searchInputVenipak.value.toLowerCase()
+                let searched_country = []
+
+                searched_country = parcelLocationsVenipak.filter(data => {
+                    normalizedData = normalizeString(data);
+                    if(normalizeString(data).toLowerCase().startsWith(normalizeString(searchedVal).toLowerCase())) {
+                        return data
+                    }
+
+                }).map(data => {
+                    return `<li onClick="updateDataVenipak(this)">${data}</li>`
+                }).join('')
+                ulVenipak.innerHTML = searched_country ? searched_country : "<p class='m-0 mt-2'>Nekas nav atrasts...</p>"
+            })
+
+
         });
+
+
+
+
 
     </script>
 </div>

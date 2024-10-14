@@ -12,7 +12,9 @@ class ShowCheckout extends Component
     public $shoppingCart, $total;
     public $checkout = [];
     public $jsonParcelStationsData;
+    public $jsonVenipakParcelStationsData;
     public $parcelDeliverySelected = false;
+    public $parcelDeliveryVenipakSelected = false;
     public $selectedParcelStation;
 
     public function mount()
@@ -21,6 +23,7 @@ class ShowCheckout extends Component
 
          // Load your JSON data here
         $this->jsonParcelStationsData = file_get_contents(storage_path('app/public/dpd/lockers.json'));
+        $this->jsonVenipakParcelStationsData = file_get_contents(storage_path('app/public/venipak/lockers.json'));
 
         //session()->put('checkout', []);
         //$this->checkout = session()->get('checkout', []);
@@ -88,6 +91,7 @@ class ShowCheckout extends Component
         if(isset($deliveryData['freeontotal']) && is_numeric($deliveryData['freeontotal']) && $this->total >= $deliveryData['freeontotal']) $price = 0;
         $this->checkout['deliveryPrice'] = $price;
         if($this->checkout['deliveryAlias'] == "delivery-parcel") $this->parcelDeliverySelected = true; else $this->parcelDeliverySelected = false;
+        if($this->checkout['deliveryAlias'] == "delivery-parcel-venipak") $this->parcelDeliveryVenipakSelected = true; else $this->parcelDeliveryVenipakSelected = false;
     }
 
 
@@ -143,6 +147,13 @@ class ShowCheckout extends Component
             $this->alert('error', __('frontend.checkout.validation.parcel-location'));
             return;
         }
+        if ($this->parcelDeliveryVenipakSelected && (!$this->selectedParcelStation || empty($this->selectedParcelStation))) {
+            // If it's not set or empty, initialize Livewire validation error for the field "delivery"
+            $this->addError('checkout.deliveryAlias', __('frontend.checkout.validation.parcel-location'));
+            $this->alert('error', __('frontend.checkout.validation.parcel-location'));
+            return;
+        }
+
 
 
 

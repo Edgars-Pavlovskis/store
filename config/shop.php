@@ -106,6 +106,13 @@ return [
                 ],
                 'price' => 4,
             ],
+            'delivery-parcel-venipak' => [
+                'title' => [
+                    'lv' => 'Saņemt VENIPAK pakomātā',
+                    'en' => 'Receive by parcel (VENIPAK)',
+                ],
+                'price' => 2.9,
+            ],
             'delivery-courier' => [
                 'title' => [
                     'lv' => 'Piegāde ar kurjeru (lielgabarīta precēm piegādes cena tiek aprēķināta individuāli)',
