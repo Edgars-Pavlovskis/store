@@ -21,15 +21,15 @@ class ShowSpecialProducts extends Component
         foreach($this->types as $type => $count)
         {
             if($type == "new") {
-                $news = Products::select('id','title','image','price','discount','new','special','code','parent','variations')->where('new', 1)->inRandomOrder()->limit($count)->get()->toArray();
+                $news = Products::select('id','title','image','price','discount','new','special','code','parent','variations')->where('active',1)->where('new', 1)->inRandomOrder()->limit($count)->get()->toArray();
                 $this->products = array_merge($this->products, $news??[]);
             }
             if($type == "discount") {
-                $discounts = Products::select('id','title','image','price','discount','new','special','code','parent','variations')->where('discount', '>', 0)->inRandomOrder()->limit($count)->get()->toArray();
+                $discounts = Products::select('id','title','image','price','discount','new','special','code','parent','variations')->where('active',1)->where('discount', '>', 0)->inRandomOrder()->limit($count)->get()->toArray();
                 $this->products = array_merge($this->products, $discounts??[]);
             }
             if($type == "special") {
-                $specials = Products::select('id','title','image','price','discount','new','special','code','parent','variations')->where('special', 1)->inRandomOrder()->limit($count)->get()->toArray();
+                $specials = Products::select('id','title','image','price','discount','new','special','code','parent','variations')->where('active',1)->where('special', 1)->inRandomOrder()->limit($count)->get()->toArray();
                 $this->products = array_merge($this->products, $specials??[]);
             }
         }
