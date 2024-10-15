@@ -30,9 +30,11 @@ class ShowShoppingCartPanel extends Component
         // Iterate through the cart items to check if the product exists
         foreach ($cartItems as &$cartItem) {
             if ($cartItem['id'] === $productId) {
-                // Product exists, increment addCount
-                $cartItem['addCount'] += 1;
-                $productExists = true;
+                if(empty($cartItem['variation'])) {
+                    // Product exists, increment addCount
+                    $cartItem['addCount'] += 1;
+                    $productExists = true;
+                }
                 break; // Exit loop since we found the product
             }
         }
