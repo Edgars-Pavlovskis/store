@@ -24,7 +24,24 @@ class ShowShoppingCartPanel extends Component
         if(!isset($data['product']['id'])) return false;
 
         $cartItems = session()->get('shopping_cart', []);
-        $cartItems[] = $data['product'];
+        $productId = $data['product']['id'];
+        $productExists = false;
+
+        // Iterate through the cart items to check if the product exists
+        foreach ($cartItems as &$cartItem) {
+            if ($cartItem['id'] === $productId) {
+                // Product exists, increment addCount
+                $cartItem['addCount'] += 1;
+                $productExists = true;
+                break; // Exit loop since we found the product
+            }
+        }
+        // If the product does not exist in the cart, add it as a new item
+        if (!$productExists) {
+            $cartItems[] = $data['product'];
+        }
+
+
         session()->put('shopping_cart', $cartItems);
         $this->dispatch('updateShoppingCart');
         if(!isset($data['disable-notify'])) {

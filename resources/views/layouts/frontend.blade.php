@@ -244,9 +244,10 @@
         <div class="header-search-wrap shopping-cart-add-notify-modal p-3 pt-5">
             <div class="card-header text-center">
                 <i class="fa-regular fa-2x fa-circle-check fa-beat-fade text-success"></i>
-                <h3>Produkts pievienots grozam</h3>
+                <h3 class="mb-1">Produkts pievienots grozam</h3>
+                <p>Pirkumu grozā ir iespējams norādīt vēlamo preču skaitu pasūtījumā!</p>
             </div>
-            <div class="card-body">
+            <div class="card-body mt-5">
                 <div class="group-btn text-center">
                     <a href="javascript:void(0)" class="sidebar-close axil-btn p-2 px-4 me-3 btn-bg-lighter viewcart-btn"><i class="fa-solid fa-play me-2"></i>Turpināt ieprikties</a>
                     <a href="{{route('cart-show')}}" class="axil-btn p-2 px-4 ms-3 btn-bg-secondary checkout-btn"><i class="fa-solid fa-basket-shopping me-2"></i>Pirkumu grozs</a>
