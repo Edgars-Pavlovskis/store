@@ -45,7 +45,7 @@
                                     </div>
                                 @endforeach
 
-                                <button type="submit" class="axil-btn btn-bg-primary">{{__('frontend.filter.apply')}}</button>
+                                <button type="submit" class="sidebar-close axil-btn btn-bg-primary">{{__('frontend.filter.apply')}}</button>
                                 <button wire:click="resetFilter" class="mt-2 axil-btn btn-bg-outline">{{__('frontend.filter.reset')}}</button>
                             </form>
                         </div>
@@ -61,19 +61,21 @@
                         </div>
                     </div>
 
-                    @if (isset($alias) && count($products)>0)
+                    @if (isset($alias))
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="axil-shop-top mb--40">
-                                    <div class="category-select align-items-center justify-content-lg-end justify-content-between">
-                                        <!-- Start Single Select  -->
-                                        <select class="single-select" wire:model.live="sortMode">
-                                            <option value="none">{{__('frontend.sort-none')}}</option>
-                                            <option value="priceasc">{{__('frontend.sort-priceasc')}}</option>
-                                            <option value="pricedesc">{{__('frontend.sort-pricedesc')}}</option>
-                                        </select>
-                                        <!-- End Single Select  -->
-                                    </div>
+                                    @if(count($products)>0)
+                                        <div class="category-select align-items-center justify-content-lg-end justify-content-between">
+                                            <!-- Start Single Select  -->
+                                            <select class="single-select" wire:model.live="sortMode">
+                                                <option value="none">{{__('frontend.sort-none')}}</option>
+                                                <option value="priceasc">{{__('frontend.sort-priceasc')}}</option>
+                                                <option value="pricedesc">{{__('frontend.sort-pricedesc')}}</option>
+                                            </select>
+                                            <!-- End Single Select  -->
+                                        </div>
+                                    @endif
                                     <div class="d-lg-none">
                                         <button class="product-filter-mobile filter-toggle"><i class="fas fa-filter"></i> {{__('frontend.Products filter')}}</button>
                                     </div>

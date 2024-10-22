@@ -143,7 +143,7 @@ $products = Product::select('products.id', 'products.name', 'translations.name A
     public function productGalleryUpload(Request $req)
     {
         $req->validate([
-            'file' => 'mimes:jpg|max:5120'
+            'file' => 'mimes:jpg,jpeg,webp,avif|max:400'
         ]);
         if($req->file()) {
             $fileName = 'img_'.Str::random(5).time().'.'.$req->file->getClientOriginalExtension();
@@ -198,7 +198,7 @@ $products = Product::select('products.id', 'products.name', 'translations.name A
 
         $req->validate([
             'code' => ($routeName == "products-store") ? ['required', 'max:255', new Productunique] : ['required', 'max:255'],
-            'image' => 'mimes:jpg,jpeg,webp|max:400',
+            'image' => 'mimes:jpg,jpeg,webp,avif|max:400',
             'price' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
             'stock' => ['required', 'integer'],
         ]);
