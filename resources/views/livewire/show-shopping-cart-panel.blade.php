@@ -26,7 +26,7 @@
         </div>
         <div class="cart-footer">
             <h3 class="cart-subtotal">
-                <span class="subtotal-title">Subtotal:</span>
+                <span class="subtotal-title">{{__('frontend.cart.total-sum')}}:</span>
                 <span class="subtotal-amount">{{number_format($total, 2)}} <span class="currency-symbol">€</span></span>
             </h3>
             <div class="group-btn">
