@@ -53,6 +53,7 @@ return [
     'product' => [
         'details' => 'Preces apraksts',
         'attributes' => 'Preces parametri',
+        'notawailable' => 'Diemžēl, prece šobrīd nav pieejama pasūtīšanai',
     ],
 
     'filter' => [

@@ -64,6 +64,7 @@ class FrontendController extends Controller
     public function product($alias='')
     {
         $product = Products::whereCode($alias)->select('id','gallery')->first();
+        if(!$product) return abort(404);
         $galleryImages = File::glob(public_path('storage/products-gallery/'.((isset($product->gallery) && strlen($product->gallery)>0)?$product->gallery:$product->id).'/*'));
         foreach ($galleryImages as $key=>$path) {
             $path = str_replace(public_path(), '', $path);

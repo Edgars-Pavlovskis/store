@@ -1,8 +1,8 @@
 <div class="col-lg-5 mb--40">
     @section('title', $product->title)
-    @section('meta_description', $product->description)
+    @section('meta_description', $product->description??'')
     @section('og_title', $product->title)
-    @section('og_description', $product->description)
+    @section('og_description', $product->description??'')
     @section('og_type', 'product')
     @section('og_image', '/storage/products/{{$product->image}}')
 
@@ -28,7 +28,7 @@
 
             @endif
 
-            <p class="description">{{$product->description}}</p>
+            <p class="description">{{$product->description??''}}</p>
 
             @if (isset($product->inner_code) && strlen($product->inner_code)>0)
                 <p class="description"><small><b>{{__('admin.products.input-inner-code')}}:</b> {{$product->inner_code}}</small></p>
@@ -78,22 +78,27 @@
                 <a class="text-danger" href="javascript:void(0)" wire:click="resetVariations"><i class="fa-solid fa-arrows-rotate me-2"></i>{{__('frontend.variations.reset')}}</a>
             @endif
 
-            <!-- Start Product Action Wrapper  -->
-            <div class="product-action-wrapper d-flex-center mt-5">
-                <!-- Start Quentity Action  -->
 
-                <div  class="pro-qty"><span wire:click="addItemCountDec" class="dec qtybtn">-</span><input type="text" wire:model.blur="addItemCount"><span wire:click="addItemCountInc" class="inc qtybtn">+</span></div>
+            @if($product->active)
+                <!-- Start Product Action Wrapper  -->
+                <div class="product-action-wrapper d-flex-center mt-5">
+                    <!-- Start Quentity Action  -->
+                    <div  class="pro-qty"><span wire:click="addItemCountDec" class="dec qtybtn">-</span><input type="text" wire:model.blur="addItemCount"><span wire:click="addItemCountInc" class="inc qtybtn">+</span></div>
+                    <!-- End Quentity Action  -->
 
-                <!-- End Quentity Action  -->
+                    <!-- Start Product Action  -->
+                    <ul class="product-action d-flex-center mb--0">
+                        <li class="add-to-cart"><a href="javascript:void(0)" wire:click="addToCard" class="axil-btn @if(isset($variationMatch['id']) || count($variations)==0) btn-bg-primary @else btn-bg-disabled @endif">{{__('frontend.add-to-cart')}}</a></li>
+                    </ul>
+                    <!-- End Product Action  -->
+                </div>
+                <!-- End Product Action Wrapper  -->
+            @else
+                <div class="alert alert-warning" role="alert">
+                    {{__('frontend.product.notawailable')}}
+              </div>
+            @endif
 
-                <!-- Start Product Action  -->
-                <ul class="product-action d-flex-center mb--0">
-                    <li class="add-to-cart"><a href="javascript:void(0)" wire:click="addToCard" class="axil-btn @if(isset($variationMatch['id']) || count($variations)==0) btn-bg-primary @else btn-bg-disabled @endif">{{__('frontend.add-to-cart')}}</a></li>
-                </ul>
-                <!-- End Product Action  -->
-
-            </div>
-            <!-- End Product Action Wrapper  -->
         </div>
     </div>
 </div>
