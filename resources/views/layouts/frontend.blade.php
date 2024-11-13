@@ -44,7 +44,7 @@
     <meta name="twitter:image" content="@yield('og_image', asset('assets/img/alba.png'))" />
 
 
-
+    <meta name="google-site-verification" content="a1atMC7itqI7gOQ0YjQenePdIK5XAiAyoGHkFW2w1ZU" />
     <!-- CSS
     ============================================ -->
 
