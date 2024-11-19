@@ -94,7 +94,7 @@
                 <a href="{{ route('categories-edit', ['alias'=>$current->alias]) }}"><i class="fa-solid fa-pen-to-square fa-xs ms-2"></i></a>
                 <a href="javascript:void()" onclick="Livewire.dispatch('confirmDeleteExternal', { itemId: '{{$current->id}}', itemName: '{{$current->title}}', model: 'Categories', parent: '{{$current->parent_alias}}' })"><i class="fa fa-trash fa-xs ms-2"></i></a>
             @else
-                {{__('admin.categories.title')}}
+                {{__('admin.categories.title')}} @if($showinnactive) ({{__('admin.Innactive products')}}) @endif
             @endif
           </h1>
           <h2 class="fs-base lh-base fw-medium text-muted mb-0">
@@ -152,6 +152,25 @@
     </a>
 
 
+    @if (!isset($current->id))
+        @if($showinnactive)
+            <a href="/admin/categories/show">
+                <button type="button" class="btn btn-sm btn-secondary me-1 mb-3">
+                    <i class="fa-solid fa-eye me-1"></i> {{__('admin.Show all')}}
+                </button>
+            </a>
+        @else
+            <a href="/admin/categories/showinnactive">
+                <button type="button" class="btn btn-sm btn-secondary me-1 mb-3">
+                    <i class="fa-solid fa-eye-slash me-1"></i> {{__('admin.Show innactive')}}
+                </button>
+            </a>
+        @endif
+
+
+
+    @endif
+
 
 
 
@@ -177,39 +196,46 @@
 
 
 
-    @if (isset($current->id))
+    @if (isset($current->id) || $showinnactive)
+
 
           <!-- Dynamic Table Responsive -->
           <div class="block block-rounded">
-            <div class="block-header block-header-default">
-              <h3 class="block-title">
-                {{__('admin.products.list')}} <small>{{__('admin.products.in-choosed-category')}}</small>
-              </h3>
-            </div>
+
+            @if (isset($current->id))
+                <div class="block-header block-header-default">
+                <h3 class="block-title">
+                    {{__('admin.products.list')}} <small>{{__('admin.products.in-choosed-category')}}</small>
+                </h3>
+                </div>
+            @endif
+
             <div class="block-content block-content-full pt-2">
-                <a href="{{ route('products-create', ['alias'=>$current->alias]) }}">
-                    <button type="button" class="btn btn-sm btn-success me-1 mb-3">
-                        <i class="fa fa-fw fa-plus me-1"></i> {{__('admin.products.add')}}
-                    </button>
-                </a>
 
-                @if ($showinnactive)
-                    <a href="{{ route('categories-index', ['alias'=>$current->alias, 'showinnactive'=>'']) }}">
-                        <button type="button" class="btn btn-sm btn-secondary me-1 mb-3">
-                            <i class="fa-solid fa-eye me-1"></i> {{__('admin.Show all')}}
+                @if (isset($current->id))
+                    <a href="{{ route('products-create', ['alias'=>$current->alias]) }}">
+                        <button type="button" class="btn btn-sm btn-success me-1 mb-3">
+                            <i class="fa fa-fw fa-plus me-1"></i> {{__('admin.products.add')}}
                         </button>
                     </a>
-                @else
-                    <a href="{{ route('categories-index', ['alias'=>$current->alias, 'showinnactive'=>'show-innactive']) }}">
-                        <button type="button" class="btn btn-sm btn-secondary me-1 mb-3">
-                            <i class="fa-solid fa-eye-slash me-1"></i> {{__('admin.Show innactive')}}
-                        </button>
-                    </a>
+
+                    @if ($showinnactive)
+                        <a href="{{ route('categories-index', ['alias'=>$current->alias, 'showinnactive'=>'']) }}">
+                            <button type="button" class="btn btn-sm btn-secondary me-1 mb-3">
+                                <i class="fa-solid fa-eye me-1"></i> {{__('admin.Show all')}}
+                            </button>
+                        </a>
+                    @else
+                        <a href="{{ route('categories-index', ['alias'=>$current->alias, 'showinnactive'=>'show-innactive']) }}">
+                            <button type="button" class="btn btn-sm btn-secondary me-1 mb-3">
+                                <i class="fa-solid fa-eye-slash me-1"></i> {{__('admin.Show innactive')}}
+                            </button>
+                        </a>
+                    @endif
+
+                    @livewire('show-admin-apply-category-discount', ['alias' => $current->alias])
+
                 @endif
-
-                @livewire('show-admin-apply-category-discount', ['alias' => $current->alias])
-
-
 
               <!-- DataTables init on table by adding .js-dataTable-responsive class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
               <table class="table table-bordered table-striped table-vcenter js-dataTable-responsive">

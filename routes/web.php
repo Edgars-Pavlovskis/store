@@ -97,8 +97,10 @@ Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::view('/admin/blank', 'admin.blank', ['user' => Auth::user()])->middleware('password.confirm');
 
 
+
     Route::get('/admin/categories/show',[App\Http\Controllers\CategoriesController::class, 'index'])->name('categories-index-root');
     Route::get('/admin/categories/show/{alias?}/{showinnactive?}',[App\Http\Controllers\CategoriesController::class, 'index'])->name('categories-index');
+    Route::get('/admin/categories/showinnactive',[App\Http\Controllers\CategoriesController::class, 'showinnactive'])->name('categories-showinnactive');
     Route::get('/admin/categories/search',[App\Http\Controllers\CategoriesController::class, 'search'])->name('categories-search-product');
 
     Route::get('/admin/categories/attributes/{alias?}',[App\Http\Controllers\CategoriesController::class, 'attributes'])->name('attributes');

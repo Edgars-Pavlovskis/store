@@ -17,15 +17,15 @@ class ShowBanner extends Component
     public function mount()
     {
         if($this->type == "top-product") {
-            $this->banner = Banner::where('type',$this->type)->inRandomOrder()->first();
+            $this->banner = Banner::where('type',$this->type)->where('active',1)->inRandomOrder()->first();
             if($this->banner) {
                 $product = Products::select('id','title','code','price','discount','image')->where('inner_code', $this->banner->params['product-code']??'')->orWhere('code', $this->banner->params['product-code']??'')->first();
                 $this->banner->params = $product??[];
             }
         } else if($this->type == "counter" || $this->type == "full-length") {
-            $this->banner = Banner::where('type',$this->type)->inRandomOrder()->first();
+            $this->banner = Banner::where('type',$this->type)->where('active',1)->inRandomOrder()->first();
         } else {
-            $this->banners = Banner::where('type',$this->type)->limit($this->limit??1)->get();
+            $this->banners = Banner::where('type',$this->type)->where('active',1)->limit($this->limit??1)->get();
         }
     }
 

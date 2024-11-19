@@ -24,6 +24,8 @@ class CategoriesController extends Controller
         //dd(getLocalesWithoutDefault());
         //dd(defaultLocaleActive());
         $current = Categories::whereAlias($alias)->first();
+
+
         $productsQuery = Products::where('parent', $alias);
         if($showinnactive == "show-innactive") $productsQuery->where('active', 0);
         return view('admin.categories.show',[
@@ -31,6 +33,18 @@ class CategoriesController extends Controller
             'products' => $productsQuery->orderBy('id', 'DESC')->get(),
             'current' => $current,
             'showinnactive' => $showinnactive
+        ]);
+    }
+
+
+
+    public function showinnactive()
+    {
+        return view('admin.categories.show',[
+            'categories' => [],
+            'products' => Products::where('active', 0)->orderBy('id', 'DESC')->get(),
+            'current' => null,
+            'showinnactive' => true
         ]);
     }
 

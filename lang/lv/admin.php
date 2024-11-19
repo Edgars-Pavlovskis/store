@@ -15,6 +15,7 @@ return [
     'Reset Password' => 'Atiestatīt paroli',
     'Show all' => 'Rādīt visas',
     'Show innactive' => 'Rādīt neaktīvās',
+    'Innactive products' => 'neaktīvās preces',
     'add' => 'Pievienot',
     'create' => 'Izveidot',
     'save' => 'Saglabāt',
