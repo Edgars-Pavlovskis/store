@@ -47,10 +47,18 @@ return [
         'clients-list' => 'Klientu pārvaldība',
         'banner-type' => 'Banera veids',
         'banner-type-text' => 'Izvēlieties vienu no banera veidiem',
+        'discounts' => 'Atlaides',
+        'discounts-list' => 'Atlaižu pārvaldība',
+        'discount-type' => 'Atlaižu veids',
+        'discount-type-text' => 'Izvēlieties vienu no atlaižu veidiem',
     ],
 
     'banners' => [
         'add' => 'Pievienot baneri',
+    ],
+
+    'discounts' => [
+        'add' => 'Pievienot atlaidi',
     ],
 
     'dialogs' => [

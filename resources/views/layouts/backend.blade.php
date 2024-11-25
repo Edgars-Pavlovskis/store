@@ -242,7 +242,6 @@
             </li>
 
 
-
             <li class="nav-main-item{{ request()->is('banners/*') ? ' open' : '' }}">
                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
                   <i class="fa-solid fa-panorama me-2" aria-hidden="true"></i>
@@ -253,6 +252,23 @@
                   <li class="nav-main-item">
                     <a class="nav-main-link{{ ((request()->is('banners/*'))) ? ' active' : '' }}" href="/banners/show">
                         <span class="nav-main-link-name">{{__('admin.navi.banners-list')}}</span>
+                      </a>
+                  </li>
+
+                </ul>
+            </li>
+
+
+            <li class="nav-main-item{{ request()->is('discounts/*') ? ' open' : '' }}">
+                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                  <i class="fa-solid fa-percent me-2" aria-hidden="true"></i>
+                  <span class="nav-main-link-name">{{__('admin.navi.discounts')}}</span>
+                </a>
+                <ul class="nav-main-submenu">
+
+                  <li class="nav-main-item">
+                    <a class="nav-main-link{{ ((request()->is('discounts/*'))) ? ' active' : '' }}" href="/discounts/show">
+                        <span class="nav-main-link-name">{{__('admin.navi.discounts-list')}}</span>
                       </a>
                   </li>
 

@@ -88,11 +88,11 @@
                     @if(count($products)>0)
                         <div  class="row row--15">
                             @foreach ($products as $product)
-                                <div class="col-xl-3 col-sm-6">
+                                <div class="@mobile col-6 @elsemobile col-xl-3 col-sm-6 @endmobile">
                                     <div class="axil-product product-style-one mb--30">
                                         <div class="thumbnail">
                                             <a target="blank" href="{{ route('frontend-product-show', ['alias'=>$product->code]) }}">
-                                                <img style="@if(isset($alias)) height:224px !important; @endif" src="/storage/products/{{$product->image}}" onerror="this.src='/assets/img/default-product.png';" alt="Product Image">
+                                                <img style="@if(isset($alias)) @mobile height:150px !important; @elsemobile height:224px !important; @endmobile @endif @mobile object-fit: contain; @endmobile" src="/storage/products/{{$product->image}}" onerror="this.src='/assets/img/default-product.png';" alt="Product Image">
                                             </a>
 
                                             <div class="label-block label-right">
@@ -107,6 +107,7 @@
                                                 @endif
                                             </div>
 
+                                            @desktop
                                             <div class="product-hover-action">
                                                 <ul class="cart-action">
                                                     @if(is_array($product->variations) && count($product->variations)>0)
@@ -116,6 +117,8 @@
                                                     @endif
                                                 </ul>
                                             </div>
+                                            @enddesktop
+
                                         </div>
                                         <div class="product-content">
                                             <div class="inner">
@@ -130,6 +133,16 @@
                                                     @if ($product->discount > 0)
                                                         <span class="price old-price"><small>{{number_format($product->price, 2)}} €</small></span>
                                                     @endif
+
+                                                    @mobile
+                                                        <ul class="cart-action">
+                                                            @if(is_array($product->variations) && count($product->variations)>0)
+                                                                <li class="select-option w-100"><a target="blank" href="{{ route('frontend-product-show', ['alias'=>$product->code]) }}">{{__('frontend.select-variations')}}</a></li>
+                                                            @else
+                                                                <li class="select-option w-100"><a href="javascript:void(0)" wire:click="fastAddProductToCart('{{$product->id}}')">{{__('frontend.add-to-cart')}}</a></li>
+                                                            @endif
+                                                        </ul>
+                                                    @endmobile
                                                 </div>
                                             </div>
                                         </div>

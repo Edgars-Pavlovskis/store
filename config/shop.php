@@ -308,7 +308,54 @@ return [
 
 
         ]
+    ],
+
+
+    'discounts' => [
+        'templates' => [
+
+            'category-discount' => [
+                'title' => [
+                    'lv' => 'Preču kategorijas atlaide',
+                    'en' => 'Products category discount',
+                ],
+                'description' => [
+                    'lv' => 'Ieplānot atlaidi visām precēm izvēlētajā preču kategorijā',
+                    'en' => 'Schedule a discount for all products in the selected product category',
+                ],
+                'color' => 'bg-primary',
+
+                'params' => [
+                    'category' => [
+                        'type' => 'category',
+                    ],
+                ]
+            ],
+
+            'promo-code' => [
+                'title' => [
+                    'lv' => 'Atlaižu kods',
+                    'en' => 'Promo code',
+                ],
+                'description' => [
+                    'lv' => 'Ieplānot atlaižu kodu',
+                    'en' => 'Schedule a promo code',
+                ],
+                'color' => 'bg-primary',
+
+                'params' => [
+                    'config' => [
+                        'type' => 'promo-config',
+                    ],
+                ]
+            ],
+
+
+
+        ]
     ]
+
+
 
 ];
 

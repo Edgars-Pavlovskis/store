@@ -148,5 +148,11 @@ Route::middleware(['auth', 'superadmin'])->group(function () {
 
 
 
+    Route::get('/discounts/show',[App\Http\Controllers\DiscountsController::class, 'index'])->name('discounts-show');
+    Route::get('/discounts/create',[App\Http\Controllers\DiscountsController::class, 'createType'])->name('discounts-create-type');
+    Route::post('/discounts/create',[App\Http\Controllers\DiscountsController::class, 'submitType'])->name('discounts-submit-type');
+    Route::get('/discounts/edit/{id}',[App\Http\Controllers\DiscountsController::class, 'editDiscount'])->name('discounts-edit');
+
+
 });
 
