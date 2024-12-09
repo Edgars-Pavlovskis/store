@@ -326,7 +326,11 @@ return [
                 'color' => 'bg-primary',
 
                 'params' => [
+                    'discount' => [
+                        'type' => 'number',
+                    ],
                     'category' => [
+                        'array' => true,
                         'type' => 'category',
                     ],
                 ]
@@ -341,11 +345,22 @@ return [
                     'lv' => 'Ieplānot atlaižu kodu',
                     'en' => 'Schedule a promo code',
                 ],
-                'color' => 'bg-primary',
+                'color' => 'bg-success',
 
                 'params' => [
-                    'config' => [
-                        'type' => 'promo-config',
+                    'discount' => [
+                        'type' => 'number',
+                    ],
+                    'code' => [
+                        'type' => 'string',
+                    ],
+                    'category' => [
+                        'array' => true,
+                        'type' => 'category',
+                    ],
+                    'ignored' => [
+                        'array' => true,
+                        'type' => 'category',
                     ],
                 ]
             ],

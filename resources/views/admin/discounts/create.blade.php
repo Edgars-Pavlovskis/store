@@ -1,11 +1,9 @@
 @extends('layouts.backend')
 
-
 @section('css')
   <!-- Page JS Plugins CSS  -->
   <link rel="stylesheet" href="{{ asset('js/plugins/flatpickr/flatpickr.min.css') }}">
-
-
+  <link rel="stylesheet" href="{{ asset('js/plugins/select2/css/select2.min.css') }}">
 
 @endsection
 
@@ -15,13 +13,12 @@
 
   <!-- Page JS Plugins -->
   <script src="{{ asset('js/plugins/flatpickr/flatpickr.min.js') }}"></script>
-
-
+  <script src="{{ asset('js/plugins/select2/js/select2.full.min.js') }}"></script>
 
 
    <!-- Page JS Helpers (Tooltip) -->
    <script type="module">
-    One.helpersOnLoad(['js-flatpickr']);
+    One.helpersOnLoad(['js-flatpickr', 'jq-select2']);
   </script>
 
 @endsection
@@ -58,10 +55,8 @@
   <!-- Page Content -->
   <div class="content">
 
-    <p>show-discount-constructor here</p>
-    <!--
-    livewire('show-discount-constructor', ['type' => $type, 'id' => $id])
-    -->
+    @livewire('show-discount-constructor', ['type' => $type, 'id' => $id])
+
   </div>
   <!-- END Page Content -->
 @endsection

@@ -111,13 +111,9 @@ class ShowBannerConstructor extends Component
             ]);
         }
 
-
-
-
-
-
         return redirect()->route('banners-show');
     }
+    
 
     public function render()
     {

@@ -746,6 +746,13 @@ export default class Helpers {
         placeholder: el.data('placeholder') || false,
         dropdownParent: document.querySelector(el.data('container') || '#page-container'),
       });
+
+      alert('eddy wanna sex');
+
+      el.on('change', function () {
+        alert('eddy wanna sex');
+      });
+
     });
   }
 

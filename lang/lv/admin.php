@@ -55,10 +55,15 @@ return [
 
     'banners' => [
         'add' => 'Pievienot baneri',
+        'data' => 'Banera konfigurācija',
+        'input-maindata' => 'Aizpildiet nepieciešamos banera konfigurācijas laukus',
     ],
 
     'discounts' => [
         'add' => 'Pievienot atlaidi',
+        'data' => 'Atlaides konfigurācija',
+        'input-maindata' => 'Aizpildiet nepieciešamos atlaides konfigurācijas laukus',
+        'input-category' => 'Atlasiet preču kategorijas',
     ],
 
     'dialogs' => [

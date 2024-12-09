@@ -16,7 +16,7 @@
     <!-- Your Block -->
     <div class="block block-rounded">
         <div class="block-header block-header-default">
-          <h3 class="block-title">{{__('admin.products.data')}}</h3>
+          <h3 class="block-title">{{__('admin.banners.data')}}</h3>
         </div>
         <div class="block-content block-content-full">
           <form wire:submit="saveBanner" enctype="multipart/form-data" >
@@ -24,7 +24,7 @@
             <div class="row">
               <div class="col-lg-4">
                 <p class="fs-sm text-muted">
-                    {{__('admin.products.input-maindata')}}
+                    {{__('admin.banners.input-maindata')}}
                 </p>
               </div>
               <div class="col-lg-8 col-xl-5">

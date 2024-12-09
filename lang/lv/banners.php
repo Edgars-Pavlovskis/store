@@ -28,5 +28,4 @@ return [
     'thankyou' => 'Paldies',
     'you-subscibed' => 'Jūs esat parakstījies jaunumu saņemšanai',
     'open-calendar' => 'Izvēlieties datumu..',
-
 ];

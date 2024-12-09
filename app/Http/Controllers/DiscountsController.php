@@ -38,7 +38,7 @@ class DiscountsController extends Controller
     }
 
 
-    public function editBanner($id)
+    public function editDiscount($id)
     {
         $type = Discount::whereId($id)->value('type');
         return view('admin.discounts.create',[
