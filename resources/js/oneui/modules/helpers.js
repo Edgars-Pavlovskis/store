@@ -747,12 +747,6 @@ export default class Helpers {
         dropdownParent: document.querySelector(el.data('container') || '#page-container'),
       });
 
-      alert('eddy wanna sex');
-
-      el.on('change', function () {
-        alert('eddy wanna sex');
-      });
-
     });
   }
 
