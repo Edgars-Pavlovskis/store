@@ -97,7 +97,7 @@
 
                 <tr>
                     <td colspan="4" class="text-end"><strong>{{__('orders.order.total-without-tax')}}:</strong></td>
-                    <td class="text-end">{{number_format($order->total - number_format($order->total*0.21,2), 2)}} €</td>
+                    <td class="text-end">{{number_format($order->total - ($order->total*0.21), 2)}} €</td>
                 </tr>
                 <tr>
                     <td colspan="4" class="text-end"><strong>{{__('orders.order.total-tax')}}:</strong></td>
