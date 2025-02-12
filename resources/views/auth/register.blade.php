@@ -38,48 +38,58 @@
                         <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
                         <form class="js-validation-signup" action="{{ route('register') }}" method="POST">
                             @csrf
-                          <div class="py-3">
-                            <div class="mb-4">
-                              <input type="text" class="form-control @error('name') is-invalid @enderror form-control-lg form-control-alt" id="name" name="name" value="{{ old('name') }}" placeholder="{{ __('frontend.Username') }}" required autocomplete="name" autofocus>
-                              @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <div class="py-3">
+                                <div class="mb-4">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror form-control-lg form-control-alt" id="name" name="name" value="{{ old('name') }}" placeholder="{{ __('frontend.Username') }}" required autocomplete="name" autofocus>
+                                @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="mb-4">
+                                <input type="email" class="form-control @error('email') is-invalid @enderror form-control-lg form-control-alt" id="email" name="email" value="{{ old('email') }}" placeholder="{{ __('frontend.Email') }}" required autocomplete="email">
+                                @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="mb-4">
+                                <input type="password" class="form-control @error('password') is-invalid @enderror form-control-lg form-control-alt" id="password" name="password" placeholder="{{ __('frontend.Password') }}" required autocomplete="new-password">
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="mb-4">
+                                <input type="password" class="form-control form-control-lg form-control-alt" id="password-confirm" name="password_confirmation" placeholder="{{ __('frontend.Confirm Password') }}" required autocomplete="new-password">
+                                </div>
+                                <div class="mb-4">
+                                    <p class="fw-medium text-muted">
+                                        Reģistrējoties, Jūs apstiprināt, ka piekrītat <a class="link-warning" href="#">internetveikala lietošanas noteikumiem</a> un esat iepazinušies ar mūsu <a class="link-warning" href="#">privātumu politiku</a>.
+                                    </p>
+                                </div>
                             </div>
-                            <div class="mb-4">
-                              <input type="email" class="form-control @error('email') is-invalid @enderror form-control-lg form-control-alt" id="email" name="email" value="{{ old('email') }}" placeholder="{{ __('frontend.Email') }}" required autocomplete="email">
-                              @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+
+                            {!! NoCaptcha::display() !!}
+                            @error('g-recaptcha-response')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+
+                            <div class="row mb-4">
+                                <div class="col-md-6 col-xl-5">
+                                <button type="submit" class="btn w-100 btn-alt-success">
+                                    <i class="fa fa-fw fa-plus me-1 opacity-50"></i> {{ __('Reģistrēties') }}
+                                </button>
+                                </div>
                             </div>
-                            <div class="mb-4">
-                              <input type="password" class="form-control @error('password') is-invalid @enderror form-control-lg form-control-alt" id="password" name="password" placeholder="{{ __('frontend.Password') }}" required autocomplete="new-password">
-                              @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="mb-4">
-                              <input type="password" class="form-control form-control-lg form-control-alt" id="password-confirm" name="password_confirmation" placeholder="{{ __('frontend.Confirm Password') }}" required autocomplete="new-password">
-                            </div>
-                            <div class="mb-4">
-                                <p class="fw-medium text-muted">
-                                    Reģistrējoties, Jūs apstiprināt, ka piekrītat <a class="link-warning" href="#">internetveikala lietošanas noteikumiem</a> un esat iepazinušies ar mūsu <a class="link-warning" href="#">privātumu politiku</a>.
-                                </p>
-                            </div>
-                          </div>
-                          <div class="row mb-4">
-                            <div class="col-md-6 col-xl-5">
-                              <button type="submit" class="btn w-100 btn-alt-success">
-                                <i class="fa fa-fw fa-plus me-1 opacity-50"></i> {{ __('Reģistrēties') }}
-                              </button>
-                            </div>
-                          </div>
                         </form>
+
+                        {!! NoCaptcha::renderJs() !!}
                         <!-- END Sign Up Form -->
                       </div>
                     </div>
