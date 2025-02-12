@@ -36,7 +36,7 @@
                         <!-- Sign Up Form -->
                         <!-- jQuery Validation (.js-validation-signup class is initialized in js/pages/op_auth_signup.min.js which was auto compiled from _js/pages/op_auth_signup.js) -->
                         <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
-                        <form class="js-validation-signup" action="{{ route('register') }}" method="POST">
+                        <form id="register-form" class="js-validation-signup" action="{{ route('register') }}" method="POST">
                             @csrf
                             <div class="py-3">
                                 <div class="mb-4">
@@ -96,6 +96,7 @@
                                 event.preventDefault(); // Stop form from submitting
                                 grecaptcha.ready(function() {
                                     grecaptcha.execute("{{ env('NOCAPTCHA_SITEKEY') }}", { action: 'register' }).then(function(token) {
+                                        alert("hi there");
                                         let form = document.getElementById('register-form');
                                         let recaptchaInput = document.createElement('input');
                                         recaptchaInput.setAttribute('type', 'hidden');
