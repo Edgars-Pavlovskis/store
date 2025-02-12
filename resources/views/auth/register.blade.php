@@ -73,7 +73,7 @@
                                 </div>
                             </div>
 
-                            {!! NoCaptcha::display() !!}
+
                             @error('g-recaptcha-response')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -82,7 +82,7 @@
 
                             <div class="row mb-4">
                                 <div class="col-md-6 col-xl-5">
-                                <button type="submit" class="btn w-100 btn-alt-success">
+                                <button id="register-button" type="submit" class="btn w-100 btn-alt-success">
                                     <i class="fa fa-fw fa-plus me-1 opacity-50"></i> {{ __('Reģistrēties') }}
                                 </button>
                                 </div>
@@ -90,6 +90,24 @@
                         </form>
 
                         {!! NoCaptcha::renderJs() !!}
+
+                        <script>
+                            document.getElementById('register-button').addEventListener('click', function(event) {
+                                event.preventDefault(); // Stop form from submitting
+                                grecaptcha.ready(function() {
+                                    grecaptcha.execute("{{ env('NOCAPTCHA_SITEKEY') }}", { action: 'register' }).then(function(token) {
+                                        let form = document.getElementById('register-form');
+                                        let recaptchaInput = document.createElement('input');
+                                        recaptchaInput.setAttribute('type', 'hidden');
+                                        recaptchaInput.setAttribute('name', 'g-recaptcha-response');
+                                        recaptchaInput.setAttribute('value', token);
+                                        form.appendChild(recaptchaInput);
+                                        form.submit(); // Submit after reCAPTCHA verification
+                                    });
+                                });
+                            });
+                        </script>
+
                         <!-- END Sign Up Form -->
                       </div>
                     </div>
