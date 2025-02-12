@@ -89,14 +89,12 @@
                             </div>
                         </form>
 
-                        {!! NoCaptcha::renderJs() !!}
-
+                        <script src="https://www.google.com/recaptcha/api.js?render={{ env('NOCAPTCHA_SITEKEY') }}" async defer></script>
                         <script>
                             document.getElementById('register-button').addEventListener('click', function(event) {
                                 event.preventDefault(); // Stop form from submitting
                                 grecaptcha.ready(function() {
                                     grecaptcha.execute("{{ env('NOCAPTCHA_SITEKEY') }}", { action: 'register' }).then(function(token) {
-                                        alert("hi there");
                                         let form = document.getElementById('register-form');
                                         let recaptchaInput = document.createElement('input');
                                         recaptchaInput.setAttribute('type', 'hidden');

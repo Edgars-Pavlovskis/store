@@ -35,5 +35,10 @@ return [
         'client_id' => '1007007942843-l3heabq5qsbajiqktcoedsj22ta1vt4c.apps.googleusercontent.com',
         'client_secret' => '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',
         'redirect' => 'http://127.0.0.1/google-callback',
+
+        'recaptcha' => [
+            'sitekey' => env('NOCAPTCHA_SITEKEY'),
+            'secret' => env('NOCAPTCHA_SECRET'),
+        ],
     ],
 ];
