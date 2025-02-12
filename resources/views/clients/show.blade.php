@@ -150,7 +150,7 @@
                             <a class="btn btn-sm btn-alt-secondary" href="{{route('show-client', ['email' => $client->email])}}" data-bs-toggle="tooltip" title="{{__('clients.show')}}">
                                 <i class="fa fa-fw fa-eye"></i>
                             </a>
-                            <a class="btn btn-sm btn-alt-secondary" title="{{__('admin.tooltips.delete')}}" onclick="Livewire.dispatch('confirmDeleteExternal', { itemId: '{{$client->id}}', itemName: json_encode($client->name . ' [' . $client->email . ']'), model: 'User', parent: '' })">
+                            <a class="btn btn-sm btn-alt-secondary" title="{{__('admin.tooltips.delete')}}" onclick="Livewire.dispatch('confirmDeleteExternal', { itemId: '{{$client->id}}', itemName: @json($client->name . ' [' . $client->email . ']'), model: 'User', parent: '' })">
                                 <i class="fa fa-fw fa-times"></i>
                             </a>
                         </td>
