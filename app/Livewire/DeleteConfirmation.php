@@ -103,7 +103,7 @@ class DeleteConfirmation extends Component
         //$model::{$method}($itemId);
 
         $this->itemId = $itemId;
-        $this->itemName = $itemName;
+        $this->itemName = addslashes($itemName);
         $this->model = $model;
         $this->parent = $parent;
         $this->dispatch('showConfirmDeleteExternalDialog');
