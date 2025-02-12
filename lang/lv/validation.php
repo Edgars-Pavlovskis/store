@@ -22,6 +22,7 @@ return [
         'min' => 'Minimāli 3 simboli',
         'max' => 'Minimāli 30 simboli',
         'required' => 'Nav ievadīts jaunais vārds / nosaukums',
+        'regex' => 'Atļauts izmantot tikai burtus un tukšumzīmes',
     ],
 
 
@@ -37,6 +38,19 @@ return [
             'confirmed' => 'Paroles nesakrīt',
         ],
     ],
+
+
+
+
+    'custom' => [
+        'name' => [
+            'min' => 'Minimāli 3 simboli',
+            'max' => 'Minimāli 30 simboli',
+            'required' => 'Nav ievadīts jaunais vārds / nosaukums',
+            'regex' => 'Atļauts izmantot tikai burtus un tukšumzīmes', // Ensure this is within 'custom' array
+        ],
+    ],
+
 
 
     'xxxaxaxax' => 'The :attribute field must match :other.'
