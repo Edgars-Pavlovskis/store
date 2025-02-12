@@ -124,7 +124,7 @@
               <thead>
                 <tr>
                   <th class="d-xl-table-cell">{{__('clients.email')}}</th>
-                  <th class="d-none d-xl-table-cell">{{__('clients.name')}}</th>
+                  <th class="d-xl-table-cell">{{__('clients.name')}}</th>
                   <th class="d-none d-xl-table-cell">{{__('clients.current-discount')}}</th>
                   <th class="d-none d-sm-table-cell text-center">{{__('clients.registred')}}</th>
                   <th class="text-center"></th>
@@ -134,15 +134,15 @@
 
                 @foreach ($clients as $client)
                     <tr>
-                        <td class="d-none d-xl-table-cell fs-sm">
+                        <td class="d-xl-table-cell fs-sm">
                             <a class="fw-semibold" href="{{route('show-client',['email'=>$client->email])}}">
                                 <strong>{{$client->email}}</strong>
                             </a>
                         </td>
-                        <td class="d-none d-xl-table-cell fs-sm">
+                        <td class="d-xl-table-cell fs-sm">
                             <strong>{{$client->name}}</strong>
                         </td>
-                        <td>
+                        <td class="d-none d-sm-table-cell text-center fs-sm">
                             <span class="badge {{config('discounts.list.'.$client->discount.'.bg-class')}}">{{config('discounts.list.' . $client->discount . '.title.'.App()->currentLocale(), 'notitle')}}</span>
                         </td>
                         <td class="d-none d-sm-table-cell text-center fs-sm">{{date_format($client->created_at,"d/m/Y H:i")}}</td>
