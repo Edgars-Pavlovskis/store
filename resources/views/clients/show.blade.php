@@ -123,9 +123,9 @@
             <table class="table table-borderless table-striped table-vcenter">
               <thead>
                 <tr>
-                  <th class="d-none d-xl-table-cell">{{__('clients.email')}}</th>
+                  <th class="d-xl-table-cell">{{__('clients.email')}}</th>
                   <th class="d-none d-xl-table-cell">{{__('clients.name')}}</th>
-                  <th>{{__('clients.current-discount')}}</th>
+                  <th class="d-none d-xl-table-cell">{{__('clients.current-discount')}}</th>
                   <th class="d-none d-sm-table-cell text-center">{{__('clients.registred')}}</th>
                   <th class="text-center"></th>
                 </tr>
