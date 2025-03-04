@@ -14,7 +14,7 @@ class ShowDiscountConstructor extends Component
     public $type;
     public $title;
     public $id;
-
+    public $code='';
     public $active;
     public $datestart;
     public $dateend;
@@ -33,6 +33,7 @@ class ShowDiscountConstructor extends Component
                 $this->type = $discount->type;
                 $this->title = $discount->title;
                 $this->active = $discount->active;
+                $this->code = $discount->code;
                 $this->datestart = $discount->date_start;
                 $this->dateend = $discount->date_end;
                 $this->data = $discount->params;
@@ -74,6 +75,7 @@ class ShowDiscountConstructor extends Component
                 $discount->date_start = $this->datestart ? DateTime::createFromFormat('d-m-Y', $this->datestart)->format('Y-m-d') : null;
                 $discount->date_end = $this->dateend ? DateTime::createFromFormat('d-m-Y', $this->dateend)->format('Y-m-d') : null;
                 $discount->active = $this->active??false;
+                $discount->code = $this->code;
                 $discount->params = $request;
                 $discount->save();
             }
@@ -84,6 +86,7 @@ class ShowDiscountConstructor extends Component
                 'date_start' => $this->datestart ? DateTime::createFromFormat('d-m-Y', $this->datestart)->format('Y-m-d') : null,
                 'date_end' => $this->dateend ? DateTime::createFromFormat('d-m-Y', $this->dateend)->format('Y-m-d') : null,
                 'active' => $this->active??false,
+                'code' => $this->code,
                 'params' => $request,
             ]);
         }

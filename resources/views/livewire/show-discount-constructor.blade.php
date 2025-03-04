@@ -55,6 +55,11 @@
                             <label class="form-check-label" for="active-checkbox">{{__('discounts.active')}}?</label>
                         </div>
                     </div>
+
+                    <div class="mb-4">
+                        <label class="form-label" for="input-string-code">{{__('discounts.code-for-coupons')}}</label>
+                        <input type="text" class="form-control form-control-sm" id="input-string-code" wire:model.defer="code">
+                    </div>
                     <hr>
 
                     @foreach (config('shop.discounts.templates.'.$type.'.params') as $name => $param)

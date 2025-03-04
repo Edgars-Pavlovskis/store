@@ -20,6 +20,7 @@ class Discount extends Model
         'type',
         'title',
         'active',
+        'code',
         'date_start',
         'date_end',
         'params',

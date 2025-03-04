@@ -351,9 +351,6 @@ return [
                     'discount' => [
                         'type' => 'number',
                     ],
-                    'code' => [
-                        'type' => 'string',
-                    ],
                     'category' => [
                         'array' => true,
                         'type' => 'category',

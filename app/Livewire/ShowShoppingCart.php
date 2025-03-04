@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Carbon;
+use App\Models\Discount;
 
 class ShowShoppingCart extends Component
 {
@@ -55,38 +56,38 @@ class ShowShoppingCart extends Component
     {
         if(strlen(trim($this->couponCode))==0) return false;
         $currentDate = Carbon::now();
-        if ($currentDate->between(Carbon::parse(config('coupons.list.'.$this->couponCode.'.datestart', '0000-00-00')), Carbon::parse(config('coupons.list.'.$this->couponCode.'.dateend', '0000-00-00')))) {
-            $config = config('coupons.list.'.$this->couponCode, []);
-            $discount = $config['discount']['amount']??0;
+        $config = Discount::whereCode(trim($this->couponCode))->first();
+        if(!isset($config->title)) {
+            $this->alert('error', __('frontend.checkout.coupon-not-valid'));
+            return false;
+        }
+        if ($currentDate->between(Carbon::parse($config->date_start), Carbon::parse($config->date_end))) {
+            $discount = $config->params['discount']??0;
 
-            if(!isset($config['title'])) {
-                $this->alert('error', __('frontend.checkout.coupon-not-valid'));
-                return false;
-            } else {
-                foreach($this->shoppingCart as &$cart) {
-                    $parent = $cart['parent'];
-                    if(isset($config['discount']['ignored'])) {
-                        if(!in_array($parent, $config['discount']['ignored'])) {
-                            if($cart['discount'] < $discount) {
-                                $cart['discount'] = $discount;
-                                $cart['price'] = $cart['fullprice'] - ($cart['fullprice'] * ($discount / 100));
-                            }
+            foreach($this->shoppingCart as &$cart) {
+                $parent = $cart['parent'];
+                if(isset($config->params['ignored'])) {
+                    if(!in_array($parent, $config->params['ignored'])) {
+                        if($cart['discount'] < $discount) {
+                            $cart['discount'] = $discount;
+                            $cart['price'] = $cart['fullprice'] - ($cart['fullprice'] * ($discount / 100));
                         }
-                    } else if(isset($config['discount']['categories'])) {
-                        if(in_array($parent, $config['discount']['categories'])) {
-                            if($cart['discount'] < $discount) {
-                                $cart['discount'] = $discount;
-                                $cart['price'] = $cart['fullprice'] - ($cart['fullprice'] * ($discount / 100));
-                            }
+                    }
+                } else if(isset($config->params['category'])) {
+                    if(in_array($parent, $config->params['category'])) {
+                        if($cart['discount'] < $discount) {
+                            $cart['discount'] = $discount;
+                            $cart['price'] = $cart['fullprice'] - ($cart['fullprice'] * ($discount / 100));
                         }
                     }
                 }
-                $this->alert('success', __('frontend.checkout.coupon-ok'));
-                if(!isset($this->coupons[$this->couponCode])) $this->coupons[$this->couponCode] = ['title'=>$config['title'][App()->currentLocale()]??''];
-                session()->put('coupons', $this->coupons);
-                session()->put('shopping_cart', $this->shoppingCart);
-                if (auth()->check()) { auth()->user()->saveShoppingCart($this->shoppingCart); }
             }
+            $this->alert('success', __('frontend.checkout.coupon-ok'));
+            if(!isset($this->coupons[$this->couponCode])) $this->coupons[$this->couponCode] = ['title'=>$config->title??''];
+            session()->put('coupons', $this->coupons);
+            session()->put('shopping_cart', $this->shoppingCart);
+            if (auth()->check()) { auth()->user()->saveShoppingCart($this->shoppingCart); }
+            $this->updateCount();
         } else {
             $this->alert('error', __('frontend.checkout.coupon-not-valid'));
         }

@@ -52,7 +52,7 @@
                 @if(count($coupons??[])>0)
                     <div class="mb-4">
                         @foreach ($coupons??[] as $coupon => $data)
-                            <span class="badge {{config('coupons.list.'.$coupon.'.badge-class', 'text-bg-secondary')}}">{{$coupon}}</span>
+                            <span class="badge text-bg-warning">{{$coupon}}</span>
                         @endforeach
                     </div>
                 @endif

@@ -5,6 +5,7 @@ return [
     'type' => 'Atlaides veids',
     'no-discount' => 'Nav atlaižu',
     'code' => 'Kupona kods',
+    'code-for-coupons' => 'Kupona kods (tikai kuponiem)',
     'category' => 'Kategorija(s), kurām tiks piemērota atlaide',
     'ignored' => 'Kategorija(s), kuras tiks ignorētas atlaižu piemērošanā',
 
