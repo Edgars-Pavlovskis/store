@@ -15,11 +15,13 @@ class VariationsConstructor extends Component
     public $productID;
     public $attributesData = [];
     public $variationAttributesIDs = [];
+    public $originalPrice;
 
     public function mount()
     {
         $this->variations = ProductsVariation::where('products_id', $this->productID)->select('id', 'name', 'description', 'variations', 'price', 'stock')->get()->toArray();
         $this->variationAttributesIDs = Products::where('id', $this->productID)->value('variations');
+        $this->originalPrice = Products::where('id', $this->productID)->value('price');
         $attributesData = [];
         foreach($this->variationAttributesIDs ?? [] as $attribute_id) {
             $attributesData[$attribute_id] = Attributes::where('id', $attribute_id)->select('id', 'name', 'type', 'options')->first();
@@ -58,7 +60,7 @@ class VariationsConstructor extends Component
             $name[$locale] = '';
             $description[$locale] = '';
         }
-        $this->variations[] = ['products_id' => $this->productID, 'name' => $name, 'description' => $description, 'variations' => [], 'price' => 0.00, 'stock' => 0];
+        $this->variations[] = ['products_id' => $this->productID, 'name' => $name, 'description' => $description, 'variations' => [], 'price' => number_format($this->originalPrice,2), 'stock' => 0];
     }
 
     public function deleteVariation($key)
@@ -79,6 +81,7 @@ class VariationsConstructor extends Component
             $descriptionsArray = $variationData['description'];
             $variationData['name'] = $namesArray[getDefaultLocale()];
             $variationData['description'] = $descriptionsArray[getDefaultLocale()];
+            $variationData['price'] = (int)$variationData['price']??0;
             unset($namesArray[getDefaultLocale()]);
             unset($descriptionsArray[getDefaultLocale()]);
 

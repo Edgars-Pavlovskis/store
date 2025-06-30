@@ -151,6 +151,9 @@ class ShowSingleProductBasicInfo extends Component
             'stock' => $this->product['stock'],
         );
 
+        if(isset($this->variationMatch['price']) && count($this->variations)>0) {
+            $product['price'] = $this->variationMatch['price']-($this->variationMatch['price'] * ((isset($this->clientDiscounts[$this->product->parent])?$this->clientDiscounts[$this->product->parent]:$this->product['discount'])/100));
+        }
 
         $variation = [];
         foreach($this->selected as $selectedID => $selectedValue)

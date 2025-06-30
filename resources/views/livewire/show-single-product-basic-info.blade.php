@@ -12,7 +12,18 @@
             <h2 class="product-title">{{$product->title}}</h2>
 
             @if (($minPrice > 0 && $maxPrice > 0) || $minPrice != $maxPrice)
-                <span class="price-amount">{{number_format($minPrice, 2)}} € - {{number_format($maxPrice, 2)}} €</span>
+                @if(isset($variationMatch['price']) && $variationMatch['price'] > 0)
+                    @if ($product->discount == 0 && isset($clientDiscounts[$product->parent]))
+                        <div class="product-price" style="color:rgb(132, 144, 91)">{{number_format($variationMatch['price'] - ($variationMatch['price'] * ($clientDiscounts[$product->parent] / 100)), 2)}} €</div>
+                    @else
+                        <span class="new-price">{{number_format($variationMatch['price'] - ($variationMatch['price'] * ($product->discount / 100)), 2)}} €</span>
+                    @endif
+                    @if ($product->discount > 0)
+                        <span class="old-price">{{number_format($variationMatch['price'], 2)}} €</span>
+                    @endif
+                @else
+                    <div class="product-price">{{number_format($minPrice, 2)}} € - {{number_format($maxPrice, 2)}} €</div>
+                @endif
             @else
 
                 <div class="price-amount price-offer-amount">

@@ -200,6 +200,7 @@ $products = Product::select('products.id', 'products.name', 'translations.name A
             'code' => ($routeName == "products-store") ? ['required', 'max:255', new Productunique] : ['required', 'max:255'],
             'image' => 'mimes:jpg,jpeg,webp,avif|max:400',
             'price' => ['required', 'numeric', 'regex:/^\d+(\.\d{1,2})?$/'],
+            'discount' => ['numeric'],
             'stock' => ['required', 'integer'],
         ]);
 
