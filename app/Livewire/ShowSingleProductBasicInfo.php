@@ -146,7 +146,12 @@ class ShowSingleProductBasicInfo extends Component
             'inner_code' => $this->product['inner_code'],
             'fullprice' => $this->product['price'],
             'price' => $this->product['price']-($this->product['price'] * ((isset($this->clientDiscounts[$this->product->parent])?$this->clientDiscounts[$this->product->parent]:$this->product['discount'])/100)),
-            'discount' => isset($this->clientDiscounts[$this->product->parent])?$this->clientDiscounts[$this->product->parent]:$this->product['discount'],
+            'discount' => (
+                isset($this->clientDiscounts[$this->product->parent]) &&
+                $this->clientDiscounts[$this->product->parent] > $this->product['discount']
+            )
+                ? $this->clientDiscounts[$this->product->parent]
+                : $this->product['discount'],
             'parent' => $this->product['parent'],
             'stock' => $this->product['stock'],
         );
