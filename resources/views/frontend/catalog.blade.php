@@ -30,12 +30,12 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-8">
+                    <div class="col-md-8">
                         <div class="inner">
                             <h1 class="title">{{$category->title}}</h1>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-4">
+                    <div class="col-md-4">
                         <div class="inner">
                             <div class="bradcrumb-thumb">
                                 <img style="max-width: 125px;" src="/storage/categories/{{$category->image}}" alt="Image">
