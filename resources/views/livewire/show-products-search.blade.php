@@ -29,7 +29,7 @@
 
             <div class="row row--15">
                 @foreach ($products as $product)
-                    <div wire:ignore class="@mobile col-12 @endmobile @tablet col-6 @endtablet @desktop col-xl-3 col-sm-6 @enddesktop">
+                    <div class="@mobile col-12 @endmobile @tablet col-6 @endtablet @desktop col-xl-3 col-sm-6 @enddesktop">
                         <div class="axil-product product-style-one mb--30">
                             <div class="thumbnail">
                                 <a target="blank" href="{{ route('frontend-product-show', ['alias'=>$product->code]) }}">
