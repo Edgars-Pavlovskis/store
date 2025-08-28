@@ -165,14 +165,22 @@ class ProductsList extends Component
         $count = count($this->products);
         $products->select('id','title','image','price','discount','new','special','code','parent','variations')->limit($this->perLoadCount)->offset($count);
 
-        if($this->sortMode == 'priceasc') {
-            $newProducts = $products->orderBy('price', 'asc')->get();
-
-        } else if($this->sortMode == 'pricedesc') {
-            $newProducts = $products->orderBy('price', 'desc')->get();
+        if ($this->sortMode == 'priceasc') {
+            $newProducts = $products
+                ->orderBy('price', 'asc')
+                ->orderBy('created_at', 'desc')
+                ->get();
+        } elseif ($this->sortMode == 'pricedesc') {
+            $newProducts = $products
+                ->orderBy('price', 'desc')
+                ->orderBy('created_at', 'desc')
+                ->get();
         } else {
-            $newProducts = $products->get();
+            $newProducts = $products
+                ->orderBy('created_at', 'desc')
+                ->get();
         }
+
 
         $this->products = $this->products->merge($newProducts);
 

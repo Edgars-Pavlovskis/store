@@ -44,8 +44,10 @@ class FrontendController extends Controller
 
     public function catalog($alias='')
     {
+        $breadcrumbCategories = $this->getCategoryChain($alias);
         return view('frontend.catalog',[
-            'category' => Categories::whereAlias($alias)->select('id','title','alias','image','parent_alias')->first()
+            'category' => Categories::whereAlias($alias)->select('id','title','alias','image','parent_alias')->first(),
+            'breadcrumbCategories' => $breadcrumbCategories,
         ]);
     }
 
@@ -60,21 +62,38 @@ class FrontendController extends Controller
     }
 
 
+    private function getCategoryChain($alias) {
+        $category = Categories::select('id', 'alias', 'parent_alias', 'title')
+            ->where('alias', $alias)
+            ->first();
+        if (!$category) {
+            return [];
+        }
+
+        if ($category->parent_alias) {
+            $chain = $this->getCategoryChain($category->parent_alias);
+            $chain[] = $category; // pievienojam šo kategoriju beigās
+            return $chain;
+        }
+        return [$category];
+    }
 
     public function product($alias='')
     {
-        $product = Products::whereCode($alias)->select('id','gallery')->first();
+        $product = Products::whereCode($alias)->select('id','gallery','parent')->first();
         if(!$product) return abort(404);
         $galleryImages = File::glob(public_path('storage/products-gallery/'.((isset($product->gallery) && strlen($product->gallery)>0)?$product->gallery:$product->id).'/*'));
         foreach ($galleryImages as $key=>$path) {
             $path = str_replace(public_path(), '', $path);
             $galleryImages[$key] = str_replace("\\", '/', $path);
         }
-
+        $breadcrumbCategories = $this->getCategoryChain($product->parent);
         $attributes = ProductsAttribute::where('products_id',$product->id)->select('products_attributes.*', 'attributes.*')->join('attributes', 'products_attributes.attributes_id', '=', 'attributes.id')->get();
         foreach ($attributes as &$attribute) {
             $attribute->options = json_decode($attribute->options, true); // Decode from JSON and cast to array
         }
+
+
 
         return view('frontend.product',[
             'product' => Products::whereCode($alias)->first(),
@@ -82,6 +101,7 @@ class FrontendController extends Controller
             'minPrice' => ProductsVariation::where('products_id',$product->id)->min('price') ?? 0,
             'maxPrice' => ProductsVariation::where('products_id',$product->id)->max('price') ?? 0,
             'attributes' => $attributes,
+            'breadcrumbCategories' => $breadcrumbCategories,
         ]);
     }
 

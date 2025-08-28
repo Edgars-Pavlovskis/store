@@ -1,4 +1,4 @@
-<div class="header-search-wrap">
+<div class="header-search-wrap search-notify-modal">
     <div class="card-header">
         <form wire:submit.prevent="search">
             <div class="input-group">
@@ -13,6 +13,11 @@
                 <h6 class="title">{{__('frontend.found-products')}}: {{$found}}</h6>
             </div>
         @endif
+
+
+
+
+
         <div class="psearch-results">
 
             <div id="search-loader-holder" >
@@ -22,47 +27,76 @@
             </div>
 
 
+            <div class="row row--15">
+                @foreach ($products as $product)
+                    <div wire:ignore class="@mobile col-12 @endmobile @tablet col-6 @endtablet @desktop col-xl-3 col-sm-6 @enddesktop">
+                        <div class="axil-product product-style-one mb--30">
+                            <div class="thumbnail">
+                                <a target="blank" href="{{ route('frontend-product-show', ['alias'=>$product->code]) }}">
+                                    <img style="@if(isset($alias)) @handheld height:150px !important; @elsehandheld height:224px !important; @endhandheld @endif @handheld object-fit: contain; @endhandheld" src="/storage/products/{{$product->image}}" onerror="this.src='/assets/img/default-product.png';" alt="Product Image">
+                                </a>
 
-            @foreach ($products as $product)
-                <div class="axil-product-list">
-                    <div class="thumbnail">
-                        <a href="{{ route('frontend-product-show', ['alias'=>$product->code]) }}">
-                            <img class="search-products-img" src="/storage/products/{{$product->image}}" onerror="this.src='/assets/img/default-product.png';" alt="Product Image">
-                        </a>
-                    </div>
-                    <div class="product-content">
-                        <h6 class="product-title"><a href="{{ route('frontend-product-show', ['alias'=>$product->code]) }}">{{$product->title}}</a></h6>
+                                <div class="label-block label-right">
+                                    @if ($product->discount > 0)
+                                        <div class="product-badget">{{__('admin.products.status.discount')}} -{{$product->discount}}%</div><br>
+                                    @endif
+                                    @if ($product->new)
+                                        <div class="product-badget bg-primary">{{__('admin.products.status.new')}}</div><br>
+                                    @endif
+                                    @if ($product->special)
+                                        <div class="product-badget bg-success"><i class="fa-solid fa-thumbs-up"></i></div>
+                                    @endif
+                                </div>
 
-                        @if ($product->discount > 0)
-                            <span class="badge text-bg-danger">{{__('admin.products.status.discount')}} -{{$product->discount}}%</span>
-                        @endif
-                        @if ($product->new)
-                            <span class="badge text-bg-primary">{{__('admin.products.status.new')}}</span>
-                        @endif
-                        @if ($product->special)
-                            <span class="badge text-bg-success"><i class="fa-solid fa-thumbs-up"></i></span>
-                        @endif
+                                @desktop
+                                <div class="product-hover-action">
+                                    <ul class="cart-action">
+                                        @if(is_array($product->variations) && count($product->variations)>0)
+                                            <li class="select-option"><a target="blank" href="{{ route('frontend-product-show', ['alias'=>$product->code]) }}">{{__('frontend.select-variations')}}</a></li>
+                                        @else
+                                            <li class="select-option"><a href="javascript:void(0)" wire:click="fastAddProductToCart('{{$product->id}}')">{{__('frontend.add-to-cart')}}</a></li>
+                                        @endif
+                                    </ul>
+                                </div>
+                                @enddesktop
 
-                        <div class="product-price-variant">
-                            @if ($product->discount == 0 && isset($clientDiscounts[$product->parent]))
-                                <span class="price current-price" style="color:rgb(132, 144, 91)">{{number_format($product->price - ($product->price * ($clientDiscounts[$product->parent] / 100)), 2)}} €</span>
-                            @else
-                                <span class="price current-price">{{number_format($product->price - ($product->price * ($product->discount / 100)), 2)}} €</span>
-                            @endif
-                            @if ($product->discount > 0)
-                                <span class="price old-price"><small>{{number_format($product->price, 2)}} €</small></span>
-                            @endif
+                            </div>
+                            <div class="product-content">
+                                <div class="inner">
+                                    <h5 class="title"><a target="blank" href="{{ route('frontend-product-show', ['alias'=>$product->code]) }}">{{$product->title}}</a></h5>
+                                    <div class="product-price-variant">
+                                        @if (isset($alias) && $product->discount == 0 && isset($clientDiscounts[$alias]))
+                                            <span class="price current-price" style="color:rgb(132, 144, 91)">{{number_format($product->price - ($product->price * ($clientDiscounts[$alias] / 100)), 2)}} €</span>
+                                        @else
+                                            <span class="price current-price">{{number_format($product->price - ($product->price * ($product->discount / 100)), 2)}} €</span>
+                                        @endif
+
+                                        @if ($product->discount > 0)
+                                            <span class="price old-price"><small>{{number_format($product->price, 2)}} €</small></span>
+                                        @endif
+
+                                        @handheld
+                                            <ul class="cart-action">
+                                                @if(is_array($product->variations) && count($product->variations)>0)
+                                                    <li class="select-option w-100"><a target="blank" href="{{ route('frontend-product-show', ['alias'=>$product->code]) }}">{{__('frontend.select-variations')}}</a></li>
+                                                @else
+                                                    <li class="select-option w-100"><a href="javascript:void(0)" wire:click="fastAddProductToCart('{{$product->id}}')">{{__('frontend.add-to-cart')}}</a></li>
+                                                @endif
+                                            </ul>
+                                        @endhandheld
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="product-cart">
-                            @if(is_array($product->variations) && count($product->variations)>0)
-                                <a target="blank" class="cart-btn" href="{{ route('frontend-product-show', ['alias'=>$product->code]) }}" ><i class="fal fa-shopping-cart"></i></a>
-                            @else
-                                <a href="javascript:void(0)" wire:click="fastAddProductToCart('{{$product->id}}')" class="cart-btn"><i class="fal fa-shopping-cart"></i></a>
-                            @endif
-                        </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
+
+
+
+
+
+
 
 
             @if ($showMoreButton)
@@ -74,8 +108,8 @@
             @endif
 
 
-
-
         </div>
     </div>
+
+
 </div>

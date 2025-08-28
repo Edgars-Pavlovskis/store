@@ -12,7 +12,7 @@ class ShowProductsSearch extends Component
     public $query;
     public $found;
     public $products = [];
-    public $perLoad = 5;
+    public $perLoad = 30;
     public $showMoreButton = false;
 
     public $isLoading = false;
@@ -36,7 +36,7 @@ class ShowProductsSearch extends Component
 
     public function loadMore()
     {
-        $this->perLoad = $this->perLoad + 5;
+        $this->perLoad = $this->perLoad + 30;
         $this->search();
     }
 
@@ -65,9 +65,16 @@ class ShowProductsSearch extends Component
                 'addCount' => 1,
             );
             $data['disable-notify'] = true;
+            $this->alert('success', __('frontend.Product add to shopping cart'));
             $this->dispatch('addProductToCart', data: $data);
         }
     }
+
+    public function resetToast()
+    {
+        $this->showToast = false;
+    }
+
 
     public function render()
     {

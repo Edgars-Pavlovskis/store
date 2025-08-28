@@ -1,4 +1,3 @@
-<!-- Start New Arrivals Product Area  -->
 <div wire:ignore class="axil-new-arrivals-product-area bg-color-white axil-section-gap pb--50">
     <div class="container">
         <div class="section-title-wrapper">
@@ -53,4 +52,3 @@
         </div>
     </div>
 </div>
-<!-- End New Arrivals Product Area  -->

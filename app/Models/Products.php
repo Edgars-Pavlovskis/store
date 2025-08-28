@@ -14,15 +14,22 @@ class Products extends Model
         'variations' => 'array'
     ];
 
-    public function scopeSearch($query, $term)
-    {
-        $term = "%$term%";
-        $query->where(function($query) use ($term) {
-            $query->where('products.title', 'like', $term)
-                  ->orWhere('products.code', 'like', $term)
-                  ->orWhere('products.inner_code', 'like', $term);
-        });
-    }
+public function scopeSearch($query, $term)
+{
+    $words = explode(' ', $term); // sadala pa vārdiem
+
+    $query->where(function($query) use ($words) {
+        foreach ($words as $word) {
+            $word = "%$word%";
+            $query->where(function($q) use ($word) {
+                $q->where('products.title', 'like', $word)
+                  ->orWhere('products.code', 'like', $word)
+                  ->orWhere('products.inner_code', 'like', $word);
+            });
+        }
+    });
+}
+
 
 
     public function attributes()

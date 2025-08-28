@@ -5,6 +5,29 @@
 
 @section('content')
 
+        <div class="axil-breadcrumb-area px-0 py-3">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <div class="inner">
+                            <ul class="axil-breadcrumb m-0">
+                                <li class="axil-breadcrumb-item"><a href="/">{{__('frontend.product-catalog')}}</a></li>
+                                @mobile
+                                    <li class="separator"></li>
+                                    <li class="axil-breadcrumb-item active" aria-current="page"><a href="/catalog/{{end($breadcrumbCategories)->alias}}">{{end($breadcrumbCategories)->title}}</a></li>
+                                @elsemobile
+                                    @foreach ($breadcrumbCategories as $breadcrumbCategory)
+                                        <li class="separator"></li>
+                                        <li class="axil-breadcrumb-item @if($loop->last) active @endif" aria-current="page"><a href="/catalog/{{$breadcrumbCategory->alias}}">{{$breadcrumbCategory->title}}</a></li>
+                                    @endforeach
+                                @endmobile
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Start Shop Area  -->
         <div class="axil-single-product-area axil-section-gap pb--0 bg-color-white">
             <div class="single-product-thumb mb--40">

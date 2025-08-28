@@ -18,10 +18,15 @@
                         <div class="inner">
                             <ul class="axil-breadcrumb">
                                 <li class="axil-breadcrumb-item"><a href="/">{{__('frontend.product-catalog')}}</a></li>
-                                @if ($category->parent)
-                                    <li class="separator"></li>
-                                    <li class="axil-breadcrumb-item active" aria-current="page"><a href="/catalog/{{$category->parent->alias}}">{{$category->parent->title}}</a></li>
-                                @endif
+                                    @mobile
+                                        <li class="separator"></li>
+                                        <li class="axil-breadcrumb-item active" aria-current="page"><a href="/catalog/{{end($breadcrumbCategories)->alias}}">{{end($breadcrumbCategories)->title}}</a></li>
+                                    @elsemobile
+                                        @foreach ($breadcrumbCategories as $breadcrumbCategory)
+                                            <li class="separator"></li>
+                                            <li class="axil-breadcrumb-item @if($loop->last) active @endif" aria-current="page"><a href="/catalog/{{$breadcrumbCategory->alias}}">{{$breadcrumbCategory->title}}</a></li>
+                                        @endforeach
+                                    @endmobile
                             </ul>
                             <h1 class="title">{{$category->title}}</h1>
                         </div>
