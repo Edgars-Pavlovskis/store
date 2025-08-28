@@ -14,9 +14,9 @@
         <div class="axil-breadcrumb-area">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-8">
+                    <div class="col-12">
                         <div class="inner">
-                            <ul class="axil-breadcrumb">
+                            <ul class="axil-breadcrumb m-0">
                                 <li class="axil-breadcrumb-item"><a href="/">{{__('frontend.product-catalog')}}</a></li>
                                     @mobile
                                         <li class="separator"></li>
@@ -28,6 +28,10 @@
                                         @endforeach
                                     @endmobile
                             </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-8">
+                        <div class="inner">
                             <h1 class="title">{{$category->title}}</h1>
                         </div>
                     </div>
