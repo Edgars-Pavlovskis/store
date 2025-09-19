@@ -9,7 +9,7 @@
 
     <div class="single-product-content">
         <div class="inner">
-            <h2 class="product-title">{{$product->title}}</h2>
+            <h1 class="product-title">{{$product->title}}</h1>
 
             @if (($minPrice > 0 && $maxPrice > 0) || $minPrice != $maxPrice)
                 @if(isset($variationMatch['price']) && $variationMatch['price'] > 0)
