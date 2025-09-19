@@ -19,8 +19,9 @@
 
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>@yield('title', 'birojamunskolai.lv')</title>
-    <meta name="description" content="@yield('meta_description', 'Internetveikals birojamunskolai.lv')">
+    <title>@yield('title', 'Birojam un Skolai – Kancelejas preces, Skolas un Biroja piederumi Latvijā')</title>
+    <meta name="description" content="@yield('meta_description', 'Birojam un Skolai – plašs kancelejas preču, skolas un biroja piederumu klāsts. Pasūti viegli un ātri ar piegādi visā Latvijā.')">
+    <meta name="keywords" content="kancelejas preces, skolas piederumi, biroja piederumi, rakstāmpiederumi, biroja aksesuāri, skolas somas, pildspalvas, zīmuļi, biroja organizatori, pasūtīt Latvijā">
 
     <meta name="robots" content="index, follow" />
 
@@ -34,8 +35,8 @@
 
 
     <!-- Open Graph meta tags -->
-    <meta property="og:title" content="@yield('og_title', 'birojamunskolai.lv')" />
-    <meta property="og:description" content="@yield('og_description', 'Internetveikals birojamunskolai.lv')" />
+    <meta property="og:title" content="@yield('og_title', 'Birojam un Skolai – Kancelejas preces, Skolas un Biroja piederumi Latvijā')" />
+    <meta property="og:description" content="@yield('og_description', 'Birojam un Skolai – plašs kancelejas preču, skolas un biroja piederumu klāsts. Pasūti viegli un ātri ar piegādi visā Latvijā.')" />
     <meta property="og:type" content="@yield('og_type', 'website')" />
     <meta property="og:url" content="@yield('og_url', url()->current())" />
     <meta property="og:image" content="@yield('og_image', asset('assets/img/alba.png'))" />
@@ -44,8 +45,8 @@
 
     <!-- Optional: Twitter Card meta tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="@yield('og_title', 'birojamunskolai.lv')" />
-    <meta name="twitter:description" content="@yield('og_description', 'Internetveikals birojamunskolai.lv')" />
+    <meta name="twitter:title" content="@yield('og_title', 'Birojam un Skolai – Kancelejas preces, Skolas un Biroja piederumi Latvijā')" />
+    <meta name="twitter:description" content="@yield('og_description', 'Birojam un Skolai – plašs kancelejas preču, skolas un biroja piederumu klāsts. Pasūti viegli un ātri ar piegādi visā Latvijā.')" />
     <meta name="twitter:image" content="@yield('og_image', asset('assets/img/alba.png'))" />
 
 
